@@ -1,0 +1,20 @@
+﻿<Application
+  x:Class="tweetz.core.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  Startup="ApplicationStartup">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Infrastructure/Resources/Dark.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/Symbols.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/ToolTip.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/Button.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/TextBlock.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/Hyperlink.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/ScrollBar.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/Twitter.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

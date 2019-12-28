@@ -1,0 +1,32 @@
+﻿<Window
+  x:Class="tweetz.core.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="clr-namespace:tweetz.core.Controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Name="Main"
+  Title="Tweetz"
+  Width="355"
+  Height="900"
+  Background="{DynamicResource StandardBackgroundBrush}"
+  FontSize="{Binding Settings.FontSize}"
+  Foreground="{DynamicResource StandardForegroundBrush}"
+  SnapsToDevicePixels="True"
+  WindowStyle="SingleBorderWindow"
+  mc:Ignorable="d">
+
+  <Window.Resources>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+  </Window.Resources>
+
+  <Grid>
+    <controls:GetPinControl
+      DataContext="{Binding GetPinControlViewModel, Mode=OneWay}"
+      Visibility="{Binding DataContext.Settings.IsNotAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+    <controls:TabBarControl
+      DataContext="{Binding TabBarControlViewModel, Mode=OneWay}"
+      Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+  </Grid>
+</Window>

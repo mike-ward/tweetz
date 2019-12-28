@@ -1,0 +1,71 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="clr-namespace:tweetz.core.Controls"
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+  <sys:Int32 x:Key="InitialToolTipDelay">1000</sys:Int32>
+  <sys:Int32 x:Key="ToolTipDuration">30000</sys:Int32>
+
+  <!--  Only way to set ToolTipService values globally is by TargetType :(  -->
+
+  <Style
+    x:Key="BaseRunToolTipStyle"
+    TargetType="Run">
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+    <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
+    <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
+  </Style>
+
+  <Style
+    x:Key="BaseImageToolTipStyle"
+    TargetType="Image">
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+    <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
+    <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
+  </Style>
+
+  <Style
+    x:Key="BaseTextBlockToolTipStyle"
+    TargetType="TextBlock">
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+    <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
+    <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
+  </Style>
+
+  <Style
+    x:Key="BaseButtonToolTipStyle"
+    TargetType="Button">
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+    <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
+    <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
+  </Style>
+
+  <Style
+    x:Key="BaseHyperlinkToolTipStyle"
+    TargetType="Hyperlink">
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+    <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
+    <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
+  </Style>
+
+  <Style TargetType="ToolTip">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ToolTip">
+          <Border
+            MaxWidth="400"
+            Padding="20,6,20,10"
+            Background="{DynamicResource ToolTipBackgroundBrush}"
+            BorderBrush="{DynamicResource NormalBorderBrush}"
+            BorderThickness="1.5"
+            CornerRadius="10">
+            <ContentPresenter
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

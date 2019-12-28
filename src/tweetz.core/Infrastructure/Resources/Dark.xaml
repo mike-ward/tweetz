@@ -1,0 +1,37 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Color x:Key="GradientColor1">#333</Color>
+  <Color x:Key="GradientColor2">#888</Color>
+
+  <SolidColorBrush x:Key="StandardForegroundBrush">#bbb</SolidColorBrush>
+  <SolidColorBrush x:Key="StandardBackgroundBrush">#333</SolidColorBrush>
+  <SolidColorBrush x:Key="StandardBorderBrush">#888</SolidColorBrush>
+
+  <SolidColorBrush x:Key="SelectedForegroundBrush">#9be</SolidColorBrush>
+  <SolidColorBrush x:Key="SelectedBackgroundBrush">#808080</SolidColorBrush>
+  <SolidColorBrush x:Key="DisabledForegroundBrush">#888</SolidColorBrush>
+
+  <SolidColorBrush x:Key="ButtonForegroundBrush">#cccccc</SolidColorBrush>
+  <SolidColorBrush x:Key="ButtonBackgroundBrush">#585858</SolidColorBrush>
+
+  <SolidColorBrush x:Key="ToolTipForegroundBrush">#fff</SolidColorBrush>
+  <SolidColorBrush x:Key="ToolTipBackgroundBrush">#333</SolidColorBrush>
+
+  <SolidColorBrush x:Key="LinkForegroundBrush">#9be</SolidColorBrush>
+
+  <SolidColorBrush x:Key="GlyphBrush">#444</SolidColorBrush>
+  <SolidColorBrush x:Key="NormalBrush">#888</SolidColorBrush>
+  <SolidColorBrush x:Key="NormalBorderBrush">#888</SolidColorBrush>
+  <SolidColorBrush x:Key="HorizontalNormalBrush">#686868</SolidColorBrush>
+  <SolidColorBrush x:Key="HorizontalNormalBorderBrush">#888</SolidColorBrush>
+
+  <SolidColorBrush x:Key="TabItemHoverBrush">#444</SolidColorBrush>
+
+  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5, 1">
+    <GradientStop Offset="0" Color="#323232" />
+    <GradientStop Offset="0.2" Color="#441f1f" />
+    <GradientStop Offset="1" Color="#313131" />
+  </LinearGradientBrush>
+</ResourceDictionary> 

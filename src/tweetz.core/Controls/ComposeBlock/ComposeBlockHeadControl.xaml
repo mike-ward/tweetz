@@ -1,0 +1,56 @@
+﻿<UserControl
+  x:Class="tweetz.core.Controls.ComposeBlock.ComposeBlockHeadControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:controls="clr-namespace:tweetz.core.Controls"
+  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:tweetz.core.Controls.ComposeBlock"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="200"
+  d:DesignWidth="300"
+  mc:Ignorable="d">
+
+  <StackPanel>
+    <TextBlock
+      Margin="0 0 0 -10"
+      HorizontalAlignment="Right"
+      Cursor="Hand"
+      FontFamily="{StaticResource SymbolFont}"
+      Foreground="{DynamicResource StandardForegroundBrush}"
+      Text="{StaticResource XSymbol}">
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="{x:Static commands:ToggleShowComposeCommand.Command}"
+          Gesture="LeftClick" />
+      </TextBlock.InputBindings>
+    </TextBlock>
+
+    <local:ComposeBlockInReplyToControl
+      Margin="5,8,0,0"
+      DataContext="{Binding InReplyTo, Mode=OneWay}"
+      Visibility="{Binding Mode=OneWay, Converter={converters:NotNullToVisibilityConverter}}" />
+
+    <StackPanel Orientation="Horizontal">
+      <controls:TweetProfileImageControl
+        Grid.Row="1"
+        Margin="5,8,0,0"
+        DataContext="{Binding User, Mode=OneWay}" />
+
+      <TextBlock
+        Margin="5,0,0,0"
+        VerticalAlignment="Center"
+        TextWrapping="Wrap">
+
+        <Run
+          FontWeight="Bold"
+          Foreground="{DynamicResource LinkForegroundBrush}"
+          Text="{Binding User.Name, Mode=OneWay}" />
+
+        <Run>@</Run><Run Text="{Binding User.ScreenName, Mode=OneWay}" />
+      </TextBlock>
+    </StackPanel>
+  </StackPanel>
+</UserControl>

@@ -1,0 +1,41 @@
+﻿<UserControl
+  x:Class="tweetz.core.Controls.TweetQuotedControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:tweetz.core.Controls"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="200"
+  d:DesignWidth="300"
+  mc:Ignorable="d">
+
+  <UserControl.Resources>
+    <Style
+      x:Key="QuotedBorderStyle"
+      TargetType="Border">
+      <Setter Property="Margin" Value="0,3" />
+      <Setter Property="BorderThickness" Value="0.3" />
+      <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
+      <Setter Property="Padding" Value="10,9" />
+      <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <BooleanToVisibilityConverter x:Key="BoolToVisibililtyConverter" />
+  </UserControl.Resources>
+
+  <Border Style="{StaticResource QuotedBorderStyle}">
+    <StackPanel>
+      <local:TweetNameInfoControl DataContext="{Binding Mode=OneWay}" />
+
+      <local:TweetImageControl
+        Margin="0,3,0,0"
+        DataContext="{Binding Mode=OneWay}" />
+
+      <local:TweetTextControl DataContext="{Binding Mode=OneWay}" />
+
+      <local:TweetCommandsControl
+        Margin="0,3,0,0"
+        DataContext="{Binding Mode=OneWay}" />
+    </StackPanel>
+  </Border>
+</UserControl>

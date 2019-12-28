@@ -1,0 +1,91 @@
+﻿<UserControl
+  x:Class="tweetz.core.Controls.SettingsBlock.SettingsFontSizeBlock"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:services="clr-namespace:tweetz.core.Services"
+  d:DesignHeight="75"
+  d:DesignWidth="300"
+  mc:Ignorable="d">
+  <UserControl.Resources>
+    <Style
+      x:Key="SettingsRadioButton"
+      TargetType="RadioButton">
+      <Setter Property="Content" Value="{StaticResource FontSizeSymbol}" />
+      <Setter Property="FontFamily" Value="{StaticResource SymbolFont}" />
+      <Setter Property="VerticalContentAlignment" Value="Bottom" />
+      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+      <Setter Property="Height" Value="19" />
+    </Style>
+  </UserControl.Resources>
+
+  <StackPanel>
+    <TextBlock Text="{services:LanguageService font-size-title}" />
+
+    <Separator />
+
+    <UniformGrid Columns="5">
+      <RadioButton
+        FontSize="11.5"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=11.5}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="12"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=12}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="12.5"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=12.5}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="13"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=13}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="13.5"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=13.5}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="14"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=14}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="14.5"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=14.5}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="15"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=15}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="15.5"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=15.5}"
+        Style="{StaticResource SettingsRadioButton}" />
+
+      <RadioButton
+        FontSize="16"
+        GroupName="f"
+        IsChecked="{Binding FontSize, Converter={converters:CompareToConverter}, ConverterParameter=16}"
+        Style="{StaticResource SettingsRadioButton}" />
+    </UniformGrid>
+  </StackPanel>
+</UserControl>
