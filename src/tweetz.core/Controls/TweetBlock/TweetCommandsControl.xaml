@@ -42,7 +42,7 @@
         <DataTrigger
           Binding="{Binding Favorited}"
           Value="True">
-          <Setter Property="Foreground" Value="Red" />
+          <Setter Property="Foreground" Value="#E0245E" />
         </DataTrigger>
       </Style.Triggers>
     </Style>
