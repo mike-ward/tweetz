@@ -129,7 +129,11 @@ namespace twitter.core.Services
 
         public async Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
-            var parameters = new List<(string, string)> { TwitterOptions.Status(text) };
+            var parameters = new List<(string, string)>
+            {
+                TwitterOptions.Status(text),
+                TwitterOptions.ExtendedTweetMode()
+            };
 
             if (!string.IsNullOrEmpty(replyToStatusId))
             {
@@ -150,6 +154,18 @@ namespace twitter.core.Services
             return await oAuthApiRequest.Post<TwitterStatus>(
                 "https://api.twitter.com/1.1/statuses/update.json",
                 parameters);
+        }
+
+        public async Task<TwitterStatus> GetStatus(string statusId)
+        {
+            return await oAuthApiRequest.Get<TwitterStatus>(
+                "https://api.twitter.com/1.1/statuses/show.json",
+                new[]
+                {
+                    TwitterOptions.Id(statusId),
+                    TwitterOptions.IncludeEntities(),
+                    TwitterOptions.ExtendedTweetMode()
+                });
         }
 
         public static string UploadMediaUrl = "https://upload.twitter.com/1.1/media/upload.json";

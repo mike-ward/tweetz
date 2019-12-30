@@ -104,6 +104,11 @@ namespace tweetz.core.Services
             return await twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
         }
 
+        public async Task<TwitterStatus> GetStatus(string statusId)
+        {
+            return await twitterApi.GetStatus(statusId);
+        }
+
         public async Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
             return await twitterApi.UploadMediaInit(totalBytes, mediaType);

@@ -35,6 +35,8 @@ namespace tweetz.core.Infrastructure
 
         Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[] mediaIds);
 
+        Task<TwitterStatus> GetStatus(string statusId);
+
         Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType);
 
         Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data);
