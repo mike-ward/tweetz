@@ -51,6 +51,7 @@ namespace tweetz.core.ViewModels
             try
             {
                 StatusCollection.Clear();
+                SetSearchText?.Invoke(string.Empty);
 
                 ShowProgress = true;
                 var statuses = await TwitterService.GetMentionsTimeline();
