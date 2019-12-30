@@ -65,7 +65,7 @@ namespace tweetz.core.Services
             { "retweet-tooltip",               "Retweet / Unretweet" },
             { "like-tooltip",                  "Like / Unlike" },
             { "retweet-with-comment-tooltip",  "Retweet with comment" },
-            { "follow-tooltip",                "Follow/Unfollow" },
+            { "follow-tooltip",                "Follow / Unfollow" },
             { "remove-tooltip",                "Remove" },
             { "add-image-tooltip",             "Add 1 gif (*.gif) or 1 video (*.mp4) or up to 4 images (*.jpg, *.png, *.webp)" },
             { "mentions-tooltip",              "Get mentions" },

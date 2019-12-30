@@ -31,7 +31,7 @@ namespace tweetz.core.ViewModels
             CommandBindings = commandBindings;
         }
 
-        public void Initiate(Window window)
+        public void OnInitialized(Window window)
         {
             Settings.Load();
             WindowInteropService.DisableMaximizeButton(window);
@@ -40,11 +40,10 @@ namespace tweetz.core.ViewModels
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
         }
 
-        public bool Shutdown(Window window)
+        public void OnClosing(Window window)
         {
             Settings.MainWindowPosition = WindowInteropService.GetWindowPosition(window);
             Settings.Save();
-            return true;
         }
     }
 }

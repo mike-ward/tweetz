@@ -11,8 +11,8 @@ namespace tweetz.core.Services
 {
     public class CheckForUpdates : NotifyPropertyChanged, ICheckForUpdates
     {
-        private DispatcherTimer timer;
         private string version;
+        private readonly DispatcherTimer timer;
 
         public CheckForUpdates(VersionInfo versionInfo)
         {

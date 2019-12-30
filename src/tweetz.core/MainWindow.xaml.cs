@@ -13,14 +13,16 @@ namespace tweetz.core
             InitializeComponent();
         }
 
+        private MainWindowViewModel ViewModel => (MainWindowViewModel)DataContext;
+
         protected override void OnSourceInitialized(EventArgs e)
         {
-            ((MainWindowViewModel)DataContext).Initiate(this);
+            ViewModel.OnInitialized(this);
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            ((MainWindowViewModel)DataContext).Shutdown(this);
+            ViewModel.OnClosing(this);
         }
     }
 }

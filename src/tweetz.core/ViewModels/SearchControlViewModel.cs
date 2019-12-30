@@ -72,7 +72,7 @@ namespace tweetz.core.ViewModels
 
             foreach (var status in statuses)
             {
-                status.IsMyTweet = Settings.ScreenName == status.OriginatingStatus?.User?.ScreenName;
+                status.IsMyTweet = Settings.ScreenName == status.OriginatingStatus.User.ScreenName;
                 StatusCollection.Add(status);
             }
 

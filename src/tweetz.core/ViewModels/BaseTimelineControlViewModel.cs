@@ -82,23 +82,20 @@ namespace tweetz.core.ViewModels
         public void UpdateTimeline(IEnumerable<TwitterStatus> statuses)
         {
             // ObservableCollection only supports linear searching.
-            // Build dictionary for faster lookups.
-            var lookup = StatusCollection
+            // Build a dictionary for faster lookups.
+            var statusDictionary = StatusCollection
                 .Where(status => status.Id != DonateNagStatus.DonateNagStatusId)
                 .ToDictionary(status => status.Id, status => status);
 
             foreach (var status in statuses.Reverse())
             {
-                if (lookup.TryGetValue(status.Id, out var fromCollection))
+                if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
                 {
-                    if (status.OriginatingStatus != null)
-                    {
-                        fromCollection.OriginatingStatus?.UpdateFromStatus(status.OriginatingStatus);
-                    }
+                    statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
                 }
                 else
                 {
-                    status.IsMyTweet = Settings.ScreenName == status.OriginatingStatus?.User?.ScreenName;
+                    status.IsMyTweet = Settings.ScreenName == status.OriginatingStatus.User.ScreenName;
                     StatusCollection.Insert(0, status);
                 }
             }

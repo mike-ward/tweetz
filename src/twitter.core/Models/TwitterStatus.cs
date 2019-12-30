@@ -32,10 +32,10 @@ namespace twitter.core.Models
         public string? Text { get; set; }
 
         [JsonPropertyName("user")]
-        public User? User { get; set; }
+        public User User { get; set; }
 
         [JsonPropertyName("created_at")]
-        public string? CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
 
         [JsonPropertyName("entities")]
         public Entities? Entities { get; set; }
@@ -105,7 +105,9 @@ namespace twitter.core.Models
         /// Originating status is what get's displayed
         /// </summary>
         [JsonIgnore]
-        public TwitterStatus? OriginatingStatus => IsRetweet ? RetweetedStatus : this;
+        public TwitterStatus OriginatingStatus => IsRetweet
+            ? RetweetedStatus ?? throw new NullReferenceException("Invalid program state")
+            : this;
 
         /// <summary>
         /// Create a link to a twitter status

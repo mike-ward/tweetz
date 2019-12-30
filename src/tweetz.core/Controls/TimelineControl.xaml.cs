@@ -24,8 +24,8 @@ namespace tweetz.core.Controls
         {
             // Only want the home timeline to pause on scroll
             // Why, other timelines don't update as frequently
-            // it just adds noise to the interface with red
-            // dots on the other timelines.
+            // and it just adds noise to the interface with
+            // red dots on the other timelines.
 
             if (DataContext is HomeTimelineControlViewModel vm)
             {

@@ -24,5 +24,10 @@ namespace tweetz.core.ViewModels
                 ? LanguageService.Instance.Lookup("new-version-available")
                 : null;
         }
+
+        public void SaveSettings()
+        {
+            Settings.Save();
+        }
     }
 }

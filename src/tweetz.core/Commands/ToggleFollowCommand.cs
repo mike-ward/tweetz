@@ -32,7 +32,7 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.Parameter is TwitterStatus twitterStatus && twitterStatus.OriginatingStatus?.User?.ScreenName != Settings.ScreenName;
+            e.CanExecute = e.Parameter is TwitterStatus twitterStatus && twitterStatus.OriginatingStatus.User.ScreenName != Settings.ScreenName;
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
