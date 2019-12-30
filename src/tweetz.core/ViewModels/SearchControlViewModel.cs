@@ -50,9 +50,12 @@ namespace tweetz.core.ViewModels
         {
             try
             {
+                StatusCollection.Clear();
+
                 ShowProgress = true;
                 var statuses = await TwitterService.GetMentionsTimeline();
                 ShowProgress = false;
+
                 UpdateTimeline(statuses);
                 ExceptionMessage = null;
             }
