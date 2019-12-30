@@ -23,7 +23,7 @@
         <DataTrigger
           Binding="{Binding AttachmentUrl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
           Value="">
-          <Setter Property="Text" Value="{services:LanguageService whats-happening}" />
+          <Setter Property="Text" Value="{Binding WatermarkText, Mode=OneWay}" />
         </DataTrigger>
       </Style.Triggers>
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
+using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
@@ -17,6 +18,7 @@ namespace tweetz.core.ViewModels
         private TwitterStatus? inReplyTo;
         private string statusText = string.Empty;
         private string attachmentUrl = string.Empty;
+        private string watermarkText;
 
         public ComposeControlViewModel(ISettings settings, ITwitterService twitterService)
         {
@@ -34,6 +36,7 @@ namespace tweetz.core.ViewModels
         public TwitterStatus? InReplyTo { get => inReplyTo; set => SetProperty(ref inReplyTo, value); }
         public string StatusText { get => statusText; set => SetProperty(ref statusText, value); }
         public string AttachmentUrl { get => attachmentUrl; set => SetProperty(ref attachmentUrl, value); }
+        public string WatermarkText { get => watermarkText; set => SetProperty(ref watermarkText, value); }
         public ObservableCollection<MediaInfo> Media { get; } = new ObservableCollection<MediaInfo>();
 
         public async Task GetUserInfo()
@@ -62,6 +65,7 @@ namespace tweetz.core.ViewModels
             StatusText = string.Empty;
             AttachmentUrl = string.Empty;
             Media.Clear();
+            WatermarkText = LanguageService.Instance.Lookup("whats-happening");
         }
 
         public bool AddImage(string filename)

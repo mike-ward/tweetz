@@ -59,6 +59,7 @@ namespace tweetz.core.Services
             { "whats-happening",               "What's Happening?" },
             { "add-a-comment",                 "Add a comment" },
             { "spell-checker",                 "Spell checker" },
+            { "in-reply-to",                   "In reply to {0}" }, // {0} = screen name of user
 
             // Tooltips
             { "reply-tooltip",                 "Reply" },
