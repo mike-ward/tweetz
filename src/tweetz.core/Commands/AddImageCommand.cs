@@ -54,11 +54,11 @@ namespace tweetz.core.Commands
                 {
                     using var stream = ex.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
-                    MessageBoxService.ShowMessageBox(reader.ReadToEnd());
+                    await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd());
                 }
                 catch (Exception ex)
                 {
-                    MessageBoxService.ShowMessageBox(ex.Message);
+                    await MessageBoxService.ShowMessageBoxAsync(ex.Message);
                 }
                 finally
                 {

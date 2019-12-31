@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
 using twitter.core.Models;
@@ -36,16 +37,28 @@ namespace tweetz.core.ViewModels
         {
             IEnumerable<TwitterStatus> mentions = new TwitterStatus[0];
 
-            if (mentionsCounter >= mentionsInterval)
+            try
             {
-                mentionsCounter = 0;
-                mentions = await TwitterService.GetMentionsTimeline();
+                if (mentionsCounter >= mentionsInterval)
+                {
+                    mentionsCounter = 0;
+                    mentions = await TwitterService.GetMentionsTimeline();
+                }
+                else
+                {
+                    mentionsCounter += 1;
+                }
             }
-            else
+            catch (WebException ex)
             {
-                mentionsCounter += 1;
+                if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.TooManyRequests)
+                {
+                    // Probably hit the daily limit
+                    // Alerting the user does no good in this instance (IMO)
+                    return mentions;
+                }
+                throw;
             }
-
             return mentions;
         }
     }

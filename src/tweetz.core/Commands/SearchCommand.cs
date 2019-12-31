@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
 
@@ -8,11 +9,14 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
         private SearchControlViewModel SearchControlViewModel { get; }
+        public IMessageBoxService MessageBoxService { get; }
+
         private bool inCommand;
 
-        public SearchCommand(SearchControlViewModel searchControlViewModel)
+        public SearchCommand(SearchControlViewModel searchControlViewModel, IMessageBoxService messageBoxService)
         {
             SearchControlViewModel = searchControlViewModel;
+            MessageBoxService = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
@@ -32,6 +36,10 @@ namespace tweetz.core.Commands
                 {
                     await SearchControlViewModel.Search(query);
                 }
+            }
+            catch (Exception ex)
+            {
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
             }
             finally
             {

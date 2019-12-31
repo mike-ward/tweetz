@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using tweetz.core.Infrastructure;
 
 namespace tweetz.core.Commands
@@ -7,10 +8,12 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
         private IOpenUrlService OpenUrlService { get; }
+        public IMessageBoxService MessageBoxService { get; }
 
-        public OpenLinkCommand(IOpenUrlService openUrlService)
+        public OpenLinkCommand(IOpenUrlService openUrlService, IMessageBoxService messageBoxService)
         {
             OpenUrlService = openUrlService;
+            MessageBoxService = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
@@ -22,7 +25,14 @@ namespace tweetz.core.Commands
         {
             if (ea.Parameter is string url)
             {
-                OpenUrlService.OpenUrl(url);
+                try
+                {
+                    OpenUrlService.OpenUrl(url);
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxService.ShowMessageBox(ex.Message);
+                }
             }
         }
     }
