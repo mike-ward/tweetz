@@ -10,7 +10,7 @@ namespace tweetz.core.Commands
     public class ImageViewerCommand : ICommandBinding
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
-        private Popup? _popup;
+        private Popup? popup;
         private IImageViewerService ImageViewerService { get; }
         private IMessageBoxService MessageBoxService { get; }
 
@@ -28,7 +28,7 @@ namespace tweetz.core.Commands
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
             ea.Handled = true;
-            if (_popup != null) _popup.IsOpen = false;
+            if (popup != null) popup.IsOpen = false;
 
             try
             {
@@ -38,7 +38,7 @@ namespace tweetz.core.Commands
                     null;
 
                 if (uri == null || !(sender is Window window)) return;
-                _popup = ImageViewerService.CreatePopup(window, uri);
+                popup = ImageViewerService.CreatePopup(window, uri);
             }
             catch (Exception ex)
             {

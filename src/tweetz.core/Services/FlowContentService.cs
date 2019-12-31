@@ -159,8 +159,6 @@ namespace tweetz.core.Services
         private static List<FlowContentItem> BuildFlowControlItems(Entities entities)
         {
             var flowContentItems = new List<FlowContentItem>();
-#pragma warning disable CS8601 // Possible null reference assignment.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
 
             if (entities.Urls != null)
             {
@@ -209,8 +207,6 @@ namespace tweetz.core.Services
                         End = media.Indices[1]
                     }));
             }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8601 // Possible null reference assignment.
 
             flowContentItems.Sort((l, r) => l.Start - r.Start);
             return flowContentItems;

@@ -22,6 +22,7 @@ namespace tweetz.core.Controls
             {
                 Mouse.OverrideCursor = Cursors.Wait;
                 await ViewModel.GetPin();
+                await Task.Delay(TimeSpan.FromSeconds(5));
             }
             catch (Exception ex)
             {
@@ -29,8 +30,6 @@ namespace tweetz.core.Controls
             }
             finally
             {
-                const int fiveSeconds = 5 * 1000;
-                await Task.Delay(fiveSeconds);
                 Mouse.OverrideCursor = Cursors.Arrow;
                 ShowPage(2);
             }

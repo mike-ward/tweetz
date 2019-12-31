@@ -15,7 +15,7 @@ namespace tweetz.core.Controls.ComposeBlock
 
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            // Could not figure a way to do this is XAML.
+            // Could not figure a way to set data context for texblock in XAML.
             // DataContext=ComposeControlViewModel is needed to determine text of watermark
 
             var vm = (ComposeControlViewModel)DataContext;
@@ -34,7 +34,7 @@ namespace tweetz.core.Controls.ComposeBlock
 
         private void TextBoxOnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            // Because AcceptsReturn == true, capture the ctrl+return here.
+            // Because AcceptsReturn == true, capture ctrl+return here.
 
             if (!e.Handled && e.Key == Key.Return && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {

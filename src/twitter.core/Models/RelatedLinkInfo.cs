@@ -13,11 +13,11 @@ namespace twitter.core.Models
     /// </summary>
     public class RelatedLinkInfo
     {
-        public string? Url { get; set; }
-        public string? Title { get; set; }
-        public string? ImageUrl { get; set; }
-        public string? Description { get; set; }
-        public string? SiteName { get; set; }
+        public string Url { get; set; }
+        public string Title { get; set; }
+        public string ImageUrl { get; set; }
+        public string Description { get; set; }
+        public string SiteName { get; set; }
 
         public TwitterStatus ImageTwitterStatus => new TwitterStatus
         {
@@ -61,7 +61,7 @@ namespace twitter.core.Models
                     if (relatedLinkInfo == null) continue;
 
                     status.CheckedRelatedInfo = true;
-                    if (!UrlValid(relatedLinkInfo.ImageUrl)) relatedLinkInfo.ImageUrl = null;
+                    if (!UrlValid(relatedLinkInfo.ImageUrl)) relatedLinkInfo.ImageUrl = string.Empty;
                     relatedLinkInfo.ImageUrl = status.ExtendedEntities?.Media?[0]?.MediaUrl ?? relatedLinkInfo.ImageUrl;
                     return status.RelatedLinkInfo ?? relatedLinkInfo;
                 }
@@ -75,7 +75,7 @@ namespace twitter.core.Models
             return status.RelatedLinkInfo;
         }
 
-        private static async Task<RelatedLinkInfo?> ParseHeadersForLinkInfo(string? url)
+        private static async Task<RelatedLinkInfo?> ParseHeadersForLinkInfo(string url)
         {
             if (!UrlValid(url)) return null;
 

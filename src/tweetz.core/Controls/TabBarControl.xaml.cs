@@ -32,8 +32,8 @@ namespace tweetz.core.Controls
         }
 
         /// <summary>
-        /// Hocus pocus, try to set the focus. When switching tabs so page up/dn, home/end
-        /// keyboard shortcuts for scrolling works.
+        /// Hocus pocus, try to set the focus when switching tabs so page up/dn, home/end
+        /// keyboard shortcuts for scrolling work.
         /// </summary>
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -169,7 +169,7 @@ namespace twitter.core.Services
                 });
         }
 
-        public static string UploadMediaUrl = "https://upload.twitter.com/1.1/media/upload.json";
+        public const string UploadMediaUrl = "https://upload.twitter.com/1.1/media/upload.json";
 
         public async Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {

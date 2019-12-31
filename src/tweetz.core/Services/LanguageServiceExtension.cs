@@ -7,18 +7,18 @@ namespace tweetz.core.Services
     [MarkupExtensionReturnType(typeof(string))]
     public class LanguageServiceExtension : MarkupExtension
     {
-        private readonly string _key;
+        private readonly string key;
 
         public LanguageServiceExtension(string key)
         {
-            _key = key;
+            this.key = key;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             var binding = new Binding("Value")
             {
-                Source = new LanguageServiceBinder(_key),
+                Source = new LanguageServiceBinder(key),
                 Mode = BindingMode.OneWay
             };
             return binding.ProvideValue(serviceProvider);

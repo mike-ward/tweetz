@@ -16,10 +16,10 @@ namespace tweetz.core.Models
         private bool hideProfileImages;
         private bool pauseWhenScrolled;
         private bool donated;
+        private bool spellCheck;
         private double fontSize = 12;
         private string theme = "dark";
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
-        private bool spellCheck;
 
         public string? AccessToken
         {
