@@ -45,9 +45,9 @@ namespace tweetz.core.Services
             return result;
         }
 
-        public async Task<IEnumerable<TwitterStatus>> GetMentionsTimeline()
+        public async Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count)
         {
-            var result = await twitterApi.MentionsTimeline();
+            var result = await twitterApi.MentionsTimeline(count);
             return result;
         }
 

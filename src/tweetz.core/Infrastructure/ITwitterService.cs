@@ -13,7 +13,7 @@ namespace tweetz.core.Infrastructure
 
         Task<IEnumerable<TwitterStatus>> GetHomeTimeline();
 
-        Task<IEnumerable<TwitterStatus>> GetMentionsTimeline();
+        Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20);
 
         Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline();
 

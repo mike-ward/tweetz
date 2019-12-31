@@ -47,11 +47,11 @@ namespace twitter.core.Services
                 TwitterOptions.Default());
         }
 
-        public async Task<TwitterStatus[]> MentionsTimeline()
+        public async Task<TwitterStatus[]> MentionsTimeline(int count)
         {
             return await oAuthApiRequest.Get<TwitterStatus[]>(
                 "https://api.twitter.com/1.1/statuses/mentions_timeline.json",
-                TwitterOptions.Default());
+                TwitterOptions.Default(count));
         }
 
         public async Task<TwitterStatus[]> FavoritesTimeline()
@@ -81,7 +81,8 @@ namespace twitter.core.Services
                 {
                     TwitterOptions.Count(100),
                     TwitterOptions.Query(query),
-                    TwitterOptions.IncludeEntities()
+                    TwitterOptions.IncludeEntities(),
+                    TwitterOptions.ExtendedTweetMode()
                 });
         }
 

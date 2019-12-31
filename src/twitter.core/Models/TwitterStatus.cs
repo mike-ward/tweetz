@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -20,7 +21,6 @@ namespace twitter.core.Models
         private bool retweetedByMe;
         private bool favorited;
         private bool checkedRelatedInfo;
-        private bool isMyTweet;
 
         [JsonPropertyName("id_str")]
         public string Id { get; set; } = string.Empty;
@@ -136,7 +136,9 @@ namespace twitter.core.Models
         /// <summary>
         /// Inicates if user is author of tweet
         /// </summary>
-        public bool IsMyTweet { get => isMyTweet; set => SetProperty(ref isMyTweet, value); }
+        public bool IsMyTweet { get; set; }
+
+        public bool MentionsMe { get; set; }
 
         public static DateTime ParseTwitterDate(string? s)
         {
@@ -164,6 +166,13 @@ namespace twitter.core.Models
             QuoteCount = status.QuoteCount;
             RetweetedByMe = status.RetweetedByMe;
             Favorited = status.Favorited;
+        }
+
+        public void AboutMe(string? screenName)
+        {
+            if (string.IsNullOrEmpty(screenName)) return;
+            IsMyTweet = screenName == OriginatingStatus.User.ScreenName;
+            MentionsMe = Entities?.Mentions?.Any(mention => mention.ScreenName == screenName) ?? false;
         }
 
         /// <summary>

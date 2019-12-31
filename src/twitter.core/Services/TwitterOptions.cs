@@ -45,9 +45,9 @@ namespace twitter.core.Services
 
         public static (string, string) MediaIds(string[] mediaIds) => ("media_ids", string.Join(',', mediaIds));
 
-        public static (string, string)[] Default() => new (string, string)[]
+        public static (string, string)[] Default(int count = 150) => new (string, string)[]
         {
-            Count(),
+            Count(count),
             IncludeRetweets(),
             IncludeEntities(),
             ExtendedTweetMode()

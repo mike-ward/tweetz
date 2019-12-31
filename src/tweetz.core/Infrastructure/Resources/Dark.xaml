@@ -29,7 +29,7 @@
 
   <SolidColorBrush x:Key="TabItemHoverBrush">#444</SolidColorBrush>
 
-  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5, 1">
+  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0.5,0" EndPoint="0.5, 1">
     <GradientStop Offset="0" Color="#323232" />
     <GradientStop Offset="0.2" Color="#441f1f" />
     <GradientStop Offset="1" Color="#313131" />

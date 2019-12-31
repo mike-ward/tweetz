@@ -54,7 +54,7 @@ namespace tweetz.core.ViewModels
                 SetSearchText?.Invoke(string.Empty);
 
                 ShowProgress = true;
-                var statuses = await TwitterService.GetMentionsTimeline();
+                var statuses = await TwitterService.GetMentionsTimeline(150);
                 ShowProgress = false;
 
                 UpdateTimeline(statuses);
@@ -76,7 +76,7 @@ namespace tweetz.core.ViewModels
 
             foreach (var status in statuses)
             {
-                status.IsMyTweet = Settings.ScreenName == status.OriginatingStatus.User.ScreenName;
+                status.AboutMe(Settings.ScreenName);
                 StatusCollection.Add(status);
             }
 

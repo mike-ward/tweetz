@@ -25,6 +25,11 @@
             Value="True">
             <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
           </DataTrigger>
+          <DataTrigger
+            Binding="{Binding MentionsMe, Mode=OneWay}"
+            Value="True">
+            <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
+          </DataTrigger>
         </Style.Triggers>
       </Style>
     </Grid.Style>

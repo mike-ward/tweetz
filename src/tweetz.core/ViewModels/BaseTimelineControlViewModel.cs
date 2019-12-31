@@ -95,7 +95,7 @@ namespace tweetz.core.ViewModels
                 }
                 else
                 {
-                    status.IsMyTweet = Settings.ScreenName == status.OriginatingStatus.User.ScreenName;
+                    status.AboutMe(Settings.ScreenName);
                     StatusCollection.Insert(0, status);
                 }
             }
