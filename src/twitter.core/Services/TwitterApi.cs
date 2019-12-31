@@ -190,7 +190,7 @@ namespace twitter.core.Services
 
         public async Task<UploadMedia> UploadMediaStatus(string mediaId)
         {
-            return await oAuthApiRequest.Post<UploadMedia>(
+            return await oAuthApiRequest.Get<UploadMedia>(
                 UploadMediaUrl,
                 new[]
                 {
