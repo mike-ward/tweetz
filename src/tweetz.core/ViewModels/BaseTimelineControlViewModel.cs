@@ -79,6 +79,15 @@ namespace tweetz.core.ViewModels
             }
         }
 
+        // Once the upper limit of StatusCollections is reached, the oldest
+        // statuses are removed. AlreadyAdded<> ensures that the status won't
+        // appear again. Why do we need this? The home timeline contains
+        // mentions (see HomeTimelineControlViewModel.cs). Without this check,
+        // mentions can reappear after they leave StatusCollection. So why not
+        // use the sinceId parameter then when querying the timeline? We need
+        // the old statues to update counts for retweets, favorites, etc.
+        private HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
+
         public void UpdateTimeline(IEnumerable<TwitterStatus> statuses)
         {
             // ObservableCollection only supports linear searching.
@@ -93,8 +102,9 @@ namespace tweetz.core.ViewModels
                 {
                     statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
                 }
-                else
+                else if (!AlreadyAdded.Contains(status.Id))
                 {
+                    AlreadyAdded.Add(status.Id);
                     status.AboutMe(Settings.ScreenName);
                     StatusCollection.Insert(0, status);
                 }
@@ -103,7 +113,9 @@ namespace tweetz.core.ViewModels
 
         private void TruncateStatusCollection()
         {
-            while (StatusCollection.Count > 500)
+            var maxNumberOfStatuses = 500;
+
+            while (StatusCollection.Count > maxNumberOfStatuses)
             {
                 StatusCollection.RemoveAt(StatusCollection.Count - 1);
             }
