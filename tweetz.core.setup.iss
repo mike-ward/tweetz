@@ -23,8 +23,8 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 ;PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=tweetz.setup
-OutputDir=bin
+OutputBaseFilename=tweetz-setup
+OutputDir=bin\dist
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

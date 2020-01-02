@@ -24,16 +24,18 @@ namespace twitter.core.Models
             Id = Guid.NewGuid().ToString(),
             ExtendedEntities = new Entities
             {
-                Media = new[]
-                {
-                    new Media
+                Media = string.IsNullOrWhiteSpace(ImageUrl)
+                    ? null
+                    : new[]
                     {
-                        Url = ImageUrl,
-                        MediaUrl = ImageUrl,
-                        DisplayUrl = ImageUrl,
-                        ExpandedUrl = ImageUrl
+                        new Media
+                        {
+                            Url = ImageUrl,
+                            MediaUrl = ImageUrl,
+                            DisplayUrl = ImageUrl,
+                            ExpandedUrl = ImageUrl
+                        }
                     }
-                }
             }
         };
 

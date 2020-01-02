@@ -16,10 +16,10 @@ if ERRORLEVEL 1 goto ERROR
 
 pushd bin
 
-7z a -r tweetz-framework-dependent.zip ./framework-dependent/*
+7z a -r dist/tweetz-framework-dependent.zip ./framework-dependent/*
 if ERRORLEVEL 1 goto ERROR
 
-7z a -r tweetz-self-contained.zip ./self-contained/*
+7z a -r dist/tweetz-self-contained.zip ./self-contained/*
 if ERRORLEVEL 1 goto ERROR
 
 popd

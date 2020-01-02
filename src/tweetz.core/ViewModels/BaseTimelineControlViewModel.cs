@@ -13,8 +13,7 @@ namespace tweetz.core.ViewModels
     {
         private bool inUpdate;
         private DispatcherTimer? timer;
-
-        public ISystemState SystemState { get; }
+        private ISystemState SystemState { get; }
 
         public BaseTimelineControlViewModel(ISettings settings, ISystemState systemState)
             : base(settings)
