@@ -71,6 +71,10 @@ namespace tweetz.core.Services
             { "add-image-tooltip",             "Add 1 gif (*.gif) or 1 video (*.mp4) or up to 4 images (*.jpg, *.png, *.webp)" },
             { "mentions-tooltip",              "Get mentions" },
             { "new-version-available",         "Update available!\nClick here to get it." },
+            { "copy-to-clipboard",             "Copy to clipboard" },
+
+            // Image viewer
+            { "copy",                          "copy" },
         };
     }
 }

@@ -22,6 +22,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
+            App.Current.MainWindow.Closed += MainWindow_Closed;
             return new CommandBinding(Command, CommandHandler);
         }
 
@@ -44,6 +45,11 @@ namespace tweetz.core.Commands
             {
                 MessageBoxService.ShowMessageBox(ex.Message);
             }
+        }
+
+        private void MainWindow_Closed(object? sender, EventArgs e)
+        {
+            if (popup != null) popup.IsOpen = false;
         }
     }
 }

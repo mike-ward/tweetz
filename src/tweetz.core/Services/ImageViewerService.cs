@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -70,16 +70,18 @@ namespace tweetz.core.Services
 
             var mediaElement = new MediaElement();
             var mediaControls = MediaControls(mediaElement);
+            var clipboardCopy = ClipboardCopyControl();
 
             AddRepeatForever(uri, mediaElement);
             AddImageGrowAnimation(mediaElement);
-            AddEventHandlers(loadingIndicator, mediaElement, mediaControls, errorMessage, uri);
+            AddEventHandlers(loadingIndicator, mediaElement, mediaControls, clipboardCopy, errorMessage, uri);
 
             var grid = new Grid();
             grid.Children.Add(loadingIndicator);
             grid.Children.Add(errorMessage);
             grid.Children.Add(mediaElement);
             grid.Children.Add(mediaControls);
+            grid.Children.Add(clipboardCopy);
 
             return grid;
         }
@@ -129,6 +131,32 @@ namespace tweetz.core.Services
             };
 
             return timeDisplay;
+        }
+
+        private static readonly RoutedCommand CopyToClipboardCommand = new RoutedUICommand();
+
+        private static TextBlock ClipboardCopyControl()
+        {
+            var backgroundBrush = new SolidColorBrush(Colors.White) { Opacity = 0.3 };
+            backgroundBrush.Freeze();
+
+            var block = new TextBlock
+            {
+                Cursor = Cursors.Hand,
+                Foreground = Brushes.Black,
+                Background = backgroundBrush,
+                Visibility = Visibility.Collapsed,
+                Margin = new Thickness(3, 0, 0, 2),
+                TextAlignment = TextAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Text = LanguageService.Instance.Lookup("copy"),
+                ToolTip = LanguageService.Instance.Lookup("copy-to-clipboard"),
+                FontFamily = new FontFamily("Lucida Sans Typewriter,Courier New"),
+            };
+
+            block.InputBindings.Add(new InputBinding(CopyToClipboardCommand, new MouseGesture(MouseAction.LeftClick)));
+            return block;
         }
 
         private static void AddRepeatForever(Uri uri, MediaElement mediaElement)
@@ -190,15 +218,21 @@ namespace tweetz.core.Services
             FrameworkElement loadingIndicator,
             MediaElement mediaElement,
             FrameworkElement mediaControls,
+            FrameworkElement clipboardCopy,
             TextBlock errorMessage,
             Uri uri)
         {
-            mediaElement.MediaOpened += async (s, args) =>
+            mediaElement.MediaOpened += (s, args) =>
             {
                 loadingIndicator.Visibility = Visibility.Collapsed;
                 if (mediaElement.NaturalDuration.HasTimeSpan) mediaControls.Visibility = Visibility.Visible;
-                await Task.Delay(TimeSpan.FromSeconds(1)); // Copying to the clipboard interrupts grow animtions so wait a bit.
-                CopyUIElementToClipboard(mediaElement, uri);
+                clipboardCopy.Visibility = Visibility.Visible;
+
+                clipboardCopy.CommandBindings.Add(new CommandBinding(CopyToClipboardCommand, (s, a) =>
+                {
+                    a.Handled = true;
+                    CopyUIElementToClipboard(mediaElement, uri);
+                }));
             };
 
             mediaElement.MediaFailed += (s, args) =>
@@ -206,6 +240,7 @@ namespace tweetz.core.Services
                 loadingIndicator.Visibility = Visibility.Collapsed;
                 mediaElement.Visibility = Visibility.Collapsed;
                 mediaControls.Visibility = Visibility.Collapsed;
+                clipboardCopy.Visibility = Visibility.Collapsed;
                 errorMessage.Text = args.ErrorException.Message;
                 errorMessage.Visibility = Visibility.Visible;
             };
