@@ -2,7 +2,7 @@
 {
     public class VersionInfo
     {
-        public string Version => "v2.0.alpha";
-        public string Copyright => "Copyright 2019, Mike Ward";
+        public string Version => "v2.0.beta";
+        public string Copyright => "Copyright 2020, Mike Ward";
     }
 }

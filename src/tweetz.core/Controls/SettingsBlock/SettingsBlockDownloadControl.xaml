@@ -17,6 +17,6 @@
     Width="125"
     Margin="0,0,0,5"
     Command="commands:OpenLinkCommand.Command"
-    CommandParameter="https://github.com/mike-ward/tweetz/releases"
+    CommandParameter="https://github.com/mike-ward/tweetz/releases/latest"
     Content="{services:LanguageService get-the-update}" />
 </UserControl>
