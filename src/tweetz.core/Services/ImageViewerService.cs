@@ -152,9 +152,11 @@ namespace tweetz.core.Services
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Text = LanguageService.Instance.Lookup("copy"),
                 ToolTip = LanguageService.Instance.Lookup("copy-to-clipboard"),
-                FontFamily = new FontFamily("Lucida Sans Typewriter,Courier New"),
+                FontFamily = new FontFamily("Lucida Sans Typewriter,Courier New")
             };
 
+            const int delayInMilliseconds = 1250;
+            ToolTipService.SetInitialShowDelay(block, delayInMilliseconds);
             block.InputBindings.Add(new InputBinding(CopyToClipboardCommand, new MouseGesture(MouseAction.LeftClick)));
             return block;
         }
