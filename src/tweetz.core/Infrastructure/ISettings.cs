@@ -9,6 +9,8 @@ namespace tweetz.core.Infrastructure
         public string? AccessToken { get; set; }
         public string? AccessTokenSecret { get; set; }
         public string? ScreenName { get; set; }
+        public bool HideProfileImages { get; }
+        public bool HideTitleBar { get; }
         public bool PauseWhenScrolled { get; set; }
         public bool SpellCheck { get; set; }
         public double FontSize { get; }

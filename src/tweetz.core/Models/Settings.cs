@@ -14,6 +14,7 @@ namespace tweetz.core.Models
         private string? accessTokenSecret;
         private string? screenName;
         private bool hideProfileImages;
+        private bool hideTitleBar;
         private bool pauseWhenScrolled;
         private bool donated;
         private bool spellCheck;
@@ -55,6 +56,7 @@ namespace tweetz.core.Models
 
         public string? ScreenName { get => screenName; set => SetProperty(ref screenName, value); }
         public bool HideProfileImages { get => hideProfileImages; set => SetProperty(ref hideProfileImages, value); }
+        public bool HideTitleBar { get => hideTitleBar; set => SetProperty(ref hideTitleBar, value); }
         public bool PauseWhenScrolled { get => pauseWhenScrolled; set => SetProperty(ref pauseWhenScrolled, value); }
         public bool SpellCheck { get => spellCheck; set => SetProperty(ref spellCheck, value); }
         public bool Donated { get => donated; set => SetProperty(ref donated, value); }
@@ -86,7 +88,12 @@ namespace tweetz.core.Models
                 PauseWhenScrolled = settings.PauseWhenScrolled;
                 SpellCheck = settings.SpellCheck;
                 FontSize = settings.FontSize;
+
+                // Order matters here. If the Theme is set after hiding the title bar, the Theme
+                // somehow flips back immediately. This only happens at program startup.
                 Theme = settings.Theme;
+                HideTitleBar = settings.HideTitleBar;
+
                 Donated = settings.Donated;
                 MainWindowPosition = settings.MainWindowPosition;
             }
@@ -122,6 +129,7 @@ namespace tweetz.core.Models
             string? AccessToken,
             string? AccessTokenSecret,
             string? ScreenName,
+            bool HideTitleBar,
             bool HideProfileImages,
             bool PauseWhenScrolled,
             bool SpellCheck,
@@ -135,6 +143,7 @@ namespace tweetz.core.Models
                 AccessToken,
                 AccessTokenSecret,
                 ScreenName,
+                HideTitleBar,
                 HideProfileImages,
                 PauseWhenScrolled,
                 SpellCheck,

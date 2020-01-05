@@ -35,6 +35,7 @@ namespace tweetz.core.Services
 
             // Settings
             { "settings-title",                "Settings" },
+            { "hide-title-bar",                "Hide title bar" },
             { "hide-profile-images",           "Hide profile images"},
             { "run-on-startup",                "Run on startup"},
             { "font-size-title",               "Font size"},
@@ -72,6 +73,7 @@ namespace tweetz.core.Services
             { "mentions-tooltip",              "Get mentions" },
             { "new-version-available",         "Update available!\nClick here to get it." },
             { "copy-to-clipboard",             "Copy to clipboard" },
+            { "hide-title-bar-tooltip",        "Hides title bar and disables sizing and moving" },
 
             // Image viewer
             { "copy",                          "copy" },

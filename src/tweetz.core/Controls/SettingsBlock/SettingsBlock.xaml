@@ -38,6 +38,14 @@
     <local:SettingsBlockDownloadControl />
 
     <CheckBox
+      Content="{services:LanguageService hide-title-bar}"
+      IsChecked="{Binding Settings.HideTitleBar}"
+      ToolTip="{services:LanguageService hide-title-bar-tooltip}"
+      ToolTipService.InitialShowDelay="1250" />
+
+    <Separator Visibility="Hidden" />
+
+    <CheckBox
       Content="{services:LanguageService hide-profile-images}"
       IsChecked="{Binding Settings.HideProfileImages}" />
 

@@ -3,6 +3,7 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Controls"
+  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   Name="Main"
@@ -12,8 +13,9 @@
   Background="{DynamicResource StandardBackgroundBrush}"
   FontSize="{Binding Settings.FontSize}"
   Foreground="{DynamicResource StandardForegroundBrush}"
+  ResizeMode="{Binding Settings.HideTitleBar, Mode=OneWay, Converter={converters:ResizeModeConverter}}"
   SnapsToDevicePixels="True"
-  WindowStyle="SingleBorderWindow"
+  WindowStyle="{Binding Settings.HideTitleBar, Mode=OneWay, Converter={converters:WindowStyleConverter}}"
   mc:Ignorable="d">
 
   <Window.Resources>
