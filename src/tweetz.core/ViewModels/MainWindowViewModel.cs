@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using tweetz.core.Infrastructure;
 
 namespace tweetz.core.ViewModels
@@ -37,7 +38,9 @@ namespace tweetz.core.ViewModels
             WindowInteropService.DisableMaximizeButton(window);
             WindowInteropService.PowerManagmentRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
+
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
+            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (s, a) => window.Close()));
         }
 
         public void OnClosing(Window window)

@@ -3,9 +3,7 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Controls"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:local="clr-namespace:tweetz.core"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   Name="Main"
   Title="Tweetz"
@@ -15,7 +13,6 @@
   Background="{DynamicResource StandardBackgroundBrush}"
   FontSize="{Binding Settings.FontSize}"
   Foreground="{DynamicResource StandardForegroundBrush}"
-  MouseLeftButtonDown="Main_MouseLeftButtonDown"
   ResizeMode="CanResizeWithGrip"
   SnapsToDevicePixels="True"
   WindowStyle="None"
@@ -43,10 +40,4 @@
       DataContext="{Binding TabBarControlViewModel, Mode=OneWay}"
       Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>
-
-  <Window.CommandBindings>
-    <CommandBinding
-      Command="Close"
-      Executed="CommandBinding_Executed" />
-  </Window.CommandBindings>
 </Window>
