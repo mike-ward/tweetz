@@ -24,5 +24,15 @@ namespace tweetz.core
         {
             ViewModel.OnClosing(this);
         }
+
+        private void Main_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

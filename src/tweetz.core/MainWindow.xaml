@@ -5,17 +5,20 @@
   xmlns:controls="clr-namespace:tweetz.core.Controls"
   xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:tweetz.core"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   Name="Main"
   Title="Tweetz"
   Width="355"
   Height="900"
+  AllowsTransparency="True"
   Background="{DynamicResource StandardBackgroundBrush}"
   FontSize="{Binding Settings.FontSize}"
   Foreground="{DynamicResource StandardForegroundBrush}"
-  ResizeMode="{Binding Settings.HideTitleBar, Mode=OneWay, Converter={converters:ResizeModeConverter}}"
+  MouseLeftButtonDown="Main_MouseLeftButtonDown"
+  ResizeMode="CanResizeWithGrip"
   SnapsToDevicePixels="True"
-  WindowStyle="{Binding Settings.HideTitleBar, Mode=OneWay, Converter={converters:WindowStyleConverter}}"
+  WindowStyle="None"
   mc:Ignorable="d">
 
   <Window.Resources>
@@ -23,12 +26,27 @@
   </Window.Resources>
 
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <controls:TitleBarControl Grid.Row="0" />
+
     <controls:GetPinControl
+      Grid.Row="1"
       DataContext="{Binding GetPinControlViewModel, Mode=OneWay}"
       Visibility="{Binding DataContext.Settings.IsNotAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
     <controls:TabBarControl
+      Grid.Row="1"
       DataContext="{Binding TabBarControlViewModel, Mode=OneWay}"
       Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>
+
+  <Window.CommandBindings>
+    <CommandBinding
+      Command="Close"
+      Executed="CommandBinding_Executed" />
+  </Window.CommandBindings>
 </Window>

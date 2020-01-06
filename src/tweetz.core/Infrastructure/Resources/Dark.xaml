@@ -5,6 +5,9 @@
   <Color x:Key="GradientColor1">#333</Color>
   <Color x:Key="GradientColor2">#888</Color>
 
+  <SolidColorBrush x:Key="TitleBarForegroundBrush">#bbb</SolidColorBrush>
+  <SolidColorBrush x:Key="TitleBarBackgroundBrush">#444</SolidColorBrush>
+
   <SolidColorBrush x:Key="StandardForegroundBrush">#bbb</SolidColorBrush>
   <SolidColorBrush x:Key="StandardBackgroundBrush">#333</SolidColorBrush>
   <SolidColorBrush x:Key="StandardBorderBrush">#888</SolidColorBrush>

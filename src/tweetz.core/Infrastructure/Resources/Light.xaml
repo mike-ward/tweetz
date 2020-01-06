@@ -9,6 +9,9 @@
   <SolidColorBrush x:Key="StandardBackgroundBrush">#f8f8f8</SolidColorBrush>
   <SolidColorBrush x:Key="StandardBorderBrush">#999</SolidColorBrush>
 
+  <SolidColorBrush x:Key="TitleBarForegroundBrush">Black</SolidColorBrush>
+  <SolidColorBrush x:Key="TitleBarBackgroundBrush">Gainsboro</SolidColorBrush>
+
   <SolidColorBrush x:Key="SelectedForegroundBrush">DarkBlue</SolidColorBrush>
   <SolidColorBrush x:Key="SelectedBackgroundBrush">#808080</SolidColorBrush>
   <SolidColorBrush x:Key="DisabledForegroundBrush">#666</SolidColorBrush>
