@@ -35,7 +35,6 @@ namespace tweetz.core.ViewModels
         public void OnInitialized(Window window)
         {
             Settings.Load();
-            WindowInteropService.DisableMaximizeButton(window);
             WindowInteropService.PowerManagmentRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
 
