@@ -63,7 +63,9 @@
   <Border Style="{StaticResource RelatedBorderStyle}">
 
     <StackPanel>
-      <local:TweetImageControl DataContext="{Binding ImageTwitterStatus, Mode=OneWay}" />
+      <local:TweetImageControl
+        DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
+        Visibility="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={converters:NotBooleanToVisibilityConverter}}" />
 
       <TextBlock
         Style="{StaticResource TitleStyle}"

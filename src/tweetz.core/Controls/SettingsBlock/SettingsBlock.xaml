@@ -44,6 +44,12 @@
     <Separator Visibility="Hidden" />
 
     <CheckBox
+      Content="{services:LanguageService hide-images}"
+      IsChecked="{Binding Settings.HideImages}" />
+
+    <Separator Visibility="Hidden" />
+
+    <CheckBox
       Content="{services:LanguageService run-on-startup}"
       IsChecked="{Binding SystemState.IsRegisteredInStartup}" />
 

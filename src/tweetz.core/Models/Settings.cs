@@ -14,6 +14,7 @@ namespace tweetz.core.Models
         private string? accessTokenSecret;
         private string? screenName;
         private bool hideProfileImages;
+        private bool hideImages;
         private bool pauseWhenScrolled;
         private bool donated;
         private bool spellCheck;
@@ -55,6 +56,7 @@ namespace tweetz.core.Models
 
         public string? ScreenName { get => screenName; set => SetProperty(ref screenName, value); }
         public bool HideProfileImages { get => hideProfileImages; set => SetProperty(ref hideProfileImages, value); }
+        public bool HideImages { get => hideImages; set => SetProperty(ref hideImages, value); }
         public bool PauseWhenScrolled { get => pauseWhenScrolled; set => SetProperty(ref pauseWhenScrolled, value); }
         public bool SpellCheck { get => spellCheck; set => SetProperty(ref spellCheck, value); }
         public bool Donated { get => donated; set => SetProperty(ref donated, value); }
@@ -83,6 +85,7 @@ namespace tweetz.core.Models
                 AccessTokenSecret = settings.AccessTokenSecret;
                 ScreenName = settings.ScreenName;
                 HideProfileImages = settings.HideProfileImages;
+                HideImages = settings.HideImages;
                 PauseWhenScrolled = settings.PauseWhenScrolled;
                 SpellCheck = settings.SpellCheck;
                 FontSize = settings.FontSize;
@@ -123,6 +126,7 @@ namespace tweetz.core.Models
             string? AccessTokenSecret,
             string? ScreenName,
             bool HideProfileImages,
+            bool HideImages,
             bool PauseWhenScrolled,
             bool SpellCheck,
             double FontSize,
@@ -136,6 +140,7 @@ namespace tweetz.core.Models
                 AccessTokenSecret,
                 ScreenName,
                 HideProfileImages,
+                HideImages,
                 PauseWhenScrolled,
                 SpellCheck,
                 FontSize,

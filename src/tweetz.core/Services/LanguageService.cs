@@ -36,6 +36,7 @@ namespace tweetz.core.Services
             // Settings
             { "settings-title",                "Settings" },
             { "hide-profile-images",           "Hide profile images"},
+            { "hide-images",                   "Hide images"},
             { "run-on-startup",                "Run on startup"},
             { "font-size-title",               "Font size"},
             { "theme-title",                   "Theme" },
