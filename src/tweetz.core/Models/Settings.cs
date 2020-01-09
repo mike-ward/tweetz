@@ -15,6 +15,7 @@ namespace tweetz.core.Models
         private string? screenName;
         private bool hideProfileImages;
         private bool hideImages;
+        private bool hideExtendedContent;
         private bool pauseWhenScrolled;
         private bool donated;
         private bool spellCheck;
@@ -57,6 +58,7 @@ namespace tweetz.core.Models
         public string? ScreenName { get => screenName; set => SetProperty(ref screenName, value); }
         public bool HideProfileImages { get => hideProfileImages; set => SetProperty(ref hideProfileImages, value); }
         public bool HideImages { get => hideImages; set => SetProperty(ref hideImages, value); }
+        public bool HideExtendedContent { get => hideExtendedContent; set => SetProperty(ref hideExtendedContent, value); }
         public bool PauseWhenScrolled { get => pauseWhenScrolled; set => SetProperty(ref pauseWhenScrolled, value); }
         public bool SpellCheck { get => spellCheck; set => SetProperty(ref spellCheck, value); }
         public bool Donated { get => donated; set => SetProperty(ref donated, value); }
@@ -86,6 +88,7 @@ namespace tweetz.core.Models
                 ScreenName = settings.ScreenName;
                 HideProfileImages = settings.HideProfileImages;
                 HideImages = settings.HideImages;
+                HideExtendedContent = settings.HideExtendedContent;
                 PauseWhenScrolled = settings.PauseWhenScrolled;
                 SpellCheck = settings.SpellCheck;
                 FontSize = settings.FontSize;
@@ -127,6 +130,7 @@ namespace tweetz.core.Models
             string? ScreenName,
             bool HideProfileImages,
             bool HideImages,
+            bool HideExtendedContent,
             bool PauseWhenScrolled,
             bool SpellCheck,
             double FontSize,
@@ -141,6 +145,7 @@ namespace tweetz.core.Models
                 ScreenName,
                 HideProfileImages,
                 HideImages,
+                HideExtendedContent,
                 PauseWhenScrolled,
                 SpellCheck,
                 FontSize,

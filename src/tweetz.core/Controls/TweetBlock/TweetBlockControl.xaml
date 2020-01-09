@@ -30,26 +30,45 @@
       </Style.Triggers>
     </Style>
 
+    <Style
+      x:Key="RelatedLinkControlStyle"
+      TargetType="{x:Type local:TweetRelatedLinkControl}">
+      <Style.Triggers>
+        <DataTrigger
+          Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+          Value="{x:Null}">
+          <Setter Property="Visibility" Value="Collapsed" />
+        </DataTrigger>
+        <DataTrigger
+          Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
+          Value="True">
+          <Setter Property="Visibility" Value="Collapsed" />
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
+    <Style
+      x:Key="GridStyle"
+      TargetType="Grid">
+      <Setter Property="Margin" Value="0,0,0,10" />
+      <Style.Triggers>
+        <DataTrigger
+          Binding="{Binding IsMyTweet, Mode=OneWay}"
+          Value="True">
+          <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
+        </DataTrigger>
+        <DataTrigger
+          Binding="{Binding MentionsMe, Mode=OneWay}"
+          Value="True">
+          <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   </UserControl.Resources>
 
-  <Grid Margin="0,0,0,10">
-    <Grid.Style>
-      <Style TargetType="Grid">
-        <Style.Triggers>
-          <DataTrigger
-            Binding="{Binding IsMyTweet, Mode=OneWay}"
-            Value="True">
-            <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
-          </DataTrigger>
-          <DataTrigger
-            Binding="{Binding MentionsMe, Mode=OneWay}"
-            Value="True">
-            <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
-          </DataTrigger>
-        </Style.Triggers>
-      </Style>
-    </Grid.Style>
+  <Grid Style="{StaticResource GridStyle}">
 
     <Grid.ColumnDefinitions>
       <ColumnDefinition
@@ -92,7 +111,7 @@
 
       <local:TweetRelatedLinkControl
         DataContext="{Binding RelatedLinkInfo, Mode=OneWay}"
-        Visibility="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={converters:NotNullToVisibilityConverter}}" />
+        Style="{StaticResource RelatedLinkControlStyle}" />
 
       <local:TweetCommandsControl
         Margin="0,3,0,0"
@@ -102,6 +121,7 @@
   </Grid>
 
   <UserControl.InputBindings>
+    <!--  Handy for debugging  -->
     <MouseBinding
       Command="commands:ShowTwitterStatusCommand.Command"
       CommandParameter="{Binding Mode=OneWay}"
