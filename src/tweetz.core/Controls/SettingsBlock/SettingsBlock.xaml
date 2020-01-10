@@ -50,6 +50,12 @@
     <Separator Visibility="Hidden" />
 
     <CheckBox
+      Content="{services:LanguageService hide-extended-content}"
+      IsChecked="{Binding Settings.HideExtendedContent}" />
+
+    <Separator Visibility="Hidden" />
+
+    <CheckBox
       Content="{services:LanguageService run-on-startup}"
       IsChecked="{Binding SystemState.IsRegisteredInStartup}" />
 

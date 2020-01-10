@@ -11,6 +11,7 @@ namespace tweetz.core.Infrastructure
         public string? ScreenName { get; set; }
         public bool HideProfileImages { get; }
         public bool HideImages { get; }
+        public bool HideExtendedContent { get; }
         public bool PauseWhenScrolled { get; set; }
         public bool SpellCheck { get; set; }
         public double FontSize { get; }
