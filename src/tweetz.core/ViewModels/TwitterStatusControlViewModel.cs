@@ -11,7 +11,7 @@ namespace tweetz.core.ViewModels
         private bool isScrolled;
 
         public ISettings Settings { get; }
-        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
+        public ObservableCollection<TwitterStatus> StatusCollection { get; protected set; } = new ObservableCollection<TwitterStatus>();
         public string? ExceptionMessage { get => exceptionMessage; protected set => SetProperty(ref exceptionMessage, value); }
 
         public TwitterStatusControlViewModel(ISettings settings)

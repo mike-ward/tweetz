@@ -40,23 +40,23 @@ namespace twitter.core.Services
             oAuthApiRequest.AuthenticateWithTokens(accessToken, accessTokenSecret);
         }
 
-        public async Task<TwitterStatus[]> HomeTimeline()
+        public async Task<List<TwitterStatus>> HomeTimeline()
         {
-            return await oAuthApiRequest.Get<TwitterStatus[]>(
+            return await oAuthApiRequest.Get<List<TwitterStatus>>(
                 "https://api.twitter.com/1.1/statuses/home_timeline.json",
                 TwitterOptions.Default());
         }
 
-        public async Task<TwitterStatus[]> MentionsTimeline(int count)
+        public async Task<List<TwitterStatus>> MentionsTimeline(int count)
         {
-            return await oAuthApiRequest.Get<TwitterStatus[]>(
+            return await oAuthApiRequest.Get<List<TwitterStatus>>(
                 "https://api.twitter.com/1.1/statuses/mentions_timeline.json",
                 TwitterOptions.Default(count));
         }
 
-        public async Task<TwitterStatus[]> FavoritesTimeline()
+        public async Task<List<TwitterStatus>> FavoritesTimeline()
         {
-            return await oAuthApiRequest.Get<TwitterStatus[]>(
+            return await oAuthApiRequest.Get<List<TwitterStatus>>(
                 "https://api.twitter.com/1.1/favorites/list.json",
                 TwitterOptions.Default());
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Threading;
@@ -87,6 +88,10 @@ namespace tweetz.core.ViewModels
         // the old statues to update counts for retweets, favorites, etc.
         private HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
 
+        // use this to disconnet the binding from the status collection while
+        // updating. This reduces jank in the timeline
+        protected static ObservableCollection<TwitterStatus> EmptyStatusCollection = new ObservableCollection<TwitterStatus>();
+
         public void UpdateTimeline(IEnumerable<TwitterStatus> statuses)
         {
             // ObservableCollection only supports linear searching.
@@ -95,18 +100,28 @@ namespace tweetz.core.ViewModels
                 .Where(status => status.Id != DonateNagStatus.DonateNagStatusId)
                 .ToDictionary(status => status.Id, status => status);
 
-            foreach (var status in statuses.Reverse())
+            var current = StatusCollection;
+            StatusCollection = EmptyStatusCollection;
+
+            try
             {
-                if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
+                foreach (var status in statuses.Reverse())
                 {
-                    statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
+                    if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
+                    {
+                        statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
+                    }
+                    else if (!AlreadyAdded.Contains(status.Id))
+                    {
+                        AlreadyAdded.Add(status.Id);
+                        status.AboutMe(Settings.ScreenName);
+                        current.Insert(0, status);
+                    }
                 }
-                else if (!AlreadyAdded.Contains(status.Id))
-                {
-                    AlreadyAdded.Add(status.Id);
-                    status.AboutMe(Settings.ScreenName);
-                    StatusCollection.Insert(0, status);
-                }
+            }
+            finally
+            {
+                StatusCollection = current;
             }
         }
 

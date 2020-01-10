@@ -7,6 +7,7 @@
     <Nullable>Enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app.ico</ApplicationIcon>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
