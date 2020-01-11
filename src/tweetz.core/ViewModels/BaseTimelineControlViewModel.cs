@@ -100,28 +100,18 @@ namespace tweetz.core.ViewModels
                 .Where(status => status.Id != DonateNagStatus.DonateNagStatusId)
                 .ToDictionary(status => status.Id, status => status);
 
-            var current = StatusCollection;
-            StatusCollection = EmptyStatusCollection;
-
-            try
+            foreach (var status in statuses.Reverse())
             {
-                foreach (var status in statuses.Reverse())
+                if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
                 {
-                    if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
-                    {
-                        statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
-                    }
-                    else if (!AlreadyAdded.Contains(status.Id))
-                    {
-                        AlreadyAdded.Add(status.Id);
-                        status.AboutMe(Settings.ScreenName);
-                        current.Insert(0, status);
-                    }
+                    statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
                 }
-            }
-            finally
-            {
-                StatusCollection = current;
+                else if (!AlreadyAdded.Contains(status.Id))
+                {
+                    AlreadyAdded.Add(status.Id);
+                    status.AboutMe(Settings.ScreenName);
+                    StatusCollection.Insert(0, status);
+                }
             }
         }
 

@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
 - Sizing can only be done with gripper tool in lower corner (concession to adding custom title bar) - [22a524292](https://github.com/mike-ward/tweetz/commit/22a5242921072537b86c931a2ded416658ae81ff)
 
 ### Fixed
-- Reduce UI Jank [e835693fc3](<https://github.com/mike-ward/tweetz/commit/e835693fc349c6652aaf2a1d74f555ad47fb1ba5>)
+-  ~Reduce UI Jank [e835693fc3](<https://github.com/mike-ward/tweetz/commit/e835693fc349c6652aaf2a1d74f555ad47fb1ba5>)~
 
 ### Removed
 - Removed option in installer to pick a directory - [0184051](<https://github.com/mike-ward/tweetz/commit/0184051f4f96f757230bc407603d01f54aee76d2>)
