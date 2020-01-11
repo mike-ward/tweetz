@@ -49,6 +49,7 @@ namespace tweetz.core.ViewModels
         {
             timer?.Stop();
             timer = null;
+            AlreadyAdded.Clear();
             StatusCollection.Clear();
         }
 
@@ -100,18 +101,30 @@ namespace tweetz.core.ViewModels
                 .Where(status => status.Id != DonateNagStatus.DonateNagStatusId)
                 .ToDictionary(status => status.Id, status => status);
 
-            foreach (var status in statuses.Reverse())
+            // disconnet the binding from the status collection while updating.
+            // This reduces jank in the timeline
+            var current = StatusCollection;
+            StatusCollection = EmptyStatusCollection;
+
+            try
             {
-                if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
+                foreach (var status in statuses.Reverse())
                 {
-                    statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
+                    if (statusDictionary.TryGetValue(status.Id, out var statusToUpdate))
+                    {
+                        statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
+                    }
+                    else if (!AlreadyAdded.Contains(status.Id))
+                    {
+                        AlreadyAdded.Add(status.Id);
+                        status.AboutMe(Settings.ScreenName);
+                        current.Insert(0, status);
+                    }
                 }
-                else if (!AlreadyAdded.Contains(status.Id))
-                {
-                    AlreadyAdded.Add(status.Id);
-                    status.AboutMe(Settings.ScreenName);
-                    StatusCollection.Insert(0, status);
-                }
+            }
+            finally
+            {
+                StatusCollection = current;
             }
         }
 
