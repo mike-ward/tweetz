@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core
@@ -25,8 +26,9 @@ namespace tweetz.core
             ViewModel.OnClosing(this);
         }
 
-        private void Main_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
+            base.OnMouseLeftButtonDown(e);
             DragMove();
         }
     }

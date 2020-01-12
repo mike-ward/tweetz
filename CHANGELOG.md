@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.0 Beta 3] - 2020-01-12
+### Fixed
+- Restore mouse down handler to enable moving window.
+- Trim version info returned from server before comparing.
+
 ## [2.0 Beta 2] - 2020-01-11
 ### Added
 - Option to hide images - [138d59b](<https://github.com/mike-ward/tweetz/commit/138d59b17340df3c38b82bfd6dfeceb6fec56ec6>)
