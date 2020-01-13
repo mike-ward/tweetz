@@ -45,6 +45,7 @@ namespace tweetz.core.Commands
 
                 if (args.Parameter is TwitterStatus twitterStatus)
                 {
+                    if (twitterStatus.IsMyTweet) return;
                     if (twitterStatus.User == null) return;
                     var screenName = twitterStatus.User.ScreenName;
                     if (screenName == null) return;

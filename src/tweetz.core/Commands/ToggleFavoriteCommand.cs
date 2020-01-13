@@ -49,6 +49,8 @@ namespace tweetz.core.Commands
 
                 if (args.Parameter is TwitterStatus twitterStatus)
                 {
+                    if (twitterStatus.IsMyTweet) return;
+
                     if (twitterStatus.Favorited)
                     {
                         await TwitterService.DestroyFavorite(twitterStatus.Id);

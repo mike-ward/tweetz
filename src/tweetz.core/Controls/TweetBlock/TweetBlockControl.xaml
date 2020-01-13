@@ -115,8 +115,7 @@
 
       <local:TweetCommandsControl
         Margin="0,3,0,0"
-        DataContext="{Binding OriginatingStatus, Mode=OneWay}"
-        Visibility="{Binding IsMyTweet, Mode=OneWay, Converter={converters:NotBooleanToVisibilityConverter}}" />
+        DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
     </StackPanel>
   </Grid>
 

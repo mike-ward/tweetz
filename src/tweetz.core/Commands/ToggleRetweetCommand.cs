@@ -41,9 +41,10 @@ namespace tweetz.core.Commands
             try
             {
                 inCommand = true;
-
                 if (args.Parameter is TwitterStatus twitterStatus)
                 {
+                    if (twitterStatus.IsMyTweet) return;
+
                     if (twitterStatus.RetweetedByMe)
                     {
                         await TwitterService.UnretweetStatus(twitterStatus.Id);

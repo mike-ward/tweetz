@@ -35,7 +35,10 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!(e.Parameter is TwitterStatus status) || status.Id == null || status.User == null)
+            if (!(e.Parameter is TwitterStatus status)
+                || status.Id == null
+                || status.User == null
+                || status.IsMyTweet)
             {
                 return;
             }
