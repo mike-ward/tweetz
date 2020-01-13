@@ -36,7 +36,7 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.Parameter is TwitterStatus twitterStatus && twitterStatus.OriginatingStatus.User.ScreenName != Settings.ScreenName;
+            e.CanExecute = StatusFromParameter(e.Parameter) != null;
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
@@ -46,8 +46,8 @@ namespace tweetz.core.Commands
             try
             {
                 inCommand = true;
-
-                if (args.Parameter is TwitterStatus twitterStatus)
+                var twitterStatus = StatusFromParameter(args.Parameter);
+                if (twitterStatus != null)
                 {
                     if (twitterStatus.IsMyTweet) return;
 
@@ -75,6 +75,16 @@ namespace tweetz.core.Commands
             {
                 inCommand = false;
             }
+        }
+
+        private TwitterStatus? StatusFromParameter(object parameter)
+        {
+            return
+                parameter is TwitterStatus twitterStatus
+                && twitterStatus.OriginatingStatus.User.ScreenName != Settings.ScreenName
+                && !twitterStatus.IsMyTweet
+                    ? twitterStatus
+                    : null;
         }
     }
 }

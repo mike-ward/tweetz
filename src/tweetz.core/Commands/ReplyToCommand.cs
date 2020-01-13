@@ -30,24 +30,29 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.Parameter is TwitterStatus twitterStatus && twitterStatus.OriginatingStatus.User.ScreenName != Settings.ScreenName;
+            e.CanExecute = StatusFromParameter(e.Parameter) != null;
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!(e.Parameter is TwitterStatus status)
-                || status.Id == null
-                || status.User == null
-                || status.IsMyTweet)
-            {
-                return;
-            }
+            var status = StatusFromParameter(e.Parameter);
+            if (status == null) return;
 
             ComposeControlViewModel.Clear();
             ComposeControlViewModel.InReplyTo = status;
             var watermarkFormat = LanguageService.Instance.Lookup("in-reply-to");
             ComposeControlViewModel.WatermarkText = string.Format(watermarkFormat, status.User.ScreenName);
             TabBarControlViewModel.ShowComposeControl = true;
+        }
+
+        private TwitterStatus? StatusFromParameter(object parameter)
+        {
+            return
+                parameter is TwitterStatus twitterStatus
+                && twitterStatus.OriginatingStatus.User.ScreenName != Settings.ScreenName
+                && !twitterStatus.IsMyTweet
+                    ? twitterStatus
+                    : null;
         }
     }
 }

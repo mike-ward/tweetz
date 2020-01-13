@@ -19,23 +19,30 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler);
+            return new CommandBinding(Command, CommandHandler, CanExecute);
+        }
+
+        private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = StatusFromParameter(e.Parameter) != null;
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!(e.Parameter is TwitterStatus status)
-                || status.Id == null
-                || status.User == null
-                || status.IsMyTweet)
-            {
-                return;
-            }
+            var status = StatusFromParameter(e.Parameter);
+            if (status == null) return;
 
             ComposeControlViewModel.Clear();
             ComposeControlViewModel.InReplyTo = status;
             ComposeControlViewModel.AttachmentUrl = status.StatusLink;
             TabBarControlViewModel.ShowComposeControl = true;
+        }
+
+        private TwitterStatus? StatusFromParameter(object parameter)
+        {
+            return parameter is TwitterStatus twitterStatus && twitterStatus.Id != null && twitterStatus.User != null
+                ? twitterStatus
+                : null;
         }
     }
 }
