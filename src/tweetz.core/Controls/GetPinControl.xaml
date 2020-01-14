@@ -6,8 +6,8 @@
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:services="clr-namespace:tweetz.core.Services"
-  d:DesignHeight="450"
-  d:DesignWidth="800"
+  d:DesignHeight="300"
+  d:DesignWidth="300"
   mc:Ignorable="d">
 
   <UserControl.Resources>

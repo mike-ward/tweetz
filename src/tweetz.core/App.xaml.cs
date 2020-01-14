@@ -83,8 +83,7 @@ namespace tweetz.core
         {
             if (e.PropertyName == nameof(Settings.Theme))
             {
-                var settings = sender as Settings;
-                if (settings != null) ChangeTheme(settings.Theme);
+                if (sender is Settings settings) ChangeTheme(settings.Theme);
             }
         }
 

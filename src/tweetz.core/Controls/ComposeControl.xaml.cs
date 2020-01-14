@@ -11,6 +11,7 @@ namespace tweetz.core.Controls
 
             IsVisibleChanged += async (s, args) =>
             {
+                // this check allows the xaml designer to render
                 if (DataContext is ComposeControlViewModel vm) await vm.GetUserInfo();
             };
         }

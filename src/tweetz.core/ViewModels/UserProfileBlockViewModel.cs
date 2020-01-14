@@ -23,7 +23,7 @@ namespace tweetz.core.ViewModels
         {
             try
             {
-                // UI reuse in virutal panels can show old values until updated.
+                // UI reuse in virtual panels can show old values until updated.
                 User = null;
                 ErrorMessage = null;
 

@@ -13,6 +13,7 @@ namespace tweetz.core.Controls
 
         public void ScrollToHome()
         {
+            // is there an easier way to find the ScrollViewer?
             if (VisualTreeHelper.GetChildrenCount(ItemsControl) > 0)
             {
                 var scrollViewer = VisualTreeHelper.GetChild(ItemsControl, 0) as ScrollViewer;

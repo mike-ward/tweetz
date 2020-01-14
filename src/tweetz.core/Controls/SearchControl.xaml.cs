@@ -10,7 +10,12 @@ namespace tweetz.core.Controls
         public SearchControl()
         {
             InitializeComponent();
-            Loaded += (s, args) => ((SearchControlViewModel)DataContext).SetSearchText = SetSearchText;
+
+            Loaded += (s, args) =>
+            {
+                // this check allows the xaml designer to render
+                if (DataContext is SearchControlViewModel vm) vm.SetSearchText = SetSearchText;
+            };
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

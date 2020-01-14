@@ -27,6 +27,7 @@ namespace tweetz.core.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
+            // there's no uniform size option in tabcontrol.
             var width = e.NewSize.Width / TabControl.Items.Count - 1;
             ViewModel.TabWidth = width;
         }
