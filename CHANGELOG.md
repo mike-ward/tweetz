@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2020-01-18
+
+### Changed
+- Show reply/retweet/like for user's tweets but disable commands. [f3c0e35](https://github.com/mike-ward/tweetz/commit/f3c0e350fa444519dbc171f6de52cd6b0935ee40)
+
 ## [2.0 Beta 3] - 2020-01-12
 ### Fixed
 - Restore mouse down handler to enable moving window.
