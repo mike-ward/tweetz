@@ -4,5 +4,5 @@ Tweetz is a Windows 10 desktop twitter client. It's minimal design mimics widget
 
 Get it at [Releases](https://github.com/mike-ward/tweetz/releases).
 
-![Screen shot](https://i.imgur.com/stuId59.png)
+![Screen shot](https://i.imgur.com/yCmnjAp.png)
 
