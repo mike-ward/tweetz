@@ -13,26 +13,19 @@ namespace tweetz.core.ViewModels
         private IWindowInteropService WindowInteropService { get; }
         private IEnumerable<ICommandBinding> CommandBindings { get; }
 
-        public GetPinControlViewModel GetPinControlViewModel { get; }
-        public TabBarControlViewModel TabBarControlViewModel { get; }
-
         public MainWindowViewModel(
             ISettings settings,
             ISystemState systemState,
             IWindowInteropService windowInteropService,
-            GetPinControlViewModel getPinControlViewModel,
-            TabBarControlViewModel tabBarControlViewModel,
             IEnumerable<ICommandBinding> commandBindings)
         {
             Settings = settings;
             SystemState = systemState;
             WindowInteropService = windowInteropService;
-            GetPinControlViewModel = getPinControlViewModel;
-            TabBarControlViewModel = tabBarControlViewModel;
             CommandBindings = commandBindings;
         }
 
-        public void OnInitialized(Window window)
+        public void Initialize(Window window)
         {
             Settings.Load();
             WindowInteropService.PowerManagmentRegistration(window, SystemState);

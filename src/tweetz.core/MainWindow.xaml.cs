@@ -18,7 +18,7 @@ namespace tweetz.core
 
         protected override void OnSourceInitialized(EventArgs e)
         {
-            ViewModel.OnInitialized(this);
+            ViewModel.Initialize(this);
         }
 
         protected override void OnClosing(CancelEventArgs e)

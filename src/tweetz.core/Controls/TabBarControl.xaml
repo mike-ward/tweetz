@@ -6,6 +6,8 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneWay}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
   d:DesignHeight="300"
@@ -62,7 +64,7 @@
 
       <!--  Home Tab  -->
 
-      <TabItem DataContext="{Binding HomeTimelineControlViewModel, Mode=OneTime}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:HomeTimelineControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             Text="{StaticResource HomeSymbol}"
@@ -73,7 +75,7 @@
 
       <!--  Favorites Tab  -->
 
-      <TabItem DataContext="{Binding FavoritesTimelineControlViewModel, Mode=OneTime}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:FavoritesTimelineControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             Text="{StaticResource LikeSymbol}"
@@ -84,7 +86,7 @@
 
       <!--  Search Tab  -->
 
-      <TabItem DataContext="{Binding SearchControlViewModel, Mode=OneTime}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SearchControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             Text="{StaticResource SearchSymbol}"
@@ -95,7 +97,7 @@
 
       <!--  Settings Tab  -->
 
-      <TabItem DataContext="{Binding SettingsControlViewModel, Mode=OneTime}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SettingsControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             IndicatorColor="{x:Static Colors.DarkGreen}"
@@ -125,7 +127,7 @@
     <local:ComposeControl
       HorizontalAlignment="Stretch"
       VerticalAlignment="Bottom"
-      DataContext="{Binding ComposeControlViewModel, Mode=OneTime}"
+      DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:ComposeControlViewModel}, Mode=OneWay}"
       Visibility="{Binding DataContext.ShowComposeControl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>
 </UserControl>

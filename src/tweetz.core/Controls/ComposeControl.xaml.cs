@@ -8,12 +8,15 @@ namespace tweetz.core.Controls
         public ComposeControl()
         {
             InitializeComponent();
+            IsVisibleChanged += OnIsVisibleChnaged;
+        }
 
-            IsVisibleChanged += async (s, args) =>
+        private async void OnIsVisibleChnaged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            if (DataContext is ComposeControlViewModel vm)
             {
-                // this check allows the xaml designer to render
-                if (DataContext is ComposeControlViewModel vm) await vm.GetUserInfo();
-            };
+                await vm.GetUserInfo();
+            }
         }
     }
 }

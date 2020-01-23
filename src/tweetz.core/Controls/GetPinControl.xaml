@@ -6,6 +6,8 @@
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:services="clr-namespace:tweetz.core.Services"
+  xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:GetPinControlViewModel}, Mode=OneWay}"
   d:DesignHeight="300"
   d:DesignWidth="300"
   mc:Ignorable="d">
