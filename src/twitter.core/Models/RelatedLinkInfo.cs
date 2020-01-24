@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
@@ -83,8 +85,20 @@ namespace twitter.core.Models
 
             var request = WebRequest.Create(url);
             var response = await request.GetResponseAsync();
+
+            using var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            var html = reader.ReadToEnd();
+
+            // No need to parse the whole document, only intereated in head section
+            // This reduces memory and GC pressure for HTML Agility Pack
+            var headTag = "</head>";
+            var index = html.IndexOf(headTag, StringComparison.OrdinalIgnoreCase);
+            if (index < 0) return null;
+            var length = index + headTag.Length;
+            var head = html.Substring(0, length) + "</html>";
+
             var document = new HtmlDocument();
-            document.Load(response.GetResponseStream());
+            document.LoadHtml(head);
 
             var metaTags = document.DocumentNode.SelectNodes("//meta");
             var metaInfo = new RelatedLinkInfo { Url = url };
