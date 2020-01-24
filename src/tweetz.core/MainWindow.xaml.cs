@@ -8,9 +8,8 @@ namespace tweetz.core
 {
     public partial class MainWindow : Window
     {
-        public MainWindow(MainWindowViewModel mainWindowViewModel)
+        public MainWindow()
         {
-            DataContext = mainWindowViewModel;
             InitializeComponent();
         }
 
