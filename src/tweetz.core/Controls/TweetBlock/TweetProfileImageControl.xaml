@@ -3,13 +3,12 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  ToolTipService.InitialShowDelay="{StaticResource InitialToolTipDelay}"
-  ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
   d:DesignHeight="50"
   d:DesignWidth="50"
+  ToolTipService.InitialShowDelay="{StaticResource InitialToolTipDelay}"
+  ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -66,7 +65,7 @@
     <Image.InputBindings>
       <MouseBinding
         Command="{x:Static commands:OpenLinkCommand.Command}"
-        CommandParameter="{Binding ScreenName, Mode=OneWay, Converter={converters:ProfileLinkConverter}}"
+        CommandParameter="{Binding ScreenName, Mode=OneWay, Converter={StaticResource ProfileLinkConverter}}"
         Gesture="LeftClick" />
     </Image.InputBindings>
   </Image>

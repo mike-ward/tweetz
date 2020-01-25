@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class CompareToConverter : BaseConverter, IValueConverter
+    public class WindowStyleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var val = value?.ToString();
-            return val != null && val.Equals(parameter);
+            return value is bool val && val
+                ? WindowStyle.None
+                : WindowStyle.SingleBorderWindow;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return parameter;
+            throw new NotImplementedException();
         }
     }
 }

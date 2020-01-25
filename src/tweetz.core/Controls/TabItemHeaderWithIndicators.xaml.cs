@@ -4,7 +4,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
 using tweetz.core.Controls.Adorners;
-using tweetz.core.Infrastructure.Converters;
 
 namespace tweetz.core.Controls
 {
@@ -40,7 +39,7 @@ namespace tweetz.core.Controls
                     Path = new PropertyPath("ToolTip"),
                     Source = this,
                     Mode = BindingMode.OneWay,
-                    Converter = new NotNullToVisibilityConverter()
+                    Converter = Application.Current.FindResource("NotNullToVisibilityConverter") as IValueConverter
                 };
 
                 _adorner.SetBinding(VisibilityProperty, binding);

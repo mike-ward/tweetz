@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class CountConverter : BaseConverter, IValueConverter
+    public class CountConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

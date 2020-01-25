@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class TimeAgoConverter : BaseConverter, IValueConverter
+    public class TimeAgoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

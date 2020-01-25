@@ -4,7 +4,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:controls="clr-namespace:tweetz.core.Controls"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls.ComposeBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,7 +13,7 @@
 
   <StackPanel>
     <TextBlock
-      Margin="0 0 0 -10"
+      Margin="0,0,0,-10"
       HorizontalAlignment="Right"
       Cursor="Hand"
       FontFamily="{StaticResource SymbolFont}"
@@ -31,7 +30,7 @@
     <local:ComposeBlockInReplyToControl
       Margin="5,8,0,0"
       DataContext="{Binding InReplyTo, Mode=OneWay}"
-      Visibility="{Binding Mode=OneWay, Converter={converters:NotNullToVisibilityConverter}}" />
+      Visibility="{Binding Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
     <StackPanel Orientation="Horizontal">
       <controls:TweetProfileImageControl

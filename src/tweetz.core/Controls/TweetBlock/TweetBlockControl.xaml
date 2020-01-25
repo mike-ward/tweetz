@@ -3,7 +3,6 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,7 +17,7 @@
       TargetType="{x:Type local:TweetImageControl}">
       <Style.Triggers>
         <DataTrigger
-          Binding="{Binding DataContext.RelatedLinkInfo.ImageUrl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={converters:IsNullConverter}}"
+          Binding="{Binding DataContext.RelatedLinkInfo.ImageUrl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource IsNullConverter}}"
           Value="False">
           <Setter Property="Visibility" Value="Collapsed" />
         </DataTrigger>
@@ -83,7 +82,7 @@
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
       Tag="{Binding ScreenName, Mode=OneWay}"
-      Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={converters:NotBooleanToVisibilityConverter}}">
+      Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}">
 
       <!--  Tooltip not in image control because it causes stackoverflow in UserProfileBlock  -->
       <local:TweetProfileImageControl.ToolTip>

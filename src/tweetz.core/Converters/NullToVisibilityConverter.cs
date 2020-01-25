@@ -3,20 +3,20 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class NotNullToVisibilityConverter : BaseConverter, IValueConverter
+    public class NullToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is string val)
             {
                 return string.IsNullOrWhiteSpace(val)
-                    ? Visibility.Collapsed
-                    : Visibility.Visible;
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
             }
 
-            return value != null
+            return value == null
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

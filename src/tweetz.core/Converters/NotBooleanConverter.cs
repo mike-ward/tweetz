@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class FileNameConverter : BaseConverter, IValueConverter
+    public class NotBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is string val
-                ? Path.GetFileName(val)
-                : string.Empty;
+            return value is bool val && !val;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

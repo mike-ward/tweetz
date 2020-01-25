@@ -4,7 +4,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:adorners="clr-namespace:tweetz.core.Controls.Adorners"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:local="clr-namespace:tweetz.core.Controls.ComposeBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:services="clr-namespace:tweetz.core.Services"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime"

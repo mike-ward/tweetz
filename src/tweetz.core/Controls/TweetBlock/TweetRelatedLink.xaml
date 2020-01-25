@@ -3,7 +3,6 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -56,7 +55,7 @@
       <Setter Property="MaxHeight" Value="20" />
       <Setter Property="Cursor" Value="Hand" />
       <Setter Property="HorizontalAlignment" Value="Left" />
-      <Setter Property="Visibility" Value="{Binding SiteName, Converter={converters:NotNullToVisibilityConverter}}" />
+      <Setter Property="Visibility" Value="{Binding SiteName, Converter={StaticResource NotNullToVisibilityConverter}}" />
     </Style>
   </UserControl.Resources>
 
@@ -65,7 +64,7 @@
     <StackPanel>
       <local:TweetImageControl
         DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
-        Visibility="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={converters:NotBooleanToVisibilityConverter}}" />
+        Visibility="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
       <TextBlock
         Style="{StaticResource TitleStyle}"

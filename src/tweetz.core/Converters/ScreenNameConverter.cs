@@ -2,14 +2,15 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class ViewModelLocatorConverter : IValueConverter
+    public class ScreenNameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var type = parameter as Type ?? throw new NullReferenceException(nameof(parameter));
-            return BootStrapper.GetService(type);
+            return value is string val
+                ? $"@{val}"
+                : value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

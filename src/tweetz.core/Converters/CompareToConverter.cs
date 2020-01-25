@@ -2,18 +2,19 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace tweetz.core.Infrastructure.Converters
+namespace tweetz.core.Converters
 {
-    public class IsNullConverter : BaseConverter, IValueConverter
+    public class CompareToConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value == null;
+            var val = value?.ToString();
+            return val != null && val.Equals(parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return parameter;
         }
     }
 }

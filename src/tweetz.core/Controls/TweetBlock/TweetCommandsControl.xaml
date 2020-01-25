@@ -3,7 +3,6 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:services="clr-namespace:tweetz.core.Services"
@@ -85,7 +84,7 @@
       <Run
         Style="{StaticResource RetweetSymbolStyle}"
         Text="{StaticResource RetweetSymbol}" />
-      <Run Text="{Binding RetweetCount, Mode=OneWay, Converter={converters:CountConverter}}" />
+      <Run Text="{Binding RetweetCount, Mode=OneWay, Converter={StaticResource CountConverter}}" />
 
       <TextBlock.InputBindings>
         <MouseBinding
@@ -101,7 +100,7 @@
       <Run
         Style="{StaticResource LikeSymbolStyle}"
         Text="{StaticResource LikeSymbol}" />
-      <Run Text="{Binding FavoriteCount, Mode=OneWay, Converter={converters:CountConverter}}" />
+      <Run Text="{Binding FavoriteCount, Mode=OneWay, Converter={StaticResource CountConverter}}" />
 
       <TextBlock.InputBindings>
         <MouseBinding
@@ -132,7 +131,7 @@
       <Run
         Style="{StaticResource FollowSymbolStyle}"
         Text="{StaticResource AddFriendSymbol}" />
-      <Run Text="{Binding User.Followers, Mode=OneWay, Converter={converters:CountConverter}}" />
+      <Run Text="{Binding User.Followers, Mode=OneWay, Converter={StaticResource CountConverter}}" />
 
       <TextBlock.InputBindings>
         <MouseBinding

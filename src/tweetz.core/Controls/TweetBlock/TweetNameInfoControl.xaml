@@ -3,7 +3,6 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:converters="clr-namespace:tweetz.core.Infrastructure.Converters"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock"
@@ -66,7 +65,7 @@
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"
-          CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={converters:ProfileLinkConverter}}"
+          CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ProfileLinkConverter}}"
           Gesture="LeftClick" />
       </Run.InputBindings>
     </Run>
@@ -81,7 +80,7 @@
 
     <Run
       Style="{StaticResource ScreenNameStyle}"
-      Text="{Binding User.ScreenName, Mode=OneWay, Converter={converters:ScreenNameConverter}}">
+      Text="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ScreenNameConverter}}">
       <Run.ToolTip>
         <ToolTip>
           <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
@@ -91,7 +90,7 @@
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"
-          CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={converters:ProfileLinkConverter}}"
+          CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ProfileLinkConverter}}"
           Gesture="LeftClick" />
       </Run.InputBindings>
     </Run>
@@ -102,7 +101,7 @@
 
     <Run
       Style="{StaticResource TimeAgoStyle}"
-      Text="{Binding CreatedDate, Mode=OneWay, Converter={converters:TimeAgoConverter}}">
+      Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}">
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"
