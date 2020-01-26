@@ -1,17 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - 2020-01-18
+## 2.0.1 - 2020-01-26
+
+### Changed
+
+- Show font size in settings dialog. [67d6cd3](https://github.com/mike-ward/tweetz/commit/67d6cd326dfa4e5b626078ce9a3871a6b4d089a3)
+- Load only HEAD section of related documents with HtmlAgilityPack. Reduces memory and GC presure. [bb628ad](https://github.com/mike-ward/tweetz/commit/bb628adb8a79d41c2686f8331dc5fac51bf017c7)
+
+## 2.0.0 - 2020-01-18
 
 ### Changed
 - Show reply/retweet/like for user's tweets but disable commands. [f3c0e35](https://github.com/mike-ward/tweetz/commit/f3c0e350fa444519dbc171f6de52cd6b0935ee40)
 
-## [2.0 Beta 3] - 2020-01-12
+## 2.0 Beta 3 - 2020-01-12
 ### Fixed
 - Restore mouse down handler to enable moving window.
 - Trim version info returned from server before comparing.
 
-## [2.0 Beta 2] - 2020-01-11
+## 2.0 Beta 2 - 2020-01-11
 ### Added
 - Option to hide images - [138d59b](<https://github.com/mike-ward/tweetz/commit/138d59b17340df3c38b82bfd6dfeceb6fec56ec6>)
 - Option to hide extended content - [8fc1ac0](<https://github.com/mike-ward/tweetz/commit/8fc1ac021106ee1bc5d5081e5ae6376d6da03f2b>)
