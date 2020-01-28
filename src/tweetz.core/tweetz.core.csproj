@@ -14,7 +14,6 @@
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PublishTrimmed>true</PublishTrimmed>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
   </PropertyGroup>
@@ -35,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
   </ItemGroup>
 
