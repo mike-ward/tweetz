@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -112,8 +113,8 @@ namespace tweetz.core.Services
                 if (!mediaElement.NaturalDuration.HasTimeSpan) return;
 
                 var time =
-                    $"{mediaElement.Position.ToString(@"mm\:ss")}/" +
-                    $"{mediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss")}";
+                    $"{mediaElement.Position.ToString(@"mm\:ss", CultureInfo.InvariantCulture)}/" +
+                    $"{mediaElement.NaturalDuration.TimeSpan.ToString(@"mm\:ss", CultureInfo.InvariantCulture)}";
 
                 timeDisplay.Text = time;
             }

@@ -24,7 +24,7 @@ namespace tweetz.core.ViewModels
 
         internal async Task GetPin()
         {
-            requestToken = await _twitterService.GetPin();
+            requestToken = await _twitterService.GetPin().ConfigureAwait(true);
         }
 
         internal async Task SignIn()
@@ -32,7 +32,7 @@ namespace tweetz.core.ViewModels
             if (requestToken == null) throw new InvalidOperationException("requestToken can not be null");
             if (string.IsNullOrWhiteSpace(Pin)) throw new InvalidOperationException("Pin can not be null");
 
-            await _twitterService.AuthenticateWithPin(requestToken, Pin);
+            await _twitterService.AuthenticateWithPin(requestToken, Pin).ConfigureAwait(true);
             Pin = null;
         }
     }

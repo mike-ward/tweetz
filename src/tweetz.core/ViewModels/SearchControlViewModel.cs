@@ -31,7 +31,7 @@ namespace tweetz.core.ViewModels
                 StatusCollection.Clear();
 
                 ShowProgress = true;
-                var tweets = await TwitterService.Search(query);
+                var tweets = await TwitterService.Search(query).ConfigureAwait(true);
                 ShowProgress = false;
                 UpdateTimeline(tweets.Statuses);
                 ExceptionMessage = null;
@@ -54,7 +54,7 @@ namespace tweetz.core.ViewModels
                 SetSearchText?.Invoke(string.Empty);
 
                 ShowProgress = true;
-                var statuses = await TwitterService.GetMentionsTimeline(150);
+                var statuses = await TwitterService.GetMentionsTimeline(150).ConfigureAwait(true);
                 ShowProgress = false;
 
                 UpdateTimeline(statuses);

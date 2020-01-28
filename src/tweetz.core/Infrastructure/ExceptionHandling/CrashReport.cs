@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Microsoft.Win32;
 using tweetz.core.Models;
@@ -52,7 +53,7 @@ namespace tweetz.core.Infrastructure.ExceptionHandling
         {
             var report = new StringBuilder();
             report.AppendLine("Tweetz Crash Report");
-            report.AppendLine("Date: " + DateTime.UtcNow.ToString("u"));
+            report.AppendLine("Date: " + DateTime.UtcNow.ToString("u", CultureInfo.InvariantCulture));
             report.AppendLine("Version: " + new VersionInfo().Version);
             report.AppendLine();
             report.AppendLine(_divider);

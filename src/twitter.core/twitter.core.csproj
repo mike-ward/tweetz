@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Nullable>Enable</Nullable>
+    <Version>2.0.0</Version>
+    <Description />
+    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
+    <Copyright>Copyright 2020, Mike Ward</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -19,10 +19,13 @@ namespace tweetz.core.ViewModels
             VersionInfo = versionInfo;
             SystemState = systemState;
 
-            checkForUpdates.PropertyChanged += (s, args) => UpdateAvailableToolTip =
+            if (checkForUpdates != null)
+            {
+                checkForUpdates.PropertyChanged += (s, args) => UpdateAvailableToolTip =
                 checkForUpdates.Version.Trim() != VersionInfo.Version
                 ? LanguageService.Instance.Lookup("new-version-available")
                 : null;
+            }
         }
 
         public void SaveSettings()

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -52,7 +53,7 @@ namespace tweetz.core.Models
             var sb = new StringBuilder();
             for (var i = 0; i < hashBytes.Length; i++)
             {
-                sb.Append(hashBytes[i].ToString("X2"));
+                sb.Append(hashBytes[i].ToString("X2", CultureInfo.InvariantCulture));
             }
             return sb.ToString();
         }

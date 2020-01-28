@@ -128,11 +128,11 @@ namespace tweetz.core.Services
         private static string ConvertXmlEntities(string text)
         {
             return text
-                .Replace("&lt;", "<")
-                .Replace("&gt;", ">")
-                .Replace("&quot;", "\"")
-                .Replace("&apos;", "'")
-                .Replace("&amp;", "&");
+                .Replace("&lt;", "<", StringComparison.Ordinal)
+                .Replace("&gt;", ">", StringComparison.Ordinal)
+                .Replace("&quot;", "\"", StringComparison.Ordinal)
+                .Replace("&apos;", "'", StringComparison.Ordinal)
+                .Replace("&amp;", "&", StringComparison.Ordinal);
         }
 
         private static IEnumerable<FlowContentNode> BuildFlowContentNodes(TwitterStatus twitterStatus)

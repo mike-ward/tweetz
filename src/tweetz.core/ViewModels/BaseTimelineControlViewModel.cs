@@ -31,7 +31,7 @@ namespace tweetz.core.ViewModels
         {
             if (e.PropertyName == nameof(Settings.IsAuthenticated))
             {
-                if (Settings.IsAuthenticated) await Start();
+                if (Settings.IsAuthenticated) await Start().ConfigureAwait(true);
                 else Stop();
             }
         }
@@ -40,9 +40,9 @@ namespace tweetz.core.ViewModels
         {
             if (timer != null) return;
             timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
-            timer.Tick += async (s, args) => await Update();
+            timer.Tick += async (s, args) => await Update().ConfigureAwait(true);
             timer.Start();
-            await Update();
+            await Update().ConfigureAwait(true);
         }
 
         private void Stop()
@@ -63,7 +63,7 @@ namespace tweetz.core.ViewModels
                 if (SystemState.IsSleeping) return;
                 if (IsScrolled && Settings.PauseWhenScrolled) return;
 
-                var statuses = await GetTimeline();
+                var statuses = await GetTimeline().ConfigureAwait(true);
                 UpdateTimeline(statuses);
                 DonateNag();
                 TruncateStatusCollection();

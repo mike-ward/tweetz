@@ -69,7 +69,7 @@ namespace tweetz.core.Models
         // Load / Save
 
         [JsonIgnore]
-        public string SettingsFilePath
+        public static string SettingsFilePath
         {
             get
             {

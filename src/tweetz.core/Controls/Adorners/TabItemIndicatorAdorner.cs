@@ -23,7 +23,7 @@ namespace tweetz.core.Controls.Adorners
             pen.Freeze();
 
             var point = new Point(size.Width / 2 + radius * 3, radius + 1);
-            drawingContext.DrawEllipse(Brush, pen, point, radius, radius);
+            drawingContext?.DrawEllipse(Brush, pen, point, radius, radius);
         }
     }
 }

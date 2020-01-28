@@ -18,7 +18,7 @@ namespace tweetz.core.Services
         {
             version = versionInfo.Version;
             timer = new DispatcherTimer { Interval = TimeSpan.FromHours(2) };
-            timer.Tick += async (s, args) => await Check();
+            timer.Tick += async (s, args) => await Check().ConfigureAwait(true);
             timer.Start();
             Task.Run(Check);
         }
@@ -31,7 +31,7 @@ namespace tweetz.core.Services
             {
                 var url = $"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks}";
                 var request = WebRequest.Create(url);
-                using var response = await request.GetResponseAsync();
+                using var response = await request.GetResponseAsync().ConfigureAwait(true);
                 using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 Version = stream.ReadToEnd();
             }

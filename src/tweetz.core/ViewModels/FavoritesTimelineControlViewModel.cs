@@ -19,7 +19,7 @@ namespace tweetz.core.ViewModels
 
         protected override async Task<IEnumerable<TwitterStatus>> GetTimeline()
         {
-            return await TwitterService.GetFavoritesTimeline();
+            return await TwitterService.GetFavoritesTimeline().ConfigureAwait(true);
         }
     }
 }

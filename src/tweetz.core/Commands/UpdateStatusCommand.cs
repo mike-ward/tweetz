@@ -67,7 +67,7 @@ namespace tweetz.core.Commands
                     statusText,
                     replyId,
                     attachementUrl,
-                    mediaIds);
+                    mediaIds).ConfigureAwait(true);
 
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
@@ -81,7 +81,7 @@ namespace tweetz.core.Commands
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
             }
             finally
             {

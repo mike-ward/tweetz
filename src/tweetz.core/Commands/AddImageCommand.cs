@@ -37,9 +37,11 @@ namespace tweetz.core.Commands
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            var ofd = new OpenFileDialog
+            using var ofd = new OpenFileDialog
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 Filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4"
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -47,18 +49,18 @@ namespace tweetz.core.Commands
                 try
                 {
                     ComposeControlViewModel.IsUploadingMedia = true;
-                    var mediaInfo = await UploadMedia(ofd.FileName);
+                    var mediaInfo = await UploadMedia(ofd.FileName).ConfigureAwait(true);
                     ComposeControlViewModel.Media.Add(mediaInfo);
                 }
                 catch (WebException ex)
                 {
                     using var stream = ex.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
-                    await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd());
+                    await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd()).ConfigureAwait(true);
                 }
                 catch (Exception ex)
                 {
-                    await MessageBoxService.ShowMessageBoxAsync(ex.Message);
+                    await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
                 }
                 finally
                 {
@@ -70,20 +72,20 @@ namespace tweetz.core.Commands
         private async Task<MediaInfo> UploadMedia(string path)
         {
             var contentType = ComposeControlViewModel.ContentType(path);
-            var mediaId = await Upload(path, contentType);
+            var mediaId = await Upload(path, contentType).ConfigureAwait(true);
             return new MediaInfo { Path = path, MediaId = mediaId };
         }
 
         private async Task<string> Upload(string filename, string mediaType)
         {
             var bytes = File.ReadAllBytes(filename);
-            var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType);
-            await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes);
-            var finalize = await TwitterService.UploadMediaFinalize(media.MediaId);
+            var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(true);
+            await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(true);
+            var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(true);
 
             if (finalize.ProcessingInfo != null)
             {
-                await UntilProcessingFinished(media.MediaId);
+                await UntilProcessingFinished(media.MediaId).ConfigureAwait(true);
             }
 
             return media.MediaId;
@@ -93,10 +95,10 @@ namespace tweetz.core.Commands
         {
             while (true)
             {
-                var status = await TwitterService.UploadMediaStatus(mediaId);
+                var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(true);
                 if (status.ProcessingInfo.State == ProcessingInfo.StateSuceedded) break;
                 var milliseconds = (int)TimeSpan.FromSeconds(status.ProcessingInfo.CheckAfterSecs).TotalMilliseconds;
-                await Task.Delay(milliseconds);
+                await Task.Delay(milliseconds).ConfigureAwait(true);
             }
         }
     }

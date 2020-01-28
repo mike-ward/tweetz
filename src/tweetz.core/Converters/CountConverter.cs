@@ -13,9 +13,9 @@ namespace tweetz.core.Converters
             const double k = 1000;
 
             if (count == 0) return " ";
-            if (count < 999) return count.ToString();
-            if (count < 999999) return string.Format("{0:N1}K", count / k);
-            return string.Format("{0:N1}M", count / (k * k));
+            if (count < 999) return count.ToString(CultureInfo.InvariantCulture);
+            if (count < 999999) return string.Format(CultureInfo.InvariantCulture, "{0:N1}K", count / k);
+            return string.Format(CultureInfo.InvariantCulture, "{0:N1}M", count / (k * k));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

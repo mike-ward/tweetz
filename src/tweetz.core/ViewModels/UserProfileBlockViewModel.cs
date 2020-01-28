@@ -34,7 +34,7 @@ namespace tweetz.core.ViewModels
                     throw new ArgumentNullException(nameof(GetUserInfo), nameof(screenName));
                 }
 
-                User = await TwitterService.UserInfo(screenName);
+                User = await TwitterService.UserInfo(screenName).ConfigureAwait(true);
             }
             catch (Exception ex)
             {

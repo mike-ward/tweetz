@@ -66,6 +66,7 @@ namespace tweetz.core
 
         public static object GetService(Type type)
         {
+            if (type == null) throw new NullReferenceException();
             return ServiceProvider.GetService(type) ?? throw new NotImplementedException(type.Name);
         }
 

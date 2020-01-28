@@ -21,8 +21,8 @@ namespace tweetz.core.ViewModels
 
         protected override async Task<IEnumerable<TwitterStatus>> GetTimeline()
         {
-            var mentions = await GetMentions();
-            var statuses = await TwitterService.GetHomeTimeline();
+            var mentions = await GetMentions().ConfigureAwait(true);
+            var statuses = await TwitterService.GetHomeTimeline().ConfigureAwait(true);
             return statuses.Concat(mentions);
         }
 
@@ -35,14 +35,14 @@ namespace tweetz.core.ViewModels
 
         private async Task<IEnumerable<TwitterStatus>> GetMentions()
         {
-            IEnumerable<TwitterStatus> mentions = new TwitterStatus[0];
+            IEnumerable<TwitterStatus> mentions = System.Array.Empty<TwitterStatus>();
 
             try
             {
                 if (mentionsCounter >= mentionsInterval)
                 {
                     mentionsCounter = 0;
-                    mentions = await TwitterService.GetMentionsTimeline();
+                    mentions = await TwitterService.GetMentionsTimeline().ConfigureAwait(true);
                 }
                 else
                 {

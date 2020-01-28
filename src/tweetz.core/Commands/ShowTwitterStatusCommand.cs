@@ -26,7 +26,7 @@ namespace tweetz.core.Commands
             {
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 var json = JsonSerializer.Serialize(status, options);
-                await MessageBoxService.ShowMessageBoxAsync(json);
+                await MessageBoxService.ShowMessageBoxAsync(json).ConfigureAwait(true);
             }
         }
     }
