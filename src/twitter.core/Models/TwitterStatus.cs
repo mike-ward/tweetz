@@ -110,7 +110,7 @@ namespace twitter.core.Models
         /// </summary>
         [JsonIgnore]
         public TwitterStatus OriginatingStatus => IsRetweet
-            ? RetweetedStatus ?? throw new NullReferenceException("Invalid program state")
+            ? RetweetedStatus ?? throw new InvalidOperationException("Invalid program state")
             : this;
 
         /// <summary>
@@ -146,13 +146,13 @@ namespace twitter.core.Models
 
         public static DateTime ParseTwitterDate(string? s)
         {
-            if (string.IsNullOrWhiteSpace(s)) return default;
-
-            return DateTime.ParseExact(
-                s,
-                "ddd MMM dd HH:mm:ss zzz yyyy",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.AdjustToUniversal);
+            return string.IsNullOrWhiteSpace(s)
+                ? (default)
+                : DateTime.ParseExact(
+                    s,
+                    "ddd MMM dd HH:mm:ss zzz yyyy",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.AdjustToUniversal);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace twitter.core.Models
 
         public override int GetHashCode()
         {
-            return Id?.GetHashCode() ?? 0;
+            return Id?.GetHashCode(StringComparison.Ordinal) ?? 0;
         }
     }
 }

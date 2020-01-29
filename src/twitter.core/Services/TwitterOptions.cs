@@ -39,7 +39,7 @@ namespace twitter.core.Services
 
         public static (string, string) MediaId(string mediaId) => ("media_id", mediaId);
 
-        public static (string, string) SegmentIndex(int index) => ("segment_index", index.ToString());
+        public static (string, string) SegmentIndex(int index) => ("segment_index", index.ToString(CultureInfo.InvariantCulture));
 
         public static (string, string) MediaData(byte[] data) => ("media_data", Convert.ToBase64String(data));
 

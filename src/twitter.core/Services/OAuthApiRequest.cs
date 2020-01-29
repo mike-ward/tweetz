@@ -144,7 +144,7 @@ namespace twitter.core.Services
             using var _ = await request.GetResponseAsync();
         }
 
-        private void TextParameter(Stream stream, string boundary, string name, string payload)
+        private static void TextParameter(Stream stream, string boundary, string name, string payload)
         {
             var header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n";
             WriteTextToStream(stream, header);
@@ -152,7 +152,7 @@ namespace twitter.core.Services
             WriteTextToStream(stream, "\r\n");
         }
 
-        private void BinaryParameter(Stream stream, string boundary, string name, byte[] payload)
+        private static void BinaryParameter(Stream stream, string boundary, string name, byte[] payload)
         {
             var header =
                 $"--{boundary}\r\nContent-Type: application/octet-stream\r\n" +

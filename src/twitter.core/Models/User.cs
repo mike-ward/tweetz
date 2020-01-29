@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
@@ -66,17 +68,17 @@ namespace twitter.core.Models
                 if (memberSince == null)
                 {
                     var date = TwitterStatus.ParseTwitterDate(CreatedAt);
-                    memberSince = date.ToString("MMM yyy");
+                    memberSince = date.ToString("MMM yyy", CultureInfo.InvariantCulture);
                 }
                 return memberSince;
             }
         }
 
         [JsonIgnore]
-        public string? ProfileImageUrlBigger => ProfileImageUrl?.Replace("_normal", "_bigger");
+        public string? ProfileImageUrlBigger => ProfileImageUrl?.Replace("_normal", "_bigger", StringComparison.Ordinal);
 
         [JsonIgnore]
-        public string? ProfileImageUrlOriginal => ProfileImageUrl?.Replace("_normal", "");
+        public string? ProfileImageUrlOriginal => ProfileImageUrl?.Replace("_normal", "", StringComparison.Ordinal);
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

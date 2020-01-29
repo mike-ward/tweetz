@@ -21,14 +21,14 @@ namespace twitter.core.Services
             var encoded = Uri.EscapeDataString(value);
 
             return Regex
-                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpper())
-                .Replace("(", "%28")
-                .Replace(")", "%29")
-                .Replace("$", "%24")
-                .Replace("!", "%21")
-                .Replace("*", "%2A")
-                .Replace("'", "%27")
-                .Replace("%7E", "~");
+                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpper(CultureInfo.InvariantCulture))
+                .Replace("(", "%28", StringComparison.Ordinal)
+                .Replace(")", "%29", StringComparison.Ordinal)
+                .Replace("$", "%24", StringComparison.Ordinal)
+                .Replace("!", "%21", StringComparison.Ordinal)
+                .Replace("*", "%2A", StringComparison.Ordinal)
+                .Replace("'", "%27", StringComparison.Ordinal)
+                .Replace("%7E", "~", StringComparison.Ordinal);
         }
 
         public static string Nonce()

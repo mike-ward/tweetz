@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -61,7 +62,7 @@ namespace twitter.core.Models
                 {
                     var uri = url.ExpandedUrl ?? url.Url;
                     if (!UrlValid(uri)) continue;
-                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri);
+                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri).ConfigureAwait(true);
                     if (relatedLinkInfo == null) continue;
 
                     status.CheckedRelatedInfo = true;
@@ -113,7 +114,7 @@ namespace twitter.core.Models
 
                     if (tagName != null && tagContent != null)
                     {
-                        switch (tagName.Value.ToLower())
+                        switch (tagName.Value.ToLower(CultureInfo.InvariantCulture))
                         {
                             case "title":
                                 metaInfo.Title = WebUtility.HtmlDecode(tagContent.Value);
@@ -150,7 +151,7 @@ namespace twitter.core.Models
                     }
                     else if (tagProperty != null && tagContent != null)
                     {
-                        switch (tagProperty.Value.ToLower())
+                        switch (tagProperty.Value.ToLower(CultureInfo.InvariantCulture))
                         {
                             case "og:title":
                                 metaInfo.Title = string.IsNullOrEmpty(metaInfo.Title)

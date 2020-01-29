@@ -90,14 +90,14 @@ namespace twitter.core.Services
         {
             await oAuthApiRequest.Post(
                 $"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
-                new (string, string)[0]);
+                Array.Empty<(string, string)>());
         }
 
         public async Task UnretweetStatus(string statusId)
         {
             await oAuthApiRequest.Post(
                 $"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
-                new (string, string)[0]);
+                Array.Empty<(string, string)>());
         }
 
         public async Task CreateFavorite(string statusId)
