@@ -91,13 +91,10 @@ namespace twitter.core.Models
         {
             get
             {
-                if (relatedLinkInfo != null) return relatedLinkInfo;
-                if (!CheckedRelatedInfo)
-                {
-                    CheckedRelatedInfo = true;
-                    Task.Run(async () => { RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfo(this); });
-                }
-                return null;
+                if (CheckedRelatedInfo) return relatedLinkInfo;
+                CheckedRelatedInfo = true;
+                Task.Run(async () => { RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfo(this); });
+                return relatedLinkInfo;
             }
             set
             {
