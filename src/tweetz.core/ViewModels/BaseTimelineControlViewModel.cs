@@ -16,7 +16,7 @@ namespace tweetz.core.ViewModels
         private DispatcherTimer? timer;
         private ISystemState SystemState { get; }
 
-        public BaseTimelineControlViewModel(ISettings settings, ISystemState systemState)
+        protected BaseTimelineControlViewModel(ISettings settings, ISystemState systemState)
             : base(settings)
         {
             SystemState = systemState;
@@ -91,7 +91,7 @@ namespace tweetz.core.ViewModels
 
         // use this to disconnet the binding from the status collection while
         // updating. This reduces jank in the timeline
-        protected static ObservableCollection<TwitterStatus> EmptyStatusCollection = new ObservableCollection<TwitterStatus>();
+        protected static readonly ObservableCollection<TwitterStatus> EmptyStatusCollection = new ObservableCollection<TwitterStatus>();
 
         public void UpdateTimeline(IEnumerable<TwitterStatus> statuses)
         {

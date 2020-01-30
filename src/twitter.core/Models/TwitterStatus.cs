@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace twitter.core.Models
 {
-    public class TwitterStatus : INotifyPropertyChanged, IEquatable<TwitterStatus>
+    public class TwitterStatus : INotifyPropertyChanged, IEqualityComparer<TwitterStatus>
     {
         private int replyCount;
         private int retweetCount;
@@ -202,23 +202,14 @@ namespace twitter.core.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        // IEquatable Implementation
-        //
-        public bool Equals([AllowNull] TwitterStatus other)
+        public bool Equals([AllowNull] TwitterStatus x, [AllowNull] TwitterStatus y)
         {
-            return other == null
-                ? false
-                : other.Id == Id;
+            return x != null && y != null && x.Id == y.Id;
         }
 
-        public override bool Equals(object? obj)
+        public int GetHashCode([DisallowNull] TwitterStatus obj)
         {
-            return Equals(obj as TwitterStatus);
-        }
-
-        public override int GetHashCode()
-        {
-            return Id?.GetHashCode(StringComparison.Ordinal) ?? 0;
+            return obj.Id.GetHashCode();
         }
     }
 }

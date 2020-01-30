@@ -5,7 +5,9 @@ namespace tweetz.core.Models
     public class DonateNagStatus : TwitterStatus
     {
         public const string DonateNagStatusId = "1";
+#pragma warning disable S1075 // URIs should not be hardcoded
         private const string donateUrl = "https://mike-ward.net/donate";
+#pragma warning restore S1075 // URIs should not be hardcoded
 
         public DonateNagStatus()
         {
