@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
@@ -8,7 +8,7 @@ using tweetz.core.Infrastructure;
 
 namespace tweetz.core.Models
 {
-    public class Settings : NotifyPropertyChanged, ISettings, IEquatable<Settings>
+    public class Settings : NotifyPropertyChanged, ISettings, IEqualityComparer<Settings>
     {
         private string? accessToken;
         private string? accessTokenSecret;
@@ -96,9 +96,13 @@ namespace tweetz.core.Models
                 Donated = settings.Donated;
                 MainWindowPosition = settings.MainWindowPosition;
             }
+#pragma warning disable S2486 // Generic exceptions should not be ignored
+#pragma warning disable S108 // Nested blocks of code should not be left empty
             catch
             {
             }
+#pragma warning restore S108 // Nested blocks of code should not be left empty
+#pragma warning restore S2486 // Generic exceptions should not be ignored
         }
 
         public void Save()
@@ -107,22 +111,7 @@ namespace tweetz.core.Models
             File.WriteAllText(SettingsFilePath, json);
         }
 
-        // IEquatable
-
-        public override int GetHashCode()
-        {
-            return AsTuple().GetHashCode();
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is Settings o && Equals(o);
-        }
-
-        public bool Equals([AllowNull] Settings other)
-        {
-            return other != null && AsTuple() == other.AsTuple();
-        }
+        // IEqualityComparer Implementation
 
         private (
             string? AccessToken,
@@ -153,6 +142,16 @@ namespace tweetz.core.Models
                 Donated,
                 MainWindowPosition
                 );
+        }
+
+        public bool Equals([AllowNull] Settings x, [AllowNull] Settings y)
+        {
+            return x != null && y != null && x.AsTuple() == y.AsTuple();
+        }
+
+        public int GetHashCode([DisallowNull] Settings obj)
+        {
+            return obj.AsTuple().GetHashCode();
         }
     }
 }

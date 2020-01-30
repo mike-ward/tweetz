@@ -194,16 +194,16 @@ namespace tweetz.core.Services
 
             var animationX = AnimationFactory();
             Storyboard.SetTarget(animationX, mediaElement);
-            Storyboard.SetTargetProperty(animationX, new PropertyPath("RenderTransform.ScaleX"));
+            Storyboard.SetTargetProperty(animationX, new PropertyPath("RenderTransform.ScaleX", null));
 
             var animationY = AnimationFactory();
             Storyboard.SetTarget(animationY, mediaElement);
-            Storyboard.SetTargetProperty(animationY, new PropertyPath("RenderTransform.ScaleY"));
+            Storyboard.SetTargetProperty(animationY, new PropertyPath("RenderTransform.ScaleY", null));
 
             var animationFadeIn = AnimationFactory();
             animationFadeIn.Duration = new Duration(TimeSpan.FromMilliseconds(400));
             Storyboard.SetTarget(animationFadeIn, mediaElement);
-            Storyboard.SetTargetProperty(animationFadeIn, new PropertyPath("Opacity"));
+            Storyboard.SetTargetProperty(animationFadeIn, new PropertyPath("Opacity", null));
 
             var storyboard = new Storyboard();
             storyboard.Children.Add(animationX);

@@ -202,9 +202,11 @@ namespace twitter.core.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // IEqualityComparer Implementation
+        //
         public bool Equals([AllowNull] TwitterStatus x, [AllowNull] TwitterStatus y)
         {
-            return x != null && y != null && x.Id == y.Id;
+            return x != null && y != null && string.CompareOrdinal(x.Id, y.Id) == 0;
         }
 
         public int GetHashCode([DisallowNull] TwitterStatus obj)

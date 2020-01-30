@@ -36,7 +36,7 @@ namespace tweetz.core.Controls
 
                 var binding = new Binding()
                 {
-                    Path = new PropertyPath("ToolTip"),
+                    Path = new PropertyPath("ToolTip", null),
                     Source = this,
                     Mode = BindingMode.OneWay,
                     Converter = Application.Current.FindResource("NotNullToVisibilityConverter") as IValueConverter

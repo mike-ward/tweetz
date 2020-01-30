@@ -77,7 +77,7 @@ namespace tweetz.core.ViewModels
 
         public void RemoveImage(string filename)
         {
-            var item = Media.Where(mi => mi.Path == filename).FirstOrDefault();
+            var item = Media.FirstOrDefault(mi => mi.Path == filename);
             if (item != null) Media.Remove(item);
         }
 

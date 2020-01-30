@@ -12,12 +12,11 @@ namespace tweetz.core.Services
     public class CheckForUpdates : NotifyPropertyChanged, ICheckForUpdates
     {
         private string version;
-        private readonly DispatcherTimer timer;
 
         public CheckForUpdates(VersionInfo versionInfo)
         {
             version = versionInfo.Version;
-            timer = new DispatcherTimer { Interval = TimeSpan.FromHours(2) };
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromHours(2) };
             timer.Tick += async (s, args) => await Check().ConfigureAwait(true);
             timer.Start();
             Task.Run(Check);
@@ -25,6 +24,7 @@ namespace tweetz.core.Services
 
         public string Version { get => version; set => SetProperty(ref version, value); }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Vulnerability", "S2486:Generic exceptions should not be ignored", Justification = "None")]
         private async Task Check()
         {
             try
@@ -37,6 +37,7 @@ namespace tweetz.core.Services
             }
             catch
             {
+                // eat it, non-critical
             }
         }
     }

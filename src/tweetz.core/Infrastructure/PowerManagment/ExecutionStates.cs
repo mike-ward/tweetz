@@ -3,6 +3,7 @@
 namespace tweetz.core.Infrastructure.PowerManagment
 {
     [Flags]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4070:Non-flags enums should not be marked with \"FlagsAttribute\"", Justification = "None")]
     public enum ExecutionStates
     {
         /// <summary>

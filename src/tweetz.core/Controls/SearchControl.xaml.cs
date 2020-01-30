@@ -20,12 +20,9 @@ namespace tweetz.core.Controls
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter || e.Key == Key.Return)
+            if ((e.Key == Key.Enter || e.Key == Key.Return) && !string.IsNullOrEmpty(Search.Text))
             {
-                if (!string.IsNullOrEmpty(Search.Text))
-                {
-                    SearchCommand.Command.Execute(Search.Text, Search);
-                }
+                SearchCommand.Command.Execute(Search.Text, Search);
             }
         }
 

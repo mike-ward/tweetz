@@ -64,6 +64,7 @@ namespace tweetz.core.Services
         }
 
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "None")]
         private struct RECT
         {
             public int Left;
@@ -81,6 +82,7 @@ namespace tweetz.core.Services
         }
 
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "None")]
         private struct POINT
         {
             public int X;
@@ -94,6 +96,7 @@ namespace tweetz.core.Services
         }
 
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "None")]
         private struct WINDOWPLACEMENT
         {
             public int length;

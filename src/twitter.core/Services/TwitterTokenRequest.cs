@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace twitter.core.Services
 {
-    internal class TwitterTokenRequest
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "None")]
+    internal static class TwitterTokenRequest
     {
         public static async Task<OAuthTokens> GetRequestToken(
             string consumerKey,

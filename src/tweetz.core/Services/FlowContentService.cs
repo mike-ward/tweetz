@@ -37,6 +37,7 @@ namespace tweetz.core.Services
             textBlock.Inlines.AddRange(SourceToFlowContentInlines(twitterStatus));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4456:Parameter validation in yielding methods should be wrapped", Justification = "None")]
         public static IEnumerable<object> SourceToFlowContentInlines(TwitterStatus twitterStatus)
         {
             if (twitterStatus == null)
@@ -70,7 +71,7 @@ namespace tweetz.core.Services
                         continue;
 
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new InvalidOperationException();
                 }
             }
         }

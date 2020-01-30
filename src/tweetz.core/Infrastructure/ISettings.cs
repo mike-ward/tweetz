@@ -5,22 +5,22 @@ namespace tweetz.core.Infrastructure
 {
     public interface ISettings : INotifyPropertyChanged
     {
-        public bool IsAuthenticated { get; }
-        public string? AccessToken { get; set; }
-        public string? AccessTokenSecret { get; set; }
-        public string? ScreenName { get; set; }
-        public bool HideProfileImages { get; }
-        public bool HideImages { get; }
-        public bool HideExtendedContent { get; }
-        public bool PauseWhenScrolled { get; set; }
-        public bool SpellCheck { get; set; }
-        public double FontSize { get; }
-        public string? Theme { get; }
-        public bool Donated { get; }
-        public WindowPosition MainWindowPosition { get; set; }
+        bool IsAuthenticated { get; }
+        string? AccessToken { get; set; }
+        string? AccessTokenSecret { get; set; }
+        string? ScreenName { get; set; }
+        bool HideProfileImages { get; }
+        bool HideImages { get; }
+        bool HideExtendedContent { get; }
+        bool PauseWhenScrolled { get; set; }
+        bool SpellCheck { get; set; }
+        double FontSize { get; }
+        string? Theme { get; }
+        bool Donated { get; }
+        WindowPosition MainWindowPosition { get; set; }
 
-        public void Load();
+        void Load();
 
-        public void Save();
+        void Save();
     }
 }

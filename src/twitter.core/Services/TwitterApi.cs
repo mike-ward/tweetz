@@ -5,6 +5,7 @@ using twitter.core.Models;
 
 namespace twitter.core.Services
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "None")]
     public class TwitterApi
     {
         private string ConsumerKey { get; }
@@ -26,6 +27,10 @@ namespace twitter.core.Services
             return requestTokens;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped",
+            Justification = "None")
+        ]
         public async Task<OAuthTokens> AuthenticateWithPin(OAuthTokens tokens, string pin)
         {
             if (tokens == null || tokens.OAuthToken == null || tokens.OAuthSecret == null) throw new ArgumentNullException(nameof(tokens));
@@ -180,7 +185,7 @@ namespace twitter.core.Services
                     TwitterOptions.Command("INIT"),
                     TwitterOptions.TotalBytes(totalBytes),
                     TwitterOptions.MediaType(mediaType)
-                }); ;
+                });
         }
 
         public async Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)

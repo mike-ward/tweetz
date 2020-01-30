@@ -23,8 +23,8 @@ namespace tweetz.core.ViewModels
             {
                 checkForUpdates.PropertyChanged += (s, args) => UpdateAvailableToolTip =
                 checkForUpdates.Version.Trim() != VersionInfo.Version
-                ? LanguageService.Instance.Lookup("new-version-available")
-                : null;
+                    ? LanguageService.Instance.Lookup("new-version-available")
+                    : null;
             }
         }
 
