@@ -18,6 +18,8 @@ namespace tweetz.core.Controls.UserProfileBlock
             {
                 await vm.GetUserInfo(Tag as string).ConfigureAwait(true);
             }
+
+            Loaded -= OnLoad;
         }
     }
 }

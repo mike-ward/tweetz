@@ -21,6 +21,8 @@ namespace tweetz.core.Controls.ComposeBlock
             var vm = (ComposeControlViewModel)DataContext;
             var textBlock = (TextBlock)TextBox.GetValue(Adorners.WatermarkAdornerService.WatermarkProperty);
             textBlock.DataContext = vm;
+
+            Loaded -= OnLoaded;
         }
 
         private void OnIsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)

@@ -11,7 +11,7 @@ namespace tweetz.core.ViewModels
         private bool showProgress;
 
         public ITwitterService TwitterService { get; }
-        public Action<string>? SetSearchText { get; set; }
+        public Action<string> SetSearchText { get; set; }
 
         public SearchControlViewModel(ISettings settings, ITwitterService twitterService)
             : base(settings)

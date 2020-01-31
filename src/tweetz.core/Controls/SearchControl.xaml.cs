@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using tweetz.core.Commands;
 using tweetz.core.ViewModels;
@@ -11,11 +12,14 @@ namespace tweetz.core.Controls
         {
             InitializeComponent();
 
-            Loaded += (s, args) =>
+            void LoadedHandler(object sender, RoutedEventArgs args)
             {
                 // this check allows the xaml designer to render
                 if (DataContext is SearchControlViewModel vm) vm.SetSearchText = SetSearchText;
-            };
+                Loaded -= LoadedHandler;
+            }
+
+            Loaded += LoadedHandler;
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

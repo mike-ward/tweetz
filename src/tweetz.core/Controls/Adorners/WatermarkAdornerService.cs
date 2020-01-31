@@ -33,16 +33,23 @@ namespace tweetz.core.Controls.Adorners
         private static void OnWatermarkChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (Control)d;
+            control.Loaded -= Control_Loaded;
             control.Loaded += Control_Loaded;
 
             if (d is ComboBox)
             {
+                control.GotKeyboardFocus -= Control_GotKeyboardFocus;
                 control.GotKeyboardFocus += Control_GotKeyboardFocus;
+
+                control.LostKeyboardFocus -= Control_Loaded;
                 control.LostKeyboardFocus += Control_Loaded;
             }
             else if (d is TextBox)
             {
+                control.GotKeyboardFocus -= Control_GotKeyboardFocus;
                 control.GotKeyboardFocus += Control_GotKeyboardFocus;
+
+                control.LostKeyboardFocus -= Control_Loaded;
                 control.LostKeyboardFocus += Control_Loaded;
                 ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
             }

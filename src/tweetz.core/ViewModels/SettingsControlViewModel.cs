@@ -21,10 +21,10 @@ namespace tweetz.core.ViewModels
 
             if (checkForUpdates != null)
             {
-                checkForUpdates.PropertyChanged += (s, args) => UpdateAvailableToolTip =
-                checkForUpdates.Version.Trim() != VersionInfo.Version
-                    ? LanguageService.Instance.Lookup("new-version-available")
-                    : null;
+                checkForUpdates.PropertyChanged += (s, args) =>
+                    UpdateAvailableToolTip = checkForUpdates.Version.Trim() != VersionInfo.Version
+                        ? LanguageService.Instance.Lookup("new-version-available")
+                        : null;
             }
         }
 

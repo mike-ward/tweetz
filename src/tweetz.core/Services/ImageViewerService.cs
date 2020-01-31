@@ -119,18 +119,23 @@ namespace tweetz.core.Services
                 timeDisplay.Text = time;
             }
 
-            timeDisplay.Loaded += (s, args) =>
+            void StartTimer(object sender, RoutedEventArgs args)
             {
                 timer.Tick += tick;
                 timer.Start();
-            };
+                timeDisplay.Loaded -= StartTimer;
+            }
 
-            timeDisplay.Unloaded += (s, args) =>
+            timeDisplay.Loaded += StartTimer;
+
+            void StopTimer(object sender, RoutedEventArgs args)
             {
                 timer.Stop();
                 timer.Tick -= tick;
-            };
+                timeDisplay.Unloaded -= StopTimer;
+            }
 
+            timeDisplay.Unloaded += StopTimer;
             return timeDisplay;
         }
 
@@ -225,7 +230,7 @@ namespace tweetz.core.Services
             TextBlock errorMessage,
             Uri uri)
         {
-            mediaElement.MediaOpened += (s, args) =>
+            void OpenedHandler(object sender, RoutedEventArgs args)
             {
                 loadingIndicator.Visibility = Visibility.Collapsed;
                 if (mediaElement.NaturalDuration.HasTimeSpan) mediaControls.Visibility = Visibility.Visible;
@@ -236,9 +241,13 @@ namespace tweetz.core.Services
                     a.Handled = true;
                     CopyUIElementToClipboard(mediaElement, uri);
                 }));
-            };
 
-            mediaElement.MediaFailed += (s, args) =>
+                mediaElement.MediaOpened -= OpenedHandler;
+            }
+
+            mediaElement.MediaOpened += OpenedHandler;
+
+            void FailedHander(object? sender, ExceptionRoutedEventArgs args)
             {
                 loadingIndicator.Visibility = Visibility.Collapsed;
                 mediaElement.Visibility = Visibility.Collapsed;
@@ -246,7 +255,9 @@ namespace tweetz.core.Services
                 clipboardCopy.Visibility = Visibility.Collapsed;
                 errorMessage.Text = args.ErrorException.Message;
                 errorMessage.Visibility = Visibility.Visible;
-            };
+                mediaElement.MediaFailed -= FailedHander;
+            }
+            mediaElement.MediaFailed += FailedHander;
         }
 
         private static void CopyUIElementToClipboard(FrameworkElement element, Uri uri)
