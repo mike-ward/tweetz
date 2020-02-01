@@ -1,15 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 2.0.1 - 2020-01-26
+## 2.0.2 - 2020-02-01
+### Chnaged
 
+- Reduce memory load of related links by only scanning `<head>` section. [bffb90](https://github.com/mike-ward/tweetz/commit/bffb90988f0cff09157efd6becb2fc0b48360b2f)
+- Refactorings suggested by SonarLink and FxCop analyzers
+
+## 2.0.1 - 2020-01-26
 ### Changed
 
 - Show font size in settings dialog. [67d6cd3](https://github.com/mike-ward/tweetz/commit/67d6cd326dfa4e5b626078ce9a3871a6b4d089a3)
 - Load only HEAD section of related documents with HtmlAgilityPack. Reduces memory and GC presure. [bb628ad](https://github.com/mike-ward/tweetz/commit/bb628adb8a79d41c2686f8331dc5fac51bf017c7)
 
 ## 2.0.0 - 2020-01-18
-
 ### Changed
 - Show reply/retweet/like for user's tweets but disable commands. [f3c0e35](https://github.com/mike-ward/tweetz/commit/f3c0e350fa444519dbc171f6de52cd6b0935ee40)
 

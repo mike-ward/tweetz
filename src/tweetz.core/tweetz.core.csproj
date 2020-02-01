@@ -8,7 +8,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ServerGarbageCollection>false</ServerGarbageCollection>
-    <Version>2.0.0</Version>
+    <Version>2.0.2</Version>
     <Description>A gadget-like desktop twitter client.</Description>
     <Copyright>Copyright 2020, Mike Ward</Copyright>
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
@@ -16,6 +16,8 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
+    <FileVersion>2.0.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
