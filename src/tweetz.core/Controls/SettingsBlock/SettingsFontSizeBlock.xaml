@@ -5,95 +5,31 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:services="clr-namespace:tweetz.core.Services"
-  d:DesignHeight="75"
+  d:DesignHeight="50"
   d:DesignWidth="300"
   mc:Ignorable="d">
-  <UserControl.Resources>
-    <Style
-      x:Key="SettingsRadioButton"
-      TargetType="RadioButton">
-      <Setter Property="VerticalContentAlignment" Value="Bottom" />
-      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-    </Style>
-  </UserControl.Resources>
 
   <StackPanel>
     <TextBlock Text="{services:LanguageService font-size-title}" />
 
     <Separator />
 
-    <UniformGrid Columns="4">
-      <RadioButton
-        Content="11.0"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=11.0}"
-        Style="{StaticResource SettingsRadioButton}" />
+    <DockPanel
+      Margin="0,5,0,0"
+      VerticalAlignment="Center">
+      <TextBlock
+        Width="40"
+        DockPanel.Dock="Right"
+        Text="{Binding Value, ElementName=WhiteCastle, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DoubleFormatConverter}, ConverterParameter=N1}"
+        TextAlignment="Right" />
 
-      <RadioButton
-        Content="11.5"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=11.5}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="12.0"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=12}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="12.5"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=12.5}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="13.0"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=13}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="13.5"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=13.5}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="14.0"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=14}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="14.5"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=14.5}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="15.0"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=15}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="15.5"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=15.5}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="16.0"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=16}"
-        Style="{StaticResource SettingsRadioButton}" />
-
-      <RadioButton
-        Content="16.5"
-        GroupName="f"
-        IsChecked="{Binding FontSize, Converter={StaticResource CompareToConverter}, ConverterParameter=16.5}"
-        Style="{StaticResource SettingsRadioButton}" />
-    </UniformGrid>
+      <Slider
+        x:Name="WhiteCastle"
+        IsSnapToTickEnabled="True"
+        Maximum="18"
+        Minimum="10"
+        TickFrequency="0.1"
+        Value="{Binding FontSize}" />
+    </DockPanel>
   </StackPanel>
 </UserControl>

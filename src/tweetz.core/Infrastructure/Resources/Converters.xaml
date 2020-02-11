@@ -6,6 +6,7 @@
   <converters:ViewModelLocatorConverter x:Key="VMLC" />
   <converters:CompareToConverter x:Key="CompareToConverter" />
   <converters:CountConverter x:Key="CountConverter" />
+  <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
   <converters:FileNameConverter x:Key="FileNameConverter" />
   <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:NotBooleanConverter x:Key="NotBooleanConverter" />
@@ -13,7 +14,6 @@
   <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
   <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
   <converters:ProfileLinkConverter x:Key="ProfileLinkConverter" />
-  <converters:ResizeModeConverter x:Key="ResizeModeConverter" />
   <converters:ScreenNameConverter x:Key="ScreenNameConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <converters:WindowStyleConverter x:Key="WindowStyleConverter" />
