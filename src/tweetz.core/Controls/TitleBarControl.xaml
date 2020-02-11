@@ -27,15 +27,26 @@
       VerticalAlignment="Center"
       Text="Tweetz" />
 
-    <Button
+    <TextBlock
       Grid.Column="2"
-      Height="18"
+      Width="30"
+      Padding="5,2,5,2"
       HorizontalAlignment="Right"
-      Command="Close"
-      Content="{StaticResource XSymbol}"
       Cursor="Hand"
-      FontFamily="{StaticResource SymbolFont}"
-      Style="{StaticResource CloseButtonStyle}"
-      ToolTip="{services:LanguageService close-tooltip}" />
+      FontSize="12"
+      MouseDown="ExecuteCloseCommand"
+      Text="&#x2573;"
+      TextAlignment="Center"
+      ToolTip="{services:LanguageService close-tooltip}">
+      <TextBlock.Style>
+        <Style>
+          <Style.Triggers>
+            <Trigger Property="TextBlock.IsMouseOver" Value="True">
+              <Setter Property="TextBlock.Background" Value="Red" />
+            </Trigger>
+          </Style.Triggers>
+        </Style>
+      </TextBlock.Style>
+    </TextBlock>
   </Grid>
 </UserControl>

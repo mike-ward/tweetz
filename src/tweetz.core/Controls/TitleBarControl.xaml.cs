@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace tweetz.core.Controls
 {
@@ -7,6 +8,11 @@ namespace tweetz.core.Controls
         public TitleBarControl()
         {
             InitializeComponent();
+        }
+
+        private void ExecuteCloseCommand(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ApplicationCommands.Close.Execute(null, this);
         }
     }
 }

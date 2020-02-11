@@ -43,41 +43,4 @@
   <Style
     BasedOn="{StaticResource BaseButtonStyle}"
     TargetType="Button" />
-
-  <Style
-    x:Key="CloseButtonStyle"
-    BasedOn="{StaticResource BaseButtonToolTipStyle}"
-    TargetType="Button">
-    <Style.Triggers>
-      <Trigger Property="IsEnabled" Value="False">
-        <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-      </Trigger>
-    </Style.Triggers>
-
-    <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundBrush}" />
-    <Setter Property="FontWeight" Value="Normal" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="Button">
-          <Border
-            x:Name="border"
-            Background="{DynamicResource TitleBarBackgroundBrush}">
-            <ContentPresenter
-              x:Name="ButtonContentPresenter"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-              <ContentPresenter.Resources>
-                <Style TargetType="TextBlock">
-                  <Setter Property="VerticalAlignment" Value="Center" />
-                  <Setter Property="TextAlignment" Value="Center" />
-                  <Setter Property="Padding" Value="9,0,9,0" />
-                </Style>
-              </ContentPresenter.Resources>
-            </ContentPresenter>
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
 </ResourceDictionary>

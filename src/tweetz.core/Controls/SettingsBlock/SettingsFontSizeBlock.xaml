@@ -18,7 +18,7 @@
       Margin="0,5,0,0"
       VerticalAlignment="Center">
       <TextBlock
-        Width="40"
+        Width="32"
         DockPanel.Dock="Right"
         Text="{Binding Value, ElementName=WhiteCastle, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DoubleFormatConverter}, ConverterParameter=N1}"
         TextAlignment="Right" />
