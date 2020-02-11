@@ -78,6 +78,11 @@ namespace tweetz.core.Services
 
             // Image viewer
             { "copy",                          "copy" },
+
+            // Tips (in settings dialog)
+            { "tips",                          "Tips" },
+            { "tips-scroll",                   "Right-cilck on timeline scrolls to top" },
+            { "tips-open",                     "Click on timestamp to open in twitter" },
         };
     }
 }
