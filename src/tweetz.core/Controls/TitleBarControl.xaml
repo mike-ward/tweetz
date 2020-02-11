@@ -38,11 +38,17 @@
       Text="&#x2573;"
       TextAlignment="Center"
       ToolTip="{services:LanguageService close-tooltip}">
+      <TextBlock.Resources>
+        <Style
+          BasedOn="{StaticResource {x:Type ToolTip}}"
+          TargetType="ToolTip" />
+      </TextBlock.Resources>
       <TextBlock.Style>
         <Style>
           <Style.Triggers>
             <Trigger Property="TextBlock.IsMouseOver" Value="True">
-              <Setter Property="TextBlock.Background" Value="Red" />
+              <Setter Property="TextBlock.Foreground" Value="White" />
+              <Setter Property="TextBlock.Background" Value="IndianRed" />
             </Trigger>
           </Style.Triggers>
         </Style>
