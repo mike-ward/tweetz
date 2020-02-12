@@ -130,4 +130,10 @@
       DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:ComposeControlViewModel}, Mode=OneWay}"
       Visibility="{Binding DataContext.ShowComposeControl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>
+
+  <UserControl.InputBindings>
+    <KeyBinding
+      Command="commands:ToggleShowComposeCommand.Command"
+      Gesture="Ctrl+N" />
+  </UserControl.InputBindings>
 </UserControl>

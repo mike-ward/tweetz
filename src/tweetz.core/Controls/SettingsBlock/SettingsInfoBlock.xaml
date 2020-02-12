@@ -6,7 +6,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:models="clr-namespace:tweetz.core.Models"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DataContext="{d:DesignInstance models:VersionInfo,
                                    IsDesignTimeCreatable=True}"
   d:DesignHeight="200"
@@ -26,14 +25,5 @@
     <LineBreak />
 
     <Run Text="{Binding Copyright, Mode=OneWay}" />
-    <LineBreak />
-    <LineBreak />
-
-    <Hyperlink
-      Command="commands:OpenLinkCommand.Command"
-      CommandParameter="http://mike-ward.net/donate"
-      FontWeight="Bold">
-      <Run Text="{services:LanguageService donate}" />
-    </Hyperlink>
   </TextBlock>
 </UserControl>

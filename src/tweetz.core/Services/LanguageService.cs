@@ -81,8 +81,9 @@ namespace tweetz.core.Services
 
             // Tips (in settings dialog)
             { "tips",                          "Tips" },
-            { "tips-scroll",                   "Right-cilck on timeline scrolls to top" },
-            { "tips-open",                     "Click on timestamp to open in twitter" },
+            { "tips-ctrl-n",                   "New tweet (Ctrl+N)" },
+            { "tips-scroll",                   "Right-click timeline scrolls to top" },
+            { "tips-open",                     "Click timestamp opens in twitter" },
         };
     }
 }

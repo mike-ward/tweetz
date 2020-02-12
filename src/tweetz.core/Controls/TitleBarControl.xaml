@@ -29,26 +29,20 @@
 
     <TextBlock
       Grid.Column="2"
-      Width="30"
-      Padding="5,2,5,2"
+      Padding="15,4"
       HorizontalAlignment="Right"
       Cursor="Hand"
-      FontSize="12"
+      FontSize="10"
       MouseDown="ExecuteCloseCommand"
       Text="&#x2573;"
       TextAlignment="Center"
       ToolTip="{services:LanguageService close-tooltip}">
-      <TextBlock.Resources>
-        <Style
-          BasedOn="{StaticResource {x:Type ToolTip}}"
-          TargetType="ToolTip" />
-      </TextBlock.Resources>
       <TextBlock.Style>
         <Style>
           <Style.Triggers>
             <Trigger Property="TextBlock.IsMouseOver" Value="True">
               <Setter Property="TextBlock.Foreground" Value="White" />
-              <Setter Property="TextBlock.Background" Value="IndianRed" />
+              <Setter Property="TextBlock.Background" Value="#e41123" />
             </Trigger>
           </Style.Triggers>
         </Style>

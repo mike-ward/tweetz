@@ -57,7 +57,7 @@
       Style="{StaticResource UserNameStyle}"
       Text="{Binding User.Name, Mode=OneWay}">
       <Run.ToolTip>
-        <ToolTip>
+        <ToolTip Style="{StaticResource ToolTipStyle}">
           <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
         </ToolTip>
       </Run.ToolTip>
@@ -82,7 +82,7 @@
       Style="{StaticResource ScreenNameStyle}"
       Text="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ScreenNameConverter}}">
       <Run.ToolTip>
-        <ToolTip>
+        <ToolTip Style="{StaticResource ToolTipStyle}">
           <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
         </ToolTip>
       </Run.ToolTip>

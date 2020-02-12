@@ -49,7 +49,9 @@
     <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
   </Style>
 
-  <Style TargetType="ToolTip">
+  <Style
+    x:Key="ToolTipStyle"
+    TargetType="ToolTip">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="ToolTip">

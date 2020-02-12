@@ -87,6 +87,7 @@ namespace tweetz.core.Services
             return grid;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S1854:Unused assignments should be removed", Justification = "false positive")]
         private static FrameworkElement MediaControls(MediaElement mediaElement)
         {
             var timerBackgroundBrush = new SolidColorBrush(Colors.White) { Opacity = 0.3 };
@@ -222,6 +223,7 @@ namespace tweetz.core.Services
             mediaElement.Triggers.Add(eventTrigger);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S1172:Unused method parameters should be removed", Justification = "false positive")]
         private static void AddEventHandlers(
             FrameworkElement loadingIndicator,
             MediaElement mediaElement,

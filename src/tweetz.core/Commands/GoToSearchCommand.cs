@@ -18,8 +18,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            var dp = sender as DependencyObject;
-            if (dp == null) return;
+            if (!(sender is DependencyObject dp)) return;
 
             var tabControl = dp.GetChildrenOfType<TabControl>().FirstOrDefault();
             if (tabControl == null) return;
