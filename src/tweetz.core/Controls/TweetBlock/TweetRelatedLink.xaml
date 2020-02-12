@@ -78,7 +78,7 @@
 
       <TextBlock
         Style="{StaticResource DescriptionStyle}"
-        Text="{Binding Description, Mode=OneWay}" />
+        Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneWay}" />
 
       <TextBlock
         Style="{StaticResource SiteNameStyle}"

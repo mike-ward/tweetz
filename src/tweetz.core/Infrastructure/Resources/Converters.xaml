@@ -15,6 +15,7 @@
   <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
   <converters:ProfileLinkConverter x:Key="ProfileLinkConverter" />
   <converters:ScreenNameConverter x:Key="ScreenNameConverter" />
+  <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <converters:WindowStyleConverter x:Key="WindowStyleConverter" />
 </ResourceDictionary>
