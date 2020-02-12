@@ -157,59 +157,55 @@ namespace tweetz.core.Services
             yield return new FlowContentNode(FlowContentNodeType.Text, twitterString.Substring(start));
         }
 
-        private static List<FlowContentItem> BuildFlowControlItems(Entities entities)
+        private static IEnumerable<FlowContentItem> BuildFlowControlItems(Entities entities)
         {
-            var flowContentItems = new List<FlowContentItem>();
+            var urls = entities.Urls
+                 ?.Select(url => new FlowContentItem
+                 {
+                     FlowContentNodeType = FlowContentNodeType.Url,
+                     Text = url.ExpandedUrl,
+                     Start = url.Indices[0],
+                     End = url.Indices[1]
+                 })
+                 ?? Array.Empty<FlowContentItem>();
 
-            if (entities.Urls != null)
-            {
-                flowContentItems.AddRange(entities.Urls
-                    .Select(url => new FlowContentItem
-                    {
-                        FlowContentNodeType = FlowContentNodeType.Url,
-                        Text = url.ExpandedUrl,
-                        Start = url.Indices[0],
-                        End = url.Indices[1]
-                    }));
-            }
+            var mentions = entities.Mentions
+                ?.Select(mention => new FlowContentItem
+                {
+                    FlowContentNodeType = FlowContentNodeType.Mention,
+                    Text = mention.ScreenName,
+                    Start = mention.Indices[0],
+                    End = mention.Indices[1]
+                })
+                ?? Array.Empty<FlowContentItem>();
 
-            if (entities.Mentions != null)
-            {
-                flowContentItems.AddRange(entities.Mentions
-                    .Select(mention => new FlowContentItem
-                    {
-                        FlowContentNodeType = FlowContentNodeType.Mention,
-                        Text = mention.ScreenName,
-                        Start = mention.Indices[0],
-                        End = mention.Indices[1]
-                    }));
-            }
+            var hashTags = entities.HashTags
+                ?.Select(hashtag => new FlowContentItem
+                {
+                    FlowContentNodeType = FlowContentNodeType.HashTag,
+                    Text = hashtag.Text,
+                    Start = hashtag.Indices[0],
+                    End = hashtag.Indices[1]
+                })
+                ?? Array.Empty<FlowContentItem>();
 
-            if (entities.HashTags != null)
-            {
-                flowContentItems.AddRange(entities.HashTags
-                    .Select(hashtag => new FlowContentItem
-                    {
-                        FlowContentNodeType = FlowContentNodeType.HashTag,
-                        Text = hashtag.Text,
-                        Start = hashtag.Indices[0],
-                        End = hashtag.Indices[1]
-                    }));
-            }
+            var media = entities.Media
+                ?.Select(media => new FlowContentItem
+                {
+                    FlowContentNodeType = FlowContentNodeType.Media,
+                    Text = media.Url,
+                    Start = media.Indices[0],
+                    End = media.Indices[1]
+                })
+                ?? Array.Empty<FlowContentItem>();
 
-            if (entities.Media != null)
-            {
-                flowContentItems.AddRange(entities.Media
-                    .Select(media => new FlowContentItem
-                    {
-                        FlowContentNodeType = FlowContentNodeType.Media,
-                        Text = media.Url,
-                        Start = media.Indices[0],
-                        End = media.Indices[1]
-                    }));
-            }
+            var flowContentItems = Array.Empty<FlowContentItem>()
+                .Concat(urls)
+                .Concat(mentions)
+                .Concat(hashTags)
+                .Concat(media)
+                .OrderBy(o => o.Start);
 
-            flowContentItems.Sort((l, r) => l.Start - r.Start);
             return flowContentItems;
         }
     }
