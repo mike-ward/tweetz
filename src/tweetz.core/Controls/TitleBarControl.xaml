@@ -25,6 +25,7 @@
     <TextBlock
       Grid.Column="1"
       VerticalAlignment="Center"
+      FontFamily="Maiandra GD"
       Text="Tweetz" />
 
     <TextBlock
