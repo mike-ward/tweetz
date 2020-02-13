@@ -14,7 +14,7 @@ namespace tweetz.core.Infrastructure
         bool HideExtendedContent { get; }
         bool PauseWhenScrolled { get; set; }
         bool SpellCheck { get; set; }
-        double FontSize { get; }
+        double FontSize { get; set; }
         string? Theme { get; }
         bool Donated { get; }
         WindowPosition MainWindowPosition { get; set; }

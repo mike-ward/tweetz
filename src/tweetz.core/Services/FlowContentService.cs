@@ -106,6 +106,7 @@ namespace tweetz.core.Services
             var userProfile = new UserProfileBlock();
 
             tooltip.Content = userProfile;
+            tooltip.Style = GetToolTipStyle();
             userProfile.Tag = text;
 
             return new Hyperlink(new Run("@" + text))
@@ -114,6 +115,11 @@ namespace tweetz.core.Services
                 CommandParameter = $"https://twitter.com/{text}",
                 ToolTip = tooltip
             };
+        }
+
+        private static Style GetToolTipStyle()
+        {
+            return (Style)Application.Current.FindResource("ToolTipStyle");
         }
 
         private static Hyperlink Hashtag(string text)

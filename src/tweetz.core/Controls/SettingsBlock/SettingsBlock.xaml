@@ -96,15 +96,6 @@
 
     <Separator Margin="0,6" />
 
-    <StackPanel>
-
-      <TextBlock
-        Margin="0,0,0,6"
-        FontWeight="Bold"
-        Text="{services:LanguageService tips}" />
-      <controls:BulletedItem BulletText="{services:LanguageService tips-ctrl-n}" />
-      <controls:BulletedItem BulletText="{services:LanguageService tips-open}" />
-      <controls:BulletedItem BulletText="{services:LanguageService tips-scroll}" />
-    </StackPanel>
+    <local:SettingsBlockTips Style="{StaticResource BlockStyle}" />
   </StackPanel>
 </UserControl>

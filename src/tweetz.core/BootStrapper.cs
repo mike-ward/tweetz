@@ -62,6 +62,8 @@ namespace tweetz.core
             services.AddSingleton<ICommandBinding, AddImageCommand>();
             services.AddSingleton<ICommandBinding, RemoveImageCommand>();
             services.AddSingleton<ICommandBinding, GetMentionsCommand>();
+            services.AddSingleton<ICommandBinding, DecreaseFontSizeCommand>();
+            services.AddSingleton<ICommandBinding, IncreaseFontSizeCommand>();
         }
 
         public static object GetService(Type type)

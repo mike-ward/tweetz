@@ -135,5 +135,17 @@
     <KeyBinding
       Command="commands:ToggleShowComposeCommand.Command"
       Gesture="Ctrl+N" />
+    <KeyBinding
+      Command="commands:DecreaseFontSizeCommand.Command"
+      Gesture="Alt+Subtract" />
+    <KeyBinding
+      Command="commands:IncreaseFontSizeCommand.Command"
+      Gesture="Alt+Add" />
+    <KeyBinding
+      Command="commands:DecreaseFontSizeCommand.Command"
+      Gesture="Alt+OemMinus" />
+    <KeyBinding
+      Command="commands:IncreaseFontSizeCommand.Command"
+      Gesture="Alt+OemPlus" />
   </UserControl.InputBindings>
 </UserControl>
