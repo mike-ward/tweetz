@@ -21,23 +21,20 @@ namespace twitter.core.Services
 
         public async Task<OAuthTokens> GetPin()
         {
-            var requestTokens = await TwitterTokenRequest.GetRequestToken(ConsumerKey, ConsumerSecret);
+            var requestTokens = await TwitterTokenRequest
+                .GetRequestToken(ConsumerKey, ConsumerSecret)
+                .ConfigureAwait(false);
+
             var url = "https://api.twitter.com/oauth/authenticate?oauth_token=" + requestTokens.OAuthToken;
             OpenUrlService.Open(url);
             return requestTokens;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
-            "Major Code Smell", "S4457:Parameter validation in \"async\"/\"await\" methods should be wrapped",
-            Justification = "None")
-        ]
         public async Task<OAuthTokens> AuthenticateWithPin(OAuthTokens tokens, string pin)
         {
-            if (tokens == null || tokens.OAuthToken == null || tokens.OAuthSecret == null) throw new ArgumentNullException(nameof(tokens));
-            if (string.IsNullOrWhiteSpace(pin)) throw new ArgumentNullException(nameof(pin));
-
-            var accessTokens = await TwitterTokenRequest.GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken, tokens.OAuthSecret, pin);
-            return accessTokens;
+            return await TwitterTokenRequest
+                .GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin)
+                .ConfigureAwait(false);
         }
 
         public void AuthenticateWithTokens(string? accessToken, string? accessTokenSecret)
@@ -45,92 +42,103 @@ namespace twitter.core.Services
             oAuthApiRequest.AuthenticateWithTokens(accessToken, accessTokenSecret);
         }
 
-        public async Task<List<TwitterStatus>> HomeTimeline()
+        public async Task<IEnumerable<TwitterStatus>> HomeTimeline()
         {
-            return await oAuthApiRequest.Get<List<TwitterStatus>>(
-                "https://api.twitter.com/1.1/statuses/home_timeline.json",
-                TwitterOptions.Default());
+            return await oAuthApiRequest
+                .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
+                    TwitterOptions.Default())
+                .ConfigureAwait(false);
         }
 
-        public async Task<List<TwitterStatus>> MentionsTimeline(int count)
+        public async Task<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
         {
-            return await oAuthApiRequest.Get<List<TwitterStatus>>(
-                "https://api.twitter.com/1.1/statuses/mentions_timeline.json",
-                TwitterOptions.Default(count));
+            return await oAuthApiRequest
+                .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
+                    TwitterOptions.Default(count))
+                .ConfigureAwait(false);
         }
 
-        public async Task<List<TwitterStatus>> FavoritesTimeline()
+        public async Task<IEnumerable<TwitterStatus>> FavoritesTimeline()
         {
-            return await oAuthApiRequest.Get<List<TwitterStatus>>(
-                "https://api.twitter.com/1.1/favorites/list.json",
-                TwitterOptions.Default());
+            return await oAuthApiRequest
+                .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
+                    TwitterOptions.Default())
+                .ConfigureAwait(false);
         }
 
         public async Task<User> UserInfo(string screenName)
         {
-            return await oAuthApiRequest.Get<User>(
-                "https://api.twitter.com/1.1/users/show.json",
-                new[]
-                {
-                    TwitterOptions.IncludeEntities(),
-                    TwitterOptions.ExtendedTweetMode(),
-                    TwitterOptions.ScreenName(screenName)
-                });
+            return await oAuthApiRequest
+                .Get<User>("https://api.twitter.com/1.1/users/show.json",
+                    new[]
+                    {
+                        TwitterOptions.IncludeEntities(),
+                        TwitterOptions.ExtendedTweetMode(),
+                        TwitterOptions.ScreenName(screenName)
+                    })
+                .ConfigureAwait(false);
         }
 
         public async Task<Tweet> Search(string query)
         {
-            return await oAuthApiRequest.Get<Tweet>(
-                "https://api.twitter.com/1.1/search/tweets.json",
-                new[]
-                {
-                    TwitterOptions.Count(100),
-                    TwitterOptions.Query(query),
-                    TwitterOptions.IncludeEntities(),
-                    TwitterOptions.ExtendedTweetMode()
-                });
+            return await oAuthApiRequest
+                .Get<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
+                    new[]
+                    {
+                        TwitterOptions.Count(100),
+                        TwitterOptions.Query(query),
+                        TwitterOptions.IncludeEntities(),
+                        TwitterOptions.ExtendedTweetMode()
+                    })
+                .ConfigureAwait(false);
         }
 
         public async Task RetweetStatus(string statusId)
         {
-            await oAuthApiRequest.Post(
-                $"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
-                Array.Empty<(string, string)>());
+            await oAuthApiRequest
+                .Post($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
+                    Array.Empty<(string, string)>())
+                .ConfigureAwait(false);
         }
 
         public async Task UnretweetStatus(string statusId)
         {
-            await oAuthApiRequest.Post(
-                $"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
-                Array.Empty<(string, string)>());
+            await oAuthApiRequest
+                .Post($"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
+                    Array.Empty<(string, string)>())
+                .ConfigureAwait(false);
         }
 
         public async Task CreateFavorite(string statusId)
         {
-            await oAuthApiRequest.Post(
-                "https://api.twitter.com/1.1/favorites/create.json",
-                new[] { TwitterOptions.Id(statusId) });
+            await oAuthApiRequest
+                .Post("https://api.twitter.com/1.1/favorites/create.json",
+                     new[] { TwitterOptions.Id(statusId) })
+                .ConfigureAwait(false);
         }
 
         public async Task DestroyFavorite(string statusId)
         {
-            await oAuthApiRequest.Post(
-                "https://api.twitter.com/1.1/favorites/destroy.json",
-                new[] { TwitterOptions.Id(statusId) });
+            await oAuthApiRequest
+                .Post("https://api.twitter.com/1.1/favorites/destroy.json",
+                   new[] { TwitterOptions.Id(statusId) })
+                .ConfigureAwait(false);
         }
 
         public async Task Follow(string screenName)
         {
-            await oAuthApiRequest.Post(
-                "https://api.twitter.com/1.1/friendships/create.json",
-                new[] { TwitterOptions.ScreenName(screenName), });
+            await oAuthApiRequest
+                .Post("https://api.twitter.com/1.1/friendships/create.json",
+                    new[] { TwitterOptions.ScreenName(screenName), })
+                .ConfigureAwait(false);
         }
 
         public async Task Unfollow(string screenName)
         {
-            await oAuthApiRequest.Post(
-                "https://api.twitter.com/1.1/friendships/destroy.json",
-                new[] { TwitterOptions.ScreenName(screenName) });
+            await oAuthApiRequest
+                .Post("https://api.twitter.com/1.1/friendships/destroy.json",
+                    new[] { TwitterOptions.ScreenName(screenName) })
+                .ConfigureAwait(false);
         }
 
         public async Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
@@ -157,62 +165,68 @@ namespace twitter.core.Services
                 parameters.Add(TwitterOptions.MediaIds(mediaIds));
             }
 
-            return await oAuthApiRequest.Post<TwitterStatus>(
-                "https://api.twitter.com/1.1/statuses/update.json",
-                parameters);
+            return await oAuthApiRequest
+                .Post<TwitterStatus>("https://api.twitter.com/1.1/statuses/update.json", parameters)
+                .ConfigureAwait(false);
         }
 
         public async Task<TwitterStatus> GetStatus(string statusId)
         {
-            return await oAuthApiRequest.Get<TwitterStatus>(
-                "https://api.twitter.com/1.1/statuses/show.json",
-                new[]
-                {
-                    TwitterOptions.Id(statusId),
-                    TwitterOptions.IncludeEntities(),
-                    TwitterOptions.ExtendedTweetMode()
-                });
+            return await oAuthApiRequest
+                .Get<TwitterStatus>("https://api.twitter.com/1.1/statuses/show.json",
+                    new[]
+                    {
+                        TwitterOptions.Id(statusId),
+                        TwitterOptions.IncludeEntities(),
+                        TwitterOptions.ExtendedTweetMode()
+                    })
+                .ConfigureAwait(false);
         }
 
         public const string UploadMediaUrl = "https://upload.twitter.com/1.1/media/upload.json";
 
         public async Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
-            return await oAuthApiRequest.Post<UploadMedia>(
-                UploadMediaUrl,
-                new[]
-                {
-                    TwitterOptions.Command("INIT"),
-                    TwitterOptions.TotalBytes(totalBytes),
-                    TwitterOptions.MediaType(mediaType)
-                });
+            return await oAuthApiRequest
+                .Post<UploadMedia>(UploadMediaUrl,
+                    new[]
+                    {
+                        TwitterOptions.Command("INIT"),
+                        TwitterOptions.TotalBytes(totalBytes),
+                        TwitterOptions.MediaType(mediaType)
+                    })
+                .ConfigureAwait(false);
         }
 
         public async Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
-            await oAuthApiRequest.AppendMedia(mediaId, segmentIndex, data);
+            await oAuthApiRequest
+                .AppendMedia(mediaId, segmentIndex, data)
+                .ConfigureAwait(false);
         }
 
         public async Task<UploadMedia> UploadMediaStatus(string mediaId)
         {
-            return await oAuthApiRequest.Get<UploadMedia>(
-                UploadMediaUrl,
-                new[]
-                {
-                    TwitterOptions.Command("STATUS"),
-                    TwitterOptions.MediaId(mediaId)
-                });
+            return await oAuthApiRequest
+                .Get<UploadMedia>(UploadMediaUrl,
+                    new[]
+                    {
+                        TwitterOptions.Command("STATUS"),
+                        TwitterOptions.MediaId(mediaId)
+                    })
+                .ConfigureAwait(false);
         }
 
         public async Task<UploadMedia> UploadMediaFinalize(string mediaId)
         {
-            return await oAuthApiRequest.Post<UploadMedia>(
-                UploadMediaUrl,
-                new[]
-                {
-                    TwitterOptions.Command("FINALIZE"),
-                    TwitterOptions.MediaId(mediaId)
-                });
+            return await oAuthApiRequest
+                .Post<UploadMedia>(UploadMediaUrl,
+                    new[]
+                    {
+                        TwitterOptions.Command("FINALIZE"),
+                        TwitterOptions.MediaId(mediaId)
+                    })
+                .ConfigureAwait(false);
         }
     }
 }

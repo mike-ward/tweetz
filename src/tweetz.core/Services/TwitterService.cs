@@ -13,23 +13,25 @@ namespace tweetz.core.Services
 
         public TwitterService(ISettings settings)
         {
-            var consumerKey = "ZScn2AEIQrfC48Zlw";
-            var consumerSecret = "8gKdPBwUfZCQfUiyeFeEwVBQiV3q50wIOrIjoCxa2Q";
+            const string consumerKey = "ZScn2AEIQrfC48Zlw";
+            const string consumerSecret = "8gKdPBwUfZCQfUiyeFeEwVBQiV3q50wIOrIjoCxa2Q";
 
             twitterApi = new TwitterApi(consumerKey, consumerSecret);
             this.settings = settings;
-            this.settings.PropertyChanged += (s, args) => twitterApi.AuthenticateWithTokens(this.settings.AccessToken, this.settings.AccessTokenSecret);
+
+            this.settings.PropertyChanged += (s, args) => twitterApi.AuthenticateWithTokens(
+                this.settings.AccessToken,
+                this.settings.AccessTokenSecret);
         }
 
         public async Task<OAuthTokens> GetPin()
         {
-            var tokens = await twitterApi.GetPin();
-            return tokens;
+            return await twitterApi.GetPin().ConfigureAwait(false);
         }
 
         public async Task AuthenticateWithPin(OAuthTokens requestTokens, string pin)
         {
-            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin);
+            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(false);
             if (access != null)
             {
                 settings.AccessToken = access.OAuthToken;
@@ -41,92 +43,87 @@ namespace tweetz.core.Services
 
         public async Task<IEnumerable<TwitterStatus>> GetHomeTimeline()
         {
-            var result = await twitterApi.HomeTimeline();
-            return result;
+            return await twitterApi.HomeTimeline().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
         {
-            var result = await twitterApi.MentionsTimeline(count);
-            return result;
+            return await twitterApi.MentionsTimeline(count).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
         {
-            var result = await twitterApi.FavoritesTimeline();
-            return result;
+            return await twitterApi.FavoritesTimeline().ConfigureAwait(false);
         }
 
         public async Task<User> UserInfo(string screenName)
         {
-            var result = await twitterApi.UserInfo(screenName);
-            return result;
+            return await twitterApi.UserInfo(screenName).ConfigureAwait(false);
         }
 
         public async Task<Tweet> Search(string query)
         {
-            var result = await twitterApi.Search(query);
-            return result;
+            return await twitterApi.Search(query).ConfigureAwait(false);
         }
 
         public async Task RetweetStatus(string statusId)
         {
-            await twitterApi.RetweetStatus(statusId);
+            await twitterApi.RetweetStatus(statusId).ConfigureAwait(false);
         }
 
         public async Task UnretweetStatus(string statusId)
         {
-            await twitterApi.UnretweetStatus(statusId);
+            await twitterApi.UnretweetStatus(statusId).ConfigureAwait(false);
         }
 
         public async Task CreateFavorite(string statusId)
         {
-            await twitterApi.CreateFavorite(statusId);
+            await twitterApi.CreateFavorite(statusId).ConfigureAwait(false);
         }
 
         public async Task DestroyFavorite(string statusId)
         {
-            await twitterApi.DestroyFavorite(statusId);
+            await twitterApi.DestroyFavorite(statusId).ConfigureAwait(false);
         }
 
         public async Task Follow(string screenName)
         {
-            await twitterApi.Follow(screenName);
+            await twitterApi.Follow(screenName).ConfigureAwait(false);
         }
 
         public async Task Unfollow(string screenName)
         {
-            await twitterApi.Unfollow(screenName);
+            await twitterApi.Unfollow(screenName).ConfigureAwait(false);
         }
 
         public async Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
-            return await twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
+            return await twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds).ConfigureAwait(false);
         }
 
         public async Task<TwitterStatus> GetStatus(string statusId)
         {
-            return await twitterApi.GetStatus(statusId);
+            return await twitterApi.GetStatus(statusId).ConfigureAwait(false);
         }
 
         public async Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
-            return await twitterApi.UploadMediaInit(totalBytes, mediaType);
+            return await twitterApi.UploadMediaInit(totalBytes, mediaType).ConfigureAwait(false);
         }
 
         public async Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
-            await twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
+            await twitterApi.UploadMediaAppend(mediaId, segmentIndex, data).ConfigureAwait(false);
         }
 
         public async Task<UploadMedia> UploadMediaStatus(string mediaId)
         {
-            return await twitterApi.UploadMediaStatus(mediaId);
+            return await twitterApi.UploadMediaStatus(mediaId).ConfigureAwait(false);
         }
 
         public async Task<UploadMedia> UploadMediaFinalize(string mediaId)
         {
-            return await twitterApi.UploadMediaFinalize(mediaId);
+            return await twitterApi.UploadMediaFinalize(mediaId).ConfigureAwait(false);
         }
     }
 }

@@ -199,14 +199,12 @@ namespace tweetz.core.Services
                 })
                 ?? Array.Empty<FlowContentItem>();
 
-            var flowContentItems = Array.Empty<FlowContentItem>()
+            return Array.Empty<FlowContentItem>()
                 .Concat(urls)
                 .Concat(mentions)
                 .Concat(hashTags)
                 .Concat(media)
                 .OrderBy(o => o.Start);
-
-            return flowContentItems;
         }
     }
 }
