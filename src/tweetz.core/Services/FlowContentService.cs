@@ -147,7 +147,8 @@ namespace tweetz.core.Services
                 if (item.Start >= start)
                 {
                     var len = item.Start - start;
-                    yield return new FlowContentNode(FlowContentNodeType.Text, twitterString.Substring(start, len));
+                    var text = twitterString.Substring(start, len);
+                    yield return new FlowContentNode(FlowContentNodeType.Text, text);
                 }
 
                 yield return new FlowContentNode(item.FlowContentNodeType, item.Text);
