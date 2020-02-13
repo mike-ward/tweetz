@@ -75,6 +75,7 @@ namespace tweetz.core.Services
             { "new-version-available",         "Update available!\nClick here to get it." },
             { "copy-to-clipboard",             "Copy to clipboard" },
             { "close-tooltip",                 "Close" },
+            { "open-in-twitter-tooltip",       "Open this tweet in twitter" },
 
             // Image viewer
             { "copy",                          "copy" },
