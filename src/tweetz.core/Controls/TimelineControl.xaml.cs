@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,6 +12,26 @@ namespace tweetz.core.Controls
         public TimelineControl()
         {
             InitializeComponent();
+            Loaded += TimelineControl_Loaded;
+        }
+
+        private void TimelineControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is HomeTimelineControlViewModel vm)
+            {
+                vm.StatusCollection.CollectionChanged += async (s, args) =>
+                {
+                    const int duration = 1000;
+
+                    // Only animate when scrolled to top
+                    vm.FadeInDuration = vm.IsScrolled
+                        ? TimeSpan.Zero
+                        : TimeSpan.FromMilliseconds(duration);
+
+                    await Task.Delay(duration + 200);
+                    vm.FadeInDuration = TimeSpan.Zero;
+                };
+            }
         }
 
         public void ScrollToHome()
@@ -25,29 +46,10 @@ namespace tweetz.core.Controls
 
         private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            // Only want the home timeline to pause on scroll
-            // Why, other timelines don't update as frequently
-            // and it just adds noise to the interface with
-            // red dots on the other timelines.
-
             if (DataContext is HomeTimelineControlViewModel vm)
             {
                 vm.IsScrolled = e.VerticalOffset > 0;
-                FadeInDuration = TimeSpan.FromSeconds(vm.IsScrolled ? 0 : 1);
             }
         }
-
-        public Duration FadeInDuration
-        {
-            get { return (Duration)GetValue(FadeInDurationProperty); }
-            set { SetValue(FadeInDurationProperty, value); }
-        }
-
-        public static readonly DependencyProperty FadeInDurationProperty =
-            DependencyProperty.Register(
-                "FadeInDuration",
-                typeof(Duration),
-                typeof(TimelineControl),
-                new PropertyMetadata(new Duration(TimeSpan.FromSeconds(0))));
     }
 }

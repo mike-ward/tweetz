@@ -58,7 +58,7 @@
                     Storyboard.TargetProperty="Opacity"
                     From="0"
                     To="1"
-                    Duration="{Binding FadeInDuration, ElementName=Timeline, Mode=OneWay}" />
+                    Duration="{Binding DataContext.FadeInDuration, ElementName=Timeline, Mode=OneWay}" />
                 </Storyboard>
               </BeginStoryboard>
             </EventTrigger>
