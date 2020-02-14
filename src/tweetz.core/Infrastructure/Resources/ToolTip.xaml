@@ -44,7 +44,6 @@
   <Style
     x:Key="BaseHyperlinkToolTipStyle"
     TargetType="Hyperlink">
-    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
     <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
     <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
   </Style>
@@ -65,6 +64,34 @@
             <ContentPresenter
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="ToolTip">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ToolTip">
+          <Border
+            Padding="10,1,10,5"
+            Background="{DynamicResource ToolTipBackgroundBrush}"
+            BorderBrush="{DynamicResource NormalBorderBrush}"
+            BorderThickness="1.5"
+            CornerRadius="5">
+            <ContentPresenter
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+              <ContentPresenter.Resources>
+                <Style TargetType="TextBlock">
+                  <Setter Property="Foreground" Value="{DynamicResource ToolTipForegroundBrush}" />
+                  <Setter Property="MaxWidth" Value="200" />
+                  <Setter Property="TextWrapping" Value="Wrap" />
+                  <Setter Property="FontSize" Value="13" />
+                </Style>
+              </ContentPresenter.Resources>
+            </ContentPresenter>
           </Border>
         </ControlTemplate>
       </Setter.Value>
