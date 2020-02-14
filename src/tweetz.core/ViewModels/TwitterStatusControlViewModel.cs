@@ -11,9 +11,7 @@ namespace tweetz.core.ViewModels
         private bool isScrolled;
 
         public ISettings Settings { get; }
-#pragma warning disable CA2227 // Collection properties should be read only
         public ObservableCollection<TwitterStatus> StatusCollection { get; protected set; } = new ObservableCollection<TwitterStatus>();
-#pragma warning restore CA2227 // Collection properties should be read only
         public string? ExceptionMessage { get => exceptionMessage; protected set => SetProperty(ref exceptionMessage, value); }
 
         public TwitterStatusControlViewModel(ISettings settings)

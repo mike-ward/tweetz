@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Threading;
@@ -62,6 +63,8 @@ namespace tweetz.core.ViewModels
 
                 if (SystemState.IsSleeping) return;
                 if (IsScrolled && Settings.PauseWhenScrolled) return;
+
+                Trace.TraceInformation("Updating timeline");
 
                 var statuses = await GetTimeline().ConfigureAwait(true);
                 UpdateTimeline(statuses);

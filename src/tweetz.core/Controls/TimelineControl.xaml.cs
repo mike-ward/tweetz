@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using tweetz.core.ViewModels;
 
@@ -31,7 +33,21 @@ namespace tweetz.core.Controls
             if (DataContext is HomeTimelineControlViewModel vm)
             {
                 vm.IsScrolled = e.VerticalOffset > 0;
+                FadeInDuration = TimeSpan.FromSeconds(vm.IsScrolled ? 0 : 1);
             }
         }
+
+        public Duration FadeInDuration
+        {
+            get { return (Duration)GetValue(FadeInDurationProperty); }
+            set { SetValue(FadeInDurationProperty, value); }
+        }
+
+        public static readonly DependencyProperty FadeInDurationProperty =
+            DependencyProperty.Register(
+                "FadeInDuration",
+                typeof(Duration),
+                typeof(TimelineControl),
+                new PropertyMetadata(new Duration(TimeSpan.FromSeconds(0))));
     }
 }

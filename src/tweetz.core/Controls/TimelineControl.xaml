@@ -49,7 +49,21 @@
 
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <local:TweetBlockControl DataContext="{Binding Mode=OneWay}" />
+        <local:TweetBlockControl DataContext="{Binding Mode=OneWay}">
+          <local:TweetBlockControl.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation
+                    Storyboard.TargetProperty="Opacity"
+                    From="0"
+                    To="1"
+                    Duration="{Binding FadeInDuration, ElementName=Timeline, Mode=OneWay}" />
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+          </local:TweetBlockControl.Triggers>
+        </local:TweetBlockControl>
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>
