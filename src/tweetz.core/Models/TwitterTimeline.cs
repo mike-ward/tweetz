@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
+using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.Models
@@ -24,20 +25,35 @@ namespace tweetz.core.Models
         public ISettings Settings { get; }
         public ISystemState SystemState { get; }
 
-        public bool IsScrolled { get; set; }
         public double IntervalInMinutes { get; }
         public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
         public Duration FadeInDuration { get => fadeInDuration; set => SetProperty(ref fadeInDuration, value); }
         public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
         public ObservableCollection<TwitterStatus> StatusCollection { get; set; } = new ObservableCollection<TwitterStatus>();
 
-        public void AddUpdateTask(Func<TwitterTimeline, Task> task) => updateTasks.Add(task);
+        public bool IsScrolled
+        {
+            get => isScrolled;
+            set
+            {
+                SetProperty(ref isScrolled, value);
+                ExceptionMessage = isScrolled && Settings.PauseWhenScrolled
+                    ? LanguageService.Instance.Lookup("paused-due-to-scroll-pos")
+                    : null;
+            }
+        }
 
         private bool inUpdate;
+        private bool isScrolled;
         private DispatcherTimer? timer;
         private Duration fadeInDuration;
         private string? exceptionMessage;
         private readonly List<Func<TwitterTimeline, Task>> updateTasks = new List<Func<TwitterTimeline, Task>>();
+
+        public void AddUpdateTask(Func<TwitterTimeline, Task> task)
+        {
+            updateTasks.Add(task);
+        }
 
         private async void OnSettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
