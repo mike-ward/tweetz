@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
+using tweetz.core.Models;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
 {
-    public class SearchControlViewModel : TwitterStatusControlViewModel
+    public class SearchControlViewModel : TwitterTimeline
     {
         private bool showProgress;
 
         public ITwitterService TwitterService { get; }
         public Action<string> SetSearchText { get; set; }
 
-        public SearchControlViewModel(ISettings settings, ITwitterService twitterService)
-            : base(settings)
+        public SearchControlViewModel(ISettings settings, ISystemState systemState, ITwitterService twitterService)
+            : base(settings, systemState, Int32.MaxValue / 60000)
         {
             TwitterService = twitterService;
         }
@@ -31,7 +32,7 @@ namespace tweetz.core.ViewModels
                 StatusCollection.Clear();
 
                 ShowProgress = true;
-                var tweets = await TwitterService.Search(query).ConfigureAwait(true);
+                var tweets = await TwitterService.Search(query);
                 ShowProgress = false;
                 UpdateTimeline(tweets.Statuses);
                 ExceptionMessage = null;
@@ -54,7 +55,7 @@ namespace tweetz.core.ViewModels
                 SetSearchText?.Invoke(string.Empty);
 
                 ShowProgress = true;
-                var statuses = await TwitterService.GetMentionsTimeline(150).ConfigureAwait(true);
+                var statuses = await TwitterService.GetMentionsTimeline(150);
                 ShowProgress = false;
 
                 UpdateTimeline(statuses);

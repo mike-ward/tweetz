@@ -3,26 +3,35 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
+using tweetz.core.Models;
+using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
 {
-    public class HomeTimelineControlViewModel : BaseTimelineControlViewModel
+    public class HomeTimelineControlViewModel : TwitterTimeline
     {
-        public ITwitterService TwitterService { get; }
-
         public HomeTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
-            : base(settings, systemState)
+            : base(settings, systemState, 1.1)
         {
             TwitterService = twitterService;
+
+            AddUpdateTask(async tl =>
+            {
+                var statuses = await GetStatuses();
+                UpdateStatusesTask.Execute(statuses, tl);
+            });
+            AddUpdateTask(DonateNagTask.Execute);
+            AddUpdateTask(TruncateStatusCollectionTask.Execute);
+            AddUpdateTask(UpdateTimeStampsTask.Execute);
         }
 
-        protected override double IntervalInMinutes => 1.1;
+        private ITwitterService TwitterService { get; }
 
-        protected override async Task<IEnumerable<TwitterStatus>> GetTimeline()
+        private async Task<IEnumerable<TwitterStatus>> GetStatuses()
         {
-            var mentions = await GetMentions().ConfigureAwait(true);
-            var statuses = await TwitterService.GetHomeTimeline().ConfigureAwait(true);
+            var mentions = await GetMentions();
+            var statuses = await TwitterService.GetHomeTimeline();
             return statuses.Concat(mentions);
         }
 

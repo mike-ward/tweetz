@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
+using tweetz.core.Services;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Commands
@@ -71,7 +72,7 @@ namespace tweetz.core.Commands
 
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
-                HomeTimelineControlViewModel.UpdateTimeline(new[] { status });
+                UpdateStatusesTask.Execute(new[] { status }, HomeTimelineControlViewModel);
             }
             catch (WebException ex)
             {
