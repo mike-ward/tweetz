@@ -157,8 +157,8 @@ namespace tweetz.core.Services
                 TextAlignment = TextAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Text = LanguageService.Instance.Lookup("copy"),
-                ToolTip = LanguageService.Instance.Lookup("copy-to-clipboard"),
+                Text = (string)Application.Current.FindResource("copy"),
+                ToolTip = (string)Application.Current.FindResource("copy-to-clipboard"),
                 FontFamily = new FontFamily("Lucida Sans Typewriter,Courier New")
             };
 

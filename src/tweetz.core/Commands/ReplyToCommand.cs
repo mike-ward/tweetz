@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
-using tweetz.core.Services;
 using tweetz.core.ViewModels;
 using twitter.core.Models;
 
@@ -41,7 +41,7 @@ namespace tweetz.core.Commands
 
             ComposeControlViewModel.Clear();
             ComposeControlViewModel.InReplyTo = status;
-            var watermarkFormat = LanguageService.Instance.Lookup("in-reply-to");
+            var watermarkFormat = (string)Application.Current.FindResource("in-reply-to");
             ComposeControlViewModel.WatermarkText = string.Format(CultureInfo.InvariantCulture, watermarkFormat, status.User.ScreenName);
             TabBarControlViewModel.ShowComposeControl = true;
         }

@@ -7,6 +7,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Infrastructure/Resources/Dark.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/Strings.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/Symbols.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/ToolTip.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/Button.xaml" />

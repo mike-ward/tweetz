@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
-using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
@@ -65,7 +65,7 @@ namespace tweetz.core.ViewModels
             StatusText = string.Empty;
             AttachmentUrl = string.Empty;
             Media.Clear();
-            WatermarkText = LanguageService.Instance.Lookup("whats-happening");
+            WatermarkText = (string)Application.Current.FindResource("whats-happening");
         }
 
         public bool AddImage(string filename)

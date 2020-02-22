@@ -86,7 +86,7 @@
       Margin="0,3,10,7"
       Style="{StaticResource SpecialTextBlockStyle}"
       Text="{StaticResource MentionsSymbol}"
-      ToolTip="{services:LanguageService mentions-tooltip}">
+      ToolTip="{StaticResource mentions-tooltip}">
       <TextBlock.InputBindings>
         <MouseBinding
           Command="commands:GetMentionsCommand.Command"

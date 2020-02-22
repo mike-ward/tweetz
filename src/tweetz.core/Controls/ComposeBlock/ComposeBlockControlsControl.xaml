@@ -4,9 +4,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:local="clr-namespace:tweetz.core.Controls.ComposeBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime"
   d:DesignHeight="30"
   d:DesignWidth="300"
@@ -42,7 +40,7 @@
   <Grid>
     <Border
       Style="{StaticResource BorderStyle}"
-      ToolTip="{services:LanguageService spell-checker}">
+      ToolTip="{StaticResource spell-checker}">
       <Border.InputBindings>
         <MouseBinding
           Command="commands:ToggleSpellCheckerCommand.Command"
@@ -75,7 +73,7 @@
 
         <Button.ToolTip>
           <TextBlock
-            Text="{services:LanguageService add-image-tooltip}"
+            Text="{StaticResource add-image-tooltip}"
             TextWrapping="Wrap" />
         </Button.ToolTip>
 

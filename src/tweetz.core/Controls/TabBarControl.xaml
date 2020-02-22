@@ -69,7 +69,7 @@
           <local:TabItemHeaderWithIndicators
             IndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource HomeSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue='Home'}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue={StaticResource home-tooltip}}" />
         </TabItem.Header>
         <local:TimelineControl />
       </TabItem>
@@ -81,7 +81,7 @@
           <local:TabItemHeaderWithIndicators
             IndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource LikeSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue='Likes'}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue={StaticResource likes-tooltip}}" />
         </TabItem.Header>
         <local:TimelineControl />
       </TabItem>
@@ -93,7 +93,7 @@
           <local:TabItemHeaderWithIndicators
             IndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource SearchSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue='Search'}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue={StaticResource search-tooltip}}" />
         </TabItem.Header>
         <local:SearchControl />
       </TabItem>
@@ -106,7 +106,7 @@
             IndicatorColor="{x:Static Colors.DarkGreen}"
             IndicatorVisibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource SettingsSymbol}"
-            ToolTip="{Binding UpdateAvailableToolTip, Mode=OneWay, TargetNullValue='Settings'}" />
+            ToolTip="{Binding UpdateAvailableToolTip, Mode=OneWay, TargetNullValue={StaticResource settings-tooltip}}" />
         </TabItem.Header>
         <local:SettingsControl />
       </TabItem>

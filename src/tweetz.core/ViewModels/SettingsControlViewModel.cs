@@ -1,6 +1,6 @@
-﻿using tweetz.core.Infrastructure;
+﻿using System.Windows;
+using tweetz.core.Infrastructure;
 using tweetz.core.Models;
-using tweetz.core.Services;
 
 namespace tweetz.core.ViewModels
 {
@@ -23,7 +23,7 @@ namespace tweetz.core.ViewModels
             {
                 checkForUpdates.PropertyChanged += (s, args) =>
                     UpdateAvailableToolTip = checkForUpdates.Version.Trim() != VersionInfo.Version
-                        ? LanguageService.Instance.Lookup("new-version-available")
+                        ? (string)Application.Current.FindResource("new-version-available")
                         : null;
             }
         }

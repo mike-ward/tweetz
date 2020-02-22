@@ -5,7 +5,6 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   d:DesignHeight="50"
   d:DesignWidth="300"
@@ -103,7 +102,7 @@
     <Run
       Style="{StaticResource TimeAgoStyle}"
       Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}"
-      ToolTip="{services:LanguageService open-in-twitter-tooltip}">
+      ToolTip="{StaticResource open-in-twitter-tooltip}">
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"

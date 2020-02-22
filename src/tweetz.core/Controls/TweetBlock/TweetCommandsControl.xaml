@@ -5,7 +5,6 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="25"
   d:DesignWidth="200"
   mc:Ignorable="d">
@@ -65,7 +64,7 @@
   <StackPanel Orientation="Horizontal">
     <TextBlock
       Style="{StaticResource TextBlockStyle}"
-      ToolTip="{services:LanguageService reply-tooltip}">
+      ToolTip="{StaticResource reply-tooltip}">
       <Run
         Style="{StaticResource SymbolStyle}"
         Text="{StaticResource ReplySymbol}" />
@@ -80,7 +79,7 @@
 
     <TextBlock
       Style="{StaticResource TextBlockStyle}"
-      ToolTip="{services:LanguageService retweet-tooltip}">
+      ToolTip="{StaticResource retweet-tooltip}">
       <Run
         Style="{StaticResource RetweetSymbolStyle}"
         Text="{StaticResource RetweetSymbol}" />
@@ -96,7 +95,7 @@
 
     <TextBlock
       Style="{StaticResource TextBlockStyle}"
-      ToolTip="{services:LanguageService like-tooltip}">
+      ToolTip="{StaticResource like-tooltip}">
       <Run
         Style="{StaticResource LikeSymbolStyle}"
         Text="{StaticResource LikeSymbol}" />
@@ -112,7 +111,7 @@
 
     <TextBlock
       Style="{StaticResource TextBlockStyle}"
-      ToolTip="{services:LanguageService retweet-with-comment-tooltip}">
+      ToolTip="{StaticResource retweet-with-comment-tooltip}">
       <Run
         Style="{StaticResource SymbolStyle}"
         Text="{StaticResource QuoteSymbol}" />
@@ -127,7 +126,7 @@
 
     <TextBlock
       Style="{StaticResource TextBlockStyle}"
-      ToolTip="{services:LanguageService follow-tooltip}">
+      ToolTip="{StaticResource follow-tooltip}">
       <Run
         Style="{StaticResource FollowSymbolStyle}"
         Text="{StaticResource AddFriendSymbol}" />

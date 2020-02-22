@@ -5,7 +5,6 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="50"
   d:DesignWidth="125"
   Visibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
@@ -16,5 +15,5 @@
     Margin="0,0,0,5"
     Command="commands:OpenLinkCommand.Command"
     CommandParameter="https://github.com/mike-ward/tweetz/releases/latest"
-    Content="{services:LanguageService get-the-update}" />
+    Content="{StaticResource get-the-update}" />
 </UserControl>

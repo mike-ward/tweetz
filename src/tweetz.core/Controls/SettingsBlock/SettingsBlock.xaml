@@ -37,35 +37,35 @@
 
     <TextBlock Style="{StaticResource TitleStyle}">
       <Run Style="{StaticResource SymbolStyle}">&#xE115;</Run>
-      <Run Text="{services:LanguageService settings-title}" />
+      <Run Text="{StaticResource settings-title}" />
     </TextBlock>
 
     <local:SettingsBlockDownloadControl />
 
     <CheckBox
-      Content="{services:LanguageService hide-profile-images}"
+      Content="{StaticResource hide-profile-images}"
       IsChecked="{Binding Settings.HideProfileImages}" />
 
     <CheckBox
-      Content="{services:LanguageService hide-images}"
+      Content="{StaticResource hide-images}"
       IsChecked="{Binding Settings.HideImages}" />
 
     <CheckBox
-      Content="{services:LanguageService hide-extended-content}"
+      Content="{StaticResource hide-extended-content}"
       IsChecked="{Binding Settings.HideExtendedContent}" />
 
     <CheckBox
-      Content="{services:LanguageService run-on-startup}"
+      Content="{StaticResource run-on-startup}"
       IsChecked="{Binding SystemState.IsRegisteredInStartup}" />
 
     <CheckBox IsChecked="{Binding Settings.PauseWhenScrolled}">
       <TextBlock
-        Text="{services:LanguageService pause-when-scrolled}"
+        Text="{StaticResource pause-when-scrolled}"
         TextWrapping="Wrap" />
     </CheckBox>
 
     <CheckBox
-      Content="{services:LanguageService donated}"
+      Content="{StaticResource donated}"
       IsChecked="{Binding Settings.Donated}" />
 
     <local:SettingsFontSizeBlock

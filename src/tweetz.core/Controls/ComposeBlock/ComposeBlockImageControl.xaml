@@ -5,7 +5,6 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="50"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -19,7 +18,7 @@
       Content="{StaticResource XSymbol}"
       FontFamily="{StaticResource SymbolFont}"
       FontSize="10"
-      ToolTip="{services:LanguageService remove-tooltip}" />
+      ToolTip="{StaticResource remove-tooltip}" />
     <TextBlock
       Text="{Binding Path, Mode=OneWay, Converter={StaticResource FileNameConverter}}"
       ToolTip="{Binding Path, Mode=OneWay}" />

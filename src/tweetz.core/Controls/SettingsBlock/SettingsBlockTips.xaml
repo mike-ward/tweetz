@@ -4,9 +4,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:local="clr-namespace:tweetz.core.Controls.SettingsBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -15,10 +13,10 @@
     <TextBlock
       Margin="0,0,0,6"
       FontWeight="Bold"
-      Text="{services:LanguageService tips}" />
-    <controls:BulletedItem BulletText="{services:LanguageService tips-ctrl-n}" />
-    <controls:BulletedItem BulletText="{services:LanguageService tips-scroll}" />
-    <controls:BulletedItem BulletText="{services:LanguageService tips-font-size}" />
-    <controls:BulletedItem BulletText="{services:LanguageService tips-open}" />
+      Text="{StaticResource tips}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-scroll}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-open}" />
   </StackPanel>
 </UserControl>

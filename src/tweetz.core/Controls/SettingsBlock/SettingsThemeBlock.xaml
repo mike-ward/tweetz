@@ -4,7 +4,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="50"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -19,7 +18,7 @@
   </UserControl.Resources>
 
   <StackPanel>
-    <TextBlock Text="{services:LanguageService theme-title}" />
+    <TextBlock Text="{StaticResource theme-title}" />
 
     <Separator />
 
@@ -28,13 +27,13 @@
       Columns="2">
 
       <RadioButton
-        Content="{services:LanguageService theme-light}"
+        Content="{StaticResource theme-light}"
         GroupName="t"
         IsChecked="{Binding Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=light}"
         Style="{StaticResource SettingsRadioButton}" />
 
       <RadioButton
-        Content="{services:LanguageService theme-dark}"
+        Content="{StaticResource theme-dark}"
         GroupName="t"
         IsChecked="{Binding Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=dark}"
         Style="{StaticResource SettingsRadioButton}" />

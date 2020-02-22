@@ -5,7 +5,6 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="25"
   d:DesignWidth="150"
   mc:Ignorable="d">
@@ -13,5 +12,5 @@
     Width="125"
     Command="{x:Static commands:OpenLinkCommand.Command}"
     CommandParameter="{Binding SettingsFilePath, Mode=OneWay}"
-    Content="{services:LanguageService open-settings-file}" />
+    Content="{StaticResource open-settings-file}" />
 </UserControl>

@@ -1,0 +1,76 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+  <sys:String x:Key="pin-instructions-1">To get started, click the \&quot;Get PIN\&quot; button. This opens a Web page where you'll authorize access.</sys:String>
+  <sys:String x:Key="pin-instructions-2">Copy the PIN from the Web page to here and click \&quot;Sign In\&quot;</sys:String>
+  <sys:String x:Key="pin-get-pin">Get PIN</sys:String>
+  <sys:String x:Key="pin-sign-in">Sign In</sys:String>
+  <sys:String x:Key="pin-about">PINs can only be used once so there's no need to save them.</sys:String>
+
+  <!--  Timeline  -->
+  <sys:String x:Key="retweeted">Retweeted</sys:String>
+  <sys:String x:Key="follow">Follow</sys:String>
+  <sys:String x:Key="retweet-with-comment">Retweet with comment</sys:String>
+  <sys:String x:Key="paused-due-to-scroll-pos">Paused due to scroll position</sys:String>
+
+  <!--  Settings  -->
+  <sys:String x:Key="settings-title">Settings</sys:String>
+  <sys:String x:Key="hide-profile-images">Hide profile images</sys:String>
+  <sys:String x:Key="hide-images">Hide images</sys:String>
+  <sys:String x:Key="hide-extended-content">Hide extended content</sys:String>
+  <sys:String x:Key="run-on-startup">Run on startup</sys:String>
+  <sys:String x:Key="font-size-title">Font size</sys:String>
+  <sys:String x:Key="theme-title">Theme</sys:String>
+  <sys:String x:Key="theme-light">Light</sys:String>
+  <sys:String x:Key="theme-dark">Dark</sys:String>
+  <sys:String x:Key="donate">Donate</sys:String>
+  <sys:String x:Key="sign-out">Sign Out</sys:String>
+  <sys:String x:Key="open-settings-file">Open Settings...</sys:String>
+  <sys:String x:Key="pause-when-scrolled">Pause timeline updates when scrolled</sys:String>
+  <sys:String x:Key="donated">Yes, I donated!</sys:String>
+  <sys:String x:Key="get-the-update">Get the Update</sys:String>
+
+  <!--  Profile  -->
+  <sys:String x:Key="profile-joined">Joined</sys:String>
+  <sys:String x:Key="profile-following">Following</sys:String>
+  <sys:String x:Key="profile-followers">Followers</sys:String>
+  <sys:String x:Key="profile-not-following">Not Following</sys:String>
+  <sys:String x:Key="profile-follows-you">Follows You</sys:String>
+
+  <!--  Compose  -->
+  <sys:String x:Key="whats-happening">What's Happening?</sys:String>
+  <sys:String x:Key="add-a-comment">Add a comment</sys:String>
+  <sys:String x:Key="spell-checker">Spell checker</sys:String>
+  <sys:String x:Key="in-reply-to">In reply to {0}</sys:String>
+  <!--  {0} = screen name of user  -->
+
+  <!--  <Tooltips  -->
+  <sys:String x:Key="home-tooltip">Home</sys:String>
+  <sys:String x:Key="likes-tooltip">Likes</sys:String>
+  <sys:String x:Key="search-tooltip">Search</sys:String>
+  <sys:String x:Key="settings-tooltip">Settings</sys:String>
+  <sys:String x:Key="reply-tooltip">Reply</sys:String>
+  <sys:String x:Key="retweet-tooltip">Retweet / Unretweet</sys:String>
+  <sys:String x:Key="like-tooltip">Like / Unlike</sys:String>
+  <sys:String x:Key="retweet-with-comment-tooltip">Retweet with comment</sys:String>
+  <sys:String x:Key="follow-tooltip">Follow / Unfollow</sys:String>
+  <sys:String x:Key="remove-tooltip">Remove</sys:String>
+  <sys:String x:Key="add-image-tooltip">Add 1 gif (*.gif) or 1 video (*.mp4) or up to 4 images (*.jpg, *.png, *.webp)</sys:String>
+  <sys:String x:Key="mentions-tooltip">Get mentions</sys:String>
+  <sys:String x:Key="new-version-available">Update available!\nClick here to get it.</sys:String>
+  <sys:String x:Key="copy-to-clipboard">Copy to clipboard</sys:String>
+  <sys:String x:Key="close-tooltip">Close</sys:String>
+  <sys:String x:Key="open-in-twitter-tooltip">Open this tweet in twitter</sys:String>
+
+  <!--  Image Viewer  -->
+  <sys:String x:Key="copy">copy</sys:String>
+
+  <!--  Tips (in settings dialog)  -->
+  <sys:String x:Key="tips">Tips</sys:String>
+  <sys:String x:Key="tips-ctrl-n">New tweet (Ctrl+N)</sys:String>
+  <sys:String x:Key="tips-scroll">Right-click scrolls to top</sys:String>
+  <sys:String x:Key="tips-open">Click timestamp to open in twitter</sys:String>
+  <sys:String x:Key="tips-font-size">Font size (Alt+Plus/Minus)</sys:String>
+</ResourceDictionary>

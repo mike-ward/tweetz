@@ -6,7 +6,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
   MinWidth="225"
   MaxWidth="275"
@@ -51,7 +50,7 @@
             <TextBlock
               Grid.Row="0"
               Grid.Column="0"
-              Text="{services:LanguageService profile-joined}"
+              Text="{StaticResource profile-joined}"
               TextAlignment="Right" />
 
             <TextBlock
@@ -64,7 +63,7 @@
             <TextBlock
               Grid.Row="1"
               Grid.Column="0"
-              Text="{services:LanguageService profile-following}"
+              Text="{StaticResource profile-following}"
               TextAlignment="Right" />
 
             <TextBlock
@@ -77,7 +76,7 @@
             <TextBlock
               Grid.Row="2"
               Grid.Column="0"
-              Text="{services:LanguageService profile-followers}"
+              Text="{StaticResource profile-followers}"
               TextAlignment="Right" />
 
             <TextBlock

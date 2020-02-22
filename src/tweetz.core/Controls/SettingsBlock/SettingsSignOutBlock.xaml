@@ -5,12 +5,11 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="25"
   d:DesignWidth="150"
   mc:Ignorable="d">
   <Button
     Width="100"
     Command="{x:Static commands:SignOutCommand.Command}"
-    Content="{services:LanguageService sign-out}" />
+    Content="{StaticResource sign-out}" />
 </UserControl>

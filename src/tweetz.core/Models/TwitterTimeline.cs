@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
-using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.Models
@@ -38,7 +37,7 @@ namespace tweetz.core.Models
             {
                 SetProperty(ref isScrolled, value);
                 ExceptionMessage = isScrolled && Settings.PauseWhenScrolled
-                    ? LanguageService.Instance.Lookup("paused-due-to-scroll-pos")
+                    ? (string)Application.Current.FindResource("paused-due-to-scroll-pos")
                     : null;
             }
         }

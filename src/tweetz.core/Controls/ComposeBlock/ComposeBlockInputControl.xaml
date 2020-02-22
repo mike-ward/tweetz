@@ -5,7 +5,6 @@
   xmlns:adorners="clr-namespace:tweetz.core.Controls.Adorners"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime"
   x:Name="UserControl"
   d:DesignHeight="130"
@@ -28,7 +27,7 @@
 
       <Setter Property="Foreground" Value="{DynamicResource StandardForegroundBrush}" />
       <Setter Property="FontSize" Value="{StaticResource FontSize}" />
-      <Setter Property="Text" Value="{services:LanguageService add-a-comment}" />
+      <Setter Property="Text" Value="{StaticResource add-a-comment}" />
     </Style>
   </UserControl.Resources>
 

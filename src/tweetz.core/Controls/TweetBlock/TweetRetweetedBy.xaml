@@ -5,7 +5,6 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   d:DesignHeight="450"
   d:DesignWidth="800"
@@ -58,6 +57,6 @@
       Style="{StaticResource RetweetSymbolStyle}"
       Text="{StaticResource RetweetSymbol}" />
     <Run Text="{Binding User.Name, Mode=OneWay}" />
-    <Run Text="{services:LanguageService retweeted}" />
+    <Run Text="{StaticResource retweeted}" />
   </TextBlock>
 </UserControl>
