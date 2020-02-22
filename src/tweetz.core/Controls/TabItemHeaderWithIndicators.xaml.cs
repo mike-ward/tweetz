@@ -16,7 +16,7 @@ namespace tweetz.core.Controls
             InitializeComponent();
         }
 
-        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void OnIsVisibleChanged(object _, DependencyPropertyChangedEventArgs __)
         {
             var parent = (UIElement)HeaderTextBlock.Parent;
             if (parent == null) return;
@@ -36,10 +36,9 @@ namespace tweetz.core.Controls
 
                 var binding = new Binding()
                 {
-                    Path = new PropertyPath("ToolTip", null),
+                    Path = new PropertyPath("IndicatorVisibility", null),
                     Source = this,
-                    Mode = BindingMode.OneWay,
-                    Converter = Application.Current.FindResource("NotNullToVisibilityConverter") as IValueConverter
+                    Mode = BindingMode.OneWay
                 };
 
                 _adorner.SetBinding(VisibilityProperty, binding);
@@ -79,5 +78,17 @@ namespace tweetz.core.Controls
             typeof(Color),
             typeof(TabItemHeaderWithIndicators),
             new PropertyMetadata(Colors.Crimson));
+
+        public Visibility IndicatorVisibility
+        {
+            get { return (Visibility)GetValue(IndicatorVisibilityProperty); }
+            set { SetValue(IndicatorVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty IndicatorVisibilityProperty = DependencyProperty.Register(
+            "IndicatorVisibility",
+            typeof(Visibility),
+            typeof(TabItemHeaderWithIndicators),
+            new PropertyMetadata(Visibility.Collapsed));
     }
 }

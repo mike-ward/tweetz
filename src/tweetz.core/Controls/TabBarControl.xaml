@@ -7,11 +7,11 @@
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  d:DesignHeight="300"
+  d:DesignWidth="300"
   DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneWay}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
-  d:DesignHeight="300"
-  d:DesignWidth="300"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -67,8 +67,9 @@
       <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:HomeTimelineControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
+            IndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource HomeSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue='Home'}" />
         </TabItem.Header>
         <local:TimelineControl />
       </TabItem>
@@ -78,8 +79,9 @@
       <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:FavoritesTimelineControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
+            IndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource LikeSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue='Likes'}" />
         </TabItem.Header>
         <local:TimelineControl />
       </TabItem>
@@ -89,8 +91,9 @@
       <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SearchControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
+            IndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource SearchSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue='Search'}" />
         </TabItem.Header>
         <local:SearchControl />
       </TabItem>
@@ -101,8 +104,9 @@
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             IndicatorColor="{x:Static Colors.DarkGreen}"
+            IndicatorVisibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
             Text="{StaticResource SettingsSymbol}"
-            ToolTip="{Binding UpdateAvailableToolTip, Mode=OneWay}" />
+            ToolTip="{Binding UpdateAvailableToolTip, Mode=OneWay, TargetNullValue='Settings'}" />
         </TabItem.Header>
         <local:SettingsControl />
       </TabItem>

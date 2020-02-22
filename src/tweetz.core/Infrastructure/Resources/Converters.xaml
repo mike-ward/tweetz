@@ -17,5 +17,4 @@
   <converters:ScreenNameConverter x:Key="ScreenNameConverter" />
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
-  <converters:WindowStyleConverter x:Key="WindowStyleConverter" />
 </ResourceDictionary>

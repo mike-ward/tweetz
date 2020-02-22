@@ -29,6 +29,6 @@
     x:Name="HeaderTextBlock"
     IsVisibleChanged="OnIsVisibleChanged"
     Style="{StaticResource TabItemHeaderStyle}"
-    Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
-    ToolTip="{Binding ToolTip, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+    Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+    ToolTip="{Binding ToolTip, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
 </UserControl>
