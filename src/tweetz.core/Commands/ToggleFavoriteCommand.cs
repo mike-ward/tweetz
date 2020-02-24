@@ -53,23 +53,23 @@ namespace tweetz.core.Commands
 
                     if (twitterStatus.Favorited)
                     {
-                        await TwitterService.DestroyFavorite(twitterStatus.Id).ConfigureAwait(true);
+                        await TwitterService.DestroyFavorite(twitterStatus.Id);
                         twitterStatus.FavoriteCount = Math.Max(0, twitterStatus.FavoriteCount - 1);
                         twitterStatus.Favorited = false;
                     }
                     else
                     {
-                        await TwitterService.CreateFavorite(twitterStatus.Id).ConfigureAwait(true);
+                        await TwitterService.CreateFavorite(twitterStatus.Id);
                         twitterStatus.FavoriteCount += 1;
                         twitterStatus.Favorited = true;
                     }
 
-                    await FavoritesTimelineControlViewModel.Update().ConfigureAwait(true);
+                    await FavoritesTimelineControlViewModel.Update();
                 }
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
             }
             finally
             {

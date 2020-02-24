@@ -34,12 +34,12 @@ namespace tweetz.core.Commands
 
                 if (args.Parameter is string query)
                 {
-                    await SearchControlViewModel.Search(query).ConfigureAwait(true);
+                    await SearchControlViewModel.Search(query);
                 }
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
             }
             finally
             {

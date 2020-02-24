@@ -31,11 +31,11 @@ namespace tweetz.core.Commands
             try
             {
                 inCommand = true;
-                await SearchControlViewModel.Mentions().ConfigureAwait(true);
+                await SearchControlViewModel.Mentions();
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
             }
             finally
             {

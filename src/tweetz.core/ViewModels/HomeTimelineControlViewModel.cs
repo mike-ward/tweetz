@@ -51,7 +51,7 @@ namespace tweetz.core.ViewModels
                 if (mentionsCounter >= mentionsInterval)
                 {
                     mentionsCounter = 0;
-                    mentions = await TwitterService.GetMentionsTimeline().ConfigureAwait(true);
+                    mentions = await TwitterService.GetMentionsTimeline();
                 }
                 else
                 {

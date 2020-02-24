@@ -96,13 +96,10 @@ namespace tweetz.core.Models
                 Donated = settings.Donated;
                 MainWindowPosition = settings.MainWindowPosition;
             }
-#pragma warning disable S2486 // Generic exceptions should not be ignored
-#pragma warning disable S108 // Nested blocks of code should not be left empty
             catch
             {
+                // falls back to defaults
             }
-#pragma warning restore S108 // Nested blocks of code should not be left empty
-#pragma warning restore S2486 // Generic exceptions should not be ignored
         }
 
         public void Save()

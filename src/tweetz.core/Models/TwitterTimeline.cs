@@ -58,8 +58,14 @@ namespace tweetz.core.Models
         {
             if (e.PropertyName == nameof(Settings.IsAuthenticated))
             {
-                if (Settings.IsAuthenticated) await Start();
-                else Stop();
+                if (Settings.IsAuthenticated)
+                {
+                    await Start();
+                }
+                else
+                {
+                    Stop();
+                }
             }
         }
 

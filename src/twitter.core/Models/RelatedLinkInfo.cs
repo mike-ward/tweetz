@@ -62,7 +62,7 @@ namespace twitter.core.Models
                 {
                     var uri = url.ExpandedUrl ?? url.Url;
                     if (!UrlValid(uri)) continue;
-                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri).ConfigureAwait(true);
+                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri);
                     if (relatedLinkInfo == null) continue;
 
                     status.CheckedRelatedInfo = true;

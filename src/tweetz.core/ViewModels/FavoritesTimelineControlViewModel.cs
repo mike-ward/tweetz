@@ -9,17 +9,19 @@ namespace tweetz.core.ViewModels
 {
     public class FavoritesTimelineControlViewModel : TwitterTimeline
     {
+        private const int twentyMinutes = 20;
+
         public ITwitterService TwitterService { get; }
 
         public FavoritesTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
-            : base(settings, systemState, 20)
+            : base(settings, systemState, twentyMinutes)
         {
             TwitterService = twitterService;
 
-            AddUpdateTask(async tl =>
+            AddUpdateTask(async timeline =>
             {
                 var statuses = await GetStatuses();
-                UpdateStatusesTask.Execute(statuses, tl);
+                UpdateStatusesTask.Execute(statuses, timeline);
             });
             AddUpdateTask(TruncateStatusCollectionTask.Execute);
             AddUpdateTask(UpdateTimeStampsTask.Execute);
@@ -27,7 +29,7 @@ namespace tweetz.core.ViewModels
 
         private async Task<IEnumerable<TwitterStatus>> GetStatuses()
         {
-            return await TwitterService.GetFavoritesTimeline().ConfigureAwait(true);
+            return await TwitterService.GetFavoritesTimeline();
         }
     }
 }

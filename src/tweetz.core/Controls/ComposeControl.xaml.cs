@@ -15,7 +15,7 @@ namespace tweetz.core.Controls
         {
             if (DataContext is ComposeControlViewModel vm)
             {
-                await vm.GetUserInfo().ConfigureAwait(true);
+                await vm.GetUserInfo();
             }
         }
     }

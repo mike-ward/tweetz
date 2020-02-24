@@ -22,8 +22,7 @@ namespace twitter.core.Services
         public async Task<OAuthTokens> GetPin()
         {
             var requestTokens = await TwitterTokenRequest
-                .GetRequestToken(ConsumerKey, ConsumerSecret)
-                .ConfigureAwait(false);
+                .GetRequestToken(ConsumerKey, ConsumerSecret);
 
             var url = "https://api.twitter.com/oauth/authenticate?oauth_token=" + requestTokens.OAuthToken;
             OpenUrlService.Open(url);
@@ -33,8 +32,7 @@ namespace twitter.core.Services
         public async Task<OAuthTokens> AuthenticateWithPin(OAuthTokens tokens, string pin)
         {
             return await TwitterTokenRequest
-                .GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin)
-                .ConfigureAwait(false);
+                .GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin);
         }
 
         public void AuthenticateWithTokens(string? accessToken, string? accessTokenSecret)
@@ -46,24 +44,21 @@ namespace twitter.core.Services
         {
             return await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
-                    TwitterOptions.Default())
-                .ConfigureAwait(false);
+                    TwitterOptions.Default());
         }
 
         public async Task<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
         {
             return await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
-                    TwitterOptions.Default(count))
-                .ConfigureAwait(false);
+                    TwitterOptions.Default(count));
         }
 
         public async Task<IEnumerable<TwitterStatus>> FavoritesTimeline()
         {
             return await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
-                    TwitterOptions.Default())
-                .ConfigureAwait(false);
+                    TwitterOptions.Default());
         }
 
         public async Task<User> UserInfo(string screenName)
@@ -75,8 +70,7 @@ namespace twitter.core.Services
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode(),
                         TwitterOptions.ScreenName(screenName)
-                    })
-                .ConfigureAwait(false);
+                    });
         }
 
         public async Task<Tweet> Search(string query)
@@ -89,56 +83,49 @@ namespace twitter.core.Services
                         TwitterOptions.Query(query),
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode()
-                    })
-                .ConfigureAwait(false);
+                    });
         }
 
         public async Task RetweetStatus(string statusId)
         {
             await oAuthApiRequest
                 .Post($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
-                    Array.Empty<(string, string)>())
-                .ConfigureAwait(false);
+                    Array.Empty<(string, string)>());
         }
 
         public async Task UnretweetStatus(string statusId)
         {
             await oAuthApiRequest
                 .Post($"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
-                    Array.Empty<(string, string)>())
-                .ConfigureAwait(false);
+                    Array.Empty<(string, string)>());
         }
 
         public async Task CreateFavorite(string statusId)
         {
             await oAuthApiRequest
                 .Post("https://api.twitter.com/1.1/favorites/create.json",
-                     new[] { TwitterOptions.Id(statusId) })
-                .ConfigureAwait(false);
+                     new[] { TwitterOptions.Id(statusId) });
         }
 
         public async Task DestroyFavorite(string statusId)
         {
             await oAuthApiRequest
                 .Post("https://api.twitter.com/1.1/favorites/destroy.json",
-                   new[] { TwitterOptions.Id(statusId) })
-                .ConfigureAwait(false);
+                   new[] { TwitterOptions.Id(statusId) });
         }
 
         public async Task Follow(string screenName)
         {
             await oAuthApiRequest
                 .Post("https://api.twitter.com/1.1/friendships/create.json",
-                    new[] { TwitterOptions.ScreenName(screenName), })
-                .ConfigureAwait(false);
+                    new[] { TwitterOptions.ScreenName(screenName), });
         }
 
         public async Task Unfollow(string screenName)
         {
             await oAuthApiRequest
                 .Post("https://api.twitter.com/1.1/friendships/destroy.json",
-                    new[] { TwitterOptions.ScreenName(screenName) })
-                .ConfigureAwait(false);
+                    new[] { TwitterOptions.ScreenName(screenName) });
         }
 
         public async Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
@@ -166,8 +153,7 @@ namespace twitter.core.Services
             }
 
             return await oAuthApiRequest
-                .Post<TwitterStatus>("https://api.twitter.com/1.1/statuses/update.json", parameters)
-                .ConfigureAwait(false);
+                .Post<TwitterStatus>("https://api.twitter.com/1.1/statuses/update.json", parameters);
         }
 
         public async Task<TwitterStatus> GetStatus(string statusId)
@@ -179,8 +165,7 @@ namespace twitter.core.Services
                         TwitterOptions.Id(statusId),
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode()
-                    })
-                .ConfigureAwait(false);
+                    });
         }
 
         public const string UploadMediaUrl = "https://upload.twitter.com/1.1/media/upload.json";
@@ -194,15 +179,13 @@ namespace twitter.core.Services
                         TwitterOptions.Command("INIT"),
                         TwitterOptions.TotalBytes(totalBytes),
                         TwitterOptions.MediaType(mediaType)
-                    })
-                .ConfigureAwait(false);
+                    });
         }
 
         public async Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
             await oAuthApiRequest
-                .AppendMedia(mediaId, segmentIndex, data)
-                .ConfigureAwait(false);
+                .AppendMedia(mediaId, segmentIndex, data);
         }
 
         public async Task<UploadMedia> UploadMediaStatus(string mediaId)
@@ -213,8 +196,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Command("STATUS"),
                         TwitterOptions.MediaId(mediaId)
-                    })
-                .ConfigureAwait(false);
+                    });
         }
 
         public async Task<UploadMedia> UploadMediaFinalize(string mediaId)
@@ -225,8 +207,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Command("FINALIZE"),
                         TwitterOptions.MediaId(mediaId)
-                    })
-                .ConfigureAwait(false);
+                    });
         }
     }
 }

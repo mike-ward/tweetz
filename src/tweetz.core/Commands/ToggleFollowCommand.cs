@@ -51,7 +51,7 @@ namespace tweetz.core.Commands
 
                     if (twitterStatus.User.IsFollowing)
                     {
-                        await TwitterService.Unfollow(screenName).ConfigureAwait(true);
+                        await TwitterService.Unfollow(screenName);
                         var user = twitterStatus.User;
                         if (user != null)
                         {
@@ -61,7 +61,7 @@ namespace tweetz.core.Commands
                     }
                     else
                     {
-                        await TwitterService.Follow(screenName).ConfigureAwait(true);
+                        await TwitterService.Follow(screenName);
                         var user = twitterStatus.User;
                         if (user != null)
                         {
@@ -73,7 +73,7 @@ namespace tweetz.core.Commands
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
             }
             finally
             {

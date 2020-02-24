@@ -26,12 +26,12 @@ namespace tweetz.core.Services
 
         public async Task<OAuthTokens> GetPin()
         {
-            return await twitterApi.GetPin().ConfigureAwait(false);
+            return await twitterApi.GetPin();
         }
 
         public async Task AuthenticateWithPin(OAuthTokens requestTokens, string pin)
         {
-            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(false);
+            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin);
             if (access != null)
             {
                 settings.AccessToken = access.OAuthToken;
@@ -43,87 +43,87 @@ namespace tweetz.core.Services
 
         public async Task<IEnumerable<TwitterStatus>> GetHomeTimeline()
         {
-            return await twitterApi.HomeTimeline().ConfigureAwait(false);
+            return await twitterApi.HomeTimeline();
         }
 
         public async Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
         {
-            return await twitterApi.MentionsTimeline(count).ConfigureAwait(false);
+            return await twitterApi.MentionsTimeline(count);
         }
 
         public async Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
         {
-            return await twitterApi.FavoritesTimeline().ConfigureAwait(false);
+            return await twitterApi.FavoritesTimeline();
         }
 
         public async Task<User> UserInfo(string screenName)
         {
-            return await twitterApi.UserInfo(screenName).ConfigureAwait(false);
+            return await twitterApi.UserInfo(screenName);
         }
 
         public async Task<Tweet> Search(string query)
         {
-            return await twitterApi.Search(query).ConfigureAwait(false);
+            return await twitterApi.Search(query);
         }
 
         public async Task RetweetStatus(string statusId)
         {
-            await twitterApi.RetweetStatus(statusId).ConfigureAwait(false);
+            await twitterApi.RetweetStatus(statusId);
         }
 
         public async Task UnretweetStatus(string statusId)
         {
-            await twitterApi.UnretweetStatus(statusId).ConfigureAwait(false);
+            await twitterApi.UnretweetStatus(statusId);
         }
 
         public async Task CreateFavorite(string statusId)
         {
-            await twitterApi.CreateFavorite(statusId).ConfigureAwait(false);
+            await twitterApi.CreateFavorite(statusId);
         }
 
         public async Task DestroyFavorite(string statusId)
         {
-            await twitterApi.DestroyFavorite(statusId).ConfigureAwait(false);
+            await twitterApi.DestroyFavorite(statusId);
         }
 
         public async Task Follow(string screenName)
         {
-            await twitterApi.Follow(screenName).ConfigureAwait(false);
+            await twitterApi.Follow(screenName);
         }
 
         public async Task Unfollow(string screenName)
         {
-            await twitterApi.Unfollow(screenName).ConfigureAwait(false);
+            await twitterApi.Unfollow(screenName);
         }
 
         public async Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
-            return await twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds).ConfigureAwait(false);
+            return await twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
         }
 
         public async Task<TwitterStatus> GetStatus(string statusId)
         {
-            return await twitterApi.GetStatus(statusId).ConfigureAwait(false);
+            return await twitterApi.GetStatus(statusId);
         }
 
         public async Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
-            return await twitterApi.UploadMediaInit(totalBytes, mediaType).ConfigureAwait(false);
+            return await twitterApi.UploadMediaInit(totalBytes, mediaType);
         }
 
         public async Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
-            await twitterApi.UploadMediaAppend(mediaId, segmentIndex, data).ConfigureAwait(false);
+            await twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
         }
 
         public async Task<UploadMedia> UploadMediaStatus(string mediaId)
         {
-            return await twitterApi.UploadMediaStatus(mediaId).ConfigureAwait(false);
+            return await twitterApi.UploadMediaStatus(mediaId);
         }
 
         public async Task<UploadMedia> UploadMediaFinalize(string mediaId)
         {
-            return await twitterApi.UploadMediaFinalize(mediaId).ConfigureAwait(false);
+            return await twitterApi.UploadMediaFinalize(mediaId);
         }
     }
 }
