@@ -33,12 +33,12 @@ namespace tweetz.core.Commands
 
             try
             {
-#pragma warning disable S3358 // Ternary operators should not be nested
-                var uri =
-                    ea.Parameter is Media media ? ImageViewerService.MediaSource(media) :
-                    ea.Parameter is string url ? new Uri(url) :
-                    null;
-#pragma warning restore S3358 // Ternary operators should not be nested
+                var uri = ea.Parameter switch
+                {
+                    Media media => ImageViewerService.MediaSource(media),
+                    string path => new Uri(path),
+                    _ => null
+                };
 
                 if (uri == null || !(sender is Window window)) return;
                 popup = ImageViewerService.CreatePopup(window, uri);

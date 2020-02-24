@@ -19,7 +19,7 @@ namespace tweetz.core.ViewModels
             AddUpdateTask(async tl =>
             {
                 var statuses = await GetStatuses();
-                UpdateStatusesTask.Execute(statuses, tl);
+                UpdateStatuses.Execute(statuses, tl);
             });
             AddUpdateTask(DonateNagTask.Execute);
             AddUpdateTask(TruncateStatusCollectionTask.Execute);

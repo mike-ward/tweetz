@@ -54,7 +54,7 @@ namespace tweetz.core.Commands
                 }
                 catch (WebException ex)
                 {
-                    using var stream = ex.Response.GetResponseStream();
+                    var stream = ex.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
                     await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd());
                 }

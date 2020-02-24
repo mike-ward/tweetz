@@ -6,7 +6,7 @@ using twitter.core.Models;
 
 namespace tweetz.core.Services
 {
-    public static class UpdateStatusesTask
+    public static class UpdateStatuses
     {
         private static readonly ObservableCollection<TwitterStatus> EmptyStatusCollection = new ObservableCollection<TwitterStatus>();
 

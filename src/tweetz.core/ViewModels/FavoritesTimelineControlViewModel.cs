@@ -21,7 +21,7 @@ namespace tweetz.core.ViewModels
             AddUpdateTask(async timeline =>
             {
                 var statuses = await GetStatuses();
-                UpdateStatusesTask.Execute(statuses, timeline);
+                UpdateStatuses.Execute(statuses, timeline);
             });
             AddUpdateTask(TruncateStatusCollectionTask.Execute);
             AddUpdateTask(UpdateTimeStampsTask.Execute);

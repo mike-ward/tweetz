@@ -72,11 +72,11 @@ namespace tweetz.core.Commands
 
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
-                UpdateStatusesTask.Execute(new[] { status }, HomeTimelineControlViewModel);
+                UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
             }
             catch (WebException ex)
             {
-                using var stream = ex.Response.GetResponseStream();
+                var stream = ex.Response.GetResponseStream();
                 using var reader = new StreamReader(stream);
                 MessageBoxService.ShowMessageBox(reader.ReadToEnd());
             }

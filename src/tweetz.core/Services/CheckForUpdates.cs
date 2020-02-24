@@ -24,7 +24,6 @@ namespace tweetz.core.Services
 
         public string Version { get => version; set => SetProperty(ref version, value); }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Vulnerability", "S2486:Generic exceptions should not be ignored", Justification = "None")]
         private async Task Check()
         {
             try
