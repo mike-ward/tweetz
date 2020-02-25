@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
 using tweetz.core.Services;
-using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
 {
@@ -17,19 +15,15 @@ namespace tweetz.core.ViewModels
             : base(settings, systemState, twentyMinutes)
         {
             TwitterService = twitterService;
-
-            AddUpdateTask(async timeline =>
-            {
-                var statuses = await GetStatuses();
-                UpdateStatuses.Execute(statuses, timeline);
-            });
+            AddUpdateTask(GetAndUpdateFavorites);
             AddUpdateTask(TruncateStatusCollectionTask.Execute);
             AddUpdateTask(UpdateTimeStampsTask.Execute);
         }
 
-        private async Task<IEnumerable<TwitterStatus>> GetStatuses()
+        private async Task GetAndUpdateFavorites(TwitterTimeline timeline)
         {
-            return await TwitterService.GetFavoritesTimeline();
+            var statuses = await TwitterService.GetFavoritesTimeline();
+            UpdateStatuses.Execute(statuses, timeline);
         }
     }
 }

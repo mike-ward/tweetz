@@ -21,8 +21,6 @@ namespace tweetz.core.ViewModels
         public User? User { get => user; set => SetProperty(ref user, value); }
         public string? ErrorMessage { get => errorMessage; set => SetProperty(ref errorMessage, value); }
 
-#pragma warning disable S4457 // Parameter validation in "async"/"await" methods should be wrapped
-
         public async Task GetUserInfo(string? screenName)
         {
             try
@@ -30,12 +28,11 @@ namespace tweetz.core.ViewModels
                 // UI reuse in virtual panels can show old values until updated.
                 User = null;
                 ErrorMessage = null;
-
                 if (screenName == null)
                 {
-                    throw new ArgumentNullException(nameof(screenName), nameof(GetUserInfo));
+                    ErrorMessage = "screenName is null in method GetUserInfo";
+                    return;
                 }
-
                 User = await TwitterService.UserInfo(screenName);
             }
             catch (Exception ex)

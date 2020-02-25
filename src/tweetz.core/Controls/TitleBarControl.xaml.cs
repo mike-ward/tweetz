@@ -10,7 +10,7 @@ namespace tweetz.core.Controls
             InitializeComponent();
         }
 
-        private void ExecuteCloseCommand(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ExecuteCloseCommand(object sender, MouseButtonEventArgs e)
         {
             ApplicationCommands.Close.Execute(null, this);
         }

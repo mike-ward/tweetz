@@ -15,12 +15,7 @@ namespace tweetz.core.ViewModels
             : base(settings, systemState, 1.1)
         {
             TwitterService = twitterService;
-
-            AddUpdateTask(async tl =>
-            {
-                var statuses = await GetStatuses();
-                UpdateStatuses.Execute(statuses, tl);
-            });
+            AddUpdateTask(GetAndUpdateHomeTweets);
             AddUpdateTask(DonateNagTask.Execute);
             AddUpdateTask(TruncateStatusCollectionTask.Execute);
             AddUpdateTask(UpdateTimeStampsTask.Execute);
@@ -28,11 +23,11 @@ namespace tweetz.core.ViewModels
 
         private ITwitterService TwitterService { get; }
 
-        private async Task<IEnumerable<TwitterStatus>> GetStatuses()
+        private async Task GetAndUpdateHomeTweets(TwitterTimeline timeline)
         {
             var mentions = await GetMentions();
             var statuses = await TwitterService.GetHomeTimeline();
-            return statuses.Concat(mentions);
+            UpdateStatuses.Execute(statuses.Concat(mentions), timeline);
         }
 
         // Twitter limits getting mentions to 100,000 per day per Application.
@@ -48,14 +43,10 @@ namespace tweetz.core.ViewModels
 
             try
             {
-                if (mentionsCounter >= mentionsInterval)
+                if (mentionsCounter++ >= mentionsInterval)
                 {
                     mentionsCounter = 0;
                     mentions = await TwitterService.GetMentionsTimeline();
-                }
-                else
-                {
-                    mentionsCounter += 1;
                 }
             }
             catch (WebException ex)

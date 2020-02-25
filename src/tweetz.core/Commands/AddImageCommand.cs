@@ -37,11 +37,11 @@ namespace tweetz.core.Commands
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
+            const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
+
             using var ofd = new OpenFileDialog
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
-                Filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4"
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
+                Filter = filter
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)

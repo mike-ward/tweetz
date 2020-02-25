@@ -10,15 +10,15 @@ namespace tweetz.core.Controls
             InitializeComponent();
         }
 
+        public static readonly DependencyProperty BiggerProperty = DependencyProperty.Register(
+            "Bigger",
+            typeof(bool),
+            typeof(TweetProfileImageControl));
+
         public bool Bigger
         {
             get { return (bool)GetValue(BiggerProperty); }
             set { SetValue(BiggerProperty, value); }
         }
-
-        public static readonly DependencyProperty BiggerProperty = DependencyProperty.Register(
-            "Bigger",
-            typeof(bool),
-            typeof(TweetProfileImageControl));
     }
 }

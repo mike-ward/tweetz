@@ -61,7 +61,7 @@ namespace tweetz.core.Controls
 
         private void ShowPage(int page)
         {
-            if (page < 1 || page > 2) throw new IndexOutOfRangeException("page argument must be 1 or 2");
+            if (page < 1 || page > 2) throw new ArgumentOutOfRangeException(nameof(page), "page argument must be 1 or 2");
             Page1.Visibility = page == 1 ? Visibility.Visible : Visibility.Hidden;
             Page2.Visibility = page == 2 ? Visibility.Visible : Visibility.Hidden;
         }

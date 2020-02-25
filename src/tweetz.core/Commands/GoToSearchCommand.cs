@@ -23,7 +23,7 @@ namespace tweetz.core.Commands
             var tabControl = dp.GetChildrenOfType<TabControl>().FirstOrDefault();
             if (tabControl == null) return;
 
-            var SearchTab = 2;
+            const int SearchTab = 2;
             tabControl.SelectedIndex = SearchTab;
         }
     }
