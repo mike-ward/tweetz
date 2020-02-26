@@ -70,8 +70,6 @@
         </Trigger>
       </Style.Triggers>
     </Style>
-
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   </UserControl.Resources>
 
   <Grid>

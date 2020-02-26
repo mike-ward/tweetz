@@ -43,8 +43,6 @@
       x:Key="TimeAgoStyle"
       BasedOn="{StaticResource ScreenNameStyle}"
       TargetType="Run" />
-
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   </UserControl.Resources>
 
   <TextBlock

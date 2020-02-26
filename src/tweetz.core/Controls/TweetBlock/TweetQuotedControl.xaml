@@ -19,8 +19,6 @@
       <Setter Property="Padding" Value="10,9" />
       <Setter Property="CornerRadius" Value="10" />
     </Style>
-
-    <BooleanToVisibilityConverter x:Key="BoolToVisibililtyConverter" />
   </UserControl.Resources>
 
   <Border Style="{StaticResource QuotedBorderStyle}">

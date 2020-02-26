@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:converters="clr-namespace:tweetz.core.Converters">
 
-  <converters:ViewModelLocatorConverter x:Key="VMLC" />
+  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   <converters:CompareToConverter x:Key="CompareToConverter" />
   <converters:CountConverter x:Key="CountConverter" />
   <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
@@ -17,4 +17,5 @@
   <converters:ScreenNameConverter x:Key="ScreenNameConverter" />
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
+  <converters:ViewModelLocatorConverter x:Key="VMLC" />
 </ResourceDictionary>

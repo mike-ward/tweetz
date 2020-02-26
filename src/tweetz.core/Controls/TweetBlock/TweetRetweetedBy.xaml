@@ -31,8 +31,6 @@
       <Setter Property="FontFamily" Value="{StaticResource SymbolFont}" />
       <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
     </Style>
-
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   </UserControl.Resources>
 
   <TextBlock
