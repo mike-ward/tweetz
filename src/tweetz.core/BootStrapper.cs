@@ -21,22 +21,13 @@ namespace tweetz.core
 
         private static void ConfigureServices(IServiceCollection services)
         {
+            // Top level controls
             services.AddSingleton<MainWindow>();
-            services.AddSingleton<MainWindowViewModel>();
-            services.AddSingleton<VersionInfo>();
-
-            services.AddSingleton<ISettings, Settings>();
-            services.AddSingleton<IWindowInteropService, WindowInteropService>();
-            services.AddSingleton<ITwitterService, TwitterService>();
-            services.AddSingleton<IOpenUrlService, OpenUrlService>();
-            services.AddSingleton<IImageViewerService, ImageViewerService>();
-            services.AddSingleton<IMessageBoxService, MessageBoxService>();
-            services.AddSingleton<ICheckForUpdates, CheckForUpdates>();
-            services.AddSingleton<ISystemState, SystemState>();
-
             services.AddSingleton<GetPinControlViewModel>();
             services.AddSingleton<TabBarControlViewModel>();
 
+            // View models
+            services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<HomeTimelineControlViewModel>();
             services.AddSingleton<FavoritesTimelineControlViewModel>();
             services.AddSingleton<SearchControlViewModel>();
@@ -44,26 +35,38 @@ namespace tweetz.core
             services.AddSingleton<ComposeControlViewModel>();
             services.AddSingleton<UserProfileBlockViewModel>();
 
+            // Commands
+            services.AddSingleton<ICommandBinding, AddImageCommand>();
+            services.AddSingleton<ICommandBinding, DecreaseFontSizeCommand>();
+            services.AddSingleton<ICommandBinding, GetMentionsCommand>();
             services.AddSingleton<ICommandBinding, GoToSearchCommand>();
             services.AddSingleton<ICommandBinding, ImageViewerCommand>();
+            services.AddSingleton<ICommandBinding, IncreaseFontSizeCommand>();
             services.AddSingleton<ICommandBinding, OpenLinkCommand>();
+            services.AddSingleton<ICommandBinding, QuoteTweetCommand>();
+            services.AddSingleton<ICommandBinding, RemoveImageCommand>();
+            services.AddSingleton<ICommandBinding, ReplyToCommand>();
             services.AddSingleton<ICommandBinding, ScrollToHomeCommand>();
-            services.AddSingleton<ICommandBinding, SignOutCommand>();
             services.AddSingleton<ICommandBinding, SearchCommand>();
-            services.AddSingleton<ICommandBinding, ToggleRetweetCommand>();
+            services.AddSingleton<ICommandBinding, ShowTwitterStatusCommand>();
+            services.AddSingleton<ICommandBinding, SignOutCommand>();
             services.AddSingleton<ICommandBinding, ToggleFavoritesCommand>();
             services.AddSingleton<ICommandBinding, ToggleFollowCommand>();
+            services.AddSingleton<ICommandBinding, ToggleRetweetCommand>();
             services.AddSingleton<ICommandBinding, ToggleShowComposeCommand>();
             services.AddSingleton<ICommandBinding, ToggleSpellCheckerCommand>();
             services.AddSingleton<ICommandBinding, UpdateStatusCommand>();
-            services.AddSingleton<ICommandBinding, ReplyToCommand>();
-            services.AddSingleton<ICommandBinding, QuoteTweetCommand>();
-            services.AddSingleton<ICommandBinding, ShowTwitterStatusCommand>();
-            services.AddSingleton<ICommandBinding, AddImageCommand>();
-            services.AddSingleton<ICommandBinding, RemoveImageCommand>();
-            services.AddSingleton<ICommandBinding, GetMentionsCommand>();
-            services.AddSingleton<ICommandBinding, DecreaseFontSizeCommand>();
-            services.AddSingleton<ICommandBinding, IncreaseFontSizeCommand>();
+
+            // Infrastructure
+            services.AddSingleton<ICheckForUpdates, CheckForUpdates>();
+            services.AddSingleton<IImageViewerService, ImageViewerService>();
+            services.AddSingleton<IMessageBoxService, MessageBoxService>();
+            services.AddSingleton<IOpenUrlService, OpenUrlService>();
+            services.AddSingleton<ISettings, Settings>();
+            services.AddSingleton<ISystemState, SystemState>();
+            services.AddSingleton<ITwitterService, TwitterService>();
+            services.AddSingleton<IWindowInteropService, WindowInteropService>();
+            services.AddSingleton<VersionInfo>();
         }
 
         public static object GetService(Type type)

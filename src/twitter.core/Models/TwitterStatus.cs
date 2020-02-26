@@ -169,7 +169,7 @@ namespace twitter.core.Models
             Favorited = status.Favorited;
         }
 
-        public void AboutMe(string? screenName)
+        public void UpdateAboutMeProperties(string? screenName)
         {
             if (string.IsNullOrEmpty(screenName)) return;
             IsMyTweet = screenName == OriginatingStatus.User.ScreenName;

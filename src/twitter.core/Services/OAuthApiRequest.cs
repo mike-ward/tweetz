@@ -82,7 +82,7 @@ namespace twitter.core.Services
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
-            var parray = parameters as IEnumerable<(string, string)> ?? parameters.ToArray();
+            var parray = parameters ?? parameters.ToArray();
             var signature = OAuth.Signature(method, url, nonce, timestamp, ConsumerKey, ConsumerSecret, AccessToken, AccessTokenSecret, parray);
             var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey, AccessToken, signature);
             var parameterStrings = parray.Select(p => $"{OAuth.UrlEncode(p.Item1)}={OAuth.UrlEncode(p.Item2)}").ToList();

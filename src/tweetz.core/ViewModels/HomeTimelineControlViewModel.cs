@@ -11,11 +11,13 @@ namespace tweetz.core.ViewModels
 {
     public class HomeTimelineControlViewModel : TwitterTimeline
     {
+        private const double justOverAMinute = 1.1;
+
         public HomeTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
-            : base(settings, systemState, 1.1)
+            : base(settings, systemState, justOverAMinute)
         {
             TwitterService = twitterService;
-            AddUpdateTask(GetAndUpdateHomeTweets);
+            AddUpdateTask(GetAndUpdateStatuses);
             AddUpdateTask(DonateNagTask.Execute);
             AddUpdateTask(TruncateStatusCollectionTask.Execute);
             AddUpdateTask(UpdateTimeStampsTask.Execute);
@@ -23,7 +25,7 @@ namespace tweetz.core.ViewModels
 
         private ITwitterService TwitterService { get; }
 
-        private async Task GetAndUpdateHomeTweets(TwitterTimeline timeline)
+        private async Task GetAndUpdateStatuses(TwitterTimeline timeline)
         {
             var mentions = await GetMentions();
             var statuses = await TwitterService.GetHomeTimeline();

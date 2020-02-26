@@ -77,7 +77,7 @@ namespace tweetz.core.ViewModels
 
             foreach (var status in statuses)
             {
-                status.AboutMe(Settings.ScreenName);
+                status.UpdateAboutMeProperties(Settings.ScreenName);
                 StatusCollection.Add(status);
             }
 
