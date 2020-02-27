@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace twitter.core.Models
 {
-    public class TwitterStatus : INotifyPropertyChanged, IEqualityComparer<TwitterStatus>
+    public class TwitterStatus : INotifyPropertyChanged
     {
         private int replyCount;
         private int retweetCount;
@@ -200,18 +199,6 @@ namespace twitter.core.Models
         {
             if (propertyName == null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        // IEqualityComparer Implementation
-        //
-        public bool Equals([AllowNull] TwitterStatus x, [AllowNull] TwitterStatus y)
-        {
-            return x != null && y != null && string.CompareOrdinal(x.Id, y.Id) == 0;
-        }
-
-        public int GetHashCode([DisallowNull] TwitterStatus obj)
-        {
-            return obj.Id.GetHashCode();
         }
     }
 }

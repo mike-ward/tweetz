@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -8,7 +6,7 @@ using tweetz.core.Infrastructure;
 
 namespace tweetz.core.Models
 {
-    public class Settings : NotifyPropertyChanged, ISettings, IEqualityComparer<Settings>
+    public class Settings : NotifyPropertyChanged, ISettings
     {
         private string? accessToken;
         private string? accessTokenSecret;
@@ -106,49 +104,6 @@ namespace tweetz.core.Models
         {
             var json = JsonSerializer.Serialize<Settings>(this, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(SettingsFilePath, json);
-        }
-
-        // IEqualityComparer Implementation
-
-        private (
-            string? AccessToken,
-            string? AccessTokenSecret,
-            string? ScreenName,
-            bool HideProfileImages,
-            bool HideImages,
-            bool HideExtendedContent,
-            bool PauseWhenScrolled,
-            bool SpellCheck,
-            double FontSize,
-            string Theme,
-            bool Donated,
-            WindowPosition MainWindowPosition
-            ) AsTuple()
-        {
-            return (
-                AccessToken,
-                AccessTokenSecret,
-                ScreenName,
-                HideProfileImages,
-                HideImages,
-                HideExtendedContent,
-                PauseWhenScrolled,
-                SpellCheck,
-                FontSize,
-                Theme,
-                Donated,
-                MainWindowPosition
-                );
-        }
-
-        public bool Equals([AllowNull] Settings x, [AllowNull] Settings y)
-        {
-            return x != null && y != null && x.AsTuple() == y.AsTuple();
-        }
-
-        public int GetHashCode([DisallowNull] Settings obj)
-        {
-            return obj.AsTuple().GetHashCode();
         }
     }
 }
