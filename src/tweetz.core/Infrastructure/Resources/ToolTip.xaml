@@ -44,9 +44,12 @@
   <Style
     x:Key="BaseHyperlinkToolTipStyle"
     TargetType="Hyperlink">
+    <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
     <Setter Property="ToolTipService.ShowDuration" Value="{StaticResource ToolTipDuration}" />
     <Setter Property="ToolTipService.InitialShowDelay" Value="{StaticResource InitialToolTipDelay}" />
   </Style>
+
+  <!--  Tooltip style for user profiles  -->
 
   <Style
     x:Key="ToolTipStyle"
@@ -69,6 +72,8 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <!--  Default tooltip style  -->
 
   <Style TargetType="ToolTip">
     <Setter Property="Template">
