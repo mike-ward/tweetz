@@ -10,7 +10,7 @@ namespace twitter.core.Models
     public class TwitterString
     {
         private const int bytesPerChar = 4;
-        private readonly Memory<byte> bytes;
+        private readonly ReadOnlyMemory<byte> bytes;
         private readonly Encoding encoder = Encoding.UTF32;
 
         public TwitterString(string text)
@@ -28,8 +28,7 @@ namespace twitter.core.Models
         {
             var bstart = start * bytesPerChar;
             var bcount = count * bytesPerChar;
-            var substring = encoder.GetString(bytes.Slice(bstart, bcount).Span);
-            return substring;
+            return encoder.GetString(bytes.Slice(bstart, bcount).Span);
         }
     }
 }

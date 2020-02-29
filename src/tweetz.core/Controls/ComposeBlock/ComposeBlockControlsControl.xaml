@@ -105,6 +105,7 @@
           <TextBlock
             Text="Tweet"
             TextAlignment="Center"
+            ToolTip="{StaticResource send-tweet-tooltip}"
             Visibility="{Binding IsUpdating, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}">
             <TextBlock.Style>
               <Style TargetType="TextBlock">

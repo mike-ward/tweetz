@@ -7,11 +7,11 @@
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  d:DesignHeight="300"
+  d:DesignWidth="300"
   DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneWay}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
-  d:DesignHeight="300"
-  d:DesignWidth="300"
   mc:Ignorable="d">
 
   <Grid>
@@ -117,7 +117,8 @@
             Content="{StaticResource WriteSymbol}"
             FontFamily="{StaticResource SymbolFont}"
             FontSize="16"
-            Style="{StaticResource TwitterButtonStyle}" />
+            Style="{StaticResource TwitterButtonStyle}"
+            ToolTip="{StaticResource compose-tweet-tooltip}" />
         </TabItem.Header>
       </TabItem>
     </TabControl>

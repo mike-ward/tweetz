@@ -36,21 +36,16 @@ namespace tweetz.core.Controls
         /// Hocus pocus, try to set the focus when switching tabs so page up/dn, home/end
         /// keyboard shortcuts for scrolling work.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S1066:Collapsible \"if\" statements should be merged", Justification = "None")]
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
             var timeline = item?.Content as TimelineControl;
 
-            if (timeline?.FindName("ItemsControl") is ItemsControl itemsControl)
+            if (timeline?.FindName("ItemsControl") is ItemsControl itemsControl
+                && VisualTreeHelper.GetChildrenCount(itemsControl) > 0
+                && VisualTreeHelper.GetChild(itemsControl, 0) is ScrollViewer scrollViewer)
             {
-                if (VisualTreeHelper.GetChildrenCount(itemsControl) > 0)
-                {
-                    if (VisualTreeHelper.GetChild(itemsControl, 0) is ScrollViewer scrollViewer)
-                    {
-                        Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => scrollViewer.Focus()));
-                    }
-                }
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => scrollViewer.Focus()));
             }
         }
     }

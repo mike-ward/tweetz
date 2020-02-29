@@ -16,7 +16,8 @@ namespace tweetz.core.Services
         public CheckForUpdates(VersionInfo versionInfo)
         {
             version = versionInfo.Version;
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromHours(2) };
+            var twoHours = TimeSpan.FromHours(2);
+            var timer = new DispatcherTimer { Interval = twoHours };
             timer.Tick += async (s, args) => await Check();
             timer.Start();
             Task.Run(Check);

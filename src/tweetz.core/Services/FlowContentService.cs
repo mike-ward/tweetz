@@ -37,7 +37,6 @@ namespace tweetz.core.Services
             textBlock.Inlines.AddRange(SourceToFlowContentInlines(twitterStatus));
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4456:Parameter validation in yielding methods should be wrapped", Justification = "None")]
         public static IEnumerable<object> SourceToFlowContentInlines(TwitterStatus twitterStatus)
         {
             if (twitterStatus == null)
@@ -117,9 +116,11 @@ namespace tweetz.core.Services
             };
         }
 
+        private static Style? userProfileToolTipStyle;
+
         private static Style GetToolTipStyle()
         {
-            return (Style)Application.Current.FindResource("ToolTipStyle");
+            return userProfileToolTipStyle ?? (userProfileToolTipStyle = (Style)Application.Current.FindResource("ToolTipStyle"));
         }
 
         private static Hyperlink Hashtag(string text)
@@ -146,9 +147,8 @@ namespace tweetz.core.Services
         {
             var start = 0;
             var twitterString = new TwitterString(twitterStatus.FullText ?? twitterStatus.Text ?? string.Empty);
-            var flowContentItems = BuildFlowControlItems(twitterStatus.Entities ?? new Entities());
 
-            foreach (var item in flowContentItems)
+            foreach (var item in BuildFlowControlItems(twitterStatus.Entities ?? new Entities()))
             {
                 if (item.Start >= start)
                 {
@@ -206,8 +206,7 @@ namespace tweetz.core.Services
                 })
                 ?? Array.Empty<FlowContentItem>();
 
-            return Array.Empty<FlowContentItem>()
-                .Concat(urls)
+            return urls
                 .Concat(mentions)
                 .Concat(hashTags)
                 .Concat(media)

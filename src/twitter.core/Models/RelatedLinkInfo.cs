@@ -92,7 +92,7 @@ namespace twitter.core.Models
 
             // No need to parse the whole document, only intereated in head section
             // This reduces memory and GC pressure for HTML Agility Pack
-            var headTag = "</head>";
+            const string headTag = "</head>";
             var index = html.IndexOf(headTag, StringComparison.OrdinalIgnoreCase);
             if (index < 0) return null;
             var length = index + headTag.Length;
@@ -193,8 +193,7 @@ namespace twitter.core.Models
             try
             {
                 var url = new Uri(source);
-                var valid = url.IsWellFormedOriginalString();
-                return valid;
+                return url.IsWellFormedOriginalString();
             }
             catch
             {
