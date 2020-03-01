@@ -5,16 +5,16 @@ namespace tweetz.core.Services
 {
     public static class TruncateStatusCollectionTask
     {
-        public static async Task Execute(TwitterTimeline timeline)
+        public static Task Execute(TwitterTimeline timeline)
         {
-            var maxNumberOfStatuses = 500;
+            const int maxNumberOfStatuses = 500;
 
             while (timeline.StatusCollection.Count > maxNumberOfStatuses)
             {
                 timeline.StatusCollection.RemoveAt(timeline.StatusCollection.Count - 1);
             }
 
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

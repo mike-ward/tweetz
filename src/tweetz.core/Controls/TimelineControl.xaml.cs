@@ -28,7 +28,7 @@ namespace tweetz.core.Controls
                         ? TimeSpan.Zero
                         : TimeSpan.FromMilliseconds(duration);
 
-                    await Task.Delay(duration + 200);
+                    await Task.Delay(duration + 200).ConfigureAwait(true);
                     vm.FadeInDuration = TimeSpan.Zero;
                 };
             }

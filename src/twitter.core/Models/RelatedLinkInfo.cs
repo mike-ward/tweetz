@@ -62,7 +62,7 @@ namespace twitter.core.Models
                 {
                     var uri = url.ExpandedUrl ?? url.Url;
                     if (!UrlValid(uri)) continue;
-                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri);
+                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri).ConfigureAwait(false);
                     if (relatedLinkInfo == null) continue;
 
                     status.CheckedRelatedInfo = true;
@@ -85,7 +85,7 @@ namespace twitter.core.Models
             if (!UrlValid(url)) return null;
 
             var request = WebRequest.Create(url);
-            var response = await request.GetResponseAsync();
+            var response = await request.GetResponseAsync().ConfigureAwait(false);
 
             using var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
             var html = reader.ReadToEnd();

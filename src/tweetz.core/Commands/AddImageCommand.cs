@@ -56,11 +56,11 @@ namespace tweetz.core.Commands
                 {
                     var stream = ex.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
-                    await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd());
+                    await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd()).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
-                    await MessageBoxService.ShowMessageBoxAsync(ex.Message);
+                    await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(false);
                 }
                 finally
                 {
@@ -72,7 +72,7 @@ namespace tweetz.core.Commands
         private async Task<MediaInfo> UploadMedia(string path)
         {
             var contentType = ComposeControlViewModel.ContentType(path);
-            var mediaId = await Upload(path, contentType);
+            var mediaId = await Upload(path, contentType).ConfigureAwait(false);
             return new MediaInfo { Path = path, MediaId = mediaId };
         }
 
@@ -85,7 +85,7 @@ namespace tweetz.core.Commands
 
             if (finalize.ProcessingInfo != null)
             {
-                await UntilProcessingFinished(media.MediaId);
+                await UntilProcessingFinished(media.MediaId).ConfigureAwait(false);
             }
 
             return media.MediaId;
@@ -95,10 +95,10 @@ namespace tweetz.core.Commands
         {
             while (true)
             {
-                var status = await TwitterService.UploadMediaStatus(mediaId);
+                var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(false);
                 if (status.ProcessingInfo.State == ProcessingInfo.StateSuceedded) break;
                 var milliseconds = (int)TimeSpan.FromSeconds(status.ProcessingInfo.CheckAfterSecs).TotalMilliseconds;
-                await Task.Delay(milliseconds);
+                await Task.Delay(milliseconds).ConfigureAwait(false);
             }
         }
     }

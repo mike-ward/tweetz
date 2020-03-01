@@ -22,7 +22,7 @@ namespace twitter.core.Services
             var request = System.Net.WebRequest.Create(new Uri(requestTokenUrl));
             request.Method = OAuthApiRequest.POST;
             request.Headers.Add("Authorization", authorizationHeader);
-            using var response = await request.GetResponseAsync();
+            using var response = await request.GetResponseAsync().ConfigureAwait(false);
             using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
             var body = stream.ReadToEnd();
             var tokens = body.Split('&');
@@ -60,7 +60,7 @@ namespace twitter.core.Services
             request.Method = OAuthApiRequest.POST;
             request.Headers.Add("Authorization", authorizationHeader);
 
-            using var response = await request.GetResponseAsync();
+            using var response = await request.GetResponseAsync().ConfigureAwait(false);
             using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
             var tokens = stream.ReadToEnd().Split('&');
 

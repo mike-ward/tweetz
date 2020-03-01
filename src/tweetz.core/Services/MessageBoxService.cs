@@ -11,9 +11,9 @@ namespace tweetz.core.Services
             MessageBox.Show(message);
         }
 
-        public async Task ShowMessageBoxAsync(string message)
+        public Task ShowMessageBoxAsync(string message)
         {
-            await Task.Run(() => ShowMessageBox(message));
+            return Task.Run(() => ShowMessageBox(message));
         }
     }
 }

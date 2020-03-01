@@ -52,9 +52,9 @@ namespace twitter.core.Services
             return Request<T>(url, parameters, POST);
         }
 
-        private async Task Request(string url, IEnumerable<(string, string)> parameters, string method)
+        private Task Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            await OAuthRequest(url, parameters, method);
+            return OAuthRequest(url, parameters, method);
         }
 
         private async Task<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)

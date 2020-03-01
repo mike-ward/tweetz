@@ -24,9 +24,9 @@ namespace tweetz.core.Services
                 this.settings.AccessTokenSecret);
         }
 
-        public async Task<OAuthTokens> GetPin()
+        public Task<OAuthTokens> GetPin()
         {
-            return await twitterApi.GetPin();
+            return twitterApi.GetPin();
         }
 
         public async Task AuthenticateWithPin(OAuthTokens requestTokens, string pin)
@@ -41,89 +41,89 @@ namespace tweetz.core.Services
             }
         }
 
-        public async Task<IEnumerable<TwitterStatus>> GetHomeTimeline()
+        public Task<IEnumerable<TwitterStatus>> GetHomeTimeline()
         {
-            return await twitterApi.HomeTimeline();
+            return twitterApi.HomeTimeline();
         }
 
-        public async Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
+        public Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
         {
-            return await twitterApi.MentionsTimeline(count);
+            return twitterApi.MentionsTimeline(count);
         }
 
-        public async Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
+        public Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
         {
-            return await twitterApi.FavoritesTimeline();
+            return twitterApi.FavoritesTimeline();
         }
 
-        public async Task<User> UserInfo(string screenName)
+        public Task<User> UserInfo(string screenName)
         {
-            return await twitterApi.UserInfo(screenName);
+            return twitterApi.UserInfo(screenName);
         }
 
-        public async Task<Tweet> Search(string query)
+        public Task<Tweet> Search(string query)
         {
-            return await twitterApi.Search(query);
+            return twitterApi.Search(query);
         }
 
-        public async Task RetweetStatus(string statusId)
+        public Task RetweetStatus(string statusId)
         {
-            await twitterApi.RetweetStatus(statusId);
+            return twitterApi.RetweetStatus(statusId);
         }
 
-        public async Task UnretweetStatus(string statusId)
+        public Task UnretweetStatus(string statusId)
         {
-            await twitterApi.UnretweetStatus(statusId);
+            return twitterApi.UnretweetStatus(statusId);
         }
 
-        public async Task CreateFavorite(string statusId)
+        public Task CreateFavorite(string statusId)
         {
-            await twitterApi.CreateFavorite(statusId);
+            return twitterApi.CreateFavorite(statusId);
         }
 
-        public async Task DestroyFavorite(string statusId)
+        public Task DestroyFavorite(string statusId)
         {
-            await twitterApi.DestroyFavorite(statusId);
+            return twitterApi.DestroyFavorite(statusId);
         }
 
-        public async Task Follow(string screenName)
+        public Task Follow(string screenName)
         {
-            await twitterApi.Follow(screenName);
+            return twitterApi.Follow(screenName);
         }
 
-        public async Task Unfollow(string screenName)
+        public Task Unfollow(string screenName)
         {
-            await twitterApi.Unfollow(screenName);
+            return twitterApi.Unfollow(screenName);
         }
 
-        public async Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
+        public Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
-            return await twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
+            return twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
         }
 
-        public async Task<TwitterStatus> GetStatus(string statusId)
+        public Task<TwitterStatus> GetStatus(string statusId)
         {
-            return await twitterApi.GetStatus(statusId);
+            return twitterApi.GetStatus(statusId);
         }
 
-        public async Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
+        public Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
-            return await twitterApi.UploadMediaInit(totalBytes, mediaType);
+            return twitterApi.UploadMediaInit(totalBytes, mediaType);
         }
 
-        public async Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
+        public Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
-            await twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
+            return twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
         }
 
-        public async Task<UploadMedia> UploadMediaStatus(string mediaId)
+        public Task<UploadMedia> UploadMediaStatus(string mediaId)
         {
-            return await twitterApi.UploadMediaStatus(mediaId);
+            return twitterApi.UploadMediaStatus(mediaId);
         }
 
-        public async Task<UploadMedia> UploadMediaFinalize(string mediaId)
+        public Task<UploadMedia> UploadMediaFinalize(string mediaId)
         {
-            return await twitterApi.UploadMediaFinalize(mediaId);
+            return twitterApi.UploadMediaFinalize(mediaId);
         }
     }
 }

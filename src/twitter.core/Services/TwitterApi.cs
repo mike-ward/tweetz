@@ -21,7 +21,7 @@ namespace twitter.core.Services
 
         public async Task<OAuthTokens> GetPin()
         {
-            var requestTokens = await TwitterTokenRequest.GetRequestToken(ConsumerKey, ConsumerSecret);
+            var requestTokens = await TwitterTokenRequest.GetRequestToken(ConsumerKey, ConsumerSecret).ConfigureAwait(true);
 
             var url = "https://api.twitter.com/oauth/authenticate?oauth_token=" + requestTokens.OAuthToken;
             OpenUrlService.Open(url);

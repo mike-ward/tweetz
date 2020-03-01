@@ -33,7 +33,7 @@ namespace tweetz.core.ViewModels
                     ErrorMessage = "screenName is null in method GetUserInfo";
                     return;
                 }
-                User = await TwitterService.UserInfo(screenName);
+                User = await TwitterService.UserInfo(screenName).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

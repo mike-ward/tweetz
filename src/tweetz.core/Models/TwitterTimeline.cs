@@ -60,7 +60,7 @@ namespace tweetz.core.Models
             {
                 if (Settings.IsAuthenticated)
                 {
-                    await Start();
+                    await Start().ConfigureAwait(false);
                 }
                 else
                 {

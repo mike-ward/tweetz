@@ -27,8 +27,8 @@ namespace tweetz.core.ViewModels
 
         private async Task GetAndUpdateStatuses(TwitterTimeline timeline)
         {
-            var mentions = await GetMentions();
-            var statuses = await TwitterService.GetHomeTimeline();
+            var mentions = await GetMentions().ConfigureAwait(true);
+            var statuses = await TwitterService.GetHomeTimeline().ConfigureAwait(true);
             UpdateStatuses.Execute(statuses.Concat(mentions), timeline);
         }
 
@@ -48,7 +48,7 @@ namespace tweetz.core.ViewModels
                 if (mentionsCounter++ >= mentionsInterval)
                 {
                     mentionsCounter = 0;
-                    mentions = await TwitterService.GetMentionsTimeline();
+                    mentions = await TwitterService.GetMentionsTimeline().ConfigureAwait(true);
                 }
             }
             catch (WebException ex)
