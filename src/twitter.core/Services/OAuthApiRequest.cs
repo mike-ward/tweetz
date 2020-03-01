@@ -32,33 +32,29 @@ namespace twitter.core.Services
             AccessTokenSecret = accessTokenSecret;
         }
 
-        // Non Generic
-
-        public async Task Get(string url, IEnumerable<(string, string)> parameters)
+        public Task Get(string url, IEnumerable<(string, string)> parameters)
         {
-            await Request(url, parameters, GET);
+            return Request(url, parameters, GET);
         }
 
-        public async Task Post(string url, IEnumerable<(string, string)> parameters)
+        public Task<T> Get<T>(string url, IEnumerable<(string, string)> parameters)
         {
-            await Request(url, parameters, POST);
+            return Request<T>(url, parameters, GET);
+        }
+
+        public Task Post(string url, IEnumerable<(string, string)> parameters)
+        {
+            return Request(url, parameters, POST);
+        }
+
+        public Task<T> Post<T>(string url, IEnumerable<(string, string)> parameters)
+        {
+            return Request<T>(url, parameters, POST);
         }
 
         private async Task Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
             await OAuthRequest(url, parameters, method);
-        }
-
-        // Generic
-
-        public async Task<T> Get<T>(string url, IEnumerable<(string, string)> parameters)
-        {
-            return await Request<T>(url, parameters, GET);
-        }
-
-        public async Task<T> Post<T>(string url, IEnumerable<(string, string)> parameters)
-        {
-            return await Request<T>(url, parameters, POST);
         }
 
         private async Task<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
@@ -71,20 +67,24 @@ namespace twitter.core.Services
 
         // All requests return JSON
 
-        private async Task<string> OAuthRequest(string url, IEnumerable<(string, string)> parameters, string method)
+        private Task<string> OAuthRequest(string url, IEnumerable<(string, string)> parameters, string method)
         {
             if (method != GET && method != POST) throw new ArgumentException($"method parameter must be \"{GET}\" or \"{POST}\"");
             if (ConsumerKey == null) throw new InvalidOperationException("ConsumerKey is null");
             if (ConsumerSecret == null) throw new InvalidOperationException("ConsumerSecret is null");
             if (AccessToken == null) throw new InvalidOperationException("AccessToken is null");
             if (AccessTokenSecret == null) throw new InvalidOperationException("AccessTokenSecret is null");
+            return OAuthRequestWorker(url, parameters, method);
+        }
 
+        private async Task<string> OAuthRequestWorker(string url, IEnumerable<(string, string)> parameters, string method)
+        {
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
             var parray = parameters ?? parameters.ToArray();
-            var signature = OAuth.Signature(method, url, nonce, timestamp, ConsumerKey, ConsumerSecret, AccessToken, AccessTokenSecret, parray);
-            var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey, AccessToken, signature);
+            var signature = OAuth.Signature(method, url, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, parray);
+            var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
             var parameterStrings = parray.Select(p => $"{OAuth.UrlEncode(p.Item1)}={OAuth.UrlEncode(p.Item2)}").ToList();
             if (!post) url += $"?{string.Join("&", parameterStrings)}";
 
@@ -130,7 +130,7 @@ namespace twitter.core.Services
             request.Method = POST;
 
             var boundary = $"{Guid.NewGuid():N}";
-            request.ContentType = "multipart/form-data; boundary=" + boundary; ;
+            request.ContentType = "multipart/form-data; boundary=" + boundary;
 
             using (var requestStream = request.GetRequestStream())
             {
@@ -141,7 +141,10 @@ namespace twitter.core.Services
                 WriteTextToStream(requestStream, $"--{boundary}--\r\n");
             }
 
-            using var _ = await request.GetResponseAsync();
+            using (await request.GetResponseAsync())
+            {
+                // lint checker likes this better
+            }
         }
 
         private static void TextParameter(Stream stream, string boundary, string name, string payload)
