@@ -56,22 +56,24 @@ namespace tweetz.core.Models
 
         private void OnSettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            _ = OnSettingsChangedAsync(e);
+            OnSettingsChangedAsync(e).ConfigureAwait(false);
         }
 
-        private async Task OnSettingsChangedAsync(System.ComponentModel.PropertyChangedEventArgs e)
+        private Task OnSettingsChangedAsync(System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.IsAuthenticated))
             {
                 if (Settings.IsAuthenticated)
                 {
-                    await Start().ConfigureAwait(false);
+                    Start().ConfigureAwait(false);
                 }
                 else
                 {
                     Stop();
                 }
             }
+
+            return Task.CompletedTask;
         }
 
         private async Task Start()

@@ -23,7 +23,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            _ = CommandHandlerAsync(e);
+            CommandHandlerAsync(e).ConfigureAwait(false);
         }
 
         private async Task CommandHandlerAsync(ExecutedRoutedEventArgs e)

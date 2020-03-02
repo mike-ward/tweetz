@@ -14,7 +14,7 @@ namespace tweetz.core.Controls
 
         private void OnIsVisibleChnaged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            _ = OnIsVisibleChnagedAsync();
+            OnIsVisibleChnagedAsync().ConfigureAwait(false);
         }
 
         private async Task OnIsVisibleChnagedAsync()

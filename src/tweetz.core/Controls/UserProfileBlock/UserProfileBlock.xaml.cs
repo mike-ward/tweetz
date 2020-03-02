@@ -15,7 +15,7 @@ namespace tweetz.core.Controls.UserProfileBlock
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            _ = OnLoadAsync();
+            OnLoadAsync().ConfigureAwait(false);
         }
 
         private async Task OnLoadAsync()

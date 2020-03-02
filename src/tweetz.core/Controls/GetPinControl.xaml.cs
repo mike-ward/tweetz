@@ -18,7 +18,7 @@ namespace tweetz.core.Controls
 
         private void GetPinClick(object sender, RoutedEventArgs e)
         {
-            _ = GetPinClickAsync();
+            GetPinClickAsync().ConfigureAwait(false);
         }
 
         private async Task GetPinClickAsync()
@@ -42,7 +42,7 @@ namespace tweetz.core.Controls
 
         private void SignInClick(object sender, RoutedEventArgs e)
         {
-            _ = SignInClickAsync();
+            SignInClickAsync().ConfigureAwait(false);
         }
 
         private async Task SignInClickAsync()
