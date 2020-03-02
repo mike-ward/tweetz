@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using tweetz.core.Services;
@@ -44,7 +45,12 @@ namespace tweetz.core.Commands
                 !ComposeControlViewModel.IsUpdating;
         }
 
-        private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        {
+            _ = CommandHandlerAsync();
+        }
+
+        private async Task CommandHandlerAsync()
         {
             try
             {

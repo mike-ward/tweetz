@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Threading.Tasks;
+using System.Windows.Controls;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Controls
@@ -11,7 +12,12 @@ namespace tweetz.core.Controls
             IsVisibleChanged += OnIsVisibleChnaged;
         }
 
-        private async void OnIsVisibleChnaged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        private void OnIsVisibleChnaged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            _ = OnIsVisibleChnagedAsync();
+        }
+
+        private async Task OnIsVisibleChnagedAsync()
         {
             if (DataContext is ComposeControlViewModel vm)
             {

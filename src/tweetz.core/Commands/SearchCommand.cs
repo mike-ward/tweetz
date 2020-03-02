@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
@@ -24,7 +25,12 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
+        private void CommandHandler(object sender, ExecutedRoutedEventArgs args)
+        {
+            _ = CommandHandlerAsync(args);
+        }
+
+        private async Task CommandHandlerAsync(ExecutedRoutedEventArgs args)
         {
             if (inCommand) return;
 

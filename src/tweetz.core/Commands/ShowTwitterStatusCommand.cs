@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using twitter.core.Models;
@@ -20,7 +21,12 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)
+        private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            _ = CommandHandlerAsync(e);
+        }
+
+        private async Task CommandHandlerAsync(ExecutedRoutedEventArgs e)
         {
             if (e.Parameter is TwitterStatus status)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
@@ -24,12 +25,16 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)
+        private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            if (inCommand) return;
+            _ = CommandHandlerAsync();
+        }
 
+        private async Task CommandHandlerAsync()
+        {
             try
             {
+                if (inCommand) return;
                 inCommand = true;
                 await SearchControlViewModel.Mentions().ConfigureAwait(false);
             }

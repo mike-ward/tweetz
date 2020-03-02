@@ -35,7 +35,12 @@ namespace tweetz.core.Commands
             e.CanExecute = ComposeControlViewModel.CanAddImage();
         }
 
-        private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        {
+            _ = CommandHandlerAsync();
+        }
+
+        private async Task CommandHandlerAsync()
         {
             const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 

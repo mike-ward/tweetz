@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using twitter.core.Models;
@@ -35,12 +36,16 @@ namespace tweetz.core.Commands
             e.CanExecute = StatusFromParameter(e.Parameter) != null;
         }
 
-        private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
+        private void CommandHandler(object sender, ExecutedRoutedEventArgs args)
         {
-            if (inCommand) return;
+            _ = CommandHandlerAsync(args);
+        }
 
+        private async Task CommandHandlerAsync(ExecutedRoutedEventArgs args)
+        {
             try
             {
+                if (inCommand) return;
                 inCommand = true;
 
                 var twitterStatus = StatusFromParameter(args.Parameter);

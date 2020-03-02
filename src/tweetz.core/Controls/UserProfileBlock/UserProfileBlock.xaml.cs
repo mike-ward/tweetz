@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using tweetz.core.ViewModels;
 
@@ -12,7 +13,12 @@ namespace tweetz.core.Controls.UserProfileBlock
             Loaded += OnLoad;
         }
 
-        private async void OnLoad(object sender, RoutedEventArgs e)
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            _ = OnLoadAsync();
+        }
+
+        private async Task OnLoadAsync()
         {
             if (DataContext is UserProfileBlockViewModel vm)
             {

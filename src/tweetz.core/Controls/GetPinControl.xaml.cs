@@ -16,7 +16,12 @@ namespace tweetz.core.Controls
             InitializeComponent();
         }
 
-        private async void GetPinClick(object sender, RoutedEventArgs e)
+        private void GetPinClick(object sender, RoutedEventArgs e)
+        {
+            _ = GetPinClickAsync();
+        }
+
+        private async Task GetPinClickAsync()
         {
             try
             {
@@ -35,7 +40,12 @@ namespace tweetz.core.Controls
             }
         }
 
-        private async void SignInClick(object sender, RoutedEventArgs e)
+        private void SignInClick(object sender, RoutedEventArgs e)
+        {
+            _ = SignInClickAsync();
+        }
+
+        private async Task SignInClickAsync()
         {
             try
             {
