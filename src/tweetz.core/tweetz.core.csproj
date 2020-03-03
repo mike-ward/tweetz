@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <None Remove="app.ico" />
+    <None Remove="Infrastructure\Resources\splash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,10 @@
 
   <ItemGroup>
     <Resource Include="app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Infrastructure\Resources\splash.png" />
   </ItemGroup>
 
   <ItemGroup>
