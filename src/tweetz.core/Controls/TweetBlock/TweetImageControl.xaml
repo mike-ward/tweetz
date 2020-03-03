@@ -6,15 +6,12 @@
 
   <UserControl.Resources>
     <Style
-      x:Key="TweetMediaStyle"
-      TargetType="Image">
-      <Setter Property="MaxHeight" Value="300" />
-      <Setter Property="StretchDirection" Value="DownOnly" />
-      <Setter Property="Stretch" Value="Uniform" />
-      <Setter Property="VerticalAlignment" Value="Top" />
-      <Setter Property="HorizontalAlignment" Value="Center" />
+      x:Key="BorderStyle"
+      TargetType="Border">
+      <Setter Property="Height" Value="200" />
+      <Setter Property="Margin" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
       <Setter Property="Cursor" Value="Hand" />
-      <Setter Property="Margin" Value="1.5" />
     </Style>
 
     <Style
@@ -35,19 +32,27 @@
     ItemsSource="{Binding ExtendedEntities.Media}">
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <Image
-          RenderOptions.BitmapScalingMode="LowQuality"
-          RenderOptions.CachingHint="Cache"
-          Source="{Binding MediaUrl, Mode=OneWay, TargetNullValue={x:Null}}"
-          Style="{StaticResource TweetMediaStyle}">
+        <Border Style="{StaticResource BorderStyle}">
+          <Border.Background>
+            <VisualBrush
+              AlignmentY="Top"
+              Stretch="UniformToFill">
+              <VisualBrush.Visual>
+                <Image
+                  RenderOptions.BitmapScalingMode="LowQuality"
+                  RenderOptions.CachingHint="Cache"
+                  Source="{Binding MediaUrl}" />
+              </VisualBrush.Visual>
+            </VisualBrush>
+          </Border.Background>
 
-          <Image.InputBindings>
+          <Border.InputBindings>
             <MouseBinding
               Command="{x:Static commands:ImageViewerCommand.Command}"
               CommandParameter="{Binding}"
               MouseAction="LeftClick" />
-          </Image.InputBindings>
-        </Image>
+          </Border.InputBindings>
+        </Border>
       </DataTemplate>
     </ItemsControl.ItemTemplate>
 
