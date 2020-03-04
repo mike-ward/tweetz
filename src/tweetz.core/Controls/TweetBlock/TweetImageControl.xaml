@@ -32,8 +32,11 @@
     ItemsSource="{Binding ExtendedEntities.Media}">
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <Border Style="{StaticResource BorderStyle}">
+        <Border
+          Name="Border"
+          Style="{StaticResource BorderStyle}">
           <Border.Background>
+            <!--  All this because I wanted to put round corners on an image and deal with load errors  -->
             <VisualBrush
               AlignmentY="Top"
               Stretch="UniformToFill">
@@ -41,7 +44,33 @@
                 <Image
                   RenderOptions.BitmapScalingMode="LowQuality"
                   RenderOptions.CachingHint="Cache"
-                  Source="{Binding MediaUrl}" />
+                  Source="{Binding MediaUrl}">
+                  <!--
+                    Hooking the ImageFailed event with an instance method throws off all sorts of null
+                    reference exceptions during the load. I found using and event trigger works around
+                    this issue. Verbose and messy but it gets the job done.
+                  -->
+                  <Image.Triggers>
+                    <EventTrigger RoutedEvent="Image.ImageFailed">
+                      <EventTrigger.Actions>
+                        <BeginStoryboard>
+                          <Storyboard>
+                            <ObjectAnimationUsingKeyFrames
+                              Storyboard.TargetName="Border"
+                              Storyboard.TargetProperty="Visibility"
+                              Duration="0">
+                              <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                  <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                              </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                          </Storyboard>
+                        </BeginStoryboard>
+                      </EventTrigger.Actions>
+                    </EventTrigger>
+                  </Image.Triggers>
+                </Image>
               </VisualBrush.Visual>
             </VisualBrush>
           </Border.Background>

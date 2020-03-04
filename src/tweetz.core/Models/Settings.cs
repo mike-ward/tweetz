@@ -21,13 +21,16 @@ namespace tweetz.core.Models
         private string theme = "dark";
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
 
+        [JsonIgnore]
+        public bool IsAuthenticated => !string.IsNullOrWhiteSpace(AccessToken) && !string.IsNullOrWhiteSpace(AccessTokenSecret);
+
         public string? AccessToken
         {
             get => accessToken;
             set
             {
                 SetProperty(ref accessToken, value);
-                NotifyAuthenticatedChanged();
+                OnPropertyChanged(nameof(IsAuthenticated));
             }
         }
 
@@ -37,20 +40,8 @@ namespace tweetz.core.Models
             set
             {
                 SetProperty(ref accessTokenSecret, value);
-                NotifyAuthenticatedChanged();
+                OnPropertyChanged(nameof(IsAuthenticated));
             }
-        }
-
-        [JsonIgnore]
-        public bool IsAuthenticated => !string.IsNullOrWhiteSpace(AccessToken) && !string.IsNullOrWhiteSpace(AccessTokenSecret);
-
-        [JsonIgnore]
-        public bool IsNotAuthenticated => !IsAuthenticated; // XAML is such a turd
-
-        private void NotifyAuthenticatedChanged()
-        {
-            OnPropertyChanged(nameof(IsAuthenticated));
-            OnPropertyChanged(nameof(IsNotAuthenticated));
         }
 
         public string? ScreenName { get => screenName; set => SetProperty(ref screenName, value); }

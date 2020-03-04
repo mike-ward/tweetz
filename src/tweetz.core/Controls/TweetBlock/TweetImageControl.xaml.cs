@@ -7,6 +7,11 @@ namespace tweetz.core.Controls
         public TweetImageControl()
         {
             InitializeComponent();
+            Loaded += TweetImageControl_Loaded;
+        }
+
+        private void TweetImageControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
         }
     }
 }

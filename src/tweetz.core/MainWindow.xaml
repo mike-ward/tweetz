@@ -30,7 +30,7 @@
 
     <controls:GetPinControl
       Grid.Row="1"
-      Visibility="{Binding DataContext.Settings.IsNotAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+      Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
     <controls:TabBarControl
       Grid.Row="1"
