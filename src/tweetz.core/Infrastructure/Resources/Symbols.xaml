@@ -20,6 +20,7 @@
   <sys:String x:Key="XSymbol">&#xE10A;</sys:String>
   <sys:String x:Key="AddSymbol">&#xE109;</sys:String>
   <sys:String x:Key="CheckSymbol">&#xE10B;</sys:String>
+  <sys:String x:Key="Hourglass">&#x231B;</sys:String>
 
   <FontFamily x:Key="SymbolFont">Segoe UI Symbol</FontFamily>
 
