@@ -70,7 +70,7 @@ namespace tweetz.core.Commands
                         twitterStatus.Favorited = true;
                     }
 
-                    await FavoritesTimelineControlViewModel.Update().ConfigureAwait(false);
+                    await FavoritesTimelineControlViewModel.UpdateAsync().ConfigureAwait(false);
                 }
             }
             catch (Exception ex)

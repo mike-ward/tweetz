@@ -80,8 +80,8 @@ namespace tweetz.core.Models
         {
             if (timer != null) return;
             timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
-            timer.Tick += async (s, args) => await Update();
-            await Update();
+            timer.Tick += Update;
+            await UpdateAsync();
             timer.Start();
         }
 
@@ -93,7 +93,13 @@ namespace tweetz.core.Models
             StatusCollection.Clear();
         }
 
-        public async Task Update()
+        private void Update(object? sender, EventArgs args)
+        {
+            // Fire and forget pattern
+            UpdateAsync().ConfigureAwait(false);
+        }
+
+        public async Task UpdateAsync()
         {
             try
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -92,12 +93,24 @@ namespace twitter.core.Models
             {
                 if (CheckedRelatedInfo) return relatedLinkInfo;
                 CheckedRelatedInfo = true;
-                Task.Run(async () => { RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfo(this); });
+                GetRelatedInfoAsync().ConfigureAwait(false); // fire and forget
                 return relatedLinkInfo;
             }
             set
             {
                 SetProperty(ref relatedLinkInfo, value);
+            }
+        }
+
+        private async Task GetRelatedInfoAsync()
+        {
+            try
+            {
+                RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.Message);
             }
         }
 

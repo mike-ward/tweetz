@@ -23,11 +23,11 @@ namespace tweetz.core
         {
             // Top level controls
             services.AddSingleton<MainWindow>();
-            services.AddSingleton<GetPinControlViewModel>();
-            services.AddSingleton<TabBarControlViewModel>();
 
             // View models
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<GetPinControlViewModel>();
+            services.AddSingleton<TabBarControlViewModel>();
             services.AddSingleton<HomeTimelineControlViewModel>();
             services.AddSingleton<FavoritesTimelineControlViewModel>();
             services.AddSingleton<SearchControlViewModel>();

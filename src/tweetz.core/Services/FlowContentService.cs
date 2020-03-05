@@ -86,8 +86,10 @@ namespace tweetz.core.Services
             {
                 Command = OpenLinkCommand.Command,
                 CommandParameter = link,
-                ToolTip = link,
+                ToolTip = link
             };
+
+            hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
 
             var textblock = new TextBlock(hyperlink)
             {

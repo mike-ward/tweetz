@@ -42,7 +42,7 @@ namespace twitter.core.Models
             }
         };
 
-        public static async Task<RelatedLinkInfo?> GetRelatedLinkInfo(TwitterStatus status)
+        public static async Task<RelatedLinkInfo?> GetRelatedLinkInfoAsync(TwitterStatus status)
         {
             if (status.IsQuoted)
             {

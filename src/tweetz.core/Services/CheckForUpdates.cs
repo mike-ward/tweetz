@@ -18,14 +18,20 @@ namespace tweetz.core.Services
             version = versionInfo.Version;
             var twoHours = TimeSpan.FromHours(2);
             var timer = new DispatcherTimer { Interval = twoHours };
-            timer.Tick += async (s, args) => await Check();
+            timer.Tick += Check;
             timer.Start();
-            Task.Run(Check);
+            Check(null, EventArgs.Empty);
         }
 
         public string Version { get => version; set => SetProperty(ref version, value); }
 
-        private async Task Check()
+        private void Check(object? sender, EventArgs args)
+        {
+            // fire and forget pattern
+            CheckAsync().ConfigureAwait(false);
+        }
+
+        private async Task CheckAsync()
         {
             try
             {

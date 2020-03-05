@@ -19,7 +19,7 @@ namespace tweetz.core.Controls
         {
             if (DataContext is HomeTimelineControlViewModel vm)
             {
-                vm.StatusCollection.CollectionChanged += async (s, args) =>
+                vm.StatusCollection.CollectionChanged += (s, args) =>
                 {
                     const int duration = 1000;
 
@@ -28,8 +28,11 @@ namespace tweetz.core.Controls
                         ? TimeSpan.Zero
                         : TimeSpan.FromMilliseconds(duration);
 
-                    await Task.Delay(duration + 200).ConfigureAwait(true);
-                    vm.FadeInDuration = TimeSpan.Zero;
+                    if (vm.FadeInDuration != TimeSpan.Zero)
+                    {
+                        Task.Delay(duration + 200)
+                            .ContinueWith(t => vm.FadeInDuration = TimeSpan.Zero);
+                    }
                 };
             }
         }

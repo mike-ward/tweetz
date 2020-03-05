@@ -66,12 +66,12 @@
         DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
         Visibility="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
-      <TextBlock
-        Style="{StaticResource TitleStyle}"
-        ToolTip="{Binding Url, Mode=OneWay}">
+      <TextBlock Style="{StaticResource TitleStyle}">
         <Hyperlink
           Command="commands:OpenLinkCommand.Command"
-          CommandParameter="{Binding Url, Mode=OneWay}">
+          CommandParameter="{Binding Url, Mode=OneWay}"
+          ToolTip="{Binding Url, Mode=OneWay}"
+          ToolTipOpening="Hyperlink_ToolTipOpening">
           <Run Text="{Binding Title, Mode=OneWay}" />
         </Hyperlink>
       </TextBlock>
