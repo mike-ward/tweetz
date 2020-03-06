@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -18,14 +19,14 @@ namespace tweetz.core.Services
             version = versionInfo.Version;
             var twoHours = TimeSpan.FromHours(2);
             var timer = new DispatcherTimer { Interval = twoHours };
-            timer.Tick += Check;
+            timer.Tick += (_, __) => Check();
             timer.Start();
-            Check(null, EventArgs.Empty);
+            Check();
         }
 
         public string Version { get => version; set => SetProperty(ref version, value); }
 
-        private void Check(object? sender, EventArgs args)
+        private void Check()
         {
             // fire and forget pattern
             CheckAsync().ConfigureAwait(false);
@@ -41,9 +42,10 @@ namespace tweetz.core.Services
                 using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 Version = stream.ReadToEnd();
             }
-            catch
+            catch (Exception ex)
             {
                 // eat it, non-critical
+                Trace.TraceError(ex.Message);
             }
         }
     }

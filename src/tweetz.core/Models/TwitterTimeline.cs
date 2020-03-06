@@ -18,7 +18,10 @@ namespace tweetz.core.Models
             SystemState = systemState;
             FadeInDuration = TimeSpan.Zero;
             IntervalInMinutes = intervalInMinutes;
-            Settings.PropertyChanged += OnSettingsChanged;
+            Settings.PropertyChanged += OnAuthenticationChanged;
+
+            updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
+            updateTimer.Tick += (_, __) => Update();
         }
 
         public ISettings Settings { get; }
@@ -28,7 +31,7 @@ namespace tweetz.core.Models
         public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
         public Duration FadeInDuration { get => fadeInDuration; set => SetProperty(ref fadeInDuration, value); }
         public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
-        public ObservableCollection<TwitterStatus> StatusCollection { get; set; } = new ObservableCollection<TwitterStatus>();
+        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
 
         public bool IsScrolled
         {
@@ -36,6 +39,8 @@ namespace tweetz.core.Models
             set
             {
                 SetProperty(ref isScrolled, value);
+
+                // ExceptionMessage is used by the TabItemIndicatorAdorner to show messages to the user
                 ExceptionMessage = isScrolled && Settings.PauseWhenScrolled
                     ? (string)Application.Current.FindResource("paused-due-to-scroll-pos")
                     : null;
@@ -44,9 +49,9 @@ namespace tweetz.core.Models
 
         private bool inUpdate;
         private bool isScrolled;
-        private DispatcherTimer? timer;
         private Duration fadeInDuration;
         private string? exceptionMessage;
+        private readonly DispatcherTimer updateTimer;
         private readonly List<Func<TwitterTimeline, Task>> updateTasks = new List<Func<TwitterTimeline, Task>>();
 
         public void AddUpdateTask(Func<TwitterTimeline, Task> task)
@@ -54,46 +59,21 @@ namespace tweetz.core.Models
             updateTasks.Add(task);
         }
 
-        private void OnSettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Start()
         {
-            OnSettingsChangedAsync(e).ConfigureAwait(false);
-        }
-
-        private Task OnSettingsChangedAsync(System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Settings.IsAuthenticated))
-            {
-                if (Settings.IsAuthenticated)
-                {
-                    Start().ConfigureAwait(false);
-                }
-                else
-                {
-                    Stop();
-                }
-            }
-
-            return Task.CompletedTask;
-        }
-
-        private async Task Start()
-        {
-            if (timer != null) return;
-            timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
-            timer.Tick += Update;
-            await UpdateAsync();
-            timer.Start();
+            if (updateTimer.IsEnabled) return;
+            updateTimer.Start();
+            Update();
         }
 
         private void Stop()
         {
-            timer?.Stop();
-            timer = null;
+            updateTimer?.Stop();
             AlreadyAdded.Clear();
             StatusCollection.Clear();
         }
 
-        private void Update(object? sender, EventArgs args)
+        private void Update()
         {
             // Fire and forget pattern
             UpdateAsync().ConfigureAwait(false);
@@ -120,11 +100,27 @@ namespace tweetz.core.Models
             }
             catch (Exception ex)
             {
+                Trace.TraceError(ex.Message);
                 ExceptionMessage = ex.Message;
             }
             finally
             {
                 inUpdate = false;
+            }
+        }
+
+        private void OnAuthenticationChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Settings.IsAuthenticated))
+            {
+                if (Settings.IsAuthenticated)
+                {
+                    Start();
+                }
+                else
+                {
+                    Stop();
+                }
             }
         }
     }

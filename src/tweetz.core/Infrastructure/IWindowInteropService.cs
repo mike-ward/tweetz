@@ -9,8 +9,6 @@ namespace tweetz.core.Infrastructure
 
         WindowPosition GetWindowPosition(Window window);
 
-        void DisableMaximizeButton(Window window);
-
         void PowerManagmentRegistration(Window window, ISystemState systemState);
     }
 }

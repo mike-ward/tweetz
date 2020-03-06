@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -22,7 +24,9 @@ namespace tweetz.core.Models
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
-        public bool IsAuthenticated => !string.IsNullOrWhiteSpace(AccessToken) && !string.IsNullOrWhiteSpace(AccessTokenSecret);
+        public bool IsAuthenticated =>
+            !string.IsNullOrWhiteSpace(AccessToken) &&
+            !string.IsNullOrWhiteSpace(AccessTokenSecret);
 
         public string? AccessToken
         {
@@ -58,13 +62,9 @@ namespace tweetz.core.Models
         // Load / Save
 
         [JsonIgnore]
-        public static string SettingsFilePath
-        {
-            get
-            {
-                return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, "tweetz.core.settings.txt");
-            }
-        }
+        public static string SettingsFilePath => Path.Combine(
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty,
+            "tweetz.core.settings.txt");
 
         public void Load()
         {
@@ -85,9 +85,10 @@ namespace tweetz.core.Models
                 Donated = settings.Donated;
                 MainWindowPosition = settings.MainWindowPosition;
             }
-            catch
+            catch (Exception ex)
             {
                 // falls back to defaults
+                Trace.TraceError(ex.Message);
             }
         }
 

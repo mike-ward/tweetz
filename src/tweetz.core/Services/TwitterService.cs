@@ -19,7 +19,7 @@ namespace tweetz.core.Services
             twitterApi = new TwitterApi(consumerKey, consumerSecret);
             this.settings = settings;
 
-            this.settings.PropertyChanged += (s, args) => twitterApi.AuthenticateWithTokens(
+            this.settings.PropertyChanged += (s, args) => twitterApi.AuthenticationTokens(
                 this.settings.AccessToken,
                 this.settings.AccessTokenSecret);
         }

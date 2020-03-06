@@ -8,7 +8,7 @@ using tweetz.core.ViewModels;
 
 namespace tweetz.core
 {
-    public static class BootStrapper
+    internal static class BootStrapper
     {
         private static ServiceProvider ServiceProvider { get; }
 

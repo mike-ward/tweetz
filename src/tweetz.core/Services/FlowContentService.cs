@@ -67,7 +67,7 @@ namespace tweetz.core.Services
                         break;
 
                     case FlowContentNodeType.Media:
-                        continue;
+                        break;
 
                     default:
                         throw new InvalidOperationException();
@@ -82,6 +82,8 @@ namespace tweetz.core.Services
 
         private static InlineUIContainer Link(string link)
         {
+            const int maxDisplayLength = 150;
+
             var hyperlink = new Hyperlink(new Run(link))
             {
                 Command = OpenLinkCommand.Command,
@@ -93,7 +95,7 @@ namespace tweetz.core.Services
 
             var textblock = new TextBlock(hyperlink)
             {
-                MaxWidth = 150,
+                MaxWidth = maxDisplayLength,
                 TextTrimming = TextTrimming.CharacterEllipsis
             };
 

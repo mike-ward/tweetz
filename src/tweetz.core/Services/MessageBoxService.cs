@@ -8,7 +8,8 @@ namespace tweetz.core.Services
     {
         public void ShowMessageBox(string message)
         {
-            MessageBox.Show(message);
+            const string caption = "Tweetz";
+            MessageBox.Show(message, caption);
         }
 
         public Task ShowMessageBoxAsync(string message)

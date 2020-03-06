@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
@@ -10,12 +11,13 @@ namespace tweetz.core.ViewModels
     public class SearchControlViewModel : TwitterTimeline
     {
         private bool showProgress;
+        private const int InfiniteElapsed = Int32.MaxValue / 60000;
 
         public ITwitterService TwitterService { get; }
         public Action<string> SetSearchText { get; set; }
 
         public SearchControlViewModel(ISettings settings, ISystemState systemState, ITwitterService twitterService)
-            : base(settings, systemState, Int32.MaxValue / 60000)
+            : base(settings, systemState, InfiniteElapsed)
         {
             TwitterService = twitterService;
         }
@@ -39,6 +41,7 @@ namespace tweetz.core.ViewModels
             }
             catch (Exception ex)
             {
+                Trace.TraceError(ex.Message);
                 ExceptionMessage = ex.Message;
             }
             finally
@@ -63,6 +66,7 @@ namespace tweetz.core.ViewModels
             }
             catch (Exception ex)
             {
+                Trace.TraceError(ex.Message);
                 ExceptionMessage = ex.Message;
             }
             finally

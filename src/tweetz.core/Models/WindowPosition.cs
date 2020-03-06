@@ -12,7 +12,7 @@ namespace tweetz.core.Models
 
         public bool Equals([AllowNull] WindowPosition other)
         {
-            return (Left, Top, Width, Height) == (other.Left, other.Top, other.Width, other.Height);
+            return AsTuple() == other.AsTuple();
         }
 
         public override bool Equals(object? obj)
@@ -22,7 +22,7 @@ namespace tweetz.core.Models
 
         public override int GetHashCode()
         {
-            return (Left, Top, Width, Height).GetHashCode();
+            return AsTuple().GetHashCode();
         }
 
         public static bool operator ==(WindowPosition a, WindowPosition b)
@@ -33,6 +33,11 @@ namespace tweetz.core.Models
         public static bool operator !=(WindowPosition a, WindowPosition b)
         {
             return !a.Equals(b);
+        }
+
+        private (int Left, int Top, int Width, int Height) AsTuple()
+        {
+            return (Left, Top, Width, Height);
         }
     }
 }

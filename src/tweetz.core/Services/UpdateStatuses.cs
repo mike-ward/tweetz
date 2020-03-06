@@ -7,7 +7,7 @@ namespace tweetz.core.Services
 {
     public static class UpdateStatuses
     {
-        private static IEqualityComparer<TwitterStatus> twitterStatusComparer = new TwitterStatusEqualityComparer();
+        private static readonly IEqualityComparer<TwitterStatus> twitterStatusComparer = new TwitterStatusEqualityComparer();
 
         public static void Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {

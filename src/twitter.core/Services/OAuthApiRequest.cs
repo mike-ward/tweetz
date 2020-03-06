@@ -26,7 +26,7 @@ namespace twitter.core.Services
             ConsumerSecret = consumerSecret;
         }
 
-        public void AuthenticateWithTokens(string? accessToken, string? accessTokenSecret)
+        public void AuthenticationTokens(string? accessToken, string? accessTokenSecret)
         {
             AccessToken = accessToken;
             AccessTokenSecret = accessTokenSecret;

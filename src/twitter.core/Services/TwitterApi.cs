@@ -33,9 +33,9 @@ namespace twitter.core.Services
             return TwitterTokenRequest.GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin);
         }
 
-        public void AuthenticateWithTokens(string? accessToken, string? accessTokenSecret)
+        public void AuthenticationTokens(string? accessToken, string? accessTokenSecret)
         {
-            oAuthApiRequest.AuthenticateWithTokens(accessToken, accessTokenSecret);
+            oAuthApiRequest.AuthenticationTokens(accessToken, accessTokenSecret);
         }
 
         public Task<IEnumerable<TwitterStatus>> HomeTimeline()

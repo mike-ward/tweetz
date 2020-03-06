@@ -11,7 +11,7 @@ namespace tweetz.core.Services
     public static class LongUrlService
     {
         private const int maxCacheSize = 100;
-        private static readonly ConcurrentDictionary<string, string> UrlCache = new ConcurrentDictionary<string, string>();
+        private static readonly ConcurrentDictionary<string, string> UrlCache = new ConcurrentDictionary<string, string>(1, maxCacheSize + 1);
 
         public static async Task<string> TryGetLongUrl(string link)
         {

@@ -10,13 +10,6 @@ namespace tweetz.core.Services
 {
     public class WindowInteropService : IWindowInteropService
     {
-        public void DisableMaximizeButton(Window window)
-        {
-            var hwnd = new WindowInteropHelper(window).Handle;
-            var currentStyle = GetWindowLong(hwnd, GWL_STYLE);
-            SetWindowLong(hwnd, GWL_STYLE, currentStyle & ~WS_MAXIMIZEBOX);
-        }
-
         public void SetWindowPosition(Window window, WindowPosition windowPosition)
         {
             var windowHandle = new WindowInteropHelper(window).Handle;
@@ -33,6 +26,8 @@ namespace tweetz.core.Services
 
         private static WINDOWPLACEMENT ToWindowPlacement(WindowPosition position)
         {
+            const int SW_SHOWNORMAL = 1;
+
             return new WINDOWPLACEMENT
             {
                 length = Marshal.SizeOf(typeof(WINDOWPLACEMENT)),
@@ -71,14 +66,6 @@ namespace tweetz.core.Services
             public int Top;
             public int Right;
             public int Bottom;
-
-            public RECT(int left, int top, int right, int bottom)
-            {
-                Left = left;
-                Top = top;
-                Right = right;
-                Bottom = bottom;
-            }
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -87,12 +74,6 @@ namespace tweetz.core.Services
         {
             public int X;
             public int Y;
-
-            public POINT(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -112,16 +93,6 @@ namespace tweetz.core.Services
 
         [DllImport("user32.dll")]
         private static extern bool GetWindowPlacement(IntPtr hWnd, out WINDOWPLACEMENT lpwndpl);
-
-        private const int SW_SHOWNORMAL = 1;
-
-        private const int GWL_STYLE = -16, WS_MAXIMIZEBOX = 0x10000, WS_MINIMIZEBOX = 0x20000;
-
-        [DllImport("user32.dll")]
-        private static extern int GetWindowLong(IntPtr hwnd, int index);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hwnd, int index, int value);
 
         // Power Managment - detect when monitor is sleeping
 
