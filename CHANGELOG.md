@@ -1,8 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.1.0 - 2020-03-07
+### Added
+
+- Short to long URL lookup for tooltips [1d4d723](<https://github.com/mike-ward/tweetz/commit/1d4d7235db9d92419ed2190a8d91a58d45b2f6ac>)
+- Splash screen [52a2fc7](<https://github.com/mike-ward/tweetz/commit/52a2fc738f999b088d12ac670531b2f7eb7f672e>)
+- Fixed height images with rounded corners [8f55db3](<https://github.com/mike-ward/tweetz/commit/8f55db3cf68fbc39bce49c487e21c65dc03634da>)
+- Hourglass symbol to indicate image loading [cc025b1](<https://github.com/mike-ward/tweetz/commit/cc025b1fdba56a2fc3a27ac582ab7ffda9fa1a1a>)
+- Add app.manifest with DPI permonitor awareness. [a139a53](<https://github.com/mike-ward/tweetz/commit/a139a53b38a1e909c6a9e69b1c22f2a39c59b5c5>)
+- Add usage tips to settings screen [/6b6b14a](<https://github.com/mike-ward/tweetz/commit/6b6b14a4870b47c3b814e303f5c3b8bd6b79cc66>)
+- Add font-size key bindings and commands [23ea4e3](<https://github.com/mike-ward/tweetz/commit/23ea4e3a0300460893016d3c96fb45e344d395c7>)
+- Brief fade-in animation of new tweets [a9085cc](<https://github.com/mike-ward/tweetz/commit/a9085ccfd5e50d64e70649679c582d38ceb77069>)
+
+### Changed
+
+- Change font selector to slider. [0190b64](<https://github.com/mike-ward/tweetz/commit/0190b64504916dbf721e032a377b2aff6791ff2e>)
+- Title close button more like standard windows style [465d366](<https://github.com/mike-ward/tweetz/commit/465d366386d7185abbcf70bf55a11ff1b0f0b83c>)
+- Limit length of related link text to 300 characters [e9373ed](<https://github.com/mike-ward/tweetz/commit/e9373edbc28d870f092da7dd8b001532fca77a44>)
+- Move user control resources to application resources and other performance improvements.
+
 ## 2.0.2 - 2020-02-01
-### Chnaged
+### Changed
 
 - Reduce memory load of related links by only scanning `<head>` section. [bffb90](https://github.com/mike-ward/tweetz/commit/bffb90988f0cff09157efd6becb2fc0b48360b2f)
 - Refactorings suggested by SonarLink and FxCop analyzers
