@@ -4,29 +4,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="BorderStyle"
-      TargetType="Border">
-      <Setter Property="Height" Value="200" />
-      <Setter Property="Margin" Value="1" />
-      <Setter Property="CornerRadius" Value="8" />
-      <Setter Property="Cursor" Value="Hand" />
-    </Style>
-
-    <Style
-      x:Key="UniformGridStyle"
-      TargetType="UniformGrid">
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding ItemsSource.Length, ElementName=ItemsControl, Mode=OneWay}"
-          Value="2">
-          <Setter Property="Rows" Value="1" />
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-  </UserControl.Resources>
-
   <ItemsControl
     Name="ItemsControl"
     ItemsSource="{Binding ExtendedEntities.Media}">
@@ -34,8 +11,10 @@
       <DataTemplate>
         <Border
           Name="Border"
-          Style="{StaticResource BorderStyle}">
-
+          Height="200"
+          Margin="1"
+          CornerRadius="9"
+          Cursor="Hand">
           <!--
             All this because I wanted to put round corners on an image, a loading
             indicator and a handler for image load fails.
@@ -102,7 +81,7 @@
 
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <UniformGrid Style="{StaticResource UniformGridStyle}" />
+        <UniformGrid Style="{StaticResource TweetImageUniformGridStyle}" />
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
   </ItemsControl>

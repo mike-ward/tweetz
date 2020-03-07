@@ -10,63 +10,13 @@
   d:DesignWidth="800"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="RelatedBorderStyle"
-      TargetType="Border">
-      <Setter Property="Margin" Value="0,3" />
-      <Setter Property="BorderThickness" Value="0.3" />
-      <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
-      <Setter Property="Padding" Value="10,9" />
-      <Setter Property="CornerRadius" Value="10" />
-    </Style>
-
-    <Style
-      x:Key="TitleStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-      <Setter Property="FontWeight" Value="Bold" />
-      <Setter Property="TextWrapping" Value="Wrap" />
-      <Setter Property="TextTrimming" Value="WordEllipsis" />
-      <Setter Property="MaxHeight" Value="75" />
-    </Style>
-
-    <Style
-      x:Key="DescriptionStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-      <Setter Property="TextWrapping" Value="Wrap" />
-      <Setter Property="TextTrimming" Value="WordEllipsis" />
-    </Style>
-
-    <Style
-      x:Key="SiteNameStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-
-      <Style.Triggers>
-        <Trigger Property="IsMouseOver" Value="True">
-          <Setter Property="TextDecorations" Value="Underline" />
-          <Setter Property="Cursor" Value="Hand" />
-        </Trigger>
-      </Style.Triggers>
-
-      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-      <Setter Property="MaxHeight" Value="20" />
-      <Setter Property="Cursor" Value="Hand" />
-      <Setter Property="HorizontalAlignment" Value="Left" />
-      <Setter Property="Visibility" Value="{Binding SiteName, Converter={StaticResource NotNullToVisibilityConverter}}" />
-    </Style>
-  </UserControl.Resources>
-
-  <Border Style="{StaticResource RelatedBorderStyle}">
-
+  <Border Style="{StaticResource TweetBlockRelatedBorderStyle}">
     <StackPanel>
       <local:TweetImageControl
         DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
         Visibility="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
-      <TextBlock Style="{StaticResource TitleStyle}">
+      <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
         <Hyperlink
           Command="commands:OpenLinkCommand.Command"
           CommandParameter="{Binding Url, Mode=OneWay}"
@@ -77,11 +27,11 @@
       </TextBlock>
 
       <TextBlock
-        Style="{StaticResource DescriptionStyle}"
+        Style="{StaticResource TweetBlockDescriptionStyle}"
         Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneWay}" />
 
       <TextBlock
-        Style="{StaticResource SiteNameStyle}"
+        Style="{StaticResource TweetBlockSiteNameStyle}"
         ToolTip="{Binding Url, Mode=OneWay}">
 
         <TextBlock.InputBindings>

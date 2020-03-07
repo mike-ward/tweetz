@@ -9,19 +9,7 @@
   d:DesignWidth="300"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="QuotedBorderStyle"
-      TargetType="Border">
-      <Setter Property="Margin" Value="0,3" />
-      <Setter Property="BorderThickness" Value="0.3" />
-      <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
-      <Setter Property="Padding" Value="10,9" />
-      <Setter Property="CornerRadius" Value="10" />
-    </Style>
-  </UserControl.Resources>
-
-  <Border Style="{StaticResource QuotedBorderStyle}">
+  <Border Style="{StaticResource TweetBlockQuotedBorderStyle}">
     <StackPanel>
       <local:TweetNameInfoControl DataContext="{Binding Mode=OneWay}" />
 

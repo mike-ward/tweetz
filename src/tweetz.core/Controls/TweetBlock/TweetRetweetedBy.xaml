@@ -11,30 +11,10 @@
   mc:Ignorable="d">
 
   <UserControl.Resources>
-    <Style
-      x:Key="RetweetedByStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-      <Style.Triggers>
-        <Trigger Property="IsMouseOver" Value="True">
-          <Setter Property="TextDecorations" Value="Underline" />
-          <Setter Property="Cursor" Value="Hand" />
-        </Trigger>
-      </Style.Triggers>
-
-      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-    </Style>
-
-    <Style
-      x:Key="RetweetSymbolStyle"
-      TargetType="Run">
-      <Setter Property="FontFamily" Value="{StaticResource SymbolFont}" />
-      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-    </Style>
   </UserControl.Resources>
 
   <TextBlock
-    Style="{StaticResource RetweetedByStyle}"
+    Style="{StaticResource TweetBlockRetweetedByStyle}"
     Tag="{Binding User.ScreenName, Mode=OneWay}"
     Visibility="{Binding IsRetweet, Converter={StaticResource BooleanToVisibilityConverter}}">
 
@@ -52,7 +32,7 @@
     </TextBlock.InputBindings>
 
     <Run
-      Style="{StaticResource RetweetSymbolStyle}"
+      Style="{StaticResource TweetBlockRetweetSymbolStyle}"
       Text="{StaticResource RetweetSymbol}" />
     <Run Text="{Binding User.Name, Mode=OneWay}" />
     <Run Text="{StaticResource retweeted}" />

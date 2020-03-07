@@ -1,0 +1,276 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:tweetz.core.Controls">
+
+  <Style
+    x:Key="TweetBlockImageControlStyle"
+    TargetType="{x:Type local:TweetImageControl}">
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding DataContext.RelatedLinkInfo.ImageUrl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource IsNullConverter}}"
+        Value="False">
+        <Setter Property="Visibility" Value="Collapsed" />
+      </DataTrigger>
+      <DataTrigger
+        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
+        Value="True">
+        <Setter Property="Visibility" Value="Collapsed" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockRelatedLinkControlStyle"
+    TargetType="{x:Type local:TweetRelatedLinkControl}">
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        Value="{x:Null}">
+        <Setter Property="Visibility" Value="Collapsed" />
+      </DataTrigger>
+      <DataTrigger
+        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
+        Value="True">
+        <Setter Property="Visibility" Value="Collapsed" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockGridStyle"
+    TargetType="Grid">
+    <Setter Property="Margin" Value="0,0,0,10" />
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding IsMyTweet, Mode=OneWay}"
+        Value="True">
+        <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
+      </DataTrigger>
+      <DataTrigger
+        Binding="{Binding MentionsMe, Mode=OneWay}"
+        Value="True">
+        <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockTextBlockStyle"
+    BasedOn="{StaticResource BaseTextBlockStyle}"
+    TargetType="TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+    <Setter Property="Margin" Value="0,0,12,0" />
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockRetweetSymbolStyle"
+    BasedOn="{StaticResource SymbolStyle}"
+    TargetType="Run">
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding RetweetedByMe}"
+        Value="True">
+        <Setter Property="Foreground" Value="Green" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockLikeSymbolStyle"
+    BasedOn="{StaticResource SymbolStyle}"
+    TargetType="Run">
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding Favorited}"
+        Value="True">
+        <Setter Property="Foreground" Value="Firebrick" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockFollowSymbolStyle"
+    BasedOn="{StaticResource SymbolStyle}"
+    TargetType="Run">
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding User.IsFollowing}"
+        Value="True">
+        <Setter Property="Foreground" Value="{StaticResource TwitterBlue}" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetImageUniformGridStyle"
+    TargetType="UniformGrid">
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding ItemsSource.Length, ElementName=ItemsControl, Mode=OneWay}"
+        Value="2">
+        <Setter Property="Rows" Value="1" />
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockLinkStyle"
+    BasedOn="{StaticResource BaseRunToolTipStyle}"
+    TargetType="Run">
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="Cursor" Value="Hand" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockUserNameStyle"
+    BasedOn="{StaticResource TweetBlockLinkStyle}"
+    TargetType="Run">
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Foreground" Value="{DynamicResource LinkForegroundBrush}" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockScreenNameStyle"
+    BasedOn="{StaticResource TweetBlockLinkStyle}"
+    TargetType="Run">
+    <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockTimeAgoStyle"
+    BasedOn="{StaticResource TweetBlockScreenNameStyle}"
+    TargetType="Run" />
+
+  <Style
+    x:Key="TweetBlockProfileImageStyle"
+    BasedOn="{StaticResource BaseImageToolTipStyle}"
+    TargetType="Image">
+
+    <Style.Triggers>
+      <DataTrigger
+        Binding="{Binding Bigger, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        Value="False">
+        <Setter Property="Source" Value="{Binding ProfileImageUrlBigger, Mode=OneWay, FallbackValue='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'}" />
+        <Setter Property="Width" Value="47" />
+        <Setter Property="Height" Value="47" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="LowQuality" />
+        <Setter Property="Clip">
+          <Setter.Value>
+            <EllipseGeometry
+              Center="23,23"
+              RadiusX="23"
+              RadiusY="23" />
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+
+      <DataTrigger
+        Binding="{Binding Bigger, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        Value="True">
+        <Setter Property="Source" Value="{Binding ProfileImageUrlOriginal, Mode=OneWay, FallbackValue='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'}" />
+        <Setter Property="Width" Value="101" />
+        <Setter Property="Height" Value="101" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+        <Setter Property="Clip">
+          <Setter.Value>
+            <EllipseGeometry
+              Center="50,50"
+              RadiusX="50"
+              RadiusY="50" />
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+    </Style.Triggers>
+
+    <Setter Property="Stretch" Value="Uniform" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="RenderOptions.CachingHint" Value="Cache" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockQuotedBorderStyle"
+    TargetType="Border">
+    <Setter Property="Margin" Value="0,3" />
+    <Setter Property="BorderThickness" Value="0.3" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
+    <Setter Property="Padding" Value="10,9" />
+    <Setter Property="CornerRadius" Value="10" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockRelatedBorderStyle"
+    TargetType="Border">
+    <Setter Property="Margin" Value="0,3" />
+    <Setter Property="BorderThickness" Value="0.3" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
+    <Setter Property="Padding" Value="10,9" />
+    <Setter Property="CornerRadius" Value="10" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockTitleStyle"
+    BasedOn="{StaticResource BaseTextBlockStyle}"
+    TargetType="TextBlock">
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="TextTrimming" Value="WordEllipsis" />
+    <Setter Property="MaxHeight" Value="75" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockDescriptionStyle"
+    BasedOn="{StaticResource BaseTextBlockStyle}"
+    TargetType="TextBlock">
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="TextTrimming" Value="WordEllipsis" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockSiteNameStyle"
+    BasedOn="{StaticResource BaseTextBlockStyle}"
+    TargetType="TextBlock">
+
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="Cursor" Value="Hand" />
+      </Trigger>
+    </Style.Triggers>
+
+    <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+    <Setter Property="MaxHeight" Value="20" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Visibility" Value="{Binding SiteName, Converter={StaticResource NotNullToVisibilityConverter}}" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockRetweetedByStyle"
+    BasedOn="{StaticResource BaseTextBlockStyle}"
+    TargetType="TextBlock">
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="Cursor" Value="Hand" />
+      </Trigger>
+    </Style.Triggers>
+
+    <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockTweetTextStyle"
+    BasedOn="{StaticResource BaseTextBlockStyle}"
+    TargetType="TextBlock">
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+  </Style>
+</ResourceDictionary>

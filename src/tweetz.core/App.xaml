@@ -16,6 +16,7 @@
         <ResourceDictionary Source="Infrastructure/Resources/ScrollBar.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/Twitter.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/Converters.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/TweetBlockStyles.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>

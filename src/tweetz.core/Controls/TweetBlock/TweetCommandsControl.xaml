@@ -9,61 +9,9 @@
   d:DesignWidth="200"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="TextBlockStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-      <Setter Property="Margin" Value="0,0,12,0" />
-      <Setter Property="Cursor" Value="Hand" />
-    </Style>
-
-    <Style
-      x:Key="RetweetSymbolStyle"
-      BasedOn="{StaticResource SymbolStyle}"
-      TargetType="Run">
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding RetweetedByMe}"
-          Value="True">
-          <Setter Property="Foreground" Value="Green" />
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style
-      x:Key="LikeSymbolStyle"
-      BasedOn="{StaticResource SymbolStyle}"
-      TargetType="Run">
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding Favorited}"
-          Value="True">
-          <Setter Property="Foreground" Value="Firebrick" />
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style
-      x:Key="FollowSymbolStyle"
-      BasedOn="{StaticResource SymbolStyle}"
-      TargetType="Run">
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding User.IsFollowing}"
-          Value="True">
-          <Setter Property="Foreground" Value="{StaticResource TwitterBlue}" />
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-  </UserControl.Resources>
-
-  <!--  End Resources  -->
-
   <StackPanel Orientation="Horizontal">
     <TextBlock
-      Style="{StaticResource TextBlockStyle}"
+      Style="{StaticResource TweetBlockTextBlockStyle}"
       ToolTip="{StaticResource reply-tooltip}">
       <Run
         Style="{StaticResource SymbolStyle}"
@@ -78,10 +26,10 @@
     </TextBlock>
 
     <TextBlock
-      Style="{StaticResource TextBlockStyle}"
+      Style="{StaticResource TweetBlockTextBlockStyle}"
       ToolTip="{StaticResource retweet-tooltip}">
       <Run
-        Style="{StaticResource RetweetSymbolStyle}"
+        Style="{StaticResource TweetBlockRetweetSymbolStyle}"
         Text="{StaticResource RetweetSymbol}" />
       <Run Text="{Binding RetweetCount, Mode=OneWay, Converter={StaticResource CountConverter}}" />
 
@@ -94,10 +42,10 @@
     </TextBlock>
 
     <TextBlock
-      Style="{StaticResource TextBlockStyle}"
+      Style="{StaticResource TweetBlockTextBlockStyle}"
       ToolTip="{StaticResource like-tooltip}">
       <Run
-        Style="{StaticResource LikeSymbolStyle}"
+        Style="{StaticResource TweetBlockLikeSymbolStyle}"
         Text="{StaticResource LikeSymbol}" />
       <Run Text="{Binding FavoriteCount, Mode=OneWay, Converter={StaticResource CountConverter}}" />
 
@@ -110,7 +58,7 @@
     </TextBlock>
 
     <TextBlock
-      Style="{StaticResource TextBlockStyle}"
+      Style="{StaticResource TweetBlockTextBlockStyle}"
       ToolTip="{StaticResource retweet-with-comment-tooltip}">
       <Run
         Style="{StaticResource SymbolStyle}"
@@ -125,10 +73,10 @@
     </TextBlock>
 
     <TextBlock
-      Style="{StaticResource TextBlockStyle}"
+      Style="{StaticResource TweetBlockTextBlockStyle}"
       ToolTip="{StaticResource follow-tooltip}">
       <Run
-        Style="{StaticResource FollowSymbolStyle}"
+        Style="{StaticResource TweetBlockFollowSymbolStyle}"
         Text="{StaticResource AddFriendSymbol}" />
       <Run Text="{Binding User.Followers, Mode=OneWay, Converter={StaticResource CountConverter}}" />
 

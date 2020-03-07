@@ -11,56 +11,7 @@
   ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="TweetImageStyle"
-      BasedOn="{StaticResource BaseImageToolTipStyle}"
-      TargetType="Image">
-
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding Bigger, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-          Value="False">
-          <Setter Property="Source" Value="{Binding ProfileImageUrlBigger, Mode=OneWay, FallbackValue='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'}" />
-          <Setter Property="Width" Value="47" />
-          <Setter Property="Height" Value="47" />
-          <Setter Property="RenderOptions.BitmapScalingMode" Value="LowQuality" />
-          <Setter Property="Clip">
-            <Setter.Value>
-              <EllipseGeometry
-                Center="23,23"
-                RadiusX="23"
-                RadiusY="23" />
-            </Setter.Value>
-          </Setter>
-        </DataTrigger>
-
-        <DataTrigger
-          Binding="{Binding Bigger, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-          Value="True">
-          <Setter Property="Source" Value="{Binding ProfileImageUrlOriginal, Mode=OneWay, FallbackValue='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'}" />
-          <Setter Property="Width" Value="101" />
-          <Setter Property="Height" Value="101" />
-          <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
-          <Setter Property="Clip">
-            <Setter.Value>
-              <EllipseGeometry
-                Center="50,50"
-                RadiusX="50"
-                RadiusY="50" />
-            </Setter.Value>
-          </Setter>
-        </DataTrigger>
-      </Style.Triggers>
-
-      <Setter Property="Stretch" Value="Uniform" />
-      <Setter Property="VerticalAlignment" Value="Top" />
-      <Setter Property="HorizontalAlignment" Value="Left" />
-      <Setter Property="RenderOptions.CachingHint" Value="Cache" />
-    </Style>
-  </UserControl.Resources>
-
-  <Image Style="{StaticResource TweetImageStyle}">
+  <Image Style="{StaticResource TweetBlockProfileImageStyle}">
 
     <Image.InputBindings>
       <MouseBinding

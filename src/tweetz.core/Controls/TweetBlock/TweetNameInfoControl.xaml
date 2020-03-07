@@ -10,41 +10,6 @@
   d:DesignWidth="300"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="LinkStyle"
-      BasedOn="{StaticResource BaseRunToolTipStyle}"
-      TargetType="Run">
-      <Style.Triggers>
-        <Trigger Property="IsMouseOver" Value="True">
-          <Setter Property="TextDecorations" Value="Underline" />
-          <Setter Property="Cursor" Value="Hand" />
-        </Trigger>
-      </Style.Triggers>
-    </Style>
-
-    <Style
-      x:Key="UserNameStyle"
-      BasedOn="{StaticResource LinkStyle}"
-      TargetType="Run">
-      <Setter Property="FontWeight" Value="Bold" />
-      <Setter Property="Foreground" Value="{DynamicResource LinkForegroundBrush}" />
-    </Style>
-
-    <Style
-      x:Key="ScreenNameStyle"
-      BasedOn="{StaticResource LinkStyle}"
-      TargetType="Run">
-      <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-      <Setter Property="Cursor" Value="Hand" />
-    </Style>
-
-    <Style
-      x:Key="TimeAgoStyle"
-      BasedOn="{StaticResource ScreenNameStyle}"
-      TargetType="Run" />
-  </UserControl.Resources>
-
   <TextBlock
     Grid.Row="0"
     Grid.Column="1"
@@ -52,7 +17,7 @@
     TextWrapping="Wrap">
 
     <Run
-      Style="{StaticResource UserNameStyle}"
+      Style="{StaticResource TweetBlockUserNameStyle}"
       Text="{Binding User.Name, Mode=OneWay}">
       <Run.ToolTip>
         <ToolTip Style="{StaticResource ToolTipStyle}">
@@ -77,7 +42,7 @@
     </InlineUIContainer>
 
     <Run
-      Style="{StaticResource ScreenNameStyle}"
+      Style="{StaticResource TweetBlockScreenNameStyle}"
       Text="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ScreenNameConverter}}">
       <Run.ToolTip>
         <ToolTip Style="{StaticResource ToolTipStyle}">
@@ -94,11 +59,11 @@
     </Run>
 
     <Run
-      Style="{StaticResource ScreenNameStyle}"
+      Style="{StaticResource TweetBlockScreenNameStyle}"
       Text="•" />
 
     <Run
-      Style="{StaticResource TimeAgoStyle}"
+      Style="{StaticResource TweetBlockTimeAgoStyle}"
       Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}"
       ToolTip="{StaticResource open-in-twitter-tooltip}">
       <Run.InputBindings>
