@@ -8,27 +8,5 @@
   d:DesignWidth="800"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="FollowingStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-      <Setter Property="FontWeight" Value="Bold" />
-
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding IsFollowing, Mode=OneWay}"
-          Value="True">
-          <Setter Property="Text" Value="{StaticResource profile-following}" />
-        </DataTrigger>
-        <DataTrigger
-          Binding="{Binding IsFollowing, Mode=OneWay}"
-          Value="False">
-          <Setter Property="Text" Value="{StaticResource profile-not-following}" />
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-  </UserControl.Resources>
-
-  <TextBlock Style="{StaticResource FollowingStyle}" />
+  <TextBlock Style="{StaticResource UserProfileFollowingStyle}" />
 </UserControl>

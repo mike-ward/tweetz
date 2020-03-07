@@ -8,28 +8,5 @@
   d:DesignWidth="800"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-    <Style
-      x:Key="FollowedByStyle"
-      BasedOn="{StaticResource BaseTextBlockStyle}"
-      TargetType="TextBlock">
-      <Setter Property="FontWeight" Value="Bold" />
-
-      <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding IsFollowedBy, Mode=OneWay}"
-          Value="True">
-          <Setter Property="Text" Value="{StaticResource profile-follows-you}" />
-          <Setter Property="Visibility" Value="Visible" />
-        </DataTrigger>
-        <DataTrigger
-          Binding="{Binding IsFollowedBy, Mode=OneWay}"
-          Value="False">
-          <Setter Property="Visibility" Value="Collapsed" />
-        </DataTrigger>
-      </Style.Triggers>
-    </Style>
-  </UserControl.Resources>
-
-  <TextBlock Style="{StaticResource FollowedByStyle}" />
+  <TextBlock Style="{StaticResource UserProfileFollowedByStyle}" />
 </UserControl>
