@@ -10,15 +10,19 @@
   Title="Tweetz"
   Width="355"
   Height="900"
-  AllowsTransparency="True"
   Background="{DynamicResource StandardBackgroundBrush}"
   DataContext="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:MainWindowViewModel}, Mode=OneWay}"
   FontSize="{Binding Settings.FontSize}"
   Foreground="{DynamicResource StandardForegroundBrush}"
-  ResizeMode="CanResizeWithGrip"
   SnapsToDevicePixels="True"
   WindowStyle="None"
   mc:Ignorable="d">
+
+  <WindowChrome.WindowChrome>
+    <WindowChrome
+      CaptionHeight="0"
+      ResizeBorderThickness="5" />
+  </WindowChrome.WindowChrome>
 
   <Grid>
     <Grid.RowDefinitions>

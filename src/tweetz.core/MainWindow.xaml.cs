@@ -18,17 +18,19 @@ namespace tweetz.core
         protected override void OnSourceInitialized(EventArgs e)
         {
             ViewModel.Initialize(this);
+            base.OnSourceInitialized(e);
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
             ViewModel.OnClosing(this);
+            base.OnClosing(e);
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
             DragMove();
+            base.OnMouseLeftButtonDown(e);
         }
     }
 }
