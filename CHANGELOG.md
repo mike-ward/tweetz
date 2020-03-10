@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.1.1 - 2020-03-09
+
+### Changed
+- Installer always on top [8402782](<https://github.com/mike-ward/tweetz/commit/8402782c68c25de936f56351ee6550a113a9cd31>)
+
+### Fixed
+- Windows sizing using borders restored - [#8](<https://github.com/mike-ward/tweetz/issues/8>)
+
 ## 2.1.0 - 2020-03-07
 ### Added
 
