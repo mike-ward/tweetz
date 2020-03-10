@@ -42,3 +42,19 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
+[Code]
+const
+  HWND_TOPMOST = -1;
+  SWP_NOSIZE = 1;
+  SWP_NOMOVE = 2;
+  SWP_SHOWWINDOW = $40;
+
+function SetWindowPos(hWnd: HWND; hWndInsertAfter: HWND; X: Integer; Y: Integer;
+  cx: Integer; cy: Integer; uFlags: UINT): BOOL;
+  external 'SetWindowPos@user32.dll stdcall'; 
+
+procedure InitializeWizard;
+begin
+  SetWindowPos(WizardForm.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE or 
+    SWP_NOMOVE or SWP_SHOWWINDOW); 
+end;
