@@ -1,10 +1,18 @@
 ﻿namespace tweetz.core.Models
 {
-    public class FlowContentItem
+    public struct FlowContentItem
     {
-        public FlowContentNodeType FlowContentNodeType { get; set; }
-        public string Text { get; set; } = string.Empty;
-        public int Start { get; set; }
-        public int End { get; set; }
+        public FlowContentNodeType FlowContentNodeType { get; }
+        public string Text { get; }
+        public int Start { get; }
+        public int End { get; }
+
+        public FlowContentItem(FlowContentNodeType nodeType, string text, int start, int end)
+        {
+            FlowContentNodeType = nodeType;
+            Text = text;
+            Start = start;
+            End = end;
+        }
     }
 }

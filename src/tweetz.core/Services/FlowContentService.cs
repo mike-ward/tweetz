@@ -172,42 +172,42 @@ namespace tweetz.core.Services
         {
             var urls = entities.Urls
                  ?.Select(url => new FlowContentItem
-                 {
-                     FlowContentNodeType = FlowContentNodeType.Url,
-                     Text = url.ExpandedUrl,
-                     Start = url.Indices[0],
-                     End = url.Indices[1]
-                 })
+                 (
+                     nodeType: FlowContentNodeType.Url,
+                     text: url.ExpandedUrl,
+                     start: url.Indices[0],
+                     end: url.Indices[1]
+                 ))
                  ?? Array.Empty<FlowContentItem>();
 
             var mentions = entities.Mentions
                 ?.Select(mention => new FlowContentItem
-                {
-                    FlowContentNodeType = FlowContentNodeType.Mention,
-                    Text = mention.ScreenName,
-                    Start = mention.Indices[0],
-                    End = mention.Indices[1]
-                })
+                (
+                    nodeType: FlowContentNodeType.Mention,
+                    text: mention.ScreenName,
+                    start: mention.Indices[0],
+                    end: mention.Indices[1]
+                ))
                 ?? Array.Empty<FlowContentItem>();
 
             var hashTags = entities.HashTags
                 ?.Select(hashtag => new FlowContentItem
-                {
-                    FlowContentNodeType = FlowContentNodeType.HashTag,
-                    Text = hashtag.Text,
-                    Start = hashtag.Indices[0],
-                    End = hashtag.Indices[1]
-                })
+                (
+                    nodeType: FlowContentNodeType.HashTag,
+                    text: hashtag.Text,
+                    start: hashtag.Indices[0],
+                    end: hashtag.Indices[1]
+                ))
                 ?? Array.Empty<FlowContentItem>();
 
             var media = entities.Media
                 ?.Select(media => new FlowContentItem
-                {
-                    FlowContentNodeType = FlowContentNodeType.Media,
-                    Text = media.Url,
-                    Start = media.Indices[0],
-                    End = media.Indices[1]
-                })
+                (
+                    nodeType: FlowContentNodeType.Media,
+                    text: media.Url,
+                    start: media.Indices[0],
+                    end: media.Indices[1]
+                ))
                 ?? Array.Empty<FlowContentItem>();
 
             return urls
