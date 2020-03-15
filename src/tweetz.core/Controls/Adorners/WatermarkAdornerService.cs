@@ -22,11 +22,13 @@ namespace tweetz.core.Controls.Adorners
 
         public static object GetWatermark(DependencyObject d)
         {
+            if (d is null) throw new ArgumentNullException(nameof(d));
             return d.GetValue(WatermarkProperty);
         }
 
         public static void SetWatermark(DependencyObject d, object value)
         {
+            if (d is null) throw new ArgumentNullException(nameof(d));
             d.SetValue(WatermarkProperty, value);
         }
 

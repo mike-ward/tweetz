@@ -54,7 +54,7 @@ namespace tweetz.core.Commands
                 try
                 {
                     ComposeControlViewModel.IsUploadingMedia = true;
-                    var mediaInfo = await UploadMedia(ofd.FileName);
+                    var mediaInfo = await UploadMedia(ofd.FileName).ConfigureAwait(false);
                     ComposeControlViewModel.Media.Add(mediaInfo);
                 }
                 catch (WebException ex)
@@ -84,9 +84,9 @@ namespace tweetz.core.Commands
         private async Task<string> Upload(string filename, string mediaType)
         {
             var bytes = File.ReadAllBytes(filename);
-            var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType);
-            await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes);
-            var finalize = await TwitterService.UploadMediaFinalize(media.MediaId);
+            var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
+            await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
+            var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);
 
             if (finalize.ProcessingInfo != null)
             {

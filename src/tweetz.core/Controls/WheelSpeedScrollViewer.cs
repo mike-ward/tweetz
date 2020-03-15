@@ -20,6 +20,8 @@ namespace tweetz.core.Controls
 
         protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
         {
+            if (e is null) throw new System.ArgumentNullException(nameof(e));
+
             if (!e.Handled &&
                 ScrollInfo is VirtualizingStackPanel vsp &&
                 ComputedVerticalScrollBarVisibility == Visibility.Visible)

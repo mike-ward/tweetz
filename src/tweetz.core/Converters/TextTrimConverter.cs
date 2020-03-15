@@ -8,9 +8,11 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var maxLength = 300;
-            var text = value.ToString();
-            return text!.Length > maxLength ? text.Substring(0, maxLength) + "…" : text;
+            if (value is null) return string.Empty;
+            var text = value.ToString() ?? string.Empty;
+
+            const int maxLength = 300;
+            return text.Length > maxLength ? text.Substring(0, maxLength) + "…" : text;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

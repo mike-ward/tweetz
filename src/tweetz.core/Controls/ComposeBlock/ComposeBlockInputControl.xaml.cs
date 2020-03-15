@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using tweetz.core.Commands;
 using tweetz.core.ViewModels;
@@ -25,7 +26,7 @@ namespace tweetz.core.Controls.ComposeBlock
             Loaded -= OnLoaded;
         }
 
-        private void OnIsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (IsVisible)
             {

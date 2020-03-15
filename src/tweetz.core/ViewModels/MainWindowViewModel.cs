@@ -30,6 +30,8 @@ namespace tweetz.core.ViewModels
 
         public void Initialize(Window window)
         {
+            if (window is null) throw new System.ArgumentNullException(nameof(window));
+
             Settings.Load();
             WindowInteropService.PowerManagmentRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);

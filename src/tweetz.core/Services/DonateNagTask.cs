@@ -10,6 +10,8 @@ namespace tweetz.core.Services
 
         public static Task Execute(TwitterTimeline timeline)
         {
+            if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
+
             if (timeline.Settings.Donated)
             {
                 return Task.CompletedTask;

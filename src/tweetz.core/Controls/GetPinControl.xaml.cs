@@ -26,8 +26,8 @@ namespace tweetz.core.Controls
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
-                await ViewModel.GetPin();
-                await Task.Delay(TimeSpan.FromSeconds(5));
+                await ViewModel.GetPin().ConfigureAwait(false);
+                await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace tweetz.core.Controls
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
-                await ViewModel.SignIn();
+                await ViewModel.SignIn().ConfigureAwait(false);
             }
             catch (Exception ex)
             {

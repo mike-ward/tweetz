@@ -13,6 +13,8 @@ namespace tweetz.core.Services
 
         public TwitterService(ISettings settings)
         {
+            if (settings is null) throw new System.ArgumentNullException(nameof(settings));
+
             const string consumerKey = "ZScn2AEIQrfC48Zlw";
             const string consumerSecret = "8gKdPBwUfZCQfUiyeFeEwVBQiV3q50wIOrIjoCxa2Q";
 
@@ -31,7 +33,7 @@ namespace tweetz.core.Services
 
         public async Task AuthenticateWithPin(OAuthTokens requestTokens, string pin)
         {
-            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin);
+            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(false);
             if (access != null)
             {
                 settings.AccessToken = access.OAuthToken;

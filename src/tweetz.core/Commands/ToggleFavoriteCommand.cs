@@ -75,7 +75,7 @@ namespace tweetz.core.Commands
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(false);
             }
             finally
             {

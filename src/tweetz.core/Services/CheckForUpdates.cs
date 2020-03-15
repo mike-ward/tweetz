@@ -16,6 +16,12 @@ namespace tweetz.core.Services
 
         public CheckForUpdates(VersionInfo versionInfo)
         {
+            if (version is null)
+            {
+                Trace.TraceWarning("versionInfo is null");
+                return;
+            }
+
             version = versionInfo.Version;
             var twoHours = TimeSpan.FromHours(2);
             var timer = new DispatcherTimer { Interval = twoHours };
@@ -36,9 +42,9 @@ namespace tweetz.core.Services
         {
             try
             {
-                var url = $"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks}";
+                var url = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks}");
                 var request = WebRequest.Create(url);
-                using var response = await request.GetResponseAsync();
+                using var response = await request.GetResponseAsync().ConfigureAwait(false);
                 using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 Version = stream.ReadToEnd();
             }

@@ -27,7 +27,7 @@ namespace tweetz.core.Services
                 const int timeoutInMilliseconds = 2000;
                 request.Timeout = timeoutInMilliseconds;
 
-                using var response = await request.GetResponseAsync();
+                using var response = await request.GetResponseAsync().ConfigureAwait(false);
                 var uri = response.ResponseUri.AbsoluteUri;
 
                 if (!string.IsNullOrWhiteSpace(uri))
@@ -68,7 +68,7 @@ namespace tweetz.core.Services
 
         private static async Task HyperlinkToolTipOpeningHandlerAsync(Hyperlink hyperlink)
         {
-            var link = await TryGetLongUrl((string)hyperlink.CommandParameter);
+            var link = await TryGetLongUrl((string)hyperlink.CommandParameter).ConfigureAwait(true);
             hyperlink.ToolTip = link;
         }
     }

@@ -14,3 +14,6 @@ dotnet_diagnostic.CA1724.severity = none
 
 # RCS1090: Call 'ConfigureAwait(false)'.
 dotnet_diagnostic.RCS1090.severity = none
+
+# CA1812: ShowTwitterStatusCommand is an internal class that is apparently never instantiated. If so, remove the code from the assembly. If this class is intended to contain only static members, make it static (Shared in Visual Basic).
+dotnet_diagnostic.CA1812.severity = silent

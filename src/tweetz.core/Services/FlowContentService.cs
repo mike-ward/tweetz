@@ -21,11 +21,13 @@ namespace tweetz.core.Services
 
         public static TwitterStatus GetSource(DependencyObject d)
         {
+            if (d is null) throw new ArgumentNullException(nameof(d));
             return (TwitterStatus)d.GetValue(SourceProperty);
         }
 
         public static void SetSource(DependencyObject d, TwitterStatus value)
         {
+            if (d is null) throw new ArgumentNullException(nameof(d));
             d.SetValue(SourceProperty, value);
         }
 

@@ -30,10 +30,10 @@ namespace tweetz.core.Infrastructure.Extensions
             }
         }
 
-        public static T? FindVisualAncestorOfType<T>(this DependencyObject obj)
+        public static T? FindVisualAncestorOfType<T>(this DependencyObject dependencyObject)
             where T : DependencyObject
         {
-            for (var parent = VisualTreeHelper.GetParent(obj);
+            for (var parent = VisualTreeHelper.GetParent(dependencyObject);
                 parent != null;
                 parent = VisualTreeHelper.GetParent(parent))
             {

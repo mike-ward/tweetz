@@ -14,6 +14,6 @@ namespace tweetz.core.ViewModels
 
         public string? ErrorMessage { get => errorMessage; set => SetProperty(ref errorMessage, value); }
 
-        public Rect PlacementRectangle => Screen.ScreenRectFromWindow(Application.Current.MainWindow);
+        public static Rect PlacementRectangle => Screen.ScreenRectFromWindow(Application.Current.MainWindow);
     }
 }

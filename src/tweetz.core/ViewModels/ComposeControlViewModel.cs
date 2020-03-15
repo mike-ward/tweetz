@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,12 +47,12 @@ namespace tweetz.core.ViewModels
                 if (User == null)
                 {
                     if (Settings.ScreenName == null) return;
-                    User = await TwitterService.UserInfo(Settings.ScreenName);
+                    User = await TwitterService.UserInfo(Settings.ScreenName).ConfigureAwait(false);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // eat it
+                Trace.TraceError(ex.Message);
             }
         }
 
