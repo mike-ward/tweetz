@@ -3,6 +3,12 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
+  <FontFamily x:Key="SymbolFont">Segoe UI Symbol</FontFamily>
+
+  <Style x:Key="SymbolStyle" TargetType="Run">
+    <Setter Property="FontFamily" Value="{StaticResource SymbolFont}" />
+  </Style>
+
   <sys:String x:Key="HomeSymbol">&#xE10F;</sys:String>
   <sys:String x:Key="MentionsSymbol">&#xE168;</sys:String>
   <sys:String x:Key="SearchSymbol">&#xE11A;</sys:String>
@@ -20,13 +26,9 @@
   <sys:String x:Key="XSymbol">&#xE10A;</sys:String>
   <sys:String x:Key="AddSymbol">&#xE109;</sys:String>
   <sys:String x:Key="CheckSymbol">&#xE10B;</sys:String>
+
+  <!--  Standard font symbols  -->
+
   <sys:String x:Key="Hourglass">&#x231B;</sys:String>
-
-  <FontFamily x:Key="SymbolFont">Segoe UI Symbol</FontFamily>
-
-  <Style
-    x:Key="SymbolStyle"
-    TargetType="Run">
-    <Setter Property="FontFamily" Value="{StaticResource SymbolFont}" />
-  </Style>
+  <sys:String x:Key="WarningSign">&#x26A0;</sys:String>
 </ResourceDictionary>

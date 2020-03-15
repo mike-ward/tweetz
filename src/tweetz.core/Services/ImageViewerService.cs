@@ -10,13 +10,36 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using tweetz.core.Controls.MediaViewerBlock;
 using tweetz.core.Infrastructure;
+using tweetz.core.ViewModels;
 using twitter.core.Models;
 
 namespace tweetz.core.Services
 {
     public class ImageViewerService : IImageViewerService
     {
+        private readonly MediaViewerBlock mediaViewerBlock;
+
+        public ImageViewerService(MediaViewerBlockViewModel mediaViewerBlockViewModel)
+        {
+            // In order to place the media viewer in the middle of the screen it has to be created
+            // without a parent window. Can't do that in Xaml. Popup placement rules are weird.
+            mediaViewerBlock = new MediaViewerBlock { DataContext = mediaViewerBlockViewModel };
+        }
+
+        public void Open(Uri uri)
+        {
+            var mediaViewerBlockViewModel = (MediaViewerBlockViewModel)mediaViewerBlock.DataContext;
+            mediaViewerBlockViewModel.Uri = uri;
+        }
+
+        public void Close()
+        {
+            var mediaViewerBlockViewModel = (MediaViewerBlockViewModel)mediaViewerBlock.DataContext;
+            mediaViewerBlockViewModel.Uri = null;
+        }
+
         public Popup CreatePopup(Window window, Uri uri)
         {
             var popupChild = CreatePopupChild(uri);

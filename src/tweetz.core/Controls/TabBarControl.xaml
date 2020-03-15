@@ -6,6 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:mv="clr-namespace:tweetz.core.Controls.MediaViewerBlock"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
   d:DesignHeight="300"
   d:DesignWidth="300"
@@ -133,20 +134,10 @@
   </Grid>
 
   <UserControl.InputBindings>
-    <KeyBinding
-      Command="commands:ToggleShowComposeCommand.Command"
-      Gesture="Ctrl+N" />
-    <KeyBinding
-      Command="commands:DecreaseFontSizeCommand.Command"
-      Gesture="Alt+Subtract" />
-    <KeyBinding
-      Command="commands:IncreaseFontSizeCommand.Command"
-      Gesture="Alt+Add" />
-    <KeyBinding
-      Command="commands:DecreaseFontSizeCommand.Command"
-      Gesture="Alt+OemMinus" />
-    <KeyBinding
-      Command="commands:IncreaseFontSizeCommand.Command"
-      Gesture="Alt+OemPlus" />
+    <KeyBinding Command="commands:ToggleShowComposeCommand.Command" Gesture="Ctrl+N" />
+    <KeyBinding Command="commands:DecreaseFontSizeCommand.Command" Gesture="Alt+Subtract" />
+    <KeyBinding Command="commands:IncreaseFontSizeCommand.Command" Gesture="Alt+Add" />
+    <KeyBinding Command="commands:DecreaseFontSizeCommand.Command" Gesture="Alt+OemMinus" />
+    <KeyBinding Command="commands:IncreaseFontSizeCommand.Command" Gesture="Alt+OemPlus" />
   </UserControl.InputBindings>
 </UserControl>

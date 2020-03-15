@@ -12,10 +12,12 @@ namespace tweetz.core.ViewModels
         public ISystemState SystemState { get; }
         private IWindowInteropService WindowInteropService { get; }
         private IEnumerable<ICommandBinding> CommandBindings { get; }
+        public IImageViewerService ImageViewerService { get; }
 
         public MainWindowViewModel(
             ISettings settings,
             ISystemState systemState,
+            IImageViewerService imageViewerService,
             IWindowInteropService windowInteropService,
             IEnumerable<ICommandBinding> commandBindings)
         {
@@ -23,6 +25,7 @@ namespace tweetz.core.ViewModels
             SystemState = systemState;
             WindowInteropService = windowInteropService;
             CommandBindings = commandBindings;
+            ImageViewerService = imageViewerService;
         }
 
         public void Initialize(Window window)
@@ -39,6 +42,8 @@ namespace tweetz.core.ViewModels
         {
             Settings.MainWindowPosition = WindowInteropService.GetWindowPosition(window);
             Settings.Save();
+
+            ImageViewerService.Close();
         }
     }
 }

@@ -9,6 +9,7 @@
   <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
   <converters:FileNameConverter x:Key="FileNameConverter" />
   <converters:IsNullConverter x:Key="IsNullConverter" />
+  <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
   <converters:NotBooleanConverter x:Key="NotBooleanConverter" />
   <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
   <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />

@@ -34,6 +34,7 @@ namespace tweetz.core
             services.AddSingleton<SettingsControlViewModel>();
             services.AddSingleton<ComposeControlViewModel>();
             services.AddSingleton<UserProfileBlockViewModel>();
+            services.AddSingleton<MediaViewerBlockViewModel>();
 
             // Commands
             services.AddSingleton<ICommandBinding, AddImageCommand>();

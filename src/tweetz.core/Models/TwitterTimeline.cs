@@ -61,9 +61,11 @@ namespace tweetz.core.Models
 
         private void Start()
         {
-            if (updateTimer.IsEnabled) return;
-            updateTimer.Start();
-            Update();
+            if (!updateTimer.IsEnabled)
+            {
+                updateTimer.Start();
+                Update();
+            }
         }
 
         private void Stop()
@@ -81,19 +83,18 @@ namespace tweetz.core.Models
 
         public async Task UpdateAsync()
         {
+            if (inUpdate) return;
+            if (SystemState.IsSleeping) return;
+            if (IsScrolled && Settings.PauseWhenScrolled) return;
+
             try
             {
-                if (inUpdate) return;
                 inUpdate = true;
-
-                if (SystemState.IsSleeping) return;
-                if (IsScrolled && Settings.PauseWhenScrolled) return;
-
                 Trace.TraceInformation("Updating timeline");
 
                 foreach (var updateTask in updateTasks)
                 {
-                    await updateTask(this);
+                    await updateTask(this).ConfigureAwait(false);
                 }
 
                 ExceptionMessage = null;
