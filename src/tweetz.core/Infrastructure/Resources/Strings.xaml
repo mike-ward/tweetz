@@ -24,6 +24,7 @@
   <sys:String x:Key="font-size-title">Font size</sys:String>
   <sys:String x:Key="theme-title">Theme</sys:String>
   <sys:String x:Key="theme-light">Light</sys:String>
+  <sys:String x:Key="theme-nord">Nord</sys:String>
   <sys:String x:Key="theme-dark">Dark</sys:String>
   <sys:String x:Key="donate">Donate</sys:String>
   <sys:String x:Key="sign-out">Sign Out</sys:String>
