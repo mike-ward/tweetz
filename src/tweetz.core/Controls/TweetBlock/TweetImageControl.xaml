@@ -4,13 +4,10 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands">
 
-  <ItemsControl
-    Name="ItemsControl"
-    ItemsSource="{Binding ExtendedEntities.Media}">
+  <ItemsControl Name="ItemsControl" ItemsSource="{Binding ExtendedEntities.Media}">
     <ItemsControl.ItemTemplate>
       <DataTemplate>
         <Border
-          Name="Border"
           Height="200"
           Margin="1"
           CornerRadius="9"
@@ -20,20 +17,28 @@
             indicator and a handler for image load fails.
           -->
           <Border.Background>
-            <VisualBrush
-              AlignmentY="Top"
-              Stretch="UniformToFill">
+            <VisualBrush AlignmentY="Top" Stretch="UniformToFill">
               <VisualBrush.Visual>
                 <Grid>
                   <!--
-                    Padding and background needed or the hourglass gets stretched
-                    to the size of the container. Brushes are weird.
+                    Padding and background needed or the hourglass and warning sign
+                    is stretched to the size of the container.
                   -->
                   <TextBlock
+                    x:Name="LoadingIndicator"
                     Padding="300,100"
                     Background="{DynamicResource StandardBackgroundBrush}"
                     FontSize="24"
                     Text="{StaticResource Hourglass}" />
+
+                  <TextBlock
+                    x:Name="WarningSign"
+                    Padding="300,100"
+                    Background="{DynamicResource StandardBackgroundBrush}"
+                    FontSize="24"
+                    Text="{StaticResource WarningSign}"
+                    Visibility="Collapsed" />
+
                   <Image
                     RenderOptions.BitmapScalingMode="LowQuality"
                     RenderOptions.CachingHint="Cache"
@@ -46,15 +51,33 @@
                     <Image.Triggers>
                       <EventTrigger RoutedEvent="Image.ImageFailed">
                         <EventTrigger.Actions>
+
+                          <!--  hide loading indicator  -->
                           <BeginStoryboard>
                             <Storyboard>
                               <ObjectAnimationUsingKeyFrames
-                                Storyboard.TargetName="Border"
+                                Storyboard.TargetName="LoadingIndicator"
                                 Storyboard.TargetProperty="Visibility"
                                 Duration="0">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                   <DiscreteObjectKeyFrame.Value>
                                     <Visibility>Collapsed</Visibility>
+                                  </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                              </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                          </BeginStoryboard>
+
+                          <!--  show warning sign  -->
+                          <BeginStoryboard>
+                            <Storyboard>
+                              <ObjectAnimationUsingKeyFrames
+                                Storyboard.TargetName="WarningSign"
+                                Storyboard.TargetProperty="Visibility"
+                                Duration="0">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                  <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
                                   </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                               </ObjectAnimationUsingKeyFrames>
