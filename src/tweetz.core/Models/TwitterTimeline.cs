@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
 using twitter.core.Models;
@@ -22,6 +23,8 @@ namespace tweetz.core.Models
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
             updateTimer.Tick += (_, __) => Update();
+
+            BindingOperations.EnableCollectionSynchronization(StatusCollection, SyncObject);
         }
 
         public ISettings Settings { get; }
@@ -53,6 +56,7 @@ namespace tweetz.core.Models
         private string? exceptionMessage;
         private readonly DispatcherTimer updateTimer;
         private readonly List<Func<TwitterTimeline, Task>> updateTasks = new List<Func<TwitterTimeline, Task>>();
+        private object SyncObject => new object();
 
         public void AddUpdateTask(Func<TwitterTimeline, Task> task)
         {
