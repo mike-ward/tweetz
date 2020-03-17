@@ -11,35 +11,9 @@ using twitter.core.Models;
 
 namespace tweetz.core.Services
 {
-    public static partial class FlowContentService
+    public static class FlowContentService
     {
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.RegisterAttached(
-            "Source",
-            typeof(TwitterStatus),
-            typeof(FlowContentService),
-            new PropertyMetadata(null, OnSourceChanged));
-
-        public static TwitterStatus GetSource(DependencyObject d)
-        {
-            if (d is null) throw new ArgumentNullException(nameof(d));
-            return (TwitterStatus)d.GetValue(SourceProperty);
-        }
-
-        public static void SetSource(DependencyObject d, TwitterStatus value)
-        {
-            if (d is null) throw new ArgumentNullException(nameof(d));
-            d.SetValue(SourceProperty, value);
-        }
-
-        private static void OnSourceChanged(DependencyObject sender, DependencyPropertyChangedEventArgs ea)
-        {
-            var textBlock = (TextBlock)sender;
-            var twitterStatus = (TwitterStatus)ea.NewValue;
-            textBlock.Inlines.Clear();
-            textBlock.Inlines.AddRange(SourceToFlowContentInlines(twitterStatus));
-        }
-
-        public static IEnumerable<object> SourceToFlowContentInlines(TwitterStatus twitterStatus)
+        public static IEnumerable<Inline> FlowContentInlines(TwitterStatus twitterStatus)
         {
             if (twitterStatus == null)
             {
@@ -69,6 +43,7 @@ namespace tweetz.core.Services
                         break;
 
                     case FlowContentNodeType.Media:
+                        // Media is handled else where
                         break;
 
                     default:

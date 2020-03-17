@@ -10,6 +10,7 @@
   mc:Ignorable="d">
 
   <TextBlock
-    services:FlowContentService.Source="{Binding Mode=OneWay}"
-    Style="{StaticResource TweetBlockTweetTextStyle}" />
+    Style="{StaticResource TweetBlockTweetTextStyle}"
+    TargetUpdated="TextBlock_TargetUpdated"
+    Tag="{Binding Mode=OneWay, NotifyOnTargetUpdated=True}" />
 </UserControl>
