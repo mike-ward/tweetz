@@ -16,10 +16,8 @@ namespace tweetz.core.Services
             }
             else
             {
-                using (var source2 = new HwndSource(new HwndSourceParameters()))
-                {
-                    transformToDevice = source2.CompositionTarget.TransformToDevice;
-                }
+                using var source2 = new HwndSource(new HwndSourceParameters());
+                transformToDevice = source2.CompositionTarget.TransformToDevice;
             }
             return transformToDevice;
         }

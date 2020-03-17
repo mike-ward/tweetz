@@ -14,6 +14,7 @@ namespace tweetz.core.Infrastructure.PowerManagment
             PowerManagementNativeMethods.RegisterPowerSettingNotification(new WindowInteropHelper(window).Handle, ref MonitorPowerStatus, 0);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "none")]
         public static int MonitorStatus(IntPtr wParam, IntPtr lParam)
         {
 #pragma warning disable CS8605 // Unboxing a possibly null value.

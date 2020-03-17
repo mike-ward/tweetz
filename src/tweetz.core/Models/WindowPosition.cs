@@ -1,43 +1,36 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace tweetz.core.Models
 {
-    public struct WindowPosition : IEquatable<WindowPosition>
+    public struct WindowPosition
     {
         public int Left { get; set; }
         public int Top { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public bool Equals([AllowNull] WindowPosition other)
-        {
-            return AsTuple() == other.AsTuple();
-        }
-
         public override bool Equals(object? obj)
         {
-            return obj is WindowPosition wp && Equals(wp);
+            return obj is WindowPosition position &&
+                   Left == position.Left &&
+                   Top == position.Top &&
+                   Width == position.Width &&
+                   Height == position.Height;
         }
 
         public override int GetHashCode()
         {
-            return AsTuple().GetHashCode();
+            return HashCode.Combine(Left, Top, Width, Height);
         }
 
-        public static bool operator ==(WindowPosition a, WindowPosition b)
+        public static bool operator ==(WindowPosition left, WindowPosition right)
         {
-            return a.Equals(b);
+            return left.Equals(right);
         }
 
-        public static bool operator !=(WindowPosition a, WindowPosition b)
+        public static bool operator !=(WindowPosition left, WindowPosition right)
         {
-            return !a.Equals(b);
-        }
-
-        private (int Left, int Top, int Width, int Height) AsTuple()
-        {
-            return (Left, Top, Width, Height);
+            return !(left == right);
         }
     }
 }

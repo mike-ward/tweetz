@@ -89,18 +89,10 @@ namespace tweetz.core.ViewModels
             var vid = Media.Count(m => VidExtensions.Any(ext => m.Path.EndsWith(ext, StringComparison.OrdinalIgnoreCase)));
             var img = Media.Count(m => ImgExtensions.Any(ext => m.Path.EndsWith(ext, StringComparison.OrdinalIgnoreCase)));
 
-            if (GifExtensions.Any(gif => gif.Equals(ext, StringComparison.OrdinalIgnoreCase)) ||
-                VidExtensions.Any(vid => vid.Equals(ext, StringComparison.OrdinalIgnoreCase)))
-            {
-                return gif == 0 && vid == 0 && img == 0;
-            }
-
-            if (ImgExtensions.Any(img => img.Equals(ext, StringComparison.OrdinalIgnoreCase)))
-            {
-                return gif == 0 && vid == 0 && img < 4;
-            }
-
-            return false;
+            return GifExtensions.Any(gif => gif.Equals(ext, StringComparison.OrdinalIgnoreCase)) ||
+                VidExtensions.Any(vid => vid.Equals(ext, StringComparison.OrdinalIgnoreCase))
+                ? gif == 0 && vid == 0 && img == 0
+                : ImgExtensions.Any(img => img.Equals(ext, StringComparison.OrdinalIgnoreCase)) && gif == 0 && vid == 0 && img < 4;
         }
 
         public bool CanAddImage()
@@ -112,6 +104,7 @@ namespace tweetz.core.ViewModels
             return gif == 0 && vid == 0 && img < 4;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "none")]
         public string ContentType(string filename)
         {
             var ext = Path.GetExtension(filename);

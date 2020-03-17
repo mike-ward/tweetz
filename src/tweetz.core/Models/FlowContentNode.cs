@@ -1,4 +1,6 @@
-﻿namespace tweetz.core.Models
+﻿using System;
+
+namespace tweetz.core.Models
 {
     public struct FlowContentNode
     {
@@ -9,6 +11,28 @@
         {
             FlowContentNodeType = flowContentNodeType;
             Text = text;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is FlowContentNode node &&
+                   FlowContentNodeType == node.FlowContentNodeType &&
+                   Text == node.Text;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(FlowContentNodeType, Text);
+        }
+
+        public static bool operator ==(FlowContentNode left, FlowContentNode right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(FlowContentNode left, FlowContentNode right)
+        {
+            return !(left == right);
         }
     }
 }

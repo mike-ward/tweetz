@@ -19,48 +19,27 @@ namespace tweetz.core.Models
             SystemState = systemState;
             FadeInDuration = TimeSpan.Zero;
             IntervalInMinutes = intervalInMinutes;
-            Settings.PropertyChanged += OnAuthenticationChanged;
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
             updateTimer.Tick += (_, __) => Update();
 
+            Settings.PropertyChanged += OnAuthenticationChanged;
             BindingOperations.EnableCollectionSynchronization(StatusCollection, SyncObject);
         }
 
-        public ISettings Settings { get; }
-        public ISystemState SystemState { get; }
-
-        public double IntervalInMinutes { get; }
-        public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
-        public Duration FadeInDuration { get => fadeInDuration; set => SetProperty(ref fadeInDuration, value); }
-        public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
-        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
-
-        public bool IsScrolled
+        private void OnAuthenticationChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            get => isScrolled;
-            set
+            if (e.PropertyName == nameof(Settings.IsAuthenticated))
             {
-                SetProperty(ref isScrolled, value);
-
-                // ExceptionMessage is used by the TabItemIndicatorAdorner to show messages to the user
-                ExceptionMessage = isScrolled && Settings.PauseWhenScrolled
-                    ? (string)Application.Current.FindResource("paused-due-to-scroll-pos")
-                    : null;
+                if (Settings.IsAuthenticated)
+                {
+                    Start();
+                }
+                else
+                {
+                    Stop();
+                }
             }
-        }
-
-        private bool inUpdate;
-        private bool isScrolled;
-        private Duration fadeInDuration;
-        private string? exceptionMessage;
-        private readonly DispatcherTimer updateTimer;
-        private readonly List<Func<TwitterTimeline, Task>> updateTasks = new List<Func<TwitterTimeline, Task>>();
-        private object SyncObject => new object();
-
-        public void AddUpdateTask(Func<TwitterTimeline, Task> task)
-        {
-            updateTasks.Add(task);
         }
 
         private void Start()
@@ -77,6 +56,11 @@ namespace tweetz.core.Models
             updateTimer?.Stop();
             AlreadyAdded.Clear();
             StatusCollection.Clear();
+        }
+
+        public void AddUpdateTask(Func<TwitterTimeline, Task> task)
+        {
+            updateTasks.Add(task);
         }
 
         private void Update()
@@ -114,19 +98,35 @@ namespace tweetz.core.Models
             }
         }
 
-        private void OnAuthenticationChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public ISettings Settings { get; }
+        public ISystemState SystemState { get; }
+
+        public double IntervalInMinutes { get; }
+        public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
+        public Duration FadeInDuration { get => fadeInDuration; set => SetProperty(ref fadeInDuration, value); }
+        public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
+        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
+
+        public bool IsScrolled
         {
-            if (e.PropertyName == nameof(Settings.IsAuthenticated))
+            get => isScrolled;
+            set
             {
-                if (Settings.IsAuthenticated)
-                {
-                    Start();
-                }
-                else
-                {
-                    Stop();
-                }
+                SetProperty(ref isScrolled, value);
+
+                // ExceptionMessage is used by the TabItemIndicatorAdorner to show messages to the user
+                ExceptionMessage = isScrolled && Settings.PauseWhenScrolled
+                    ? (string)Application.Current.FindResource("paused-due-to-scroll-pos")
+                    : null;
             }
         }
+
+        private bool inUpdate;
+        private bool isScrolled;
+        private Duration fadeInDuration;
+        private string? exceptionMessage;
+        private readonly DispatcherTimer updateTimer;
+        private readonly List<Func<TwitterTimeline, Task>> updateTasks = new List<Func<TwitterTimeline, Task>>();
+        private object SyncObject => new object();
     }
 }

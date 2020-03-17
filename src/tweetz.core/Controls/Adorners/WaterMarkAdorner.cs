@@ -15,10 +15,12 @@ namespace tweetz.core.Controls.Adorners
         {
             IsHitTestVisible = false;
 
-            contentPresenter = new ContentPresenter();
-            contentPresenter.Content = watermark;
-            contentPresenter.Opacity = 0.5;
-            contentPresenter.Margin = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0);
+            contentPresenter = new ContentPresenter
+            {
+                Content = watermark,
+                Opacity = 0.5,
+                Margin = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0)
+            };
 
             if (Control is ItemsControl && !(Control is ComboBox))
             {
@@ -26,9 +28,11 @@ namespace tweetz.core.Controls.Adorners
                 contentPresenter.HorizontalAlignment = HorizontalAlignment.Center;
             }
 
-            var binding = new Binding("IsVisible");
-            binding.Source = adornedElement;
-            binding.Converter = new BooleanToVisibilityConverter();
+            var binding = new Binding("IsVisible")
+            {
+                Source = adornedElement,
+                Converter = new BooleanToVisibilityConverter()
+            };
             SetBinding(VisibilityProperty, binding);
         }
 

@@ -202,10 +202,11 @@ namespace twitter.core.Models
 
         protected void SetProperty<T>(ref T item, T value, [CallerMemberName] string? propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(item, value)) return;
-            item = value;
-
-            OnPropertyChanged(propertyName);
+            if (!EqualityComparer<T>.Default.Equals(item, value))
+            {
+                item = value;
+                OnPropertyChanged(propertyName);
+            }
         }
 
         protected virtual void OnPropertyChanged(string? propertyName)

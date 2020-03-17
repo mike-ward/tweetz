@@ -12,10 +12,13 @@ namespace tweetz.core.Converters
             var count = (int)value;
             const double k = 1000;
 
-            if (count == 0) return " ";
-            if (count < 999) return count.ToString(CultureInfo.InvariantCulture);
-            if (count < 999999) return string.Format(CultureInfo.InvariantCulture, "{0:N1}K", count / k);
-            return string.Format(CultureInfo.InvariantCulture, "{0:N1}M", count / (k * k));
+            return count switch
+            {
+                var c when c == 0 => " ",
+                var c when c < 999 => count.ToString(CultureInfo.InvariantCulture),
+                var c when c < 999999 => string.Format(CultureInfo.InvariantCulture, "{0:N1}K", count / k),
+                _ => string.Format(CultureInfo.InvariantCulture, "{0:N1}M", count / (k * k))
+            };
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
