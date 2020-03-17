@@ -62,7 +62,7 @@ namespace twitter.core.Services
             var json = await OAuthRequest(url, parameters, method);
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var result = JsonSerializer.Deserialize<T>(json, options);
-            return result;
+            return result!;
         }
 
         // All requests return JSON
@@ -82,7 +82,7 @@ namespace twitter.core.Services
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
-            var parray = parameters ?? parameters.ToArray();
+            var parray = parameters;
             var signature = OAuth.Signature(method, url, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, parray);
             var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
             var parameterStrings = parray.Select(p => $"{OAuth.UrlEncode(p.Item1)}={OAuth.UrlEncode(p.Item2)}").ToList();

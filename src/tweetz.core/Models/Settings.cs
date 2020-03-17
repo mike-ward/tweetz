@@ -71,7 +71,7 @@ namespace tweetz.core.Models
             try
             {
                 var json = File.ReadAllText(SettingsFilePath);
-                var settings = JsonSerializer.Deserialize<Settings>(json);
+                var settings = JsonSerializer.Deserialize<Settings>(json)!;
                 AccessToken = settings.AccessToken;
                 AccessTokenSecret = settings.AccessTokenSecret;
                 ScreenName = settings.ScreenName;

@@ -22,7 +22,7 @@ namespace tweetz.core
             Environment.Exit(1);
         }
 
-        private void SettingsThemeChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void SettingsThemeChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.Theme) && sender is Settings settings)
             {

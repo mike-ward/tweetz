@@ -41,7 +41,7 @@ namespace tweetz.core.Models
 
         private static string ApplicationName => ComputeMD5(Assembly.GetExecutingAssembly().Location);
 
-        private static RegistryKey OpenStartupSubKey() => Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        private static RegistryKey OpenStartupSubKey() => Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true)!;
 
         private static string ComputeMD5(string input)
         {

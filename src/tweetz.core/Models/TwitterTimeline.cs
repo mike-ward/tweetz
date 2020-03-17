@@ -27,7 +27,7 @@ namespace tweetz.core.Models
             BindingOperations.EnableCollectionSynchronization(StatusCollection, SyncObject);
         }
 
-        private void OnAuthenticationChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnAuthenticationChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Settings.IsAuthenticated))
             {
