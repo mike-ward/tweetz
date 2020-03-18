@@ -18,6 +18,6 @@ namespace twitter.core.Models
         public Media[]? Media { get; set; }
 
         [JsonIgnore]
-        public bool HasMedia => Media != null && Media.All(media => string.IsNullOrWhiteSpace(media.MediaUrl));
+        public bool HasMedia => Media != null && Media.Any(media => !string.IsNullOrWhiteSpace(media.MediaUrl));
     }
 }

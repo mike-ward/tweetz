@@ -8,11 +8,6 @@
     TargetType="{x:Type local:TweetImageControl}">
     <Style.Triggers>
       <DataTrigger
-        Binding="{Binding DataContext.RelatedLinkInfo.ImageUrl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource IsNullConverter}}"
-        Value="False">
-        <Setter Property="Visibility" Value="Collapsed" />
-      </DataTrigger>
-      <DataTrigger
         Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
         Value="True">
         <Setter Property="Visibility" Value="Collapsed" />

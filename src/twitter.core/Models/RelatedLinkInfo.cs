@@ -16,21 +16,26 @@ namespace twitter.core.Models
     /// </summary>
     public class RelatedLinkInfo
     {
-        public string Url { get; set; }
-        public string Title { get; set; }
-        public string ImageUrl { get; set; }
-        public string Description { get; set; }
-        public string SiteName { get; set; }
+        public string Url { get; private set; }
+        public string Title { get; private set; }
+        public string? ImageUrl { get; private set; }
 
-        public TwitterStatus ImageTwitterStatus => new TwitterStatus
+        public string Description { get; private set; }
+        public string SiteName { get; private set; }
+
+        public TwitterStatus ImageTwitterStatus
         {
-            Id = Guid.NewGuid().ToString(),
-            ExtendedEntities = new Entities
+            get
             {
-                Media = string.IsNullOrWhiteSpace(ImageUrl)
-                    ? null
-                    : new[]
+                return new TwitterStatus
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ExtendedEntities = new Entities
                     {
+                        Media = string.IsNullOrWhiteSpace(ImageUrl)
+                            ? null
+                            : new[]
+    {
                         new Media
                         {
                             Url = ImageUrl,
@@ -38,9 +43,11 @@ namespace twitter.core.Models
                             DisplayUrl = ImageUrl,
                             ExpandedUrl = ImageUrl
                         }
+    }
                     }
+                };
             }
-        };
+        }
 
         public static async Task<RelatedLinkInfo?> GetRelatedLinkInfoAsync(TwitterStatus status)
         {
@@ -56,6 +63,9 @@ namespace twitter.core.Models
                 status.CheckedRelatedInfo = true;
                 return status.RelatedLinkInfo;
             }
+
+            var hasMedia = status.ExtendedEntities?.HasMedia ?? false;
+
             foreach (var url in urls)
             {
                 try
@@ -66,8 +76,12 @@ namespace twitter.core.Models
                     if (relatedLinkInfo == null) continue;
 
                     status.CheckedRelatedInfo = true;
-                    if (!UrlValid(relatedLinkInfo.ImageUrl)) relatedLinkInfo.ImageUrl = string.Empty;
-                    relatedLinkInfo.ImageUrl = status.ExtendedEntities?.Media?[0]?.MediaUrl ?? relatedLinkInfo.ImageUrl;
+
+                    if (hasMedia || !UrlValid(relatedLinkInfo.ImageUrl))
+                    {
+                        relatedLinkInfo.ImageUrl = null;
+                    }
+
                     return status.RelatedLinkInfo ?? relatedLinkInfo;
                 }
                 catch (Exception ex)

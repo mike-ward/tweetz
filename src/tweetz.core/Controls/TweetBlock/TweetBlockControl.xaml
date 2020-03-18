@@ -44,7 +44,7 @@
       <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
 
       <local:TweetImageControl
-        Margin="0,3,0,0"
+        Margin="0,5,0,5"
         DataContext="{Binding OriginatingStatus, Mode=OneWay}"
         Style="{StaticResource TweetBlockImageControlStyle}" />
 
