@@ -7,15 +7,14 @@ namespace twitter.core.Models
     /// Twitter indices are by Unicode code points, not characters.
     /// See: https://developer.twitter.com/en/docs/basics/counting-characters
     /// </summary>
-    public class TwitterString
+    public struct TwitterString
     {
         private const int bytesPerChar = 4;
         private readonly ReadOnlyMemory<byte> bytes;
-        private readonly Encoding encoder = Encoding.UTF32;
 
         public TwitterString(string text)
         {
-            bytes = encoder.GetBytes(text.Normalize());
+            bytes = Encoding.UTF32.GetBytes(text.Normalize());
         }
 
         public string Substring(int start)
@@ -28,7 +27,7 @@ namespace twitter.core.Models
         {
             var bstart = start * bytesPerChar;
             var bcount = count * bytesPerChar;
-            return encoder.GetString(bytes.Slice(bstart, bcount).Span);
+            return Encoding.UTF32.GetString(bytes.Slice(bstart, bcount).Span);
         }
     }
 }
