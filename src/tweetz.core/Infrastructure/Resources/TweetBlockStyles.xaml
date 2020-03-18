@@ -204,10 +204,6 @@
     x:Key="TweetBlockRelatedBorderStyle"
     TargetType="Border">
     <Setter Property="Margin" Value="0,3" />
-    <Setter Property="BorderThickness" Value="0.3" />
-    <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
-    <Setter Property="Padding" Value="10,9" />
-    <Setter Property="CornerRadius" Value="10" />
   </Style>
 
   <Style

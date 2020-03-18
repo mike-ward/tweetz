@@ -4,7 +4,9 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands">
 
-  <ItemsControl Name="ItemsControl" ItemsSource="{Binding ExtendedEntities.Media}">
+  <ItemsControl
+    Name="ItemsControl"
+    ItemsSource="{Binding ExtendedEntities.Media}">
     <ItemsControl.ItemTemplate>
       <DataTemplate>
         <Border
@@ -17,7 +19,9 @@
             indicator and a handler for image load fails.
           -->
           <Border.Background>
-            <VisualBrush AlignmentY="Top" Stretch="UniformToFill">
+            <VisualBrush
+              AlignmentY="Top"
+              Stretch="UniformToFill">
               <VisualBrush.Visual>
                 <Grid>
                   <!--
