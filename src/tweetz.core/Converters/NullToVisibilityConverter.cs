@@ -16,7 +16,7 @@ namespace tweetz.core.Converters
                     : Visibility.Collapsed;
             }
 
-            return value == null
+            return value is null
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

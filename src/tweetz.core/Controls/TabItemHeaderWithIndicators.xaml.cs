@@ -19,14 +19,14 @@ namespace tweetz.core.Controls
         private void OnIsVisibleChanged(object _, DependencyPropertyChangedEventArgs __)
         {
             var parent = (UIElement)HeaderTextBlock.Parent;
-            if (parent == null) return;
+            if (parent is null) return;
 
             if (IsVisible)
             {
                 // Bummer adorners can't be used in XAML
                 // (well, not easily)
                 var layer = AdornerLayer.GetAdornerLayer(parent);
-                if (layer == null) return;
+                if (layer is null) return;
 
                 var brush = new SolidColorBrush(IndicatorColor);
                 brush.Freeze();

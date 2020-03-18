@@ -52,7 +52,7 @@ namespace tweetz.core.Commands
                 if (twitterStatus != null)
                 {
                     var screenName = twitterStatus.User.ScreenName;
-                    if (screenName == null) return;
+                    if (screenName is null) return;
 
                     if (twitterStatus.User.IsFollowing)
                     {

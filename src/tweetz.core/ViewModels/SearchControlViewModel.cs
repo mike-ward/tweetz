@@ -77,7 +77,7 @@ namespace tweetz.core.ViewModels
 
         private void UpdateTimeline(IEnumerable<TwitterStatus>? statuses)
         {
-            if (statuses == null) return;
+            if (statuses is null) return;
 
             foreach (var status in statuses)
             {

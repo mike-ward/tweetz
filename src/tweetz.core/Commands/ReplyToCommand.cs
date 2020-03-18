@@ -37,7 +37,7 @@ namespace tweetz.core.Commands
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             var status = StatusFromParameter(e.Parameter);
-            if (status == null) return;
+            if (status is null) return;
 
             ComposeControlViewModel.Clear();
             ComposeControlViewModel.InReplyTo = status;

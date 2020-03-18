@@ -70,10 +70,10 @@ namespace twitter.core.Services
         private Task<string> OAuthRequest(string url, IEnumerable<(string, string)> parameters, string method)
         {
             if (method != GET && method != POST) throw new ArgumentException($"method parameter must be \"{GET}\" or \"{POST}\"");
-            if (ConsumerKey == null) throw new InvalidOperationException("ConsumerKey is null");
-            if (ConsumerSecret == null) throw new InvalidOperationException("ConsumerSecret is null");
-            if (AccessToken == null) throw new InvalidOperationException("AccessToken is null");
-            if (AccessTokenSecret == null) throw new InvalidOperationException("AccessTokenSecret is null");
+            if (ConsumerKey is null) throw new InvalidOperationException("ConsumerKey is null");
+            if (ConsumerSecret is null) throw new InvalidOperationException("ConsumerSecret is null");
+            if (AccessToken is null) throw new InvalidOperationException("AccessToken is null");
+            if (AccessTokenSecret is null) throw new InvalidOperationException("AccessTokenSecret is null");
             return OAuthRequestWorker(url, parameters, method);
         }
 
@@ -114,10 +114,10 @@ namespace twitter.core.Services
         /// <returns></returns>
         public async Task AppendMedia(string mediaId, int segmentIndex, byte[] payload)
         {
-            if (ConsumerKey == null) throw new InvalidOperationException("ConsumerKey is null");
-            if (ConsumerSecret == null) throw new InvalidOperationException("ConsumerSecret is null");
-            if (AccessToken == null) throw new InvalidOperationException("AccessToken is null");
-            if (AccessTokenSecret == null) throw new InvalidOperationException("AccessTokenSecret is null");
+            if (ConsumerKey is null) throw new InvalidOperationException("ConsumerKey is null");
+            if (ConsumerSecret is null) throw new InvalidOperationException("ConsumerSecret is null");
+            if (AccessToken is null) throw new InvalidOperationException("AccessToken is null");
+            if (AccessTokenSecret is null) throw new InvalidOperationException("AccessTokenSecret is null");
 
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();

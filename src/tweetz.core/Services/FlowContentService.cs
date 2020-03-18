@@ -15,12 +15,12 @@ namespace tweetz.core.Services
     {
         public static IEnumerable<Inline> FlowContentInlines(TwitterStatus twitterStatus)
         {
-            if (twitterStatus == null)
+            if (twitterStatus is null)
             {
                 yield break;
             }
 
-            var nodes = BuildFlowContentNodes(twitterStatus);
+            var nodes = FlowContentNodes(twitterStatus);
 
             foreach (var node in nodes)
             {
@@ -124,12 +124,12 @@ namespace tweetz.core.Services
                 .Replace("&amp;", "&", StringComparison.Ordinal);
         }
 
-        private static IEnumerable<FlowContentNode> BuildFlowContentNodes(TwitterStatus twitterStatus)
+        private static IEnumerable<FlowContentNode> FlowContentNodes(TwitterStatus twitterStatus)
         {
             var start = 0;
             var twitterString = new TwitterString(twitterStatus.FullText ?? twitterStatus.Text ?? string.Empty);
 
-            foreach (var item in BuildFlowControlItems(twitterStatus.Entities ?? new Entities()))
+            foreach (var item in FlowControlItems(twitterStatus.Entities ?? new Entities()))
             {
                 if (item.Start >= start)
                 {
@@ -145,7 +145,7 @@ namespace tweetz.core.Services
             yield return new FlowContentNode(FlowContentNodeType.Text, twitterString.Substring(start));
         }
 
-        private static IEnumerable<FlowContentItem> BuildFlowControlItems(Entities entities)
+        private static IEnumerable<FlowContentItem> FlowControlItems(Entities entities)
         {
             var urls = entities.Urls
                  ?.Select(url => new FlowContentItem

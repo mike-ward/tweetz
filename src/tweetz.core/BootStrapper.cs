@@ -72,7 +72,7 @@ namespace tweetz.core
 
         public static object GetService(Type type)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (type is null) throw new ArgumentNullException(nameof(type));
             return ServiceProvider.GetService(type) ?? throw new NotSupportedException(type.Name);
         }
 

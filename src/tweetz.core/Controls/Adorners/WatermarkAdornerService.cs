@@ -135,7 +135,7 @@ namespace tweetz.core.Controls.Adorners
             if (layer != null)
             {
                 var adorners = layer.GetAdorners(control);
-                if (adorners == null)
+                if (adorners is null)
                 {
                     return;
                 }

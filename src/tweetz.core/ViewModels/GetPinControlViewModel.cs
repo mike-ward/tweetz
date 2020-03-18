@@ -29,7 +29,7 @@ namespace tweetz.core.ViewModels
 
         internal async Task SignIn()
         {
-            if (requestToken == null) throw new InvalidOperationException("requestToken is null");
+            if (requestToken is null) throw new InvalidOperationException("requestToken is null");
             if (string.IsNullOrWhiteSpace(Pin)) throw new InvalidOperationException("Pin is null");
 
             await _twitterService.AuthenticateWithPin(requestToken, Pin).ConfigureAwait(false);

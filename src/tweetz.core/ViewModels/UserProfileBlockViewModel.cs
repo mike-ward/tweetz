@@ -29,7 +29,7 @@ namespace tweetz.core.ViewModels
                 // UI reuse in virtual panels can show old values until updated.
                 User = null;
                 ErrorMessage = null;
-                if (screenName == null)
+                if (screenName is null)
                 {
                     ErrorMessage = "screenName is null in method GetUserInfo";
                     return;

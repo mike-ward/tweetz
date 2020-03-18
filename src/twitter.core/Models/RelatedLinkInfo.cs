@@ -58,7 +58,7 @@ namespace twitter.core.Models
             }
 
             var urls = status.Entities?.Urls;
-            if (urls == null)
+            if (urls is null)
             {
                 status.CheckedRelatedInfo = true;
                 return status.RelatedLinkInfo;
@@ -73,7 +73,7 @@ namespace twitter.core.Models
                     var uri = url.ExpandedUrl ?? url.Url;
                     if (!UrlValid(uri)) continue;
                     var relatedLinkInfo = await ParseHeadersForLinkInfo(uri).ConfigureAwait(false);
-                    if (relatedLinkInfo == null) continue;
+                    if (relatedLinkInfo is null) continue;
 
                     status.CheckedRelatedInfo = true;
 

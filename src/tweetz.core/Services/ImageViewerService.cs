@@ -277,7 +277,7 @@ namespace tweetz.core.Services
         {
             if (media is null) throw new ArgumentNullException(nameof(media));
 
-            if (media.VideoInfo?.Variants?[0] == null)
+            if (media.VideoInfo?.Variants?[0] is null)
             {
                 return new Uri(media.MediaUrl ?? string.Empty);
             }

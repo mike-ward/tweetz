@@ -170,7 +170,7 @@ namespace twitter.core.Models
         /// <param name="status"></param>
         public void UpdateFromStatus(TwitterStatus status)
         {
-            if (Id == null) throw new InvalidOperationException("Status Id is null");
+            if (Id is null) throw new InvalidOperationException("Status Id is null");
 
             if (!Id.Equals(status.Id, StringComparison.Ordinal)) return;
             ReplyCount = status.ReplyCount;
@@ -211,7 +211,7 @@ namespace twitter.core.Models
 
         protected virtual void OnPropertyChanged(string? propertyName)
         {
-            if (propertyName == null) return;
+            if (propertyName is null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

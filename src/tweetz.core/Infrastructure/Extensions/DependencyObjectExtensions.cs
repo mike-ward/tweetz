@@ -9,7 +9,7 @@ namespace tweetz.core.Infrastructure.Extensions
         public static IEnumerable<T> GetChildrenOfType<T>(this DependencyObject depObj)
             where T : DependencyObject
         {
-            if (depObj == null) yield break;
+            if (depObj is null) yield break;
             var queue = new Queue<DependencyObject>();
             queue.Enqueue(depObj);
 

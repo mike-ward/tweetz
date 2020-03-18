@@ -65,7 +65,7 @@ namespace twitter.core.Models
         {
             get
             {
-                if (memberSince == null)
+                if (memberSince is null)
                 {
                     var date = TwitterStatus.ParseTwitterDate(CreatedAt);
                     memberSince = date.ToString("MMM yyy", CultureInfo.InvariantCulture);
@@ -91,7 +91,7 @@ namespace twitter.core.Models
 
         protected virtual void OnPropertyChanged(string? propertyName)
         {
-            if (propertyName == null) return;
+            if (propertyName is null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

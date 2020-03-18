@@ -21,7 +21,7 @@ namespace tweetz.core.Commands
             if (!(sender is DependencyObject dp)) return;
 
             var tabControl = dp.GetChildrenOfType<TabControl>().FirstOrDefault();
-            if (tabControl == null) return;
+            if (tabControl is null) return;
 
             const int SearchTab = 2;
             tabControl.SelectedIndex = SearchTab;

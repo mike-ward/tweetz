@@ -44,9 +44,9 @@ namespace tweetz.core.ViewModels
         {
             try
             {
-                if (User == null)
+                if (User is null)
                 {
-                    if (Settings.ScreenName == null) return;
+                    if (Settings.ScreenName is null) return;
                     User = await TwitterService.UserInfo(Settings.ScreenName).ConfigureAwait(false);
                 }
             }

@@ -17,7 +17,7 @@ namespace tweetz.core.Infrastructure
 
         protected virtual void OnPropertyChanged(string? propertyName)
         {
-            if (propertyName == null) return;
+            if (propertyName is null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
