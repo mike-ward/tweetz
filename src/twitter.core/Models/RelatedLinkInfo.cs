@@ -64,7 +64,7 @@ namespace twitter.core.Models
                 return status.RelatedLinkInfo;
             }
 
-            var hasMedia = status.ExtendedEntities?.HasMedia ?? false;
+            var hasMedia = status.OriginatingStatus.ExtendedEntities?.HasMedia ?? false;
 
             foreach (var url in urls)
             {
