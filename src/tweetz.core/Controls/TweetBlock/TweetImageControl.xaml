@@ -19,8 +19,8 @@
             Text="{StaticResource Hourglass}" />
 
           <Image
+            Margin="1"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
             ImageFailed="Image_ImageFailed"
             RenderOptions.BitmapScalingMode="LowQuality"
             RenderOptions.CachingHint="Cache"
