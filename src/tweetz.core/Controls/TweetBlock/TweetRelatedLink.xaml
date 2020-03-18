@@ -10,40 +10,38 @@
   d:DesignWidth="800"
   mc:Ignorable="d">
 
-  <Border Style="{StaticResource TweetBlockRelatedBorderStyle}">
-    <StackPanel>
-      <local:TweetImageControl
-        DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
-        Visibility="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+  <StackPanel>
+    <local:TweetImageControl
+      DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
+      Style="{StaticResource TweetBlockImageControlStyle}" />
 
-      <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
-        <Hyperlink
-          Command="commands:OpenLinkCommand.Command"
+    <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
+      <Hyperlink
+        Command="commands:OpenLinkCommand.Command"
+        CommandParameter="{Binding Url, Mode=OneWay}"
+        ToolTip="{Binding Url, Mode=OneWay}"
+        ToolTipOpening="Hyperlink_ToolTipOpening">
+        <Run Text="{Binding Title, Mode=OneWay}" />
+      </Hyperlink>
+    </TextBlock>
+
+    <TextBlock
+      Style="{StaticResource TweetBlockDescriptionStyle}"
+      Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneWay}" />
+
+    <TextBlock
+      Style="{StaticResource TweetBlockSiteNameStyle}"
+      ToolTip="{Binding Url, Mode=OneWay}">
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="{x:Static commands:OpenLinkCommand.Command}"
           CommandParameter="{Binding Url, Mode=OneWay}"
-          ToolTip="{Binding Url, Mode=OneWay}"
-          ToolTipOpening="Hyperlink_ToolTipOpening">
-          <Run Text="{Binding Title, Mode=OneWay}" />
-        </Hyperlink>
-      </TextBlock>
+          MouseAction="LeftClick" />
+      </TextBlock.InputBindings>
 
-      <TextBlock
-        Style="{StaticResource TweetBlockDescriptionStyle}"
-        Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneWay}" />
-
-      <TextBlock
-        Style="{StaticResource TweetBlockSiteNameStyle}"
-        ToolTip="{Binding Url, Mode=OneWay}">
-
-        <TextBlock.InputBindings>
-          <MouseBinding
-            Command="{x:Static commands:OpenLinkCommand.Command}"
-            CommandParameter="{Binding Url, Mode=OneWay}"
-            MouseAction="LeftClick" />
-        </TextBlock.InputBindings>
-
-        <Run>↗</Run>
-        <Run Text="{Binding SiteName, Mode=OneWay}" />
-      </TextBlock>
-    </StackPanel>
-  </Border>
+      <Run>↗</Run>
+      <Run Text="{Binding SiteName, Mode=OneWay}" />
+    </TextBlock>
+  </StackPanel>
 </UserControl>

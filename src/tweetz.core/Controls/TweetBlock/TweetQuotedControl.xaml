@@ -14,8 +14,8 @@
       <local:TweetNameInfoControl DataContext="{Binding Mode=OneWay}" />
 
       <local:TweetImageControl
-        Margin="0,3,0,0"
-        DataContext="{Binding Mode=OneWay}" />
+        DataContext="{Binding Mode=OneWay}"
+        Style="{StaticResource TweetBlockImageControlStyle}" />
 
       <local:TweetTextControl DataContext="{Binding Mode=OneWay}" />
 

@@ -6,10 +6,17 @@
   <Style
     x:Key="TweetBlockImageControlStyle"
     TargetType="{x:Type local:TweetImageControl}">
+    <Setter Property="Margin" Value="0,5,0,2" />
+    <Setter Property="Cursor" Value="Hand" />
     <Style.Triggers>
       <DataTrigger
         Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
         Value="True">
+        <Setter Property="Visibility" Value="Collapsed" />
+      </DataTrigger>
+      <DataTrigger
+        Binding="{Binding ExtendedEntities.Media, Mode=OneWay}"
+        Value="{x:Null}">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
     </Style.Triggers>
@@ -210,6 +217,7 @@
     x:Key="TweetBlockTitleStyle"
     BasedOn="{StaticResource BaseTextBlockStyle}"
     TargetType="TextBlock">
+    <Setter Property="Margin" Value="0,2,0,2" />
     <Setter Property="FontWeight" Value="Bold" />
     <Setter Property="TextWrapping" Value="Wrap" />
     <Setter Property="TextTrimming" Value="WordEllipsis" />
