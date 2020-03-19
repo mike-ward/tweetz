@@ -67,7 +67,6 @@ namespace tweetz.core
             services.AddSingleton<ISystemState, SystemState>();
             services.AddSingleton<ITwitterService, TwitterService>();
             services.AddSingleton<IWindowInteropService, WindowInteropService>();
-            services.AddSingleton<VersionInfo>();
         }
 
         public static object GetService(Type type)

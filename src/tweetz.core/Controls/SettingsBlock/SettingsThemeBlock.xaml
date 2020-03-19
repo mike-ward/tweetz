@@ -9,7 +9,9 @@
   mc:Ignorable="d">
 
   <UserControl.Resources>
-    <Style x:Key="SettingsRadioButton" TargetType="RadioButton">
+    <Style
+      x:Key="SettingsRadioButton"
+      TargetType="RadioButton">
       <Setter Property="VerticalContentAlignment" Value="Bottom" />
       <Setter Property="Height" Value="19" />
     </Style>
@@ -20,7 +22,7 @@
 
     <Separator />
 
-    <UniformGrid Width="160" Columns="3">
+    <UniformGrid Columns="3">
 
       <RadioButton
         Content="{StaticResource theme-light}"

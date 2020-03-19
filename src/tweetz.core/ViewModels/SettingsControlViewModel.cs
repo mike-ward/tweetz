@@ -9,14 +9,12 @@ namespace tweetz.core.ViewModels
         private string? updateAvailableToolTip;
 
         public ISettings Settings { get; }
-        public VersionInfo VersionInfo { get; }
         public ISystemState SystemState { get; }
         public string? UpdateAvailableToolTip { get => updateAvailableToolTip; set => SetProperty(ref updateAvailableToolTip, value); }
 
-        public SettingsControlViewModel(ISettings settings, VersionInfo versionInfo, ISystemState systemState, ICheckForUpdates checkForUpdates)
+        public SettingsControlViewModel(ISettings settings, ISystemState systemState, ICheckForUpdates checkForUpdates)
         {
             Settings = settings;
-            VersionInfo = versionInfo;
             SystemState = systemState;
 
             if (checkForUpdates != null)

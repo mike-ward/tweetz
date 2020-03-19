@@ -43,7 +43,7 @@
 
     <Run
       Style="{StaticResource TweetBlockScreenNameStyle}"
-      Text="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ScreenNameConverter}}">
+      Text="{Binding User.ScreenName, Mode=OneWay,  StringFormat='@{0}'}">
       <Run.ToolTip>
         <ToolTip Style="{StaticResource ToolTipStyle}">
           <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
