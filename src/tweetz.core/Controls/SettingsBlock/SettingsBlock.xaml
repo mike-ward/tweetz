@@ -2,17 +2,14 @@
   x:Class="tweetz.core.Controls.SettingsBlock.SettingsBlock"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:controls="clr-namespace:tweetz.core.Controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls.SettingsBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:services="clr-namespace:tweetz.core.Services"
   d:DesignHeight="600"
   d:DesignWidth="300"
   mc:Ignorable="d">
 
   <UserControl.Resources>
-
     <Style
       x:Key="TitleStyle"
       BasedOn="{StaticResource BaseTextBlockStyle}"
@@ -90,9 +87,7 @@
 
     <Separator Margin="0,6" />
 
-    <local:SettingsInfoBlock
-      DataContext="{Binding VersionInfo, Mode=OneWay}"
-      Style="{StaticResource BlockStyle}" />
+    <local:SettingsInfoBlock Style="{StaticResource BlockStyle}" />
 
     <Separator Margin="0,6" />
 

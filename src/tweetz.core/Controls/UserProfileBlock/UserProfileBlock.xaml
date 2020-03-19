@@ -93,7 +93,7 @@
         Margin="0,5,0,0"
         DataContext="{Binding User, Mode=OneWay}" />
 
-      <TextBlock Text="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ScreenNameConverter}}" />
+      <TextBlock Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}" />
 
       <TextBlock
         Text="{Binding User.Location, Mode=OneWay}"

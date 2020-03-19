@@ -6,15 +6,13 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:models="clr-namespace:tweetz.core.Models"
-  d:DataContext="{d:DesignInstance models:VersionInfo,
-                                   IsDesignTimeCreatable=True}"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
 
   <TextBlock TextAlignment="Center">
     <Run>Tweetz,</Run>
-    <Run Text="{Binding Version, Mode=OneWay}" />
+    <Run Text="{x:Static models:VersionInfo.Version}" />
     <LineBreak />
 
     <Hyperlink
@@ -24,6 +22,6 @@
     </Hyperlink>
     <LineBreak />
 
-    <Run Text="{Binding Copyright, Mode=OneWay}" />
+    <Run Text="{x:Static models:VersionInfo.Copyright}" />
   </TextBlock>
 </UserControl>

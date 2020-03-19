@@ -14,15 +14,9 @@ namespace tweetz.core.Services
     {
         private string version;
 
-        public CheckForUpdates(VersionInfo versionInfo)
+        public CheckForUpdates()
         {
-            if (version is null)
-            {
-                Trace.TraceWarning("versionInfo is null");
-                return;
-            }
-
-            version = versionInfo.Version;
+            version = VersionInfo.Version;
             var twoHours = TimeSpan.FromHours(2);
             var timer = new DispatcherTimer { Interval = twoHours };
             timer.Tick += (_, __) => Check();

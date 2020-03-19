@@ -54,7 +54,7 @@ namespace tweetz.core.Infrastructure.ExceptionHandling
             var report = new StringBuilder();
             report.AppendLine("Tweetz Crash Report");
             report.AppendLine("Date: " + DateTime.UtcNow.ToString("u", CultureInfo.InvariantCulture));
-            report.AppendLine("Version: " + new VersionInfo().Version);
+            report.AppendLine("Version: " + VersionInfo.Version);
             report.AppendLine();
             report.AppendLine(_divider);
             report.AppendLine("*** Pressing Ctrl+C will copy the contents of this dialog ***");
