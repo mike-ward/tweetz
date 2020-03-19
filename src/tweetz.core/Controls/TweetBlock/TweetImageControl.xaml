@@ -19,6 +19,7 @@
             Text="{StaticResource Hourglass}" />
 
           <Image
+            Height="200"
             Margin="1"
             HorizontalAlignment="Center"
             ImageFailed="Image_ImageFailed"
@@ -26,7 +27,6 @@
             RenderOptions.CachingHint="Cache"
             Source="{Binding MediaUrl}"
             Stretch="UniformToFill"
-            StretchDirection="DownOnly"
             Tag="{Binding ElementName=LoadingIndicator}" />
 
           <Grid.InputBindings>
