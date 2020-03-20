@@ -54,30 +54,27 @@ namespace twitter.core.Services
 
         private Task Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            return OAuthRequest(url, parameters, method);
+            return OAuthRequest<TaiwanCalendar>(url, parameters, method);
         }
 
         private async Task<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            var json = await OAuthRequest(url, parameters, method);
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var result = JsonSerializer.Deserialize<T>(json, options);
-            return result!;
+            return await OAuthRequest<T>(url, parameters, method);
         }
 
         // All requests return JSON
 
-        private Task<string> OAuthRequest(string url, IEnumerable<(string, string)> parameters, string method)
+        private Task<T> OAuthRequest<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             if (method != GET && method != POST) throw new ArgumentException($"method parameter must be \"{GET}\" or \"{POST}\"");
             if (ConsumerKey is null) throw new InvalidOperationException("ConsumerKey is null");
             if (ConsumerSecret is null) throw new InvalidOperationException("ConsumerSecret is null");
             if (AccessToken is null) throw new InvalidOperationException("AccessToken is null");
             if (AccessTokenSecret is null) throw new InvalidOperationException("AccessTokenSecret is null");
-            return OAuthRequestWorker(url, parameters, method);
+            return OAuthRequestWorker<T>(url, parameters, method);
         }
 
-        private async Task<string> OAuthRequestWorker(string url, IEnumerable<(string, string)> parameters, string method)
+        private async Task<T> OAuthRequestWorker<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
@@ -100,8 +97,7 @@ namespace twitter.core.Services
             }
 
             using var response = await request.GetResponseAsync();
-            using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            var result = stream.ReadToEnd();
+            var result = await JsonSerializer.DeserializeAsync<T>(response.GetResponseStream());
             return result;
         }
 
