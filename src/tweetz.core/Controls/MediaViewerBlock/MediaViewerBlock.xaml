@@ -22,7 +22,9 @@
     SnapsToDevicePixels="True"
     UseLayoutRounding="True">
 
-    <Border BorderBrush="Black" BorderThickness="1">
+    <Border
+      BorderBrush="Black"
+      BorderThickness="1">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition />
@@ -58,13 +60,17 @@
           </MediaElement.RenderTransform>
 
           <MediaElement.RenderTransformOrigin>
-            <Point X="0.5" Y="0.5" />
+            <Point
+              X="0.5"
+              Y="0.5" />
           </MediaElement.RenderTransformOrigin>
 
           <MediaElement.Triggers>
             <EventTrigger RoutedEvent="MediaElement.MediaOpened">
               <BeginStoryboard>
-                <Storyboard Storyboard.TargetName="MediaElement" Storyboard.TargetProperty="RenderTransform.ScaleX">
+                <Storyboard
+                  Storyboard.TargetName="MediaElement"
+                  Storyboard.TargetProperty="RenderTransform.ScaleX">
                   <DoubleAnimation
                     From="0"
                     To="1"
@@ -73,7 +79,9 @@
               </BeginStoryboard>
 
               <BeginStoryboard>
-                <Storyboard Storyboard.TargetName="MediaElement" Storyboard.TargetProperty="RenderTransform.ScaleY">
+                <Storyboard
+                  Storyboard.TargetName="MediaElement"
+                  Storyboard.TargetProperty="RenderTransform.ScaleY">
                   <DoubleAnimation
                     From="0"
                     To="1"
@@ -82,7 +90,9 @@
               </BeginStoryboard>
 
               <BeginStoryboard>
-                <Storyboard Storyboard.TargetName="MediaElement" Storyboard.TargetProperty="Opacity">
+                <Storyboard
+                  Storyboard.TargetName="MediaElement"
+                  Storyboard.TargetProperty="Opacity">
                   <DoubleAnimation
                     From="0"
                     To="1"
@@ -96,6 +106,7 @@
         <local:MediaViewerBlockControls
           x:Name="MediaControls"
           Grid.Row="1"
+          MediaElement="{Binding ElementName=MediaElement, Mode=OneWay}"
           Visibility="Collapsed" />
       </Grid>
     </Border>

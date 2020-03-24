@@ -17,13 +17,16 @@
     </Grid.ColumnDefinitions>
 
     <Slider
+      x:Name="Slider"
       Grid.Column="0"
       Margin="10,0"
       Maximum="100"
       Minimum="0"
       TickPlacement="None" />
 
-    <UniformGrid Grid.Column="1" Rows="1">
+    <UniformGrid
+      Grid.Column="1"
+      Rows="1">
       <Button Width="30">P</Button>
       <Button Width="30">C</Button>
     </UniformGrid>
