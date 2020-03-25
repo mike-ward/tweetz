@@ -34,16 +34,15 @@ namespace twitter.core.Models
                     {
                         Media = string.IsNullOrWhiteSpace(ImageUrl)
                             ? null
-                            : new[]
-    {
-                        new Media
-                        {
-                            Url = ImageUrl,
-                            MediaUrl = ImageUrl,
-                            DisplayUrl = ImageUrl,
-                            ExpandedUrl = ImageUrl
-                        }
-    }
+                            : new[] {
+                                        new Media
+                                        {
+                                            Url = ImageUrl,
+                                            MediaUrl = ImageUrl,
+                                            DisplayUrl = ImageUrl,
+                                            ExpandedUrl = ImageUrl
+                                        }
+                                    }
                     }
                 };
             }
@@ -72,7 +71,7 @@ namespace twitter.core.Models
                 {
                     var uri = url.ExpandedUrl ?? url.Url;
                     if (!UrlValid(uri)) continue;
-                    var relatedLinkInfo = await ParseHeadersForLinkInfo(uri).ConfigureAwait(false);
+                    var relatedLinkInfo = await GetLinkInfo(uri).ConfigureAwait(false);
                     if (relatedLinkInfo is null) continue;
 
                     status.CheckedRelatedInfo = true;
@@ -94,26 +93,38 @@ namespace twitter.core.Models
             return status.RelatedLinkInfo;
         }
 
-        private static async Task<RelatedLinkInfo?> ParseHeadersForLinkInfo(string url)
+        private static async Task<RelatedLinkInfo?> GetLinkInfo(string url)
         {
             if (!UrlValid(url)) return null;
 
             var request = WebRequest.Create(url);
             var response = await request.GetResponseAsync().ConfigureAwait(false);
 
+            var htmlBuilder = new StringBuilder();
             using var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            var html = reader.ReadToEnd();
 
-            // No need to parse the whole document, only intereated in head section
-            // This reduces memory and GC pressure for HTML Agility Pack
-            const string headTag = "</head>";
-            var index = html.IndexOf(headTag, StringComparison.OrdinalIgnoreCase);
-            if (index < 0) return null;
-            var length = index + headTag.Length;
-            var head = html.Substring(0, length) + "</html>";
+            while (true)
+            {
+                var line = await reader.ReadLineAsync().ConfigureAwait(false);
+                if (line is null) break;
+                htmlBuilder.AppendLine(line);
 
+                // No need to parse the whole document, only interested in head section
+                const string headCloseTag = "</head>";
+                if (line.Contains(headCloseTag, StringComparison.OrdinalIgnoreCase)) break;
+            }
+
+            var metaInfo = ParseForSocialTags(url, $"{htmlBuilder.ToString()}</html>");
+
+            return !string.IsNullOrEmpty(metaInfo.Title) && !string.IsNullOrEmpty(metaInfo.Description)
+                ? metaInfo
+                : null;
+        }
+
+        private static RelatedLinkInfo ParseForSocialTags(string url, string html)
+        {
             var document = new HtmlDocument();
-            document.LoadHtml(head);
+            document.LoadHtml(html);
 
             var metaTags = document.DocumentNode.SelectNodes("//meta");
             var metaInfo = new RelatedLinkInfo { Url = url };
@@ -195,9 +206,7 @@ namespace twitter.core.Models
                 }
             }
 
-            return !string.IsNullOrEmpty(metaInfo.Title) && !string.IsNullOrEmpty(metaInfo.Description)
-                ? metaInfo
-                : null;
+            return metaInfo;
         }
 
         private static bool UrlValid(string? source)
