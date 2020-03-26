@@ -32,7 +32,7 @@ namespace tweetz.core.Services
             CheckAsync().ConfigureAwait(false);
         }
 
-        private async Task CheckAsync()
+        private async ValueTask CheckAsync()
         {
             try
             {

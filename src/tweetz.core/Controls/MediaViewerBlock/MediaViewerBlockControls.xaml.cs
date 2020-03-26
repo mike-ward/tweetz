@@ -27,14 +27,14 @@ namespace tweetz.core.Controls.MediaViewerBlock
         {
             if (MediaElement.NaturalDuration.HasTimeSpan)
             {
-                Slider.Maximum = MediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-                Slider.Value = MediaElement.Position.TotalSeconds;
+                ProgressIndicator.Maximum = MediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+                ProgressIndicator.Value = MediaElement.Position.TotalSeconds;
             }
 
             if (MediaElement.Source == null)
             {
                 timer.Stop();
-                Slider.Value = 0;
+                ProgressIndicator.Value = 0;
             }
         }
 

@@ -66,7 +66,7 @@ namespace tweetz.core.Services
             }
         }
 
-        private static async Task HyperlinkToolTipOpeningHandlerAsync(Hyperlink hyperlink)
+        private static async ValueTask HyperlinkToolTipOpeningHandlerAsync(Hyperlink hyperlink)
         {
             var link = await TryGetLongUrl((string)hyperlink.CommandParameter).ConfigureAwait(true);
             hyperlink.ToolTip = link;

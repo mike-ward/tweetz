@@ -22,7 +22,7 @@ namespace tweetz.core.ViewModels
         public User? User { get => user; set => SetProperty(ref user, value); }
         public string? ErrorMessage { get => errorMessage; set => SetProperty(ref errorMessage, value); }
 
-        public async Task GetUserInfo(string? screenName)
+        public async ValueTask GetUserInfo(string? screenName)
         {
             try
             {
