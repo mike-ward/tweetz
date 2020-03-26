@@ -6,7 +6,7 @@ namespace tweetz.core.Services
 {
     public static class UpdateTimeStampsTask
     {
-        public static Task Execute(TwitterTimeline timeline)
+        public static ValueTask Execute(TwitterTimeline timeline)
         {
             if (timeline is null) throw new ArgumentNullException(nameof(timeline));
 
@@ -15,7 +15,7 @@ namespace tweetz.core.Services
                 status.InvokeUpdateTimeStamp();
             }
 
-            return Task.CompletedTask;
+            return default;
         }
     }
 }

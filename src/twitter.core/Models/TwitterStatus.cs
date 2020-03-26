@@ -102,7 +102,7 @@ namespace twitter.core.Models
             }
         }
 
-        private async Task GetRelatedInfoAsync()
+        private async ValueTask GetRelatedInfoAsync()
         {
             try
             {

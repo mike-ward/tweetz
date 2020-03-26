@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using tweetz.core.Models;
 using twitter.core.Models;
 
@@ -9,7 +10,7 @@ namespace tweetz.core.Services
     {
         private static readonly IEqualityComparer<TwitterStatus> twitterStatusComparer = new TwitterStatusEqualityComparer();
 
-        public static void Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
+        public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {
             if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
 
@@ -30,6 +31,8 @@ namespace tweetz.core.Services
                     timeline.StatusCollection.Insert(0, status);
                 }
             }
+
+            return default;
         }
     }
 }

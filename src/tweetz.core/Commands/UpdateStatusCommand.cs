@@ -79,7 +79,7 @@ namespace tweetz.core.Commands
 
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
-                UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
+                await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
             }
             catch (WebException ex)
             {

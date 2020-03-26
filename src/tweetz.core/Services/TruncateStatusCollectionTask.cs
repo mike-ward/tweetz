@@ -5,7 +5,7 @@ namespace tweetz.core.Services
 {
     public static class TruncateStatusCollectionTask
     {
-        public static Task Execute(TwitterTimeline timeline)
+        public static ValueTask Execute(TwitterTimeline timeline)
         {
             if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
 
@@ -16,7 +16,7 @@ namespace tweetz.core.Services
                 timeline.StatusCollection.RemoveAt(timeline.StatusCollection.Count - 1);
             }
 
-            return Task.CompletedTask;
+            return default;
         }
     }
 }

@@ -48,7 +48,7 @@ namespace twitter.core.Models
             }
         }
 
-        public static async Task<RelatedLinkInfo?> GetRelatedLinkInfoAsync(TwitterStatus status)
+        public static async ValueTask<RelatedLinkInfo?> GetRelatedLinkInfoAsync(TwitterStatus status)
         {
             if (status.IsQuoted)
             {
@@ -93,7 +93,7 @@ namespace twitter.core.Models
             return status.RelatedLinkInfo;
         }
 
-        private static async Task<RelatedLinkInfo?> GetLinkInfo(string url)
+        private static async ValueTask<RelatedLinkInfo?> GetLinkInfo(string url)
         {
             if (!UrlValid(url)) return null;
 

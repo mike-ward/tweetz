@@ -58,7 +58,7 @@ namespace tweetz.core.Models
             StatusCollection.Clear();
         }
 
-        public void AddUpdateTask(Func<TwitterTimeline, Task> task)
+        public void AddUpdateTask(Func<TwitterTimeline, ValueTask> task)
         {
             updateTasks.Add(task);
         }
@@ -69,7 +69,7 @@ namespace tweetz.core.Models
             UpdateAsync().ConfigureAwait(false);
         }
 
-        public async Task UpdateAsync()
+        public async ValueTask UpdateAsync()
         {
             if (inUpdate) return;
             if (SystemState.IsSleeping) return;
@@ -126,7 +126,7 @@ namespace tweetz.core.Models
         private Duration fadeInDuration;
         private string? exceptionMessage;
         private readonly DispatcherTimer updateTimer;
-        private readonly List<Func<TwitterTimeline, Task>> updateTasks = new List<Func<TwitterTimeline, Task>>();
+        private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new List<Func<TwitterTimeline, ValueTask>>();
         private object SyncObject => new object();
     }
 }

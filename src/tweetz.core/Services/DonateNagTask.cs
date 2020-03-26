@@ -8,13 +8,13 @@ namespace tweetz.core.Services
         private const int donateNagCounterInterval = 120;
         private static int donateNagCounter = donateNagCounterInterval - 10;
 
-        public static Task Execute(TwitterTimeline timeline)
+        public static ValueTask Execute(TwitterTimeline timeline)
         {
             if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
 
             if (timeline.Settings.Donated)
             {
-                return Task.CompletedTask;
+                return default;
             }
 
             if (donateNagCounter >= donateNagCounterInterval)
@@ -27,7 +27,7 @@ namespace tweetz.core.Services
                 donateNagCounter += 1;
             }
 
-            return Task.CompletedTask;
+            return default;
         }
     }
 }

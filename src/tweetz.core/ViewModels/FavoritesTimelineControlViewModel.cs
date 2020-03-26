@@ -20,10 +20,10 @@ namespace tweetz.core.ViewModels
             AddUpdateTask(UpdateTimeStampsTask.Execute);
         }
 
-        private async Task GetAndUpdateFavorites(TwitterTimeline timeline)
+        private async ValueTask GetAndUpdateFavorites(TwitterTimeline timeline)
         {
             var statuses = await TwitterService.GetFavoritesTimeline().ConfigureAwait(true);
-            UpdateStatuses.Execute(statuses, timeline);
+            await UpdateStatuses.Execute(statuses, timeline);
         }
     }
 }
