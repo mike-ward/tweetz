@@ -32,39 +32,40 @@ namespace twitter.core.Services
             AccessTokenSecret = accessTokenSecret;
         }
 
-        public Task Get(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask Get(string url, IEnumerable<(string, string)> parameters)
         {
             return Request(url, parameters, GET);
         }
 
-        public Task<T> Get<T>(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask<T> Get<T>(string url, IEnumerable<(string, string)> parameters)
         {
             return Request<T>(url, parameters, GET);
         }
 
-        public Task Post(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask Post(string url, IEnumerable<(string, string)> parameters)
         {
             return Request(url, parameters, POST);
         }
 
-        public Task<T> Post<T>(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask<T> Post<T>(string url, IEnumerable<(string, string)> parameters)
         {
             return Request<T>(url, parameters, POST);
         }
 
-        private Task Request(string url, IEnumerable<(string, string)> parameters, string method)
+        private ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            return OAuthRequest<TaiwanCalendar>(url, parameters, method);
+            OAuthRequest<object>(url, parameters, method);
+            return default;
         }
 
-        private async Task<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
+        private async ValueTask<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             return await OAuthRequest<T>(url, parameters, method);
         }
 
         // All requests return JSON
 
-        private Task<T> OAuthRequest<T>(string url, IEnumerable<(string, string)> parameters, string method)
+        private ValueTask<T> OAuthRequest<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             if (method != GET && method != POST) throw new ArgumentException($"method parameter must be \"{GET}\" or \"{POST}\"");
             if (ConsumerKey is null) throw new InvalidOperationException("ConsumerKey is null");
@@ -74,7 +75,7 @@ namespace twitter.core.Services
             return OAuthRequestWorker<T>(url, parameters, method);
         }
 
-        private async Task<T> OAuthRequestWorker<T>(string url, IEnumerable<(string, string)> parameters, string method)
+        private async ValueTask<T> OAuthRequestWorker<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
@@ -108,7 +109,7 @@ namespace twitter.core.Services
         /// <param name="segmentIndex"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public async Task AppendMedia(string mediaId, int segmentIndex, byte[] payload)
+        public async ValueTask AppendMedia(string mediaId, int segmentIndex, byte[] payload)
         {
             if (ConsumerKey is null) throw new InvalidOperationException("ConsumerKey is null");
             if (ConsumerSecret is null) throw new InvalidOperationException("ConsumerSecret is null");

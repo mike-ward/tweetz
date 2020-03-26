@@ -40,7 +40,7 @@ namespace tweetz.core.Commands
             CommandHandlerAsync().ConfigureAwait(false);
         }
 
-        private async Task CommandHandlerAsync()
+        private async ValueTask CommandHandlerAsync()
         {
             const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 
@@ -74,14 +74,14 @@ namespace tweetz.core.Commands
             }
         }
 
-        private async Task<MediaInfo> UploadMedia(string path)
+        private async ValueTask<MediaInfo> UploadMedia(string path)
         {
             var contentType = ComposeControlViewModel.ContentType(path);
             var mediaId = await Upload(path, contentType).ConfigureAwait(false);
             return new MediaInfo { Path = path, MediaId = mediaId };
         }
 
-        private async Task<string> Upload(string filename, string mediaType)
+        private async ValueTask<string> Upload(string filename, string mediaType)
         {
             var bytes = File.ReadAllBytes(filename);
             var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
@@ -96,7 +96,7 @@ namespace tweetz.core.Commands
             return media.MediaId;
         }
 
-        private async Task UntilProcessingFinished(string mediaId)
+        private async ValueTask UntilProcessingFinished(string mediaId)
         {
             while (true)
             {

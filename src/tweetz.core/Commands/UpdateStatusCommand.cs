@@ -50,7 +50,7 @@ namespace tweetz.core.Commands
             CommandHandlerAsync().ConfigureAwait(false);
         }
 
-        private async Task CommandHandlerAsync()
+        private async ValueTask CommandHandlerAsync()
         {
             try
             {

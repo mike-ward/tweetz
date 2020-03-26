@@ -7,42 +7,42 @@ namespace tweetz.core.Infrastructure
 {
     public interface ITwitterService
     {
-        Task<OAuthTokens> GetPin();
+        ValueTask<OAuthTokens> GetPin();
 
-        Task AuthenticateWithPin(OAuthTokens requestTokens, string pin);
+        ValueTask AuthenticateWithPin(OAuthTokens requestTokens, string pin);
 
-        Task<IEnumerable<TwitterStatus>> GetHomeTimeline();
+        ValueTask<IEnumerable<TwitterStatus>> GetHomeTimeline();
 
-        Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20);
+        ValueTask<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20);
 
-        Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline();
+        ValueTask<IEnumerable<TwitterStatus>> GetFavoritesTimeline();
 
-        Task<User> UserInfo(string screenName);
+        ValueTask<User> UserInfo(string screenName);
 
-        Task<Tweet> Search(string query);
+        ValueTask<Tweet> Search(string query);
 
-        Task RetweetStatus(string statusId);
+        ValueTask RetweetStatus(string statusId);
 
-        Task UnretweetStatus(string statusId);
+        ValueTask UnretweetStatus(string statusId);
 
-        Task CreateFavorite(string statusId);
+        ValueTask CreateFavorite(string statusId);
 
-        Task DestroyFavorite(string statusId);
+        ValueTask DestroyFavorite(string statusId);
 
-        Task Follow(string screenName);
+        ValueTask Follow(string screenName);
 
-        Task Unfollow(string screenName);
+        ValueTask Unfollow(string screenName);
 
-        Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[] mediaIds);
+        ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[] mediaIds);
 
-        Task<TwitterStatus> GetStatus(string statusId);
+        ValueTask<TwitterStatus> GetStatus(string statusId);
 
-        Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType);
+        ValueTask<UploadMedia> UploadMediaInit(int totalBytes, string mediaType);
 
-        Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data);
+        ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data);
 
-        Task<UploadMedia> UploadMediaStatus(string mediaId);
+        ValueTask<UploadMedia> UploadMediaStatus(string mediaId);
 
-        Task<UploadMedia> UploadMediaFinalize(string mediaId);
+        ValueTask<UploadMedia> UploadMediaFinalize(string mediaId);
     }
 }

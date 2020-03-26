@@ -39,7 +39,7 @@ namespace tweetz.core.ViewModels
 
         private int mentionsCounter = mentionsInterval;
 
-        private async Task<IEnumerable<TwitterStatus>> GetMentions()
+        private async ValueTask<IEnumerable<TwitterStatus>> GetMentions()
         {
             IEnumerable<TwitterStatus> mentions = System.Array.Empty<TwitterStatus>();
 

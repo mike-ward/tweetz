@@ -19,7 +19,7 @@ namespace twitter.core.Services
             oAuthApiRequest = new OAuthApiRequest(ConsumerKey, ConsumerSecret);
         }
 
-        public async Task<OAuthTokens> GetPin()
+        public async ValueTask<OAuthTokens> GetPin()
         {
             var requestTokens = await TwitterTokenRequest.GetRequestToken(ConsumerKey, ConsumerSecret).ConfigureAwait(true);
 
@@ -28,7 +28,7 @@ namespace twitter.core.Services
             return requestTokens;
         }
 
-        public Task<OAuthTokens> AuthenticateWithPin(OAuthTokens tokens, string pin)
+        public ValueTask<OAuthTokens> AuthenticateWithPin(OAuthTokens tokens, string pin)
         {
             return TwitterTokenRequest.GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin);
         }
@@ -38,28 +38,28 @@ namespace twitter.core.Services
             oAuthApiRequest.AuthenticationTokens(accessToken, accessTokenSecret);
         }
 
-        public Task<IEnumerable<TwitterStatus>> HomeTimeline()
+        public ValueTask<IEnumerable<TwitterStatus>> HomeTimeline()
         {
             return oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
                     TwitterOptions.Default());
         }
 
-        public Task<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
+        public ValueTask<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
         {
             return oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
                     TwitterOptions.Default(count));
         }
 
-        public Task<IEnumerable<TwitterStatus>> FavoritesTimeline()
+        public ValueTask<IEnumerable<TwitterStatus>> FavoritesTimeline()
         {
             return oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
                     TwitterOptions.Default());
         }
 
-        public Task<User> UserInfo(string screenName)
+        public ValueTask<User> UserInfo(string screenName)
         {
             return oAuthApiRequest
                 .Get<User>("https://api.twitter.com/1.1/users/show.json",
@@ -71,7 +71,7 @@ namespace twitter.core.Services
                     });
         }
 
-        public Task<Tweet> Search(string query)
+        public ValueTask<Tweet> Search(string query)
         {
             return oAuthApiRequest
                 .Get<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
@@ -84,49 +84,49 @@ namespace twitter.core.Services
                     });
         }
 
-        public Task RetweetStatus(string statusId)
+        public ValueTask RetweetStatus(string statusId)
         {
             return oAuthApiRequest
                .Post($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
                    Array.Empty<(string, string)>());
         }
 
-        public Task UnretweetStatus(string statusId)
+        public ValueTask UnretweetStatus(string statusId)
         {
             return oAuthApiRequest
                 .Post($"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
                     Array.Empty<(string, string)>());
         }
 
-        public Task CreateFavorite(string statusId)
+        public ValueTask CreateFavorite(string statusId)
         {
             return oAuthApiRequest
                 .Post("https://api.twitter.com/1.1/favorites/create.json",
                      new[] { TwitterOptions.Id(statusId) });
         }
 
-        public Task DestroyFavorite(string statusId)
+        public ValueTask DestroyFavorite(string statusId)
         {
             return oAuthApiRequest
                .Post("https://api.twitter.com/1.1/favorites/destroy.json",
                   new[] { TwitterOptions.Id(statusId) });
         }
 
-        public Task Follow(string screenName)
+        public ValueTask Follow(string screenName)
         {
             return oAuthApiRequest
                .Post("https://api.twitter.com/1.1/friendships/create.json",
                    new[] { TwitterOptions.ScreenName(screenName), });
         }
 
-        public Task Unfollow(string screenName)
+        public ValueTask Unfollow(string screenName)
         {
             return oAuthApiRequest
                .Post("https://api.twitter.com/1.1/friendships/destroy.json",
                    new[] { TwitterOptions.ScreenName(screenName) });
         }
 
-        public Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
+        public ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
             var parameters = new List<(string, string)>
             {
@@ -154,7 +154,7 @@ namespace twitter.core.Services
                 .Post<TwitterStatus>("https://api.twitter.com/1.1/statuses/update.json", parameters);
         }
 
-        public Task<TwitterStatus> GetStatus(string statusId)
+        public ValueTask<TwitterStatus> GetStatus(string statusId)
         {
             return oAuthApiRequest
                 .Get<TwitterStatus>("https://api.twitter.com/1.1/statuses/show.json",
@@ -168,7 +168,7 @@ namespace twitter.core.Services
 
         public const string UploadMediaUrl = "https://upload.twitter.com/1.1/media/upload.json";
 
-        public Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
+        public ValueTask<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
             return oAuthApiRequest
                 .Post<UploadMedia>(UploadMediaUrl,
@@ -180,13 +180,13 @@ namespace twitter.core.Services
                     });
         }
 
-        public Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
+        public ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
             return oAuthApiRequest
                .AppendMedia(mediaId, segmentIndex, data);
         }
 
-        public Task<UploadMedia> UploadMediaStatus(string mediaId)
+        public ValueTask<UploadMedia> UploadMediaStatus(string mediaId)
         {
             return oAuthApiRequest
                 .Get<UploadMedia>(UploadMediaUrl,
@@ -197,7 +197,7 @@ namespace twitter.core.Services
                     });
         }
 
-        public Task<UploadMedia> UploadMediaFinalize(string mediaId)
+        public ValueTask<UploadMedia> UploadMediaFinalize(string mediaId)
         {
             return oAuthApiRequest
                 .Post<UploadMedia>(UploadMediaUrl,
