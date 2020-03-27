@@ -41,7 +41,7 @@ namespace tweetz.core.Commands
             CommandHandlerAsync(args).ConfigureAwait(false);
         }
 
-        private async ValueTask CommandHandlerAsync(ExecutedRoutedEventArgs args)
+        private async Task CommandHandlerAsync(ExecutedRoutedEventArgs args)
         {
             try
             {

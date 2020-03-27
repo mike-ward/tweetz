@@ -26,12 +26,12 @@ namespace tweetz.core.Services
                 this.settings.AccessTokenSecret);
         }
 
-        public ValueTask<OAuthTokens> GetPin()
+        public Task<OAuthTokens> GetPin()
         {
             return twitterApi.GetPin();
         }
 
-        public async ValueTask AuthenticateWithPin(OAuthTokens requestTokens, string pin)
+        public async Task AuthenticateWithPin(OAuthTokens requestTokens, string pin)
         {
             var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(false);
             if (access != null)
@@ -43,87 +43,87 @@ namespace tweetz.core.Services
             }
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> GetHomeTimeline()
+        public Task<IEnumerable<TwitterStatus>> GetHomeTimeline()
         {
             return twitterApi.HomeTimeline();
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
+        public Task<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
         {
             return twitterApi.MentionsTimeline(count);
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
+        public Task<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
         {
             return twitterApi.FavoritesTimeline();
         }
 
-        public ValueTask<User> UserInfo(string screenName)
+        public Task<User> UserInfo(string screenName)
         {
             return twitterApi.UserInfo(screenName);
         }
 
-        public ValueTask<Tweet> Search(string query)
+        public Task<Tweet> Search(string query)
         {
             return twitterApi.Search(query);
         }
 
-        public ValueTask RetweetStatus(string statusId)
+        public Task RetweetStatus(string statusId)
         {
             return twitterApi.RetweetStatus(statusId);
         }
 
-        public ValueTask UnretweetStatus(string statusId)
+        public Task UnretweetStatus(string statusId)
         {
             return twitterApi.UnretweetStatus(statusId);
         }
 
-        public ValueTask CreateFavorite(string statusId)
+        public Task CreateFavorite(string statusId)
         {
             return twitterApi.CreateFavorite(statusId);
         }
 
-        public ValueTask DestroyFavorite(string statusId)
+        public Task DestroyFavorite(string statusId)
         {
             return twitterApi.DestroyFavorite(statusId);
         }
 
-        public ValueTask Follow(string screenName)
+        public Task Follow(string screenName)
         {
             return twitterApi.Follow(screenName);
         }
 
-        public ValueTask Unfollow(string screenName)
+        public Task Unfollow(string screenName)
         {
             return twitterApi.Unfollow(screenName);
         }
 
-        public ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
+        public Task<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
             return twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
         }
 
-        public ValueTask<TwitterStatus> GetStatus(string statusId)
+        public Task<TwitterStatus> GetStatus(string statusId)
         {
             return twitterApi.GetStatus(statusId);
         }
 
-        public ValueTask<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
+        public Task<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
             return twitterApi.UploadMediaInit(totalBytes, mediaType);
         }
 
-        public ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
+        public Task UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
             return twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
         }
 
-        public ValueTask<UploadMedia> UploadMediaStatus(string mediaId)
+        public Task<UploadMedia> UploadMediaStatus(string mediaId)
         {
             return twitterApi.UploadMediaStatus(mediaId);
         }
 
-        public ValueTask<UploadMedia> UploadMediaFinalize(string mediaId)
+        public Task<UploadMedia> UploadMediaFinalize(string mediaId)
         {
             return twitterApi.UploadMediaFinalize(mediaId);
         }

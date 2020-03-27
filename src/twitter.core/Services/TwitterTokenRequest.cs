@@ -8,7 +8,7 @@ namespace twitter.core.Services
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "None")]
     internal static class TwitterTokenRequest
     {
-        public static async ValueTask<OAuthTokens> GetRequestToken(
+        public static async Task<OAuthTokens> GetRequestToken(
             string consumerKey,
             string consumerSecret)
         {
@@ -42,7 +42,7 @@ namespace twitter.core.Services
             };
         }
 
-        public static async ValueTask<OAuthTokens> GetAccessToken(
+        public static async Task<OAuthTokens> GetAccessToken(
             string consumerKey,
             string consumerSecret,
             string accessToken,

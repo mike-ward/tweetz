@@ -26,7 +26,7 @@ namespace tweetz.core.Commands
             CommandHandlerAsync(e).ConfigureAwait(false);
         }
 
-        private async ValueTask CommandHandlerAsync(ExecutedRoutedEventArgs e)
+        private async Task CommandHandlerAsync(ExecutedRoutedEventArgs e)
         {
             if (e.Parameter is TwitterStatus status)
             {

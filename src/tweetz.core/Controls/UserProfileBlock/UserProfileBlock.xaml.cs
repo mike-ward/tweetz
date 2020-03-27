@@ -18,7 +18,7 @@ namespace tweetz.core.Controls.UserProfileBlock
             OnLoadAsync().ConfigureAwait(false);
         }
 
-        private async ValueTask OnLoadAsync()
+        private async Task OnLoadAsync()
         {
             if (DataContext is UserProfileBlockViewModel vm)
             {
