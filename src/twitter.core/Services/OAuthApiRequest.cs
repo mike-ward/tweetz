@@ -52,15 +52,14 @@ namespace twitter.core.Services
             return Request<T>(url, parameters, POST);
         }
 
-        private ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
+        private async ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            OAuthRequest<object>(url, parameters, method);
-            return default;
+            await OAuthRequest<object>(url, parameters, method).ConfigureAwait(false);
         }
 
         private async ValueTask<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            return await OAuthRequest<T>(url, parameters, method);
+            return await OAuthRequest<T>(url, parameters, method).ConfigureAwait(false);
         }
 
         // All requests return JSON
@@ -97,8 +96,8 @@ namespace twitter.core.Services
                 WriteTextToStream(requestStream, string.Join("&", parameterStrings));
             }
 
-            using var response = await request.GetResponseAsync();
-            var result = await JsonSerializer.DeserializeAsync<T>(response.GetResponseStream());
+            using var response = await request.GetResponseAsync().ConfigureAwait(false);
+            var result = await JsonSerializer.DeserializeAsync<T>(response.GetResponseStream()).ConfigureAwait(false);
             return result;
         }
 
@@ -138,7 +137,7 @@ namespace twitter.core.Services
                 WriteTextToStream(requestStream, $"--{boundary}--\r\n");
             }
 
-            using (await request.GetResponseAsync())
+            using (await request.GetResponseAsync().ConfigureAwait(false))
             {
                 // lint checker likes this better
             }
