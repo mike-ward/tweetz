@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace tweetz.core.Controls
 {
@@ -19,6 +21,13 @@ namespace tweetz.core.Controls
         {
             get { return (bool)GetValue(BiggerProperty); }
             set { SetValue(BiggerProperty, value); }
+        }
+
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var imageControl = (Image)sender;
+            var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
+            imageControl.Source = new BitmapImage(uri);
         }
     }
 }

@@ -11,7 +11,7 @@
   ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
   mc:Ignorable="d">
 
-  <Image Style="{StaticResource TweetBlockProfileImageStyle}">
+  <Image Style="{StaticResource TweetBlockProfileImageStyle}" ImageFailed="Image_ImageFailed">
 
     <Image.InputBindings>
       <MouseBinding
