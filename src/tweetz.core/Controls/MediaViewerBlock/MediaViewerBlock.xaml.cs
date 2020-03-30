@@ -9,7 +9,10 @@ namespace tweetz.core.Controls.MediaViewerBlock
         public MediaViewerBlock()
         {
             InitializeComponent();
-            DataContextChanged += (_, e) => MediaControls.DataContext = e.NewValue;
+            DataContextChanged += (_, e) =>
+            {
+                MediaControls.DataContext = e.NewValue;
+            };
         }
 
         private MediaViewerBlockViewModel ViewModel => (MediaViewerBlockViewModel)DataContext;
@@ -23,8 +26,14 @@ namespace tweetz.core.Controls.MediaViewerBlock
         private void Popup_Opened(object sender, System.EventArgs e)
         {
             ViewModel.ErrorMessage = null;
+            MediaElement.Stop();
             MediaControls.Visibility = System.Windows.Visibility.Collapsed;
             LoadingIndicator.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void Popup_Closed(object sender, System.EventArgs e)
+        {
+            ViewModel.Uri = null;
         }
 
         private void Popup_KeyDown(object sender, KeyEventArgs e)
@@ -37,6 +46,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
         {
             LoadingIndicator.Visibility = System.Windows.Visibility.Collapsed;
             MediaControls.Visibility = System.Windows.Visibility.Visible;
+            MediaElement.Play();
         }
 
         private void MediaElement_MediaFailed(object sender, System.Windows.ExceptionRoutedEventArgs e)

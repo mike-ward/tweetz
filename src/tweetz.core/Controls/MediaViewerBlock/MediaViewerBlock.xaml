@@ -16,6 +16,7 @@
     KeyDown="Popup_KeyDown"
     MouseDown="Popup_MouseDown"
     Opened="Popup_Opened"
+    Closed="Popup_Closed"
     Placement="Center"
     PlacementRectangle="{Binding PlacementRectangle, Mode=OneWay}"
     PopupAnimation="Fade"
@@ -51,6 +52,7 @@
 
         <MediaElement
           x:Name="MediaElement"
+          LoadedBehavior="Manual"
           MediaFailed="MediaElement_MediaFailed"
           MediaOpened="MediaElement_MediaOpened"
           Source="{Binding Uri, Mode=OneWay}">
