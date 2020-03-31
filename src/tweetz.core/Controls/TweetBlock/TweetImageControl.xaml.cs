@@ -12,10 +12,10 @@ namespace tweetz.core.Controls
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
+            e.Handled = true;
             var image = (Image)sender;
             var loadingIndicator = (TextBlock)image.Tag;
             loadingIndicator.Text = (string)Application.Current.FindResource("WarningSign");
-            e.Handled = true;
         }
     }
 }

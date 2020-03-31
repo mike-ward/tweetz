@@ -12,6 +12,7 @@ namespace tweetz.core.Controls
 
         private void Hyperlink_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
+            e.Handled = true;
             LongUrlService.HyperlinkToolTipOpeningHandler(sender, e);
         }
     }

@@ -25,6 +25,7 @@ namespace tweetz.core.Controls
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
+            e.Handled = true;
             var imageControl = (Image)sender;
             var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
             imageControl.Source = new BitmapImage(uri);

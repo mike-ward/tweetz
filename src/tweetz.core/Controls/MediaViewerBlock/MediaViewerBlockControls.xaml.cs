@@ -1,43 +1,63 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using tweetz.core.Services;
 
 namespace tweetz.core.Controls.MediaViewerBlock
 {
     public partial class MediaViewerBlockControls : UserControl
     {
-        private DispatcherTimer timer;
-        private const string PlayButtonSymbol = "PlaySymbol";
-        private const string PauseButtonSymbol = "PauseSymbol";
-
         public MediaViewerBlockControls()
         {
             InitializeComponent();
             Loaded += MediaViewerBlockControls_Loaded;
         }
 
+        public static readonly DependencyProperty MediaElementProperty =
+            DependencyProperty.Register("MediaElement", typeof(MediaElement), typeof(MediaViewerBlockControls));
+
+        public MediaElement MediaElement
+        {
+            get => (MediaElement)GetValue(MediaElementProperty);
+            set => SetValue(MediaElementProperty, value);
+        }
+
+        private DispatcherTimer timer;
+        private const string PlayButtonSymbol = "PlaySymbol";
+        private const string PauseButtonSymbol = "PauseSymbol";
+
         private void MediaViewerBlockControls_Loaded(object sender, RoutedEventArgs e)
         {
             timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.5) };
             timer.Tick += Timer_Tick;
+            MediaElement.MediaOpened += OnMediaOpened;
+        }
 
-            MediaElement.MediaOpened += (_, __) =>
-            {
-                timer.Start();
-                SetPlayPauseButtonSymbol(PlayPauseButton, PauseButtonSymbol);
+        private void OnMediaOpened(object _, RoutedEventArgs __)
+        {
+            timer.Start();
+            SetPlayPauseButtonSymbol(PlayPauseButton, PauseButtonSymbol);
 
-                var visibility = MediaElement.NaturalDuration.HasTimeSpan
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+            var visibility = MediaElement.NaturalDuration.HasTimeSpan
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
-                RewindButton.Visibility = visibility;
-                PlayPauseButton.Visibility = visibility;
-                ProgressIndicator.Visibility = visibility;
-            };
+            RewindButton.Visibility = visibility;
+            PlayPauseButton.Visibility = visibility;
+            ProgressIndicator.Visibility = visibility;
+        }
+
+        private void PlayPause_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (!MediaElement.NaturalDuration.HasTimeSpan) return;
+            TogglePlayPauseState((Button)sender);
+        }
+
+        private void CopyToClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            ImageViewerService.CopyUIElementToClipboard(MediaElement, MediaElement.Source);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -55,25 +75,9 @@ namespace tweetz.core.Controls.MediaViewerBlock
             }
         }
 
-        public MediaElement MediaElement
-        {
-            get { return (MediaElement)GetValue(MediaElementProperty); }
-            set { SetValue(MediaElementProperty, value); }
-        }
-
-        public static readonly DependencyProperty MediaElementProperty =
-            DependencyProperty.Register("MediaElement", typeof(MediaElement), typeof(MediaViewerBlockControls));
-
-        private void PlayPause_Click(object sender, RoutedEventArgs e)
-        {
-            e.Handled = true;
-            if (!MediaElement.NaturalDuration.HasTimeSpan) return;
-            TogglePlayPauseState((Button)sender);
-        }
-
         private void TogglePlayPauseState(Button button)
         {
-            var state = GetMediaState(MediaElement);
+            var state = ImageViewerService.GetMediaState(MediaElement);
 
             if (state == MediaState.Play)
             {
@@ -96,47 +100,6 @@ namespace tweetz.core.Controls.MediaViewerBlock
         {
             e.Handled = true;
             MediaElement.Position = TimeSpan.Zero;
-        }
-
-        private static MediaState GetMediaState(MediaElement media)
-        {
-            // Yeah, had to resort to refection
-            var hlp = typeof(MediaElement).GetField("_helper", BindingFlags.NonPublic | BindingFlags.Instance)!;
-            var helperObject = hlp.GetValue(media)!;
-            var stateField = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
-            return (MediaState)stateField!.GetValue(helperObject)!;
-        }
-
-        private void CopyToClipboard_Click(object sender, RoutedEventArgs e)
-        {
-            CopyUIElementToClipboard(MediaElement, MediaElement.Source);
-        }
-
-        private static void CopyUIElementToClipboard(FrameworkElement element, Uri uri)
-        {
-            try
-            {
-                var width = element.ActualWidth;
-                var height = element.ActualHeight;
-                var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
-
-                var dv = new DrawingVisual();
-                using (var dc = dv.RenderOpen())
-                {
-                    var vb = new VisualBrush(element);
-                    dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
-                }
-                bmpCopied.Render(dv);
-
-                var dataObject = new DataObject();
-                dataObject.SetData(DataFormats.Dib, bmpCopied);
-                dataObject.SetData(DataFormats.Text, uri.ToString());
-                Clipboard.SetDataObject(dataObject);
-            }
-            catch
-            {
-                // ignored
-            }
         }
     }
 }

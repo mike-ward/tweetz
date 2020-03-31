@@ -71,14 +71,14 @@ namespace tweetz.core.Models
 
         public async ValueTask UpdateAsync()
         {
-            if (inUpdate) return;
-            if (SystemState.IsSleeping) return;
-            if (IsScrolled && Settings.PauseWhenScrolled) return;
+            if (inUpdate) { Trace.TraceInformation("timeline: inUpdate"); return; }
+            if (SystemState.IsSleeping) { Trace.TraceInformation("timeline: isSleeping"); return; }
+            if (IsScrolled && Settings.PauseWhenScrolled) { Trace.TraceInformation("timeline: isPaused"); return; }
 
             try
             {
                 inUpdate = true;
-                Trace.TraceInformation("Updating timeline");
+                Trace.TraceInformation("timeline: Updating");
 
                 foreach (var updateTask in updateTasks)
                 {

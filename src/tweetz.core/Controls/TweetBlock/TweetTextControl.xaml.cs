@@ -17,6 +17,7 @@ namespace tweetz.core.Controls
                 sender is TextBlock textBlock &&
                 textBlock?.Tag is TwitterStatus twitterStatus)
             {
+                e.Handled = true;
                 textBlock.Inlines.Clear();
                 textBlock.Inlines.AddRange(FlowContentService.FlowContentInlines(twitterStatus));
             }

@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using tweetz.core.Controls.MediaViewerBlock;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
@@ -58,6 +63,42 @@ namespace tweetz.core.Services
             return result.Success &&
                    result.Groups.Count > 1 &&
                    string.Equals(result.Groups[1].Value, ".mp4", StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public static void CopyUIElementToClipboard(FrameworkElement element, Uri uri)
+        {
+            try
+            {
+                var width = element.ActualWidth;
+                var height = element.ActualHeight;
+                var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
+
+                var dv = new DrawingVisual();
+                using (var dc = dv.RenderOpen())
+                {
+                    var vb = new VisualBrush(element);
+                    dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
+                }
+                bmpCopied.Render(dv);
+
+                var dataObject = new DataObject();
+                dataObject.SetData(DataFormats.Dib, bmpCopied);
+                dataObject.SetData(DataFormats.Text, uri.ToString());
+                Clipboard.SetDataObject(dataObject);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        public static MediaState GetMediaState(MediaElement media)
+        {
+            // Yeah, had to resort to refection
+            var hlp = typeof(MediaElement).GetField("_helper", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            var helperObject = hlp.GetValue(media)!;
+            var stateField = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
+            return (MediaState)stateField!.GetValue(helperObject)!;
         }
     }
 }
