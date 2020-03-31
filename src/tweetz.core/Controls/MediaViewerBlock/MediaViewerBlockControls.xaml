@@ -5,9 +5,9 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Background="{DynamicResource StandardBackgroundBrush}"
   d:DesignHeight="50"
   d:DesignWidth="800"
-  Background="{DynamicResource StandardBackgroundBrush}"
   mc:Ignorable="d">
 
   <Border
@@ -42,8 +42,10 @@
           Content="{StaticResource PauseSymbol}"
           FontFamily="{StaticResource SymbolFont}" />
         <Button
+          Click="CopyToClipboard_Click"
           Content="{StaticResource CopyClipboardSymbol}"
-          FontFamily="{StaticResource SymbolFont}" />
+          FontFamily="{StaticResource SymbolFont}"
+          Style="{StaticResource SpinButtonStyle}" />
       </UniformGrid>
     </Grid>
   </Border>

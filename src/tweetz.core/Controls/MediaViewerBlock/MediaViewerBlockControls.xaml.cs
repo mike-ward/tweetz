@@ -2,6 +2,8 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace tweetz.core.Controls.MediaViewerBlock
@@ -20,7 +22,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
 
         private void MediaViewerBlockControls_Loaded(object sender, RoutedEventArgs e)
         {
-            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.25) };
+            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.5) };
             timer.Tick += Timer_Tick;
 
             MediaElement.MediaOpened += (_, __) =>
@@ -28,7 +30,10 @@ namespace tweetz.core.Controls.MediaViewerBlock
                 timer.Start();
                 SetPlayPauseButtonSymbol(PlayPauseButton, PauseButtonSymbol);
 
-                var visibility = MediaElement.NaturalDuration.HasTimeSpan ? Visibility.Visible : Visibility.Collapsed;
+                var visibility = MediaElement.NaturalDuration.HasTimeSpan
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
+
                 RewindButton.Visibility = visibility;
                 PlayPauseButton.Visibility = visibility;
                 ProgressIndicator.Visibility = visibility;
@@ -43,7 +48,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
                 ProgressIndicator.Value = MediaElement.Position.TotalSeconds;
             }
 
-            if (MediaElement.Source == null)
+            if (MediaElement.Source is null)
             {
                 timer.Stop();
                 ProgressIndicator.Value = 0;
@@ -63,18 +68,22 @@ namespace tweetz.core.Controls.MediaViewerBlock
         {
             e.Handled = true;
             if (!MediaElement.NaturalDuration.HasTimeSpan) return;
+            TogglePlayPauseState((Button)sender);
+        }
 
+        private void TogglePlayPauseState(Button button)
+        {
             var state = GetMediaState(MediaElement);
 
             if (state == MediaState.Play)
             {
                 MediaElement.Pause();
-                SetPlayPauseButtonSymbol((Button)sender, PlayButtonSymbol);
+                SetPlayPauseButtonSymbol(button, PlayButtonSymbol);
             }
             else
             {
                 MediaElement.Play();
-                SetPlayPauseButtonSymbol((Button)sender, PauseButtonSymbol);
+                SetPlayPauseButtonSymbol(button, PauseButtonSymbol);
             }
         }
 
@@ -85,8 +94,8 @@ namespace tweetz.core.Controls.MediaViewerBlock
 
         private void Rewind_Click(object sender, RoutedEventArgs e)
         {
-            MediaElement.Position = TimeSpan.Zero;
             e.Handled = true;
+            MediaElement.Position = TimeSpan.Zero;
         }
 
         private static MediaState GetMediaState(MediaElement media)
@@ -96,6 +105,38 @@ namespace tweetz.core.Controls.MediaViewerBlock
             var helperObject = hlp.GetValue(media)!;
             var stateField = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
             return (MediaState)stateField!.GetValue(helperObject)!;
+        }
+
+        private void CopyToClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            CopyUIElementToClipboard(MediaElement, MediaElement.Source);
+        }
+
+        private static void CopyUIElementToClipboard(FrameworkElement element, Uri uri)
+        {
+            try
+            {
+                var width = element.ActualWidth;
+                var height = element.ActualHeight;
+                var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
+
+                var dv = new DrawingVisual();
+                using (var dc = dv.RenderOpen())
+                {
+                    var vb = new VisualBrush(element);
+                    dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
+                }
+                bmpCopied.Render(dv);
+
+                var dataObject = new DataObject();
+                dataObject.SetData(DataFormats.Dib, bmpCopied);
+                dataObject.SetData(DataFormats.Text, uri.ToString());
+                Clipboard.SetDataObject(dataObject);
+            }
+            catch
+            {
+                // ignored
+            }
         }
     }
 }

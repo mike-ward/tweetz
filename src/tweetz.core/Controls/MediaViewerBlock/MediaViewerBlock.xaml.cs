@@ -9,10 +9,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
         public MediaViewerBlock()
         {
             InitializeComponent();
-            DataContextChanged += (_, e) =>
-            {
-                MediaControls.DataContext = e.NewValue;
-            };
+            DataContextChanged += (_, e) => MediaControls.DataContext = e.NewValue;
         }
 
         private MediaViewerBlockViewModel ViewModel => (MediaViewerBlockViewModel)DataContext;

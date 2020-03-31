@@ -43,4 +43,30 @@
   <Style
     BasedOn="{StaticResource BaseButtonStyle}"
     TargetType="Button" />
+
+  <Style
+    x:Key="SpinButtonStyle"
+    BasedOn="{StaticResource BaseButtonStyle}"
+    TargetType="Button">
+    <Setter Property="RenderTransformOrigin" Value="0.5 0.5" />
+    <Setter Property="RenderTransform">
+      <Setter.Value>
+        <RotateTransform />
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <EventTrigger RoutedEvent="Button.Click">
+        <BeginStoryboard>
+          <Storyboard TargetProperty="RenderTransform.Angle">
+            <DoubleAnimation
+              AutoReverse="True"
+              FillBehavior="Stop"
+              From="0"
+              To="45"
+              Duration="0:0:0.1" />
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger>
+    </Style.Triggers>
+  </Style>
 </ResourceDictionary>

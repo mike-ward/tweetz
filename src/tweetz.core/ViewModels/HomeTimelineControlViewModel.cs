@@ -29,7 +29,7 @@ namespace tweetz.core.ViewModels
         {
             var mentions = await GetMentions().ConfigureAwait(true);
             var statuses = await TwitterService.GetHomeTimeline().ConfigureAwait(true);
-            await UpdateStatuses.Execute(statuses.Concat(mentions), timeline);
+            await UpdateStatuses.Execute(statuses.Concat(mentions), timeline).ConfigureAwait(true);
         }
 
         // Twitter limits getting mentions to 100,000 per day per Application.
