@@ -14,6 +14,7 @@ namespace tweetz.core.ViewModels
         public FavoritesTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
             : base(settings, systemState, twentyMinutes)
         {
+            timelineName = "Favorites timeline";
             TwitterService = twitterService;
             AddUpdateTask(GetAndUpdateFavorites);
             AddUpdateTask(TruncateStatusCollectionTask.Execute);

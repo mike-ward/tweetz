@@ -16,6 +16,7 @@ namespace tweetz.core.ViewModels
         public HomeTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
             : base(settings, systemState, justOverAMinute)
         {
+            timelineName = "Home timeline";
             TwitterService = twitterService;
             AddUpdateTask(GetAndUpdateStatuses);
             AddUpdateTask(DonateNagTask.Execute);

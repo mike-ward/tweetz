@@ -71,14 +71,14 @@ namespace tweetz.core.Models
 
         public async ValueTask UpdateAsync()
         {
-            if (inUpdate) { Trace.TraceInformation("timeline: inUpdate"); return; }
-            if (SystemState.IsSleeping) { Trace.TraceInformation("timeline: isSleeping"); return; }
-            if (IsScrolled && Settings.PauseWhenScrolled) { Trace.TraceInformation("timeline: isPaused"); return; }
+            if (inUpdate) { Trace.TraceInformation($"{timelineName}: inUpdate"); return; }
+            if (SystemState.IsSleeping) { Trace.TraceInformation($"{timelineName}: isSleeping"); return; }
+            if (IsScrolled && Settings.PauseWhenScrolled) { Trace.TraceInformation($"{timelineName}: isPaused"); return; }
 
             try
             {
                 inUpdate = true;
-                Trace.TraceInformation("timeline: Updating");
+                Trace.TraceInformation($"{timelineName}: Updating");
 
                 foreach (var updateTask in updateTasks)
                 {
@@ -89,7 +89,7 @@ namespace tweetz.core.Models
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.Message);
+                Trace.TraceError($"{timelineName}: ${ex.Message}");
                 ExceptionMessage = ex.Message;
             }
             finally
@@ -121,6 +121,7 @@ namespace tweetz.core.Models
             }
         }
 
+        protected string timelineName = "unknown";
         private bool inUpdate;
         private bool isScrolled;
         private Duration fadeInDuration;

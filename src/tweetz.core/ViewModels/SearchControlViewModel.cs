@@ -20,6 +20,7 @@ namespace tweetz.core.ViewModels
             : base(settings, systemState, InfiniteElapsed)
         {
             TwitterService = twitterService;
+            timelineName = "Search timeline";
         }
 
         public bool ShowProgress { get => showProgress; set => SetProperty(ref showProgress, value); }

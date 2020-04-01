@@ -8,7 +8,7 @@ namespace tweetz.core.Services
     {
         public void ShowMessageBox(string message)
         {
-            const string caption = "Tweetz";
+            var caption = (string)Application.Current.FindResource("title");
             MessageBox.Show(message, caption);
         }
 

@@ -51,6 +51,12 @@
       Content="{StaticResource hide-extended-content}"
       IsChecked="{Binding Settings.HideExtendedContent}" />
 
+    <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
+      <TextBlock
+        Text="{StaticResource show-in-system-tray}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox
       Content="{StaticResource run-on-startup}"
       IsChecked="{Binding SystemState.IsRegisteredInStartup}" />
