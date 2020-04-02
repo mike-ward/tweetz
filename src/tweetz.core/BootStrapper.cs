@@ -65,6 +65,7 @@ namespace tweetz.core
             services.AddSingleton<IOpenUrlService, OpenUrlService>();
             services.AddSingleton<ISettings, Settings>();
             services.AddSingleton<ISystemState, SystemState>();
+            services.AddSingleton<ISystemTrayIconService, SystemTrayIconService>();
             services.AddSingleton<ITwitterService, TwitterService>();
             services.AddSingleton<IWindowInteropService, WindowInteropService>();
         }
