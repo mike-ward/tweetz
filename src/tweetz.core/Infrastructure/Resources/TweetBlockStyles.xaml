@@ -1,16 +1,16 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:local="clr-namespace:tweetz.core.Controls">
+  xmlns:controls="clr-namespace:tweetz.core.Controls">
 
   <Style
     x:Key="TweetBlockImageControlStyle"
-    TargetType="{x:Type local:TweetImageControl}">
+    TargetType="{x:Type controls:TweetImageControl}">
     <Setter Property="Margin" Value="0,5,0,2" />
     <Setter Property="Cursor" Value="Hand" />
     <Style.Triggers>
       <DataTrigger
-        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
+        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay, FallbackValue=False}"
         Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
@@ -24,7 +24,7 @@
 
   <Style
     x:Key="TweetBlockRelatedLinkControlStyle"
-    TargetType="{x:Type local:TweetRelatedLinkControl}">
+    TargetType="{x:Type controls:TweetRelatedLinkControl}">
     <Style.Triggers>
       <DataTrigger
         Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
@@ -32,7 +32,7 @@
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
       <DataTrigger
-        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay}"
+        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay}"
         Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
@@ -271,5 +271,13 @@
     TargetType="TextBlock">
     <Setter Property="TextWrapping" Value="Wrap" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockSeparator"
+    TargetType="Separator">
+    <Setter Property="Height" Value="0.5" />
+    <Setter Property="Margin" Value="0,9,0,0" />
+    <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
 </ResourceDictionary>

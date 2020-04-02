@@ -9,10 +9,30 @@ namespace tweetz.core.Controls.MediaViewerBlock
         public MediaViewerBlock()
         {
             InitializeComponent();
-            DataContextChanged += (_, e) => MediaControls.DataContext = e.NewValue;
+            DataContextChanged += UpdateDataContext;
         }
 
         private MediaViewerBlockViewModel ViewModel => (MediaViewerBlockViewModel)DataContext;
+
+        private void UpdateDataContext(object _, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            MediaControls.DataContext = e.NewValue;
+            ViewModel.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(MediaViewerBlockViewModel.Uri)) ShowLoadingIndicator(); };
+        }
+
+        private void ShowLoadingIndicator()
+        {
+            MediaElement.Stop();
+            ViewModel.ErrorMessage = null;
+            MediaControls.Visibility = System.Windows.Visibility.Collapsed;
+            LoadingIndicator.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void ShowMediaControls()
+        {
+            LoadingIndicator.Visibility = System.Windows.Visibility.Collapsed;
+            MediaControls.Visibility = System.Windows.Visibility.Visible;
+        }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -22,10 +42,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
 
         private void Popup_Opened(object sender, System.EventArgs e)
         {
-            ViewModel.ErrorMessage = null;
-            MediaElement.Stop();
-            MediaControls.Visibility = System.Windows.Visibility.Collapsed;
-            LoadingIndicator.Visibility = System.Windows.Visibility.Visible;
+            ShowLoadingIndicator();
         }
 
         private void Popup_Closed(object sender, System.EventArgs e)
@@ -41,8 +58,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
 
         private void MediaElement_MediaOpened(object sender, System.Windows.RoutedEventArgs e)
         {
-            LoadingIndicator.Visibility = System.Windows.Visibility.Collapsed;
-            MediaControls.Visibility = System.Windows.Visibility.Visible;
+            ShowMediaControls();
             MediaElement.Play();
         }
 

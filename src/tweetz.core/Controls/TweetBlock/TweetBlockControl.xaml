@@ -58,6 +58,10 @@
       <local:TweetCommandsControl
         Margin="0,3,0,0"
         DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+
+      <Separator
+        Style="{StaticResource TweetBlockSeparator}"
+        Visibility="{Binding DataContext.Settings.HideProfileImages, Mode=OneWay, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </StackPanel>
   </Grid>
 
