@@ -11,14 +11,15 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Media media)
-            {
-                var url = ImageViewerService.MediaSource(media);
-                return ImageViewerService.IsMp4(url.ToString())
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
-            }
-            return Visibility.Collapsed;
+            return value is Media media && IsVideo(media)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private bool IsVideo(Media media)
+        {
+            var url = ImageViewerService.MediaSource(media);
+            return ImageViewerService.IsMp4(url.ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
