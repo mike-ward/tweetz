@@ -1,5 +1,4 @@
 ﻿using System;
-using twitter.core.Models;
 
 namespace tweetz.core.Infrastructure
 {
@@ -8,7 +7,5 @@ namespace tweetz.core.Infrastructure
         void Open(Uri uri);
 
         void Close();
-
-        Uri MediaSource(Media media);
     }
 }

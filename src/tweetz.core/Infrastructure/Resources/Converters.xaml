@@ -10,6 +10,7 @@
   <converters:FileNameConverter x:Key="FileNameConverter" />
   <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+  <converters:MediaIsVideoToVisibilityConverter x:Key="MediaIsVideoToVisibilityConverter" />
   <converters:NotBooleanConverter x:Key="NotBooleanConverter" />
   <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
   <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />

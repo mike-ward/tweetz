@@ -29,6 +29,24 @@
             Stretch="UniformToFill"
             Tag="{Binding ElementName=LoadingIndicator}" />
 
+          <Border
+            Width="40"
+            Height="40"
+            Background="{StaticResource TwitterBlue}"
+            BorderBrush="White"
+            BorderThickness="4"
+            CornerRadius="20"
+            Visibility="{Binding Mode=OneWay, Converter={StaticResource MediaIsVideoToVisibilityConverter}}">
+            <TextBlock
+              x:Name="PlayIndicator"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              FontFamily="{StaticResource SymbolFont}"
+              FontSize="24"
+              Foreground="White"
+              Text="{StaticResource PlaySymbol}" />
+          </Border>
+
           <Grid.InputBindings>
             <MouseBinding
               Command="{x:Static commands:ImageViewerCommand.Command}"

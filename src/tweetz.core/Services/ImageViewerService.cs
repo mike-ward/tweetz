@@ -36,7 +36,7 @@ namespace tweetz.core.Services
             mediaViewerBlockViewModel.Uri = null;
         }
 
-        public Uri MediaSource(Media media)
+        public static Uri MediaSource(Media media)
         {
             if (media is null) throw new ArgumentNullException(nameof(media));
 
@@ -55,7 +55,7 @@ namespace tweetz.core.Services
                 : new Uri(media.MediaUrl ?? throw new InvalidOperationException("expected MediaUrl"));
         }
 
-        private static bool IsMp4(string url)
+        public static bool IsMp4(string url)
         {
             var findExtension = new Regex(@".+(\.\w{3})\?*.*");
             var result = findExtension.Match(url);
