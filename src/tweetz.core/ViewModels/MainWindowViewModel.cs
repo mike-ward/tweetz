@@ -34,14 +34,14 @@ namespace tweetz.core.ViewModels
         public void Initialize(Window window)
         {
             if (window is null) throw new System.ArgumentNullException(nameof(window));
-            SystemTrayIconService.InitializeSystemTrayIcon(window);
 
             Settings.Load();
+            SystemTrayIconService.Initialize(window);
             WindowInteropService.PowerManagmentRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
-            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (s, a) => window.Close()));
+            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (_, __) => window.Close()));
         }
 
         public void OnClosing(Window window)
@@ -49,8 +49,8 @@ namespace tweetz.core.ViewModels
             Settings.MainWindowPosition = WindowInteropService.GetWindowPosition(window);
             Settings.Save();
 
-            SystemTrayIconService.HideSystemTrayIcon();
             ImageViewerService.Close();
+            SystemTrayIconService.Close();
         }
     }
 }

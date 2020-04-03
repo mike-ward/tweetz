@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Forms;
 using tweetz.core.Infrastructure;
 
@@ -6,8 +8,9 @@ namespace tweetz.core.Services
 {
     public class SystemTrayIconService : ISystemTrayIconService
     {
-        private NotifyIcon NotifyIcon { get; }
+        private bool disposed;
         private ISettings Settings { get; }
+        private NotifyIcon NotifyIcon { get; }
 
         public SystemTrayIconService(ISettings settings)
         {
@@ -15,32 +18,52 @@ namespace tweetz.core.Services
             NotifyIcon = new NotifyIcon();
         }
 
-        public void InitializeSystemTrayIcon(Window window)
+        public void Initialize(Window window)
         {
+            NotifyIcon.Tag = window;
             NotifyIcon.Text = (string)System.Windows.Application.Current.FindResource("title");
             NotifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly()?.ManifestModule.Name);
 
-            NotifyIcon.Click += (_, __) =>
-            {
-                // Bring window to front
-                window.WindowState = WindowState.Minimized;
-                window.Show();
-                window.WindowState = WindowState.Normal;
-            };
-
-            Settings.PropertyChanged += (_, e) =>
-            {
-                if (e.PropertyName == nameof(Settings.ShowInSystemTray))
-                {
-                    window.ShowInTaskbar = !Settings.ShowInSystemTray;
-                    NotifyIcon.Visible = Settings.ShowInSystemTray;
-                }
-            };
+            ShowInSystemTray(window);
+            NotifyIcon.Click += OnClick;
+            Settings.PropertyChanged += UpdateVisibility;
         }
 
-        public void HideSystemTrayIcon()
+        private void OnClick(object? _, EventArgs __)
         {
-            NotifyIcon.Visible = false;
+            // Bring window to front
+            var window = (Window)NotifyIcon.Tag;
+            window.WindowState = WindowState.Minimized;
+            window.Show();
+            window.WindowState = WindowState.Normal;
+        }
+
+        private void UpdateVisibility(object? _, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Settings.ShowInSystemTray))
+            {
+                var window = (Window)NotifyIcon.Tag;
+                ShowInSystemTray(window);
+            }
+        }
+
+        public void Close()
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                NotifyIcon.Tag = null;
+                NotifyIcon.Visible = false;
+                NotifyIcon.Click -= OnClick;
+                Settings.PropertyChanged -= UpdateVisibility;
+                NotifyIcon.Dispose();
+            }
+        }
+
+        private void ShowInSystemTray(Window window)
+        {
+            window.ShowInTaskbar = !Settings.ShowInSystemTray;
+            NotifyIcon.Visible = Settings.ShowInSystemTray;
         }
     }
 }

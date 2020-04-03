@@ -4,8 +4,8 @@ namespace tweetz.core.Infrastructure
 {
     public interface ISystemTrayIconService
     {
-        void HideSystemTrayIcon();
+        void Close();
 
-        void InitializeSystemTrayIcon(Window window);
+        void Initialize(Window window);
     }
 }
