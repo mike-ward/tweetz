@@ -23,7 +23,7 @@
       <ProgressBar
         x:Name="ProgressIndicator"
         Grid.Column="0"
-        Height="2"
+        Height="3.5"
         Margin="10,0"
         Maximum="100"
         Minimum="0" />
@@ -35,17 +35,26 @@
           x:Name="RewindButton"
           Click="Rewind_Click"
           Content="{StaticResource SkipBackSymbol}"
-          FontFamily="{StaticResource SymbolFont}" />
+          FontFamily="{StaticResource SymbolFont}"
+          ToolTip="{StaticResource skip-to-start-tooltip}" />
         <Button
           x:Name="PlayPauseButton"
           Click="PlayPause_Click"
           Content="{StaticResource PauseSymbol}"
-          FontFamily="{StaticResource SymbolFont}" />
-        <Button
-          Click="CopyToClipboard_Click"
-          Content="{StaticResource CopyClipboardSymbol}"
           FontFamily="{StaticResource SymbolFont}"
-          Style="{StaticResource SpinButtonStyle}" />
+          ToolTip="{StaticResource play-pause-tooltip}" />
+        <Button
+          Click="CopyUriToClipboard_Click"
+          Content="{StaticResource CopyUriClipboardSymbol}"
+          FontFamily="{StaticResource SymbolFont}"
+          Style="{StaticResource SpinButtonStyle}"
+          ToolTip="{StaticResource copy-uri-tooltip}" />
+        <Button
+          Click="CopyImageToClipboard_Click"
+          Content="{StaticResource CopyImageClipboardSymbol}"
+          FontFamily="{StaticResource SymbolFont}"
+          Style="{StaticResource SpinButtonStyle}"
+          ToolTip="{StaticResource copy-image-tooltip}" />
       </UniformGrid>
     </Grid>
   </Border>

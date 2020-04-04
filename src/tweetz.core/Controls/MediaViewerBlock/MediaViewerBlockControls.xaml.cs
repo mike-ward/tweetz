@@ -55,9 +55,14 @@ namespace tweetz.core.Controls.MediaViewerBlock
             TogglePlayPauseState((Button)sender);
         }
 
-        private void CopyToClipboard_Click(object sender, RoutedEventArgs e)
+        private void CopyUriToClipboard_Click(object sender, RoutedEventArgs e)
         {
             ImageViewerService.CopyUIElementToClipboard(MediaElement, MediaElement.Source);
+        }
+
+        private void CopyImageToClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            ImageViewerService.CopyUIElementToClipboard(MediaElement, null);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -65,30 +66,37 @@ namespace tweetz.core.Services
                    string.Equals(result.Groups[1].Value, ".mp4", StringComparison.InvariantCultureIgnoreCase);
         }
 
-        public static void CopyUIElementToClipboard(FrameworkElement element, Uri uri)
+        public static void CopyUIElementToClipboard(FrameworkElement element, Uri? uri)
         {
             try
             {
                 var width = element.ActualWidth;
                 var height = element.ActualHeight;
-                var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
-
-                var dv = new DrawingVisual();
-                using (var dc = dv.RenderOpen())
-                {
-                    var vb = new VisualBrush(element);
-                    dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
-                }
-                bmpCopied.Render(dv);
-
                 var dataObject = new DataObject();
-                dataObject.SetData(DataFormats.Dib, bmpCopied);
-                dataObject.SetData(DataFormats.Text, uri.ToString());
+
+                if (uri is null)
+                {
+                    var dv = new DrawingVisual();
+                    using (var dc = dv.RenderOpen())
+                    {
+                        var vb = new VisualBrush(element);
+                        dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
+                    }
+                    var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
+                    bmpCopied.Render(dv);
+
+                    dataObject.SetData(DataFormats.Dib, bmpCopied);
+                }
+                else
+                {
+                    dataObject.SetData(DataFormats.Text, uri.ToString());
+                }
+
                 Clipboard.SetDataObject(dataObject);
             }
-            catch
+            catch (Exception ex)
             {
-                // ignored
+                Trace.TraceError(ex.ToString());
             }
         }
 
