@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-# 2.1.2 - 2020-04-04
+# 2.2.0 - 2020-04-04
 ### Changed
 - Media player enhancments: Progress bar, play/pause/skip-to-start buttons and seperate copy to clipboard buttons for URL and Image
 - Show tweet image instead of related when available [d99c1e9](https://github.com/mike-ward/tweetz/commit/d99c1e9aa4893e7e97f3d209417aad8a66d576c1)
