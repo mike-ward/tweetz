@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - Show tweet image instead of related when available [d99c1e9](https://github.com/mike-ward/tweetz/commit/d99c1e9aa4893e7e97f3d209417aad8a66d576c1)
 - Remove border on extended content [3962cc7](https://github.com/mike-ward/tweetz/commit/3962cc7883dd323c3a4de8ed66dab9c511fcbcfe)
 - Stretch smaller images to fill [3e60e19](https://github.com/mike-ward/tweetz/commit/3e60e1996023357e3a2223ab9c244e25a6291751)
-- Add divider between tweets when profile image hidden #10 [9a238e5](https://github.com/mike-ward/tweetz/commit/9a238e5b653a8b31fc3f173f3de41c0edbc393be)
+- Add divider between tweets when profile image hidden [#10](https://github.com/mike-ward/tweetz/issues/10) [9a238e5](https://github.com/mike-ward/tweetz/commit/9a238e5b653a8b31fc3f173f3de41c0edbc393be)
 
 ### Fixed
 - Use originating status to check if tweet has media [d7d7d5d](https://github.com/mike-ward/tweetz/commit/d7d7d5d3b1efe2b63747ec62de3426b7cec1294b)
@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 - Show warning icon when image load fails [e6cec98](https://github.com/mike-ward/tweetz/commit/e6cec98b56ed74493d7d49409db2c363ce4b5bab)
 - Add Nord theme [58a51b2](https://github.com/mike-ward/tweetz/commit/58a51b2f8baddca3d36a6d295119a7e1bc4b296b)
 - Add AppCenter Support [3ef8690](https://github.com/mike-ward/tweetz/commit/3ef869035469c91b79782069de48a10c185db19a)
-- Add option for display in System Tray #10 [b173df1](https://github.com/mike-ward/tweetz/commit/b173df1ed108a7814c6fb2434855e9cfe071afaa)
+- Add option for display in System Tray [#10](https://github.com/mike-ward/tweetz/issues/10) [b173df1](https://github.com/mike-ward/tweetz/commit/b173df1ed108a7814c6fb2434855e9cfe071afaa)
 - Add play icon to video media [9959016](https://github.com/mike-ward/tweetz/commit/99590162d3bf98329b3cff66ed97d38ee5194299)
 
 ## 2.1.1 - 2020-03-09
