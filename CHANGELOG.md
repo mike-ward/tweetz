@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 2.1.2 - 2020-04-04
+### Changed
+- Media player enhancments: Progress bar, play/pause/skip-to-start buttons and seperate copy to clipboard buttons for URL and Image
+- Show tweet image instead of related when available [d99c1e9](https://github.com/mike-ward/tweetz/commit/d99c1e9aa4893e7e97f3d209417aad8a66d576c1)
+- Remove border on extended content [3962cc7](https://github.com/mike-ward/tweetz/commit/3962cc7883dd323c3a4de8ed66dab9c511fcbcfe)
+- Stretch smaller images to fill [3e60e19](https://github.com/mike-ward/tweetz/commit/3e60e1996023357e3a2223ab9c244e25a6291751)
+- Add divider between tweets when profile image hidden #10 [9a238e5](https://github.com/mike-ward/tweetz/commit/9a238e5b653a8b31fc3f173f3de41c0edbc393be)
+
+### Fixed
+- Use originating status to check if tweet has media [d7d7d5d](https://github.com/mike-ward/tweetz/commit/d7d7d5d3b1efe2b63747ec62de3426b7cec1294b)
+
+### Added
+- Show warning icon when image load fails [e6cec98](https://github.com/mike-ward/tweetz/commit/e6cec98b56ed74493d7d49409db2c363ce4b5bab)
+- Add Nord theme [58a51b2](https://github.com/mike-ward/tweetz/commit/58a51b2f8baddca3d36a6d295119a7e1bc4b296b)
+- Add AppCenter Support [3ef8690](https://github.com/mike-ward/tweetz/commit/3ef869035469c91b79782069de48a10c185db19a)
+- Add option for display in System Tray #10 [b173df1](https://github.com/mike-ward/tweetz/commit/b173df1ed108a7814c6fb2434855e9cfe071afaa)
+- Add play icon to video media [9959016](https://github.com/mike-ward/tweetz/commit/99590162d3bf98329b3cff66ed97d38ee5194299)
+
 ## 2.1.1 - 2020-03-09
 
 ### Changed
@@ -10,8 +28,8 @@ All notable changes to this project will be documented in this file.
 - Windows sizing using borders restored - [#8](<https://github.com/mike-ward/tweetz/issues/8>)
 
 ## 2.1.0 - 2020-03-07
-### Added
 
+### Added
 - Short to long URL lookup for tooltips [1d4d723](<https://github.com/mike-ward/tweetz/commit/1d4d7235db9d92419ed2190a8d91a58d45b2f6ac>)
 - Splash screen [52a2fc7](<https://github.com/mike-ward/tweetz/commit/52a2fc738f999b088d12ac670531b2f7eb7f672e>)
 - Fixed height images with rounded corners [8f55db3](<https://github.com/mike-ward/tweetz/commit/8f55db3cf68fbc39bce49c487e21c65dc03634da>)
@@ -22,34 +40,36 @@ All notable changes to this project will be documented in this file.
 - Brief fade-in animation of new tweets [a9085cc](<https://github.com/mike-ward/tweetz/commit/a9085ccfd5e50d64e70649679c582d38ceb77069>)
 
 ### Changed
-
 - Change font selector to slider. [0190b64](<https://github.com/mike-ward/tweetz/commit/0190b64504916dbf721e032a377b2aff6791ff2e>)
 - Title close button more like standard windows style [465d366](<https://github.com/mike-ward/tweetz/commit/465d366386d7185abbcf70bf55a11ff1b0f0b83c>)
 - Limit length of related link text to 300 characters [e9373ed](<https://github.com/mike-ward/tweetz/commit/e9373edbc28d870f092da7dd8b001532fca77a44>)
 - Move user control resources to application resources and other performance improvements.
 
 ## 2.0.2 - 2020-02-01
-### Changed
 
+### Changed
 - Reduce memory load of related links by only scanning `<head>` section. [bffb90](https://github.com/mike-ward/tweetz/commit/bffb90988f0cff09157efd6becb2fc0b48360b2f)
 - Refactorings suggested by SonarLink and FxCop analyzers
 
 ## 2.0.1 - 2020-01-26
-### Changed
 
+### Changed
 - Show font size in settings dialog. [67d6cd3](https://github.com/mike-ward/tweetz/commit/67d6cd326dfa4e5b626078ce9a3871a6b4d089a3)
 - Load only HEAD section of related documents with HtmlAgilityPack. Reduces memory and GC presure. [bb628ad](https://github.com/mike-ward/tweetz/commit/bb628adb8a79d41c2686f8331dc5fac51bf017c7)
 
 ## 2.0.0 - 2020-01-18
+
 ### Changed
 - Show reply/retweet/like for user's tweets but disable commands. [f3c0e35](https://github.com/mike-ward/tweetz/commit/f3c0e350fa444519dbc171f6de52cd6b0935ee40)
 
 ## 2.0 Beta 3 - 2020-01-12
+
 ### Fixed
 - Restore mouse down handler to enable moving window.
 - Trim version info returned from server before comparing.
 
 ## 2.0 Beta 2 - 2020-01-11
+
 ### Added
 - Option to hide images - [138d59b](<https://github.com/mike-ward/tweetz/commit/138d59b17340df3c38b82bfd6dfeceb6fec56ec6>)
 - Option to hide extended content - [8fc1ac0](<https://github.com/mike-ward/tweetz/commit/8fc1ac021106ee1bc5d5081e5ae6376d6da03f2b>)
@@ -76,7 +96,6 @@ All notable changes to this project will be documented in this file.
 - Add button to copy to clipboard in image viewer - [cab9fe5](https://github.com/mike-ward/tweetz/commit/cab9fe5a75797be968a1c89459a038338805ad6f)
 
 ### Removed
-
 - Remove automatic copy to clipboard in image viewer. - [cab9fe5](https://github.com/mike-ward/tweetz/commit/cab9fe5a75797be968a1c89459a038338805ad6f)
 
 ### Fixed
@@ -89,4 +108,3 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0-Alpha] - 2019-12-28
 - First public release. Complete rewrite in .NET Core 3.1
-
