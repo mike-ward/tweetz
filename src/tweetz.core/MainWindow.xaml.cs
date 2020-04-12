@@ -29,7 +29,20 @@ namespace tweetz.core
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            DragMove();
+            try
+            {
+                DragMove();
+            }
+            catch
+            {
+                // From crash report on 2020-04-11
+                //
+                // System.InvalidOperationException: Can only call DragMove when
+                // primary mouse button is down.
+                //
+                // Stack trace led to this mouse down handler so how the mouse
+                // is not down is a bit of mystery. Catch it to avoid an app crash.
+            }
             base.OnMouseLeftButtonDown(e);
         }
     }
