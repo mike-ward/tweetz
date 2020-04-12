@@ -1,8 +1,9 @@
-﻿using System;
-using System.Windows;
-using Microsoft.AppCenter;
+﻿using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using System;
+using System.Diagnostics;
+using System.Windows;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
 
@@ -12,7 +13,7 @@ namespace tweetz.core
     {
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
-            AppCenter.Start("14eb5ed2-3dc9-4cb3-8ad5-a630a9d90407", typeof(Analytics), typeof(Crashes));
+            if (!Debugger.IsAttached) AppCenter.Start("14eb5ed2-3dc9-4cb3-8ad5-a630a9d90407", typeof(Analytics), typeof(Crashes));
             BootStrapper.GetService<ISettings>().PropertyChanged += SettingsThemeChanged;
             BootStrapper.GetService<MainWindow>().Show();
         }
