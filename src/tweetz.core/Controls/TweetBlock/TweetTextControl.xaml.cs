@@ -11,13 +11,10 @@ namespace tweetz.core.Controls
             InitializeComponent();
         }
 
-        private void TextBlock_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        private void TextBlock_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            if (e.Property == TagProperty &&
-                sender is TextBlock textBlock &&
-                textBlock?.Tag is TwitterStatus twitterStatus)
+            if (sender is TextBlock textBlock && DataContext is TwitterStatus twitterStatus)
             {
-                e.Handled = true;
                 textBlock.Inlines.Clear();
                 textBlock.Inlines.AddRange(FlowContentService.FlowContentInlines(twitterStatus));
             }
