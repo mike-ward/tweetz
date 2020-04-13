@@ -7,14 +7,14 @@
   xmlns:local="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
-  MinWidth="225"
+  MinWidth="250"
   MaxWidth="275"
-  d:DesignHeight="250"
-  d:DesignWidth="275"
   Background="{DynamicResource StandardBackgroundBrush}"
   DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:UserProfileBlockViewModel}, Mode=OneWay}"
   FontSize="{Binding Settings.FontSize, Mode=OneWay}"
   Foreground="{DynamicResource StandardForegroundBrush}"
+  d:DesignHeight="250"
+  d:DesignWidth="275"
   mc:Ignorable="d">
 
   <StackPanel>
