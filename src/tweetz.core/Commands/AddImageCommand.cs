@@ -40,7 +40,7 @@ namespace tweetz.core.Commands
             CommandHandlerAsync().ConfigureAwait(false);
         }
 
-        private async Task CommandHandlerAsync()
+        private async ValueTask CommandHandlerAsync()
         {
             const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 
@@ -61,7 +61,8 @@ namespace tweetz.core.Commands
                 {
                     var stream = ex.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
-                    await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd()).ConfigureAwait(false);
+                    var message = await reader.ReadToEndAsync();
+                    await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -74,16 +75,16 @@ namespace tweetz.core.Commands
             }
         }
 
-        private async Task<MediaInfo> UploadMedia(string path)
+        private async ValueTask<MediaInfo> UploadMedia(string path)
         {
             var contentType = ComposeControlViewModel.ContentType(path);
             var mediaId = await Upload(path, contentType).ConfigureAwait(false);
             return new MediaInfo { Path = path, MediaId = mediaId };
         }
 
-        private async Task<string> Upload(string filename, string mediaType)
+        private async ValueTask<string> Upload(string filename, string mediaType)
         {
-            var bytes = File.ReadAllBytes(filename);
+            var bytes = await File.ReadAllBytesAsync(filename);
             var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
             await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
             var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);
@@ -96,7 +97,7 @@ namespace tweetz.core.Commands
             return media.MediaId;
         }
 
-        private async Task UntilProcessingFinished(string mediaId)
+        private async ValueTask UntilProcessingFinished(string mediaId)
         {
             while (true)
             {

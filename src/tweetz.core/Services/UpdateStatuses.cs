@@ -12,8 +12,6 @@ namespace tweetz.core.Services
 
         public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {
-            if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
-
             // Build a hashset for faster lookups.
             var statusesWithoutNags = timeline.StatusCollection.Where(status => status.Id != DonateNagStatus.DonateNagStatusId);
             var hashSet = new HashSet<TwitterStatus>(statusesWithoutNags, twitterStatusComparer);

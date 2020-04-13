@@ -18,8 +18,8 @@ namespace tweetz.core.Controls
 
         public string BulletText
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
     }
 }

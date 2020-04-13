@@ -18,8 +18,8 @@ namespace tweetz.core.ViewModels
 
         public string? Pin
         {
-            get { return pin; }
-            set { SetProperty(ref pin, value); }
+            get => pin;
+            set => SetProperty(ref pin, value);
         }
 
         internal async Task GetPin()

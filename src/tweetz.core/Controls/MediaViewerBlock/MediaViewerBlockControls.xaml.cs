@@ -15,7 +15,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
         }
 
         public static readonly DependencyProperty MediaElementProperty =
-            DependencyProperty.Register("MediaElement", typeof(MediaElement), typeof(MediaViewerBlockControls));
+            DependencyProperty.Register(nameof(MediaElement), typeof(MediaElement), typeof(MediaViewerBlockControls));
 
         public MediaElement MediaElement
         {

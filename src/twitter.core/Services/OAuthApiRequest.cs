@@ -92,8 +92,8 @@ namespace twitter.core.Services
             if (post)
             {
                 request.ContentType = "application/x-www-form-urlencoded";
-                using var requestStream = request.GetRequestStream();
-                WriteTextToStream(requestStream, string.Join("&", parameterStrings));
+                using var requestStream = await request.GetRequestStreamAsync();
+                await WriteTextToStream(requestStream, string.Join("&", parameterStrings));
             }
 
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
@@ -128,44 +128,39 @@ namespace twitter.core.Services
             var boundary = $"{Guid.NewGuid():N}";
             request.ContentType = "multipart/form-data; boundary=" + boundary;
 
-            using (var requestStream = request.GetRequestStream())
-            {
-                TextParameter(requestStream, boundary, "command", "APPEND");
-                TextParameter(requestStream, boundary, "media_id", mediaId);
-                TextParameter(requestStream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture));
-                BinaryParameter(requestStream, boundary, "media", payload);
-                WriteTextToStream(requestStream, $"--{boundary}--\r\n");
-            }
+            using var requestStream = await request.GetRequestStreamAsync();
+            await TextParameter(requestStream, boundary, "command", "APPEND");
+            await TextParameter(requestStream, boundary, "media_id", mediaId);
+            await TextParameter(requestStream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture));
+            await BinaryParameter(requestStream, boundary, "media", payload);
+            await WriteTextToStream(requestStream, $"--{boundary}--\r\n");
 
-            using (await request.GetResponseAsync().ConfigureAwait(false))
-            {
-                // lint checker likes this better
-            }
+            using var _ = await request.GetResponseAsync().ConfigureAwait(false);
         }
 
-        private static void TextParameter(Stream stream, string boundary, string name, string payload)
+        private static async ValueTask TextParameter(Stream stream, string boundary, string name, string payload)
         {
             var header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n";
-            WriteTextToStream(stream, header);
-            WriteTextToStream(stream, payload);
-            WriteTextToStream(stream, "\r\n");
+            await WriteTextToStream(stream, header);
+            await WriteTextToStream(stream, payload);
+            await WriteTextToStream(stream, "\r\n");
         }
 
-        private static void BinaryParameter(Stream stream, string boundary, string name, byte[] payload)
+        private static async ValueTask BinaryParameter(Stream stream, string boundary, string name, byte[] payload)
         {
             var header =
                 $"--{boundary}\r\nContent-Type: application/octet-stream\r\n" +
                 $"Content-Disposition: form-data; name=\"{name}\"\r\n\r\n";
 
-            WriteTextToStream(stream, header);
-            stream.Write(payload, 0, payload.Length);
-            WriteTextToStream(stream, "\r\n");
+            await WriteTextToStream(stream, header);
+            await stream.WriteAsync(payload, 0, payload.Length);
+            await WriteTextToStream(stream, "\r\n");
         }
 
-        private static void WriteTextToStream(Stream stream, string text)
+        private static async ValueTask WriteTextToStream(Stream stream, string text)
         {
             var buffer = Encoding.UTF8.GetBytes(text);
-            stream.Write(buffer, 0, buffer.Length);
+            await stream.WriteAsync(buffer, 0, buffer.Length);
         }
     }
 }

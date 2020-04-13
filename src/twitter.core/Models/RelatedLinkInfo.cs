@@ -1,11 +1,11 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 
 namespace twitter.core.Models
 {
@@ -25,27 +25,25 @@ namespace twitter.core.Models
 
         public TwitterStatus ImageTwitterStatus
         {
-            get
+            get => new TwitterStatus
             {
-                return new TwitterStatus
+                Id = Guid.NewGuid().ToString(),
+                ExtendedEntities = new Entities
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    ExtendedEntities = new Entities
-                    {
-                        Media = string.IsNullOrWhiteSpace(ImageUrl)
-                            ? null
-                            : new[] {
-                                        new Media
-                                        {
-                                            Url = ImageUrl,
-                                            MediaUrl = ImageUrl,
-                                            DisplayUrl = ImageUrl,
-                                            ExpandedUrl = ImageUrl
-                                        }
-                                    }
-                    }
-                };
-            }
+                    Media = string.IsNullOrWhiteSpace(ImageUrl)
+                        ? null
+                        : new[]
+                        {
+                            new Media
+                            {
+                                Url = ImageUrl,
+                                MediaUrl = ImageUrl,
+                                DisplayUrl = ImageUrl,
+                                ExpandedUrl = ImageUrl
+                            }
+                        }
+                }
+            };
         }
 
         public static async ValueTask<RelatedLinkInfo?> GetRelatedLinkInfoAsync(TwitterStatus status)

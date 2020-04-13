@@ -85,7 +85,8 @@ namespace tweetz.core.Commands
             {
                 var stream = ex.Response.GetResponseStream();
                 using var reader = new StreamReader(stream);
-                await MessageBoxService.ShowMessageBoxAsync(reader.ReadToEnd()).ConfigureAwait(false);
+                var message = await reader.ReadToEndAsync();
+                await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

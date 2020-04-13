@@ -56,37 +56,37 @@ namespace tweetz.core.Controls
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(
-                "Text",
+                nameof(Text),
                 typeof(string),
                 typeof(TabItemHeaderWithIndicators),
                 new PropertyMetadata(string.Empty));
 
         public Color IndicatorColor
         {
-            get { return (Color)GetValue(IndicatorColorProperty); }
-            set { SetValue(IndicatorColorProperty, value); }
+            get => (Color)GetValue(IndicatorColorProperty);
+            set => SetValue(IndicatorColorProperty, value);
         }
 
         public static readonly DependencyProperty IndicatorColorProperty = DependencyProperty.Register(
-            "IndicatorColor",
+            nameof(IndicatorColor),
             typeof(Color),
             typeof(TabItemHeaderWithIndicators),
             new PropertyMetadata(Colors.Crimson));
 
         public Visibility IndicatorVisibility
         {
-            get { return (Visibility)GetValue(IndicatorVisibilityProperty); }
-            set { SetValue(IndicatorVisibilityProperty, value); }
+            get => (Visibility)GetValue(IndicatorVisibilityProperty);
+            set => SetValue(IndicatorVisibilityProperty, value);
         }
 
         public static readonly DependencyProperty IndicatorVisibilityProperty = DependencyProperty.Register(
-            "IndicatorVisibility",
+            nameof(IndicatorVisibility),
             typeof(Visibility),
             typeof(TabItemHeaderWithIndicators),
             new PropertyMetadata(Visibility.Collapsed));

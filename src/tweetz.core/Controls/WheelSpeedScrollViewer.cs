@@ -14,8 +14,8 @@ namespace tweetz.core.Controls
 
         public double SpeedFactor
         {
-            get { return (double)GetValue(SpeedFactorProperty); }
-            set { SetValue(SpeedFactorProperty, value); }
+            get => (double)GetValue(SpeedFactorProperty);
+            set => SetValue(SpeedFactorProperty, value);
         }
 
         protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)

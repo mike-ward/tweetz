@@ -13,14 +13,14 @@ namespace tweetz.core.Controls
         }
 
         public static readonly DependencyProperty BiggerProperty = DependencyProperty.Register(
-            "Bigger",
+            nameof(Bigger),
             typeof(bool),
             typeof(TweetProfileImageControl));
 
         public bool Bigger
         {
-            get { return (bool)GetValue(BiggerProperty); }
-            set { SetValue(BiggerProperty, value); }
+            get => (bool)GetValue(BiggerProperty);
+            set => SetValue(BiggerProperty, value);
         }
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)

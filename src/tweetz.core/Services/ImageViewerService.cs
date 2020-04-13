@@ -77,11 +77,9 @@ namespace tweetz.core.Services
                 if (uri is null)
                 {
                     var dv = new DrawingVisual();
-                    using (var dc = dv.RenderOpen())
-                    {
-                        var vb = new VisualBrush(element);
-                        dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
-                    }
+                    using var dc = dv.RenderOpen();
+                    var vb = new VisualBrush(element);
+                    dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
                     var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
                     bmpCopied.Render(dv);
 
