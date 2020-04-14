@@ -47,14 +47,14 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            CommandHandlerAsync().ConfigureAwait(true);
+            CommandHandlerAsync().ConfigureAwait(false);
         }
 
         private async ValueTask CommandHandlerAsync()
         {
             try
             {
-                ComposeControlViewModel.IsUpdating = true;
+                ComposeControlViewModel.IsUpdating = false;
 
                 // AttachementUrl != null means tweet is being quoted (Retweet with comment).
                 // Ignore InReplyTo.Id to register as a quoted tweet.
@@ -77,20 +77,29 @@ namespace tweetz.core.Commands
                     mediaIds)
                     .ConfigureAwait(true);
 
+                // Something strange going on here. If I use the usual await
+                // mechanism here it works but I see a consistent 2-5% CPU usage
+                // when the program should be idling. It remains that way for
+                // the life of the program. Debugging shows WPF is cycling in an
+                // internal render loop. Since I don't need to wait for this
+                // task to complete I can just fire and forget it which seems to
+                // fix the problem. Total hack but I don't have the smarts to
+                // fix the issue correctly.
+                _ = UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
+
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
-                await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel).ConfigureAwait(true);
             }
             catch (WebException ex)
             {
                 var stream = ex.Response.GetResponseStream();
                 using var reader = new StreamReader(stream);
-                var message = await reader.ReadToEndAsync().ConfigureAwait(true);
-                await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(true);
+                var message = await reader.ReadToEndAsync().ConfigureAwait(false);
+                await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(false);
             }
             finally
             {
