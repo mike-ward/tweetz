@@ -17,7 +17,7 @@ namespace tweetz.core.Controls
             OnIsVisibleChnagedAsync().ConfigureAwait(false);
         }
 
-        private async Task OnIsVisibleChnagedAsync()
+        private async ValueTask OnIsVisibleChnagedAsync()
         {
             if (DataContext is ComposeControlViewModel vm)
             {

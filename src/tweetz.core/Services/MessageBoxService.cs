@@ -12,9 +12,9 @@ namespace tweetz.core.Services
             MessageBox.Show(message, caption);
         }
 
-        public Task ShowMessageBoxAsync(string message)
+        public async ValueTask ShowMessageBoxAsync(string message)
         {
-            return Task.Run(() => ShowMessageBox(message));
+            await Task.Run(() => ShowMessageBox(message));
         }
     }
 }

@@ -6,6 +6,6 @@ namespace tweetz.core.Infrastructure
     {
         void ShowMessageBox(string message);
 
-        Task ShowMessageBoxAsync(string message);
+        ValueTask ShowMessageBoxAsync(string message);
     }
 }

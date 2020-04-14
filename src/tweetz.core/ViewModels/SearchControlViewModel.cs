@@ -25,7 +25,7 @@ namespace tweetz.core.ViewModels
 
         public bool ShowProgress { get => showProgress; set => SetProperty(ref showProgress, value); }
 
-        public async Task Search(string query)
+        public async ValueTask Search(string query)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace tweetz.core.ViewModels
             }
         }
 
-        public async Task Mentions()
+        public async ValueTask Mentions()
         {
             try
             {

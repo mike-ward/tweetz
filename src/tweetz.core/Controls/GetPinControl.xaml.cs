@@ -21,7 +21,7 @@ namespace tweetz.core.Controls
             GetPinClickAsync().ConfigureAwait(false);
         }
 
-        private async Task GetPinClickAsync()
+        private async ValueTask GetPinClickAsync()
         {
             try
             {
@@ -45,7 +45,7 @@ namespace tweetz.core.Controls
             SignInClickAsync().ConfigureAwait(false);
         }
 
-        private async Task SignInClickAsync()
+        private async ValueTask SignInClickAsync()
         {
             try
             {

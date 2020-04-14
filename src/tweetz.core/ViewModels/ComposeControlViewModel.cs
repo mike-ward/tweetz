@@ -40,7 +40,7 @@ namespace tweetz.core.ViewModels
         public string WatermarkText { get => watermarkText; set => SetProperty(ref watermarkText, value); }
         public ObservableCollection<MediaInfo> Media { get; } = new ObservableCollection<MediaInfo>();
 
-        public async Task GetUserInfo()
+        public async ValueTask GetUserInfo()
         {
             try
             {
