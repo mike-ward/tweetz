@@ -86,31 +86,42 @@ namespace twitter.core.Services
             string? signature,
             IEnumerable<(string, string)>? parameters)
         {
-            var components = new List<(string, string)>
-            {
-                ("oauth_version", "1.0"),
-                ("oauth_nonce", UrlEncode(nonce)),
-                ("oauth_timestamp", UrlEncode(timestamp)),
-                ("oauth_signature_method", "HMAC-SHA1"),
-                ("oauth_consumer_key", UrlEncode(consumerKey))
-            };
+            return
+                Parameters(nonce, timestamp, consumerKey, accessToken, signature, parameters)
+                .OrderBy(p => p.Item1, StringComparer.Ordinal);
+        }
+
+        private static IEnumerable<(string, string)> Parameters(
+            string nonce,
+            string timestamp,
+            string consumerKey,
+            string? accessToken,
+            string? signature,
+            IEnumerable<(string, string)>? parameters)
+        {
+            yield return ("oauth_version", "1.0");
+            yield return ("oauth_nonce", UrlEncode(nonce));
+            yield return ("oauth_timestamp", UrlEncode(timestamp));
+            yield return ("oauth_signature_method", "HMAC-SHA1");
+            yield return ("oauth_consumer_key", UrlEncode(consumerKey));
 
             if (!string.IsNullOrWhiteSpace(signature))
             {
-                components.Add(("oauth_signature", UrlEncode(signature)));
+                yield return ("oauth_signature", UrlEncode(signature));
             }
 
             if (!string.IsNullOrWhiteSpace(accessToken))
             {
-                components.Add(("oauth_token", UrlEncode(accessToken)));
+                yield return ("oauth_token", UrlEncode(accessToken));
             }
 
             if (parameters != null)
             {
-                components.AddRange(parameters.Select(par => (UrlEncode(par.Item1), UrlEncode(par.Item2))));
+                foreach (var par in parameters.Select(par => (UrlEncode(par.Item1), UrlEncode(par.Item2))))
+                {
+                    yield return par;
+                }
             }
-
-            return components.OrderBy(c => c.Item1);
         }
     }
 }
