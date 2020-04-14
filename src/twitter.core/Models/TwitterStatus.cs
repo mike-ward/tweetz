@@ -106,7 +106,7 @@ namespace twitter.core.Models
         {
             try
             {
-                RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this);
+                RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

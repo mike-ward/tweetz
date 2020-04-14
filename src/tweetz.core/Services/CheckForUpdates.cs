@@ -40,7 +40,7 @@ namespace tweetz.core.Services
                 var request = WebRequest.Create(url);
                 using var response = await request.GetResponseAsync().ConfigureAwait(false);
                 using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                Version = await stream.ReadToEndAsync();
+                Version = await stream.ReadToEndAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {

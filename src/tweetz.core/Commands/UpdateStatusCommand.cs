@@ -47,7 +47,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            CommandHandlerAsync().ConfigureAwait(false);
+            CommandHandlerAsync().ConfigureAwait(true);
         }
 
         private async ValueTask CommandHandlerAsync()
@@ -79,18 +79,18 @@ namespace tweetz.core.Commands
 
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
-                await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
+                await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel).ConfigureAwait(true);
             }
             catch (WebException ex)
             {
                 var stream = ex.Response.GetResponseStream();
                 using var reader = new StreamReader(stream);
-                var message = await reader.ReadToEndAsync();
-                await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
+                var message = await reader.ReadToEndAsync().ConfigureAwait(true);
+                await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
-                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(false);
+                await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(true);
             }
             finally
             {

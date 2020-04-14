@@ -61,7 +61,7 @@ namespace tweetz.core.Commands
                 {
                     var stream = ex.Response.GetResponseStream();
                     using var reader = new StreamReader(stream);
-                    var message = await reader.ReadToEndAsync();
+                    var message = await reader.ReadToEndAsync().ConfigureAwait(false);
                     await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -84,7 +84,7 @@ namespace tweetz.core.Commands
 
         private async ValueTask<string> Upload(string filename, string mediaType)
         {
-            var bytes = await File.ReadAllBytesAsync(filename);
+            var bytes = await File.ReadAllBytesAsync(filename).ConfigureAwait(false);
             var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
             await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
             var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);

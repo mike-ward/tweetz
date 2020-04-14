@@ -89,8 +89,8 @@ namespace twitter.core.Services
             if (post)
             {
                 request.ContentType = "application/x-www-form-urlencoded";
-                using var requestStream = await request.GetRequestStreamAsync();
-                await WriteTextToStream(requestStream, string.Join("&", parameterStrings));
+                using var requestStream = await request.GetRequestStreamAsync().ConfigureAwait(false);
+                await WriteTextToStream(requestStream, string.Join("&", parameterStrings)).ConfigureAwait(false);
             }
 
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
@@ -144,15 +144,15 @@ namespace twitter.core.Services
                 $"--{boundary}\r\nContent-Type: application/octet-stream\r\n" +
                 $"Content-Disposition: form-data; name=\"{name}\"\r\n\r\n";
 
-            await WriteTextToStream(stream, header);
-            await stream.WriteAsync(payload, 0, payload.Length);
-            await WriteTextToStream(stream, "\r\n");
+            await WriteTextToStream(stream, header).ConfigureAwait(false);
+            await stream.WriteAsync(payload, 0, payload.Length).ConfigureAwait(false);
+            await WriteTextToStream(stream, "\r\n").ConfigureAwait(false);
         }
 
         private static async ValueTask WriteTextToStream(Stream stream, string text)
         {
             var buffer = Encoding.UTF8.GetBytes(text);
-            await stream.WriteAsync(buffer, 0, buffer.Length);
+            await stream.WriteAsync(buffer, 0, buffer.Length).ConfigureAwait(false);
         }
     }
 }

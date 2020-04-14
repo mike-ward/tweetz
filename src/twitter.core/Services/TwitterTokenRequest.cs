@@ -24,7 +24,7 @@ namespace twitter.core.Services
             request.Headers.Add("Authorization", authorizationHeader);
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
             using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            var body = await stream.ReadToEndAsync();
+            var body = await stream.ReadToEndAsync().ConfigureAwait(false);
             var tokens = body.Split('&');
             var oauthToken = Token(tokens[0]);
             var oauthSecret = Token(tokens[1]);
@@ -62,7 +62,7 @@ namespace twitter.core.Services
 
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
             using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            var tokens = (await stream.ReadToEndAsync()).Split('&');
+            var tokens = (await stream.ReadToEndAsync().ConfigureAwait(false)).Split('&');
 
             var oauthTokens = new OAuthTokens
             {
