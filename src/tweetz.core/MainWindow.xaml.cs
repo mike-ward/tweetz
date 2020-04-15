@@ -33,7 +33,7 @@ namespace tweetz.core
             {
                 DragMove();
             }
-            catch
+            catch (InvalidOperationException)
             {
                 // From crash report on 2020-04-11
                 //
