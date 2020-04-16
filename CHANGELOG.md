@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.2.3 - 2020-04-16
+
+### Fixed
+- Handle DragMove() being weird sometimes [afa8b49](https://github.com/mike-ward/tweetz/commit/afa8b497cafeaa8a532c7657b7ee54bd3d388532)
+- CPU usage constantly 2-5% after posting an update [2199964](https://github.com/mike-ward/tweetz/commit/21999640960c5075d134107eb1e7fccd474da299)
+
+### Changed
+- Increase min width of profile control [7e84031](https://github.com/mike-ward/tweetz/commit/7e84031c20dbd11b3e9a116baf1f22aede41d6eb)
+- Supppress crash reports from debug sessions [1a46798](https://github.com/mike-ward/tweetz/commit/1a467982f6d41aa1ca8e04c606a5db09f4bdec86)
+
 ## 2.2.1 - 2020-04-05
 ### Fixed
 
