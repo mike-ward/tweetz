@@ -11,10 +11,14 @@ namespace tweetz.core.ViewModels
 {
     public class HomeTimelineControlViewModel : TwitterTimeline
     {
-        private const double justOverAMinute = 1.1;
+        private const int mentionsInterval = 60;
+        private int mentionsCounter = mentionsInterval;
+
+        private const double justOverMinute = 1.1;
+        private ITwitterService TwitterService { get; }
 
         public HomeTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
-            : base(settings, systemState, justOverAMinute)
+            : base(settings, systemState, justOverMinute)
         {
             timelineName = "Home timeline";
             TwitterService = twitterService;
@@ -24,8 +28,6 @@ namespace tweetz.core.ViewModels
             AddUpdateTask(UpdateTimeStampsTask.Execute);
         }
 
-        private ITwitterService TwitterService { get; }
-
         private async ValueTask GetAndUpdateStatuses(TwitterTimeline timeline)
         {
             var mentions = await GetMentions().ConfigureAwait(true);
@@ -33,23 +35,17 @@ namespace tweetz.core.ViewModels
             await UpdateStatuses.Execute(statuses.Concat(mentions), timeline).ConfigureAwait(true);
         }
 
-        // Twitter limits getting mentions to 100,000 per day per Application.
-        // Application in this case means all running Tweetz clients. Once
-        // an hour allows everybody get mentions albiet not in a timely manner.
-        private const int mentionsInterval = 60;
-
-        private int mentionsCounter = mentionsInterval;
-
         private async ValueTask<IEnumerable<TwitterStatus>> GetMentions()
         {
-            IEnumerable<TwitterStatus> mentions = System.Array.Empty<TwitterStatus>();
-
             try
             {
+                // Twitter limits getting mentions to 100,000 per day per Application.
+                // Application in this case means all running Tweetz clients. Once
+                // an hour allows everybody get mentions albiet not in a timely manner.
                 if (mentionsCounter++ >= mentionsInterval)
                 {
                     mentionsCounter = 0;
-                    mentions = await TwitterService.GetMentionsTimeline().ConfigureAwait(true);
+                    return await TwitterService.GetMentionsTimeline().ConfigureAwait(true);
                 }
             }
             catch (WebException ex)
@@ -58,11 +54,11 @@ namespace tweetz.core.ViewModels
                 {
                     // Probably hit the daily limit
                     // Alerting the user does no good in this instance (IMO)
-                    return mentions;
+                    return Enumerable.Empty<TwitterStatus>();
                 }
                 throw;
             }
-            return mentions;
+            return Enumerable.Empty<TwitterStatus>();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace tweetz.core.Services
             var statusesWithoutNags = timeline.StatusCollection.Where(status => status.Id != DonateNagStatus.DonateNagStatusId);
             var hashSet = new HashSet<TwitterStatus>(statusesWithoutNags, twitterStatusComparer);
 
-            foreach (var status in statuses.Reverse())
+            foreach (var status in statuses.OrderBy(status => status.OriginatingStatus.CreatedDate))
             {
                 if (hashSet.TryGetValue(status, out var statusToUpdate))
                 {

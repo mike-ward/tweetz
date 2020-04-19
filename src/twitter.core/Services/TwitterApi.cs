@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using twitter.core.Models;
 
@@ -88,14 +88,14 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                .Post($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
-                   Array.Empty<(string, string)>());
+                   Enumerable.Empty<(string, string)>());
         }
 
         public ValueTask UnretweetStatus(string statusId)
         {
             return oAuthApiRequest
                 .Post($"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
-                    Array.Empty<(string, string)>());
+                    Enumerable.Empty<(string, string)>());
         }
 
         public ValueTask CreateFavorite(string statusId)

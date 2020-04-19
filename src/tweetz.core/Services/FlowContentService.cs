@@ -155,7 +155,7 @@ namespace tweetz.core.Services
                      start: url.Indices[0],
                      end: url.Indices[1]
                  ))
-                 ?? Array.Empty<FlowContentItem>();
+                 ?? Enumerable.Empty<FlowContentItem>();
 
             var mentions = entities.Mentions
                 ?.Select(mention => new FlowContentItem
@@ -165,7 +165,7 @@ namespace tweetz.core.Services
                     start: mention.Indices[0],
                     end: mention.Indices[1]
                 ))
-                ?? Array.Empty<FlowContentItem>();
+                ?? Enumerable.Empty<FlowContentItem>();
 
             var hashTags = entities.HashTags
                 ?.Select(hashtag => new FlowContentItem
@@ -175,7 +175,7 @@ namespace tweetz.core.Services
                     start: hashtag.Indices[0],
                     end: hashtag.Indices[1]
                 ))
-                ?? Array.Empty<FlowContentItem>();
+                ?? Enumerable.Empty<FlowContentItem>();
 
             var media = entities.Media
                 ?.Select(media => new FlowContentItem
@@ -185,7 +185,7 @@ namespace tweetz.core.Services
                     start: media.Indices[0],
                     end: media.Indices[1]
                 ))
-                ?? Array.Empty<FlowContentItem>();
+                ?? Enumerable.Empty<FlowContentItem>();
 
             return urls
                 .Concat(mentions)
