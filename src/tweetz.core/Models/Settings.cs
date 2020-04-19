@@ -4,12 +4,23 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Windows;
 using tweetz.core.Infrastructure;
 
 namespace tweetz.core.Models
 {
     public class Settings : NotifyPropertyChanged, ISettings
     {
+        public Settings()
+        {
+            // needed for serialization
+        }
+
+        public Settings(IMessageBoxService messageBoxService)
+        {
+            MessageBoxService = messageBoxService;
+        }
+
         private string? accessToken;
         private string? accessTokenSecret;
         private string? screenName;
@@ -23,6 +34,8 @@ namespace tweetz.core.Models
         private double fontSize = 12;
         private string theme = "dark";
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
+
+        public IMessageBoxService MessageBoxService { get; }
 
         [JsonIgnore]
         public bool IsAuthenticated =>
@@ -97,8 +110,17 @@ namespace tweetz.core.Models
 
         public void Save()
         {
-            var json = JsonSerializer.Serialize<Settings>(this, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(SettingsFilePath, json);
+            try
+            {
+                var json = JsonSerializer.Serialize<Settings>(this, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(SettingsFilePath, json);
+            }
+            catch (IOException ex)
+            {
+                var retry = (string)Application.Current.FindResource("try-again") ?? string.Empty;
+                var result = MessageBoxService.ShowMessageBoxYesNo(ex.Message + $"\n\n{retry}");
+                if (result == MessageBoxResult.Yes) Save();
+            }
         }
     }
 }

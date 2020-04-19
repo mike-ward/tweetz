@@ -12,6 +12,12 @@ namespace tweetz.core.Services
             MessageBox.Show(message, caption);
         }
 
+        public MessageBoxResult ShowMessageBoxYesNo(string message)
+        {
+            var caption = (string)Application.Current.FindResource("title");
+            return MessageBox.Show(message, caption, MessageBoxButton.YesNo);
+        }
+
         public async ValueTask ShowMessageBoxAsync(string message)
         {
             await Task.Run(() => ShowMessageBox(message));
