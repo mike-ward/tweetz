@@ -46,7 +46,7 @@ namespace tweetz.core.Controls
             else
             {
                 var adorner = _adorner;
-                if (adorner != null)
+                if (!(adorner is null))
                 {
                     AdornerLayer.GetAdornerLayer(parent)?.Remove(adorner);
                     _adorner = null;

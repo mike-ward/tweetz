@@ -12,7 +12,7 @@ namespace tweetz.core.Controls
         }
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "BulletText",
+            nameof(BulletText),
             typeof(string),
             typeof(BulletedItem));
 

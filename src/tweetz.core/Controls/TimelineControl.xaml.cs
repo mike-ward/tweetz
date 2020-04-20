@@ -30,7 +30,8 @@ namespace tweetz.core.Controls
 
                     if (vm.FadeInDuration != TimeSpan.Zero)
                     {
-                        _ = Task.Delay(duration + 200)
+                        _ = Task
+                            .Delay(duration + 200)
                             .ContinueWith(_ => vm.FadeInDuration = TimeSpan.Zero);
                     }
                 };
