@@ -5,7 +5,6 @@
   xmlns:controls="clr-namespace:tweetz.core.Controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -23,15 +22,8 @@
       Margin="1,0,5,0"
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
-      Tag="{Binding ScreenName, Mode=OneWay}">
-
-      <!--  Tooltip not in image control because it causes stackoverflow in UserProfileBlock  -->
-      <controls:TweetProfileImageControl.ToolTip>
-        <ToolTip>
-          <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
-        </ToolTip>
-      </controls:TweetProfileImageControl.ToolTip>
-    </controls:TweetProfileImageControl>
+      Tag="{Binding ScreenName, Mode=OneWay}"
+      ToolTip="{StaticResource UserProfileBlockToolTip}" />
 
     <Rectangle
       Width="1"

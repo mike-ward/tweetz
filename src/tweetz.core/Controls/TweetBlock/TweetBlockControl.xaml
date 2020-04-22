@@ -6,7 +6,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -26,15 +25,8 @@
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
       Tag="{Binding ScreenName, Mode=OneWay}"
-      Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}">
-
-      <!--  Tooltip not in image control because it causes stackoverflow in UserProfileBlock  -->
-      <local:TweetProfileImageControl.ToolTip>
-        <ToolTip Style="{StaticResource ToolTipStyle}">
-          <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
-        </ToolTip>
-      </local:TweetProfileImageControl.ToolTip>
-    </local:TweetProfileImageControl>
+      ToolTip="{StaticResource UserProfileBlockToolTip}"
+      Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
     <StackPanel Grid.Column="1">
       <local:TweetRetweetedBy DataContext="{Binding Mode=OneWay}" />

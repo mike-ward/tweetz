@@ -5,24 +5,17 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock"
   d:DesignHeight="450"
   d:DesignWidth="800"
   mc:Ignorable="d">
 
-  <UserControl.Resources>
-  </UserControl.Resources>
+  <UserControl.Resources />
 
   <TextBlock
     Style="{StaticResource TweetBlockRetweetedByStyle}"
     Tag="{Binding User.ScreenName, Mode=OneWay}"
+    ToolTip="{StaticResource UserProfileBlockToolTip}"
     Visibility="{Binding IsRetweet, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-    <TextBlock.ToolTip>
-      <ToolTip Style="{StaticResource ToolTipStyle}">
-        <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
-      </ToolTip>
-    </TextBlock.ToolTip>
 
     <TextBlock.InputBindings>
       <MouseBinding
