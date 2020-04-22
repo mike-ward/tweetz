@@ -52,15 +52,7 @@
         <local:TweetBlockControl DataContext="{Binding Mode=OneWay}">
           <local:TweetBlockControl.Triggers>
             <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-              <BeginStoryboard>
-                <Storyboard>
-                  <DoubleAnimation
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="{Binding DataContext.FadeInDuration, ElementName=Timeline, Mode=OneWay}" />
-                </Storyboard>
-              </BeginStoryboard>
+              <BeginStoryboard Storyboard="{StaticResource TweetBlockFadeIn}" />
             </EventTrigger>
           </local:TweetBlockControl.Triggers>
         </local:TweetBlockControl>

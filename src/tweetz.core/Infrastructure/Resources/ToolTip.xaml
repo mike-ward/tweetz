@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-  xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock">
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
   <sys:Int32 x:Key="InitialToolTipDelay">1000</sys:Int32>
   <sys:Int32 x:Key="ToolTipDuration">30000</sys:Int32>
@@ -102,10 +101,4 @@
       </Setter.Value>
     </Setter>
   </Style>
-
-  <ToolTip
-    x:Key="UserProfileBlockToolTip"
-    Style="{StaticResource ToolTipStyle}">
-    <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
-  </ToolTip>
 </ResourceDictionary>

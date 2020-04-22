@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:local="clr-namespace:tweetz.core.Controls.UserProfileBlock">
+  xmlns:up="clr-namespace:tweetz.core.Controls.UserProfileBlock">
 
   <Style
     x:Key="UserProfileFollowedByStyle"
@@ -43,4 +43,10 @@
       </DataTrigger>
     </Style.Triggers>
   </Style>
+
+  <ToolTip
+    x:Key="UserProfileBlockToolTip"
+    Style="{StaticResource ToolTipStyle}">
+    <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
+  </ToolTip>
 </ResourceDictionary>
