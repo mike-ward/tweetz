@@ -33,6 +33,7 @@
   <sys:String x:Key="open-settings-file">Open Settings...</sys:String>
   <sys:String x:Key="pause-when-scrolled">Pause timeline updates when scrolled</sys:String>
   <sys:String x:Key="show-in-system-tray">Show in system tray</sys:String>
+  <sys:String x:Key="always-on-top">Always on top</sys:String>
   <sys:String x:Key="donated">Yes, I donated!</sys:String>
   <sys:String x:Key="get-the-update">Get the Update</sys:String>
   <sys:String x:Key="try-again">Try again?</sys:String>

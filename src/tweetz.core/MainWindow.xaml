@@ -12,9 +12,10 @@
   Height="900"
   Background="{DynamicResource StandardBackgroundBrush}"
   DataContext="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:MainWindowViewModel}, Mode=OneWay}"
-  FontSize="{Binding Settings.FontSize}"
+  FontSize="{Binding Settings.FontSize, Mode=OneWay}"
   Foreground="{DynamicResource StandardForegroundBrush}"
   SnapsToDevicePixels="True"
+  Topmost="{Binding Settings.AlwaysOnTop, Mode=OneWay}"
   WindowStyle="None"
   mc:Ignorable="d">
 

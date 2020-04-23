@@ -57,6 +57,12 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.AlwaysOnTop}">
+      <TextBlock
+        Text="{StaticResource always-on-top}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox
       Content="{StaticResource run-on-startup}"
       IsChecked="{Binding SystemState.IsRegisteredInStartup}" />

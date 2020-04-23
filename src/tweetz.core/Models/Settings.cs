@@ -21,6 +21,8 @@ namespace tweetz.core.Models
             MessageBoxService = messageBoxService;
         }
 
+        private IMessageBoxService MessageBoxService { get; }
+
         private string? accessToken;
         private string? accessTokenSecret;
         private string? screenName;
@@ -31,11 +33,10 @@ namespace tweetz.core.Models
         private bool donated;
         private bool spellCheck;
         private bool showInSystemTray;
+        private bool alwaysOnTop;
         private double fontSize = 12;
         private string theme = "dark";
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
-
-        public IMessageBoxService MessageBoxService { get; }
 
         [JsonIgnore]
         public bool IsAuthenticated =>
@@ -69,6 +70,7 @@ namespace tweetz.core.Models
         public bool PauseWhenScrolled { get => pauseWhenScrolled; set => SetProperty(ref pauseWhenScrolled, value); }
         public bool SpellCheck { get => spellCheck; set => SetProperty(ref spellCheck, value); }
         public bool ShowInSystemTray { get => showInSystemTray; set => SetProperty(ref showInSystemTray, value); }
+        public bool AlwaysOnTop { get => alwaysOnTop; set => SetProperty(ref alwaysOnTop, value); }
         public bool Donated { get => donated; set => SetProperty(ref donated, value); }
         public double FontSize { get => fontSize; set => SetProperty(ref fontSize, value); }
         public string Theme { get => theme; set => SetProperty(ref theme, value); }
@@ -96,6 +98,7 @@ namespace tweetz.core.Models
                 PauseWhenScrolled = settings.PauseWhenScrolled;
                 SpellCheck = settings.SpellCheck;
                 ShowInSystemTray = settings.showInSystemTray;
+                AlwaysOnTop = settings.alwaysOnTop;
                 FontSize = settings.FontSize;
                 Theme = settings.Theme;
                 Donated = settings.Donated;

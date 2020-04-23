@@ -15,6 +15,7 @@ namespace tweetz.core.Infrastructure
         bool PauseWhenScrolled { get; set; }
         bool SpellCheck { get; set; }
         bool ShowInSystemTray { get; set; }
+        bool AlwaysOnTop { get; set; }
         double FontSize { get; set; }
         string? Theme { get; }
         bool Donated { get; }
