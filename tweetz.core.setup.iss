@@ -27,6 +27,9 @@ Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 
+SetupIconFile="src\tweetz.core\app.ico"
+WizardSmallImageFile="blank.bmp"
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
