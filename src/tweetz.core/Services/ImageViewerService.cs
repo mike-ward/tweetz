@@ -27,6 +27,10 @@ namespace tweetz.core.Services
 
         public void Open(Uri uri)
         {
+            // placement rectangle needs to be set everytime to handle multiple
+            // monitors (e.g. program moved to different monitor while running)
+            mediaViewerBlock.Popup.PlacementRectangle = Screen.ScreenRectFromWindow(Application.Current.MainWindow);
+
             var mediaViewerBlockViewModel = (MediaViewerBlockViewModel)mediaViewerBlock.DataContext;
             mediaViewerBlockViewModel.Uri = uri;
         }

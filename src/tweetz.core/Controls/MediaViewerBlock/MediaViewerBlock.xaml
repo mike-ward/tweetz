@@ -18,7 +18,6 @@
     Opened="Popup_Opened"
     Closed="Popup_Closed"
     Placement="Center"
-    PlacementRectangle="{Binding PlacementRectangle, Mode=OneWay}"
     PopupAnimation="Fade"
     SnapsToDevicePixels="True"
     UseLayoutRounding="True">

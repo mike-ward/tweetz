@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Windows;
 using tweetz.core.Infrastructure;
-using tweetz.core.Services;
 
 namespace tweetz.core.ViewModels
 {
@@ -13,7 +11,5 @@ namespace tweetz.core.ViewModels
         public Uri? Uri { get => _uri; set => SetProperty(ref _uri, value); }
 
         public string? ErrorMessage { get => errorMessage; set => SetProperty(ref errorMessage, value); }
-
-        public static Rect PlacementRectangle => Screen.ScreenRectFromWindow(Application.Current.MainWindow);
     }
 }
