@@ -26,26 +26,56 @@
       VerticalAlignment="Center"
       Text="{StaticResource title}" />
 
-    <TextBlock
+    <Grid
       Grid.Column="2"
-      Padding="15,4"
-      HorizontalAlignment="Right"
-      Cursor="Hand"
-      FontSize="10"
-      MouseDown="ExecuteCloseCommand"
-      Text="&#x2573;"
-      TextAlignment="Center"
-      ToolTip="{StaticResource close-tooltip}">
-      <TextBlock.Style>
-        <Style>
-          <Style.Triggers>
-            <Trigger Property="TextBlock.IsMouseOver" Value="True">
-              <Setter Property="TextBlock.Foreground" Value="White" />
-              <Setter Property="TextBlock.Background" Value="#e41123" />
-            </Trigger>
-          </Style.Triggers>
-        </Style>
-      </TextBlock.Style>
-    </TextBlock>
+      HorizontalAlignment="Right">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <TextBlock
+        Grid.Column="0"
+        Padding="15,4"
+        Cursor="Hand"
+        FontSize="10"
+        MouseDown="ExecuteMinimizeCommand"
+        Text="—"
+        TextAlignment="Center"
+        ToolTip="{StaticResource minimize-tooltip}">
+        <TextBlock.Style>
+          <Style>
+            <Style.Triggers>
+              <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                <Setter Property="TextBlock.Foreground" Value="White" />
+                <Setter Property="TextBlock.Background" Value="{StaticResource ButtonHoverBrush}" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </TextBlock.Style>
+      </TextBlock>
+
+      <TextBlock
+        Grid.Column="1"
+        Padding="15,4"
+        HorizontalAlignment="Right"
+        Cursor="Hand"
+        FontSize="10"
+        MouseDown="ExecuteCloseCommand"
+        Text="&#x2573;"
+        TextAlignment="Center"
+        ToolTip="{StaticResource close-tooltip}">
+        <TextBlock.Style>
+          <Style>
+            <Style.Triggers>
+              <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                <Setter Property="TextBlock.Foreground" Value="White" />
+                <Setter Property="TextBlock.Background" Value="#e41123" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </TextBlock.Style>
+      </TextBlock>
+    </Grid>
   </Grid>
 </UserControl>

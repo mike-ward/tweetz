@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using tweetz.core.Commands;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
@@ -43,6 +43,7 @@ namespace tweetz.core
             services.AddSingleton<ICommandBinding, GoToSearchCommand>();
             services.AddSingleton<ICommandBinding, ImageViewerCommand>();
             services.AddSingleton<ICommandBinding, IncreaseFontSizeCommand>();
+            services.AddSingleton<ICommandBinding, MinimizeCommand>();
             services.AddSingleton<ICommandBinding, OpenLinkCommand>();
             services.AddSingleton<ICommandBinding, QuoteTweetCommand>();
             services.AddSingleton<ICommandBinding, RemoveImageCommand>();

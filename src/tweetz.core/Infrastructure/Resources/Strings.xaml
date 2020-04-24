@@ -68,6 +68,7 @@
   <sys:String x:Key="new-version-available">Update available!\nClick here to get it.</sys:String>
   <sys:String x:Key="copy-to-clipboard">Copy to clipboard</sys:String>
   <sys:String x:Key="close-tooltip">Close</sys:String>
+  <sys:String x:Key="minimize-tooltip">Minimize</sys:String>
   <sys:String x:Key="open-in-twitter-tooltip">Open this tweet in twitter</sys:String>
   <sys:String x:Key="send-tweet-tooltip">Ctrl+Enter to Send</sys:String>
   <sys:String x:Key="compose-tweet-tooltip">Write a new tweet</sys:String>
