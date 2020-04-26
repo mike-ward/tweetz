@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.3.0 - 2020-04-26
+
+### Fixed
+- Handle file in use exception when saving settings [c945ef5](https://github.com/mike-ward/tweetz/commit/c945ef5a090b8b5fc59dfdce744d2510bb6ec9ae)
+- Fix copy image to clipboard by closing drawing context [897a3b9](https://github.com/mike-ward/tweetz/commit/897a3b96d8cf5c5ebcdbeb990653f486e388b7f6)
+- [#13](https://github.com/mike-ward/tweetz/issues/13) Media player always appears on primary monitor [bdce3f2](https://github.com/mike-ward/tweetz/commit/bdce3f28074b6aadbcb3ab294268b7eddc0b8dbf)
+
+### Added
+- [#12](https://github.com/mike-ward/tweetz/issues/12) Always on top [2681aee](https://github.com/mike-ward/tweetz/commit/2681aeecec6131261ea27cf31ebc62968934f2e9)
+- [#12](https://github.com/mike-ward/tweetz/issues/12) Add minimize to title bar [496764f](https://github.com/mike-ward/tweetz/commit/496764fb8c39720bcec7681aee30d08422f96dc4)
+
+### Changed
+- Use static resource for user profile tooltip [22d4f6e](https://github.com/mike-ward/tweetz/commit/22d4f6e99a42a4176cde6e218b0851d27c42dd27)
+
 ## 2.2.3 - 2020-04-16
 
 ### Fixed
