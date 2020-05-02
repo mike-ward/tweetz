@@ -88,5 +88,5 @@
   <sys:String x:Key="tips-font-size">Font size (Alt+Plus/Minus)</sys:String>
   <sys:String
     x:Key="tips-profiles"
-    xml:space="preserve">Specify an alternate profile on the command line, e.g.&#x0a;tweetz.core account2</sys:String>
+    xml:space="preserve">Specify an alternate profile on the command line or shortcut.&#x0a;(e.g. tweetz.core.exe account2)</sys:String>
 </ResourceDictionary>

@@ -14,7 +14,10 @@ namespace tweetz.core.Models
         public Settings()
         {
             var args = Environment.GetCommandLineArgs();
-            Profile = args.Length > 1 ? args[1] : "tweetz.core";
+
+            Profile = args.Length > 1
+                ? string.Join("_", args[1].Split(Path.GetInvalidFileNameChars()))
+                : "tweetz.core";
         }
 
         public Settings(IMessageBoxService messageBoxService)
@@ -23,9 +26,9 @@ namespace tweetz.core.Models
             MessageBoxService = messageBoxService;
         }
 
+        private string Profile { get; }
         private IMessageBoxService MessageBoxService { get; }
 
-        private string profile;
         private string? accessToken;
         private string? accessTokenSecret;
         private string? screenName;
@@ -40,13 +43,6 @@ namespace tweetz.core.Models
         private double fontSize = 12;
         private string theme = "dark";
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
-
-        [JsonIgnore]
-        private string Profile
-        {
-            get => profile;
-            set => profile = string.Join("_", value.Split(Path.GetInvalidFileNameChars()));
-        }
 
         [JsonIgnore]
         public bool IsAuthenticated =>

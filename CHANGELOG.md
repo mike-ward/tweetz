@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.4.0 - 2020-05-02
+
+### Added
+
+- Profile switch: on the command line or in a shortcut add a profile name (e.g. `tweetz.core.exe aname`). This instructs Tweetz to read and save settings to a file called `aname.settings.json` allowing Tweetz to access multiple accounts in multiple instances. [#11](https://github.com/mike-ward/tweetz/issues/11)
+
 ## 2.3.0 - 2020-04-26
 
 ### Fixed
@@ -23,7 +29,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Increase min width of profile control [7e84031](https://github.com/mike-ward/tweetz/commit/7e84031c20dbd11b3e9a116baf1f22aede41d6eb)
-- Supppress crash reports from debug sessions [1a46798](https://github.com/mike-ward/tweetz/commit/1a467982f6d41aa1ca8e04c606a5db09f4bdec86)
+- Suppress crash reports from debug sessions [1a46798](https://github.com/mike-ward/tweetz/commit/1a467982f6d41aa1ca8e04c606a5db09f4bdec86)
 
 ## 2.2.1 - 2020-04-05
 ### Fixed
@@ -32,7 +38,7 @@ All notable changes to this project will be documented in this file.
 
 ## 2.2.0 - 2020-04-04
 ### Changed
-- Media player enhancments: Progress bar, play/pause/skip-to-start buttons and seperate copy to clipboard buttons for URL and Image
+- Media player enhancements: Progress bar, play/pause/skip-to-start buttons and separate copy to clipboard buttons for URL and Image
 - Show tweet image instead of related when available [d99c1e9](https://github.com/mike-ward/tweetz/commit/d99c1e9aa4893e7e97f3d209417aad8a66d576c1)
 - Remove border on extended content [3962cc7](https://github.com/mike-ward/tweetz/commit/3962cc7883dd323c3a4de8ed66dab9c511fcbcfe)
 - Stretch smaller images to fill [3e60e19](https://github.com/mike-ward/tweetz/commit/3e60e1996023357e3a2223ab9c244e25a6291751)
@@ -84,7 +90,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Show font size in settings dialog. [67d6cd3](https://github.com/mike-ward/tweetz/commit/67d6cd326dfa4e5b626078ce9a3871a6b4d089a3)
-- Load only HEAD section of related documents with HtmlAgilityPack. Reduces memory and GC presure. [bb628ad](https://github.com/mike-ward/tweetz/commit/bb628adb8a79d41c2686f8331dc5fac51bf017c7)
+- Load only HEAD section of related documents with HtmlAgilityPack. Reduces memory and GC pressure. [bb628ad](https://github.com/mike-ward/tweetz/commit/bb628adb8a79d41c2686f8331dc5fac51bf017c7)
 
 ## 2.0.0 - 2020-01-18
 
@@ -116,7 +122,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0-Beta] - 2020-01-04
 ### Added
-- Incorporate mentions into home timeline. Twitter limits the nummber of requests to this API for all Tweetz clients so the update interval is long (once per hour). - [16112b5](https://github.com/mike-ward/tweetz/commit/16112b58b6e89209e57969922039ebc358c3414d)
+- Incorporate mentions into home timeline. Twitter limits the number of requests to this API for all Tweetz clients so the update interval is long (once per hour). - [16112b5](https://github.com/mike-ward/tweetz/commit/16112b58b6e89209e57969922039ebc358c3414d)
 
 ### Changed
 - Change **Like** color to Firebrick - [22085c3](https://github.com/mike-ward/tweetz/commit/c283e2e439ac529a96e53644c3b9d9623d074c8f)
