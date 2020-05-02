@@ -54,7 +54,7 @@ namespace tweetz.core.Commands
                 try
                 {
                     ComposeControlViewModel.IsUploadingMedia = true;
-                    var mediaInfo = await UploadMedia(ofd.FileName).ConfigureAwait(false);
+                    var mediaInfo = await UploadMedia(ofd.FileName).ConfigureAwait(true);
                     ComposeControlViewModel.Media.Add(mediaInfo);
                 }
                 catch (WebException ex)
