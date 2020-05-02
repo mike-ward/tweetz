@@ -18,5 +18,6 @@
     <controls:BulletedItem BulletText="{StaticResource tips-scroll}" />
     <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
     <controls:BulletedItem BulletText="{StaticResource tips-open}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-profiles}" />
   </StackPanel>
 </UserControl>

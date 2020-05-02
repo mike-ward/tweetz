@@ -13,16 +13,19 @@ namespace tweetz.core.Models
     {
         public Settings()
         {
-            // needed for serialization
+            var args = Environment.GetCommandLineArgs();
+            Profile = args.Length > 1 ? args[1] : "tweetz.core";
         }
 
         public Settings(IMessageBoxService messageBoxService)
+            : this()
         {
             MessageBoxService = messageBoxService;
         }
 
         private IMessageBoxService MessageBoxService { get; }
 
+        private string profile;
         private string? accessToken;
         private string? accessTokenSecret;
         private string? screenName;
@@ -37,6 +40,13 @@ namespace tweetz.core.Models
         private double fontSize = 12;
         private string theme = "dark";
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
+
+        [JsonIgnore]
+        private string Profile
+        {
+            get => profile;
+            set => profile = string.Join("_", value.Split(Path.GetInvalidFileNameChars()));
+        }
 
         [JsonIgnore]
         public bool IsAuthenticated =>
@@ -79,9 +89,9 @@ namespace tweetz.core.Models
         // Load / Save
 
         [JsonIgnore]
-        public static string SettingsFilePath => Path.Combine(
+        public string SettingsFilePath => Path.Combine(
             Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty,
-            "tweetz.core.settings.txt");
+            $"{Profile}.settings.txt");
 
         public void Load()
         {
