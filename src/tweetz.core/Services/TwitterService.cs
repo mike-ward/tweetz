@@ -8,8 +8,8 @@ namespace tweetz.core.Services
 {
     public class TwitterService : ITwitterService
     {
-        private readonly TwitterApi twitterApi;
         private readonly ISettings settings;
+        private readonly TwitterApi twitterApi;
 
         public TwitterService(ISettings settings)
         {
@@ -26,11 +26,6 @@ namespace tweetz.core.Services
                 this.settings.AccessTokenSecret);
         }
 
-        public ValueTask<OAuthTokens> GetPin()
-        {
-            return twitterApi.GetPin();
-        }
-
         public async ValueTask AuthenticateWithPin(OAuthTokens requestTokens, string pin)
         {
             var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(false);
@@ -43,89 +38,40 @@ namespace tweetz.core.Services
             }
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> GetHomeTimeline()
-        {
-            return twitterApi.HomeTimeline();
-        }
+        public ValueTask<OAuthTokens> GetPin() => twitterApi.GetPin();
 
-        public ValueTask<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20)
-        {
-            return twitterApi.MentionsTimeline(count);
-        }
+        public ValueTask<IEnumerable<TwitterStatus>> GetHomeTimeline() => twitterApi.HomeTimeline();
 
-        public ValueTask<IEnumerable<TwitterStatus>> GetFavoritesTimeline()
-        {
-            return twitterApi.FavoritesTimeline();
-        }
+        public ValueTask<IEnumerable<TwitterStatus>> GetMentionsTimeline(int count = 20) => twitterApi.MentionsTimeline(count);
 
-        public ValueTask<User> UserInfo(string screenName)
-        {
-            return twitterApi.UserInfo(screenName);
-        }
+        public ValueTask<IEnumerable<TwitterStatus>> GetFavoritesTimeline() => twitterApi.FavoritesTimeline();
 
-        public ValueTask<Tweet> Search(string query)
-        {
-            return twitterApi.Search(query);
-        }
+        public ValueTask<User> UserInfo(string screenName) => twitterApi.UserInfo(screenName);
 
-        public ValueTask RetweetStatus(string statusId)
-        {
-            return twitterApi.RetweetStatus(statusId);
-        }
+        public ValueTask<Tweet> Search(string query) => twitterApi.Search(query);
 
-        public ValueTask UnretweetStatus(string statusId)
-        {
-            return twitterApi.UnretweetStatus(statusId);
-        }
+        public ValueTask RetweetStatus(string statusId) => twitterApi.RetweetStatus(statusId);
 
-        public ValueTask CreateFavorite(string statusId)
-        {
-            return twitterApi.CreateFavorite(statusId);
-        }
+        public ValueTask UnretweetStatus(string statusId) => twitterApi.UnretweetStatus(statusId);
 
-        public ValueTask DestroyFavorite(string statusId)
-        {
-            return twitterApi.DestroyFavorite(statusId);
-        }
+        public ValueTask CreateFavorite(string statusId) => twitterApi.CreateFavorite(statusId);
 
-        public ValueTask Follow(string screenName)
-        {
-            return twitterApi.Follow(screenName);
-        }
+        public ValueTask DestroyFavorite(string statusId) => twitterApi.DestroyFavorite(statusId);
 
-        public ValueTask Unfollow(string screenName)
-        {
-            return twitterApi.Unfollow(screenName);
-        }
+        public ValueTask Follow(string screenName) => twitterApi.Follow(screenName);
 
-        public ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
-        {
-            return twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
-        }
+        public ValueTask Unfollow(string screenName) => twitterApi.Unfollow(screenName);
 
-        public ValueTask<TwitterStatus> GetStatus(string statusId)
-        {
-            return twitterApi.GetStatus(statusId);
-        }
+        public ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds) => twitterApi.UpdateStatus(text, replyToStatusId, attachmentUrl, mediaIds);
 
-        public ValueTask<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
-        {
-            return twitterApi.UploadMediaInit(totalBytes, mediaType);
-        }
+        public ValueTask<TwitterStatus> GetStatus(string statusId) => twitterApi.GetStatus(statusId);
 
-        public ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
-        {
-            return twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
-        }
+        public ValueTask<UploadMedia> UploadMediaInit(int totalBytes, string mediaType) => twitterApi.UploadMediaInit(totalBytes, mediaType);
 
-        public ValueTask<UploadMedia> UploadMediaStatus(string mediaId)
-        {
-            return twitterApi.UploadMediaStatus(mediaId);
-        }
+        public ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data) => twitterApi.UploadMediaAppend(mediaId, segmentIndex, data);
 
-        public ValueTask<UploadMedia> UploadMediaFinalize(string mediaId)
-        {
-            return twitterApi.UploadMediaFinalize(mediaId);
-        }
+        public ValueTask<UploadMedia> UploadMediaStatus(string mediaId) => twitterApi.UploadMediaStatus(mediaId);
+
+        public ValueTask<UploadMedia> UploadMediaFinalize(string mediaId) => twitterApi.UploadMediaFinalize(mediaId);
     }
 }

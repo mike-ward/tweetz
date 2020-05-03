@@ -12,6 +12,9 @@
   <sys:String x:Key="pin-about">PINs can only be used once so there's no need to save them.</sys:String>
 
   <!--  Timeline  -->
+  <sys:String x:Key="home-timeline">Home timeline</sys:String>
+  <sys:String x:Key="favorites-timeline">Favorites timeline</sys:String>
+  <sys:String x:Key="search-timeline">Search timeline</sys:String>
   <sys:String x:Key="retweeted">Retweeted</sys:String>
   <sys:String x:Key="follow">Follow</sys:String>
   <sys:String x:Key="retweet-with-comment">Retweet with comment</sys:String>

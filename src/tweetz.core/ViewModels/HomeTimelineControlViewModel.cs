@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
 using tweetz.core.Services;
@@ -20,7 +21,7 @@ namespace tweetz.core.ViewModels
         public HomeTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
             : base(settings, systemState, justOverMinute)
         {
-            timelineName = "Home timeline";
+            timelineName = (string)Application.Current.FindResource("home-timeline");
             TwitterService = twitterService;
             AddUpdateTask(GetAndUpdateStatuses);
             AddUpdateTask(DonateNagTask.Execute);

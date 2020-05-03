@@ -15,7 +15,7 @@ namespace tweetz.core.Converters
             if (timespan.TotalMinutes < 60) return Format("{0}m", timespan.TotalMinutes);
             if (timespan.TotalHours < 24) return Format("{0}h", timespan.TotalHours);
             if (timespan.TotalDays < 3) return Format("{0}d", timespan.TotalDays);
-            return time.ToString("MMM d", CultureInfo.InvariantCulture);
+            return time.ToString("MMM d", CultureInfo.CurrentUICulture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

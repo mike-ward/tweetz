@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
 using twitter.core.Models;
@@ -20,7 +21,7 @@ namespace tweetz.core.ViewModels
             : base(settings, systemState, InfiniteElapsed)
         {
             TwitterService = twitterService;
-            timelineName = "Search timeline";
+            timelineName = (string)Application.Current.FindResource("search-timeline");
         }
 
         public bool ShowProgress { get => showProgress; set => SetProperty(ref showProgress, value); }

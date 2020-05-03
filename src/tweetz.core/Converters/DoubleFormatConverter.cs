@@ -9,7 +9,7 @@ namespace tweetz.core.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var format = parameter as string ?? "N";
-            return ((double)value).ToString(format, CultureInfo.InvariantCulture);
+            return ((double)value).ToString(format, CultureInfo.CurrentUICulture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

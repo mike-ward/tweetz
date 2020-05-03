@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
 using tweetz.core.Services;
@@ -14,7 +15,7 @@ namespace tweetz.core.ViewModels
         public FavoritesTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
             : base(settings, systemState, twentyMinutes)
         {
-            timelineName = "Favorites timeline";
+            timelineName = (string)Application.Current.FindResource("favorites-timeline");
             TwitterService = twitterService;
             AddUpdateTask(GetAndUpdateFavorites);
             AddUpdateTask(TruncateStatusCollectionTask.Execute);
