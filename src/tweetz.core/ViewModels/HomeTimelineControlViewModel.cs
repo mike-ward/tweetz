@@ -23,10 +23,10 @@ namespace tweetz.core.ViewModels
         {
             timelineName = (string)Application.Current.FindResource("home-timeline");
             TwitterService = twitterService;
-            AddUpdateTask(GetAndUpdateStatuses);
-            AddUpdateTask(DonateNagTask.Execute);
-            AddUpdateTask(TruncateStatusCollectionTask.Execute);
-            AddUpdateTask(UpdateTimeStampsTask.Execute);
+            AddUpdateTask(tl => GetAndUpdateStatuses(tl));
+            AddUpdateTask(tl => DonateNagTask.Execute(tl));
+            AddUpdateTask(tl => TruncateStatusCollectionTask.Execute(tl));
+            AddUpdateTask(tl => UpdateTimeStampsTask.Execute(tl));
         }
 
         private async ValueTask GetAndUpdateStatuses(TwitterTimeline timeline)

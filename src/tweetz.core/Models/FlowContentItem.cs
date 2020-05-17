@@ -20,7 +20,7 @@ namespace tweetz.core.Models
         public override bool Equals(object? obj)
         {
             return obj is FlowContentItem item &&
-                   Text == item.Text &&
+                   Text.Equals(item.Text, StringComparison.Ordinal) &&
                    Start == item.Start &&
                    End == item.End;
         }

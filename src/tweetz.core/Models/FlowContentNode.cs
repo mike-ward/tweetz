@@ -17,7 +17,7 @@ namespace tweetz.core.Models
         {
             return obj is FlowContentNode node &&
                    FlowContentNodeType == node.FlowContentNodeType &&
-                   Text == node.Text;
+                   Text.Equals(node.Text, StringComparison.Ordinal);
         }
 
         public override int GetHashCode()
