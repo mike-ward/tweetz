@@ -13,8 +13,8 @@ namespace tweetz.core.Services
         public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {
             // Build a hashset for faster lookups.
-            var statusesWithoutNags = timeline.StatusCollection.Where(status => status.Id != DonateNagStatus.DonateNagStatusId);
-            var hashSet = new HashSet<TwitterStatus>(statusesWithoutNags, twitterStatusComparer);
+            var statusesNoNags = timeline.StatusCollection.Where(status => string.CompareOrdinal(status.Id, DonateNagStatus.DonateNagStatusId) != 0);
+            var hashSet = new HashSet<TwitterStatus>(statusesNoNags, twitterStatusComparer);
 
             foreach (var status in statuses.OrderBy(status => status.OriginatingStatus.CreatedDate))
             {

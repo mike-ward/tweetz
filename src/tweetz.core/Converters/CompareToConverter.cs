@@ -8,8 +8,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var val = value?.ToString();
-            return val != null && val.Equals(parameter);
+            return string.CompareOrdinal(value as string, parameter as string) == 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
