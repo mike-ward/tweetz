@@ -8,6 +8,7 @@
   <converters:CountConverter x:Key="CountConverter" />
   <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
   <converters:FileNameConverter x:Key="FileNameConverter" />
+  <converters:FontSmallerConverter x:Key="FontSmallerConverter" />
   <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
   <converters:MediaIsVideoToVisibilityConverter x:Key="MediaIsVideoToVisibilityConverter" />
