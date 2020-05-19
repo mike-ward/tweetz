@@ -41,12 +41,10 @@
 
       <local:TweetQuotedControl
         DataContext="{Binding QuotedStatus, Mode=OneWay}"
-        FontSize="{Binding DataContext.Settings.FontSize, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource FontSmallerConverter}}"
         Visibility="{Binding DataContext.IsQuoted, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
       <local:TweetRelatedLinkControl
         DataContext="{Binding RelatedLinkInfo, Mode=OneWay}"
-        FontSize="{Binding DataContext.Settings.FontSize, RelativeSource={RelativeSource AncestorType=local:TimelineControl}, Mode=OneWay, Converter={StaticResource FontSmallerConverter}}"
         Style="{StaticResource TweetBlockRelatedLinkControlStyle}" />
 
       <local:TweetCommandsControl
