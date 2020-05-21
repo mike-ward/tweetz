@@ -19,7 +19,8 @@
     <AssemblyVersion>2.4.0.0</AssemblyVersion>
     <FileVersion>2.4.0.0</FileVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>x86</Platforms>
+    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -49,6 +50,7 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />
+    <PackageReference Include="Singularity.DependencyInjection" Version="0.0.2" />
   </ItemGroup>
 
   <ItemGroup>

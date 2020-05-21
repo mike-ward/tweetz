@@ -120,12 +120,12 @@ namespace twitter.core.Services
             var boundary = $"{Guid.NewGuid():N}";
             request.ContentType = "multipart/form-data; boundary=" + boundary;
 
-            using var requestStream = await request.GetRequestStreamAsync();
-            await TextParameter(requestStream, boundary, "command", "APPEND");
-            await TextParameter(requestStream, boundary, "media_id", mediaId);
-            await TextParameter(requestStream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture));
-            await BinaryParameter(requestStream, boundary, "media", payload);
-            await WriteTextToStream(requestStream, $"--{boundary}--\r\n");
+            using var requestStream = await request.GetRequestStreamAsync().ConfigureAwait(false);
+            await TextParameter(requestStream, boundary, "command", "APPEND").ConfigureAwait(false);
+            await TextParameter(requestStream, boundary, "media_id", mediaId).ConfigureAwait(false);
+            await TextParameter(requestStream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture)).ConfigureAwait(false);
+            await BinaryParameter(requestStream, boundary, "media", payload).ConfigureAwait(false);
+            await WriteTextToStream(requestStream, $"--{boundary}--\r\n").ConfigureAwait(false);
 
             using var _ = await request.GetResponseAsync().ConfigureAwait(false);
         }
@@ -133,9 +133,9 @@ namespace twitter.core.Services
         private static async ValueTask TextParameter(Stream stream, string boundary, string name, string payload)
         {
             var header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n";
-            await WriteTextToStream(stream, header);
-            await WriteTextToStream(stream, payload);
-            await WriteTextToStream(stream, "\r\n");
+            await WriteTextToStream(stream, header).ConfigureAwait(false);
+            await WriteTextToStream(stream, payload).ConfigureAwait(false);
+            await WriteTextToStream(stream, "\r\n").ConfigureAwait(false);
         }
 
         private static async ValueTask BinaryParameter(Stream stream, string boundary, string name, byte[] payload)

@@ -20,7 +20,7 @@ namespace tweetz.core.Services
 
         public async ValueTask ShowMessageBoxAsync(string message)
         {
-            await Task.Run(() => ShowMessageBox(message));
+            await Task.Run(() => ShowMessageBox(message)).ConfigureAwait(true);
         }
     }
 }

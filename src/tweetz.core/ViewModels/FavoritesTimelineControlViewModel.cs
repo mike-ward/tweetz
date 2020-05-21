@@ -25,7 +25,7 @@ namespace tweetz.core.ViewModels
         private async ValueTask GetAndUpdateFavorites(TwitterTimeline timeline)
         {
             var statuses = await TwitterService.GetFavoritesTimeline().ConfigureAwait(true);
-            await UpdateStatuses.Execute(statuses, timeline);
+            await UpdateStatuses.Execute(statuses, timeline).ConfigureAwait(true);
         }
     }
 }

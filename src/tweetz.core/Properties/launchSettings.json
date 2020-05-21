@@ -1,8 +1,7 @@
 {
   "profiles": {
     "tweetz.core": {
-      "commandName": "Project",
-      "commandLineArgs": "scrumerati"
+      "commandName": "Project"
     }
   }
 }

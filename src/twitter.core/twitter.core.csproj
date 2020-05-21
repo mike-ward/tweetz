@@ -11,7 +11,8 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>x86</Platforms>
+    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
