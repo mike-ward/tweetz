@@ -6,7 +6,7 @@
   <sys:String x:Key="title">Tweetz</sys:String>
 
   <sys:String x:Key="pin-instructions-1">To get started, click the \&quot;Get PIN\&quot; button. This opens a Web page where you'll authorize access.</sys:String>
-  <sys:String x:Key="pin-instructions-2">Copy the PIN from the Web page to here and click \&quot;Sign In\&quot;</sys:String>
+  <sys:String x:Key="pin-instructions-2">Copy the PIN from the Web page to here and click &quot;Sign In&quot;</sys:String>
   <sys:String x:Key="pin-get-pin">Get PIN</sys:String>
   <sys:String x:Key="pin-sign-in">Sign In</sys:String>
   <sys:String x:Key="pin-about">PINs can only be used once so there's no need to save them.</sys:String>
@@ -25,6 +25,7 @@
   <sys:String x:Key="hide-profile-images">Hide profile images</sys:String>
   <sys:String x:Key="hide-images">Hide images</sys:String>
   <sys:String x:Key="hide-extended-content">Hide extended content</sys:String>
+  <sys:String x:Key="hide-screen-name">Hide screen name in title bar</sys:String>
   <sys:String x:Key="run-on-startup">Run on startup</sys:String>
   <sys:String x:Key="font-size-title">Font size</sys:String>
   <sys:String x:Key="theme-title">Theme</sys:String>

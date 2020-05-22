@@ -51,6 +51,10 @@
       Content="{StaticResource hide-extended-content}"
       IsChecked="{Binding Settings.HideExtendedContent}" />
 
+    <CheckBox
+      Content="{StaticResource hide-screen-name}"
+      IsChecked="{Binding Settings.HideScreenName}" />
+
     <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
       <TextBlock
         Text="{StaticResource show-in-system-tray}"
