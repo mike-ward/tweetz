@@ -147,7 +147,7 @@ namespace twitter.core.Models
         }
 
         /// <summary>
-        /// Inicates if user is author of tweet
+        /// Indicates if user is author of tweet
         /// </summary>
         public bool IsMyTweet { get; set; }
 
@@ -184,8 +184,8 @@ namespace twitter.core.Models
         public void UpdateAboutMeProperties(string? screenName)
         {
             if (string.IsNullOrEmpty(screenName)) return;
-            IsMyTweet = screenName == OriginatingStatus.User.ScreenName;
-            MentionsMe = Entities?.Mentions?.Any(mention => mention.ScreenName == screenName) ?? false;
+            IsMyTweet = string.CompareOrdinal(screenName, OriginatingStatus.User.ScreenName) == 0;
+            MentionsMe = Entities?.Mentions?.Any(mention => string.CompareOrdinal(mention.ScreenName, screenName) == 0) ?? false;
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace twitter.core.Models
             PropertyChanged?.Invoke(OriginatingStatus, new PropertyChangedEventArgs(nameof(CreatedDate)));
         }
 
-        // INotifyProperyChanged Implementation
+        // INotifyPropertyChanged Implementation
         //
         public event PropertyChangedEventHandler? PropertyChanged;
 

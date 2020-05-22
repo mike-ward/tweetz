@@ -29,7 +29,7 @@ namespace tweetz.core.Models
 
         private void OnAuthenticationChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (string.Compare(e.PropertyName, nameof(Settings.IsAuthenticated), StringComparison.Ordinal) == 0)
+            if (string.CompareOrdinal(e.PropertyName, nameof(Settings.IsAuthenticated)) == 0)
             {
                 if (Settings.IsAuthenticated)
                 {

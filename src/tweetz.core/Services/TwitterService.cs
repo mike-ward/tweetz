@@ -38,7 +38,7 @@ namespace tweetz.core.Services
             }
         }
 
-        public ValueTask<OAuthTokens> GetPin() => twitterApi.GetPin();
+        public ValueTask<OAuthTokens> GetPin() => twitterApi.GetPinAsync();
 
         public ValueTask<IEnumerable<TwitterStatus>> GetHomeTimeline() => twitterApi.HomeTimeline();
 

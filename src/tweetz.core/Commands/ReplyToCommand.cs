@@ -17,7 +17,8 @@ namespace tweetz.core.Commands
 
         public ReplyToCommand(
             ISettings settings,
-            TabBarControlViewModel tabBarControlViewModel, ComposeControlViewModel composeControlViewModel)
+            TabBarControlViewModel tabBarControlViewModel,
+            ComposeControlViewModel composeControlViewModel)
         {
             Settings = settings;
             TabBarControlViewModel = tabBarControlViewModel;

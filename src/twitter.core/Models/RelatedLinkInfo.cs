@@ -69,7 +69,7 @@ namespace twitter.core.Models
                 {
                     var uri = url.ExpandedUrl ?? url.Url;
                     if (!UrlValid(uri)) continue;
-                    var relatedLinkInfo = await GetLinkInfo(uri).ConfigureAwait(false);
+                    var relatedLinkInfo = await GetLinkInfoAsync(uri).ConfigureAwait(false);
                     if (relatedLinkInfo is null) continue;
 
                     status.CheckedRelatedInfo = true;
@@ -91,7 +91,7 @@ namespace twitter.core.Models
             return status.RelatedLinkInfo;
         }
 
-        private static async ValueTask<RelatedLinkInfo?> GetLinkInfo(string url)
+        private static async ValueTask<RelatedLinkInfo?> GetLinkInfoAsync(string url)
         {
             if (!UrlValid(url)) return null;
 

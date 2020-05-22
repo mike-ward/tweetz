@@ -102,7 +102,7 @@ namespace tweetz.core.Commands
             while (true)
             {
                 var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(false);
-                if (status.ProcessingInfo.State == ProcessingInfo.StateSuceedded) break;
+                if (status.ProcessingInfo.State == ProcessingInfo.StateSucceeded) break;
                 var milliseconds = (int)TimeSpan.FromSeconds(status.ProcessingInfo.CheckAfterSecs).TotalMilliseconds;
                 await Task.Delay(milliseconds).ConfigureAwait(false);
             }

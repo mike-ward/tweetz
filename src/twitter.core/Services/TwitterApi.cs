@@ -19,9 +19,9 @@ namespace twitter.core.Services
             oAuthApiRequest = new OAuthApiRequest(ConsumerKey, ConsumerSecret);
         }
 
-        public async ValueTask<OAuthTokens> GetPin()
+        public async ValueTask<OAuthTokens> GetPinAsync()
         {
-            var requestTokens = await TwitterTokenRequest.GetRequestToken(ConsumerKey, ConsumerSecret).ConfigureAwait(true);
+            var requestTokens = await TwitterTokenRequest.GetRequestTokenAsync(ConsumerKey, ConsumerSecret).ConfigureAwait(true);
 
             var url = "https://api.twitter.com/oauth/authenticate?oauth_token=" + requestTokens.OAuthToken;
             OpenUrlService.Open(url);
@@ -30,7 +30,7 @@ namespace twitter.core.Services
 
         public ValueTask<OAuthTokens> AuthenticateWithPin(OAuthTokens tokens, string pin)
         {
-            return TwitterTokenRequest.GetAccessToken(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin);
+            return TwitterTokenRequest.GetAccessTokenAsync(ConsumerKey, ConsumerSecret, tokens.OAuthToken!, tokens.OAuthSecret!, pin);
         }
 
         public void AuthenticationTokens(string? accessToken, string? accessTokenSecret)
@@ -183,7 +183,7 @@ namespace twitter.core.Services
         public ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
             return oAuthApiRequest
-               .AppendMedia(mediaId, segmentIndex, data);
+               .AppendMediaAsync(mediaId, segmentIndex, data);
         }
 
         public ValueTask<UploadMedia> UploadMediaStatus(string mediaId)

@@ -4,7 +4,7 @@ namespace twitter.core.Models
 {
     public class ProcessingInfo
     {
-        public const string StateSuceedded = "succeeded";
+        public const string StateSucceeded = "succeeded";
         public const string StateInProgress = "in_progress";
         public const string StateFailed = "failed";
 

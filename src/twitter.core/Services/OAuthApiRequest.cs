@@ -60,7 +60,7 @@ namespace twitter.core.Services
 
         private async ValueTask<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            return await OAuthRequest<T>(url, parameters, method).ConfigureAwait(false);
+            return await OAuthRequestAsync<T>(url, parameters, method).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace twitter.core.Services
         /// <param name="parameters"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        private async ValueTask<T> OAuthRequest<T>(string url, IEnumerable<(string, string)> parameters, string method)
+        private async ValueTask<T> OAuthRequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
@@ -90,7 +90,7 @@ namespace twitter.core.Services
             {
                 request.ContentType = "application/x-www-form-urlencoded";
                 using var requestStream = await request.GetRequestStreamAsync().ConfigureAwait(false);
-                await WriteTextToStream(requestStream, string.Join("&", parameterStrings)).ConfigureAwait(false);
+                await WriteTextToStreamAsync(requestStream, string.Join("&", parameterStrings)).ConfigureAwait(false);
             }
 
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
@@ -105,7 +105,7 @@ namespace twitter.core.Services
         /// <param name="segmentIndex"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public async ValueTask AppendMedia(string mediaId, int segmentIndex, byte[] payload)
+        public async ValueTask AppendMediaAsync(string mediaId, int segmentIndex, byte[] payload)
         {
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
@@ -121,35 +121,35 @@ namespace twitter.core.Services
             request.ContentType = "multipart/form-data; boundary=" + boundary;
 
             using var requestStream = await request.GetRequestStreamAsync().ConfigureAwait(false);
-            await TextParameter(requestStream, boundary, "command", "APPEND").ConfigureAwait(false);
-            await TextParameter(requestStream, boundary, "media_id", mediaId).ConfigureAwait(false);
-            await TextParameter(requestStream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture)).ConfigureAwait(false);
-            await BinaryParameter(requestStream, boundary, "media", payload).ConfigureAwait(false);
-            await WriteTextToStream(requestStream, $"--{boundary}--\r\n").ConfigureAwait(false);
+            await TextParameterAsync(requestStream, boundary, "command", "APPEND").ConfigureAwait(false);
+            await TextParameterAsync(requestStream, boundary, "media_id", mediaId).ConfigureAwait(false);
+            await TextParameterAsync(requestStream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture)).ConfigureAwait(false);
+            await BinaryParameterAsync(requestStream, boundary, "media", payload).ConfigureAwait(false);
+            await WriteTextToStreamAsync(requestStream, $"--{boundary}--\r\n").ConfigureAwait(false);
 
             using var _ = await request.GetResponseAsync().ConfigureAwait(false);
         }
 
-        private static async ValueTask TextParameter(Stream stream, string boundary, string name, string payload)
+        private static async ValueTask TextParameterAsync(Stream stream, string boundary, string name, string payload)
         {
             var header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n";
-            await WriteTextToStream(stream, header).ConfigureAwait(false);
-            await WriteTextToStream(stream, payload).ConfigureAwait(false);
-            await WriteTextToStream(stream, "\r\n").ConfigureAwait(false);
+            await WriteTextToStreamAsync(stream, header).ConfigureAwait(false);
+            await WriteTextToStreamAsync(stream, payload).ConfigureAwait(false);
+            await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
         }
 
-        private static async ValueTask BinaryParameter(Stream stream, string boundary, string name, byte[] payload)
+        private static async ValueTask BinaryParameterAsync(Stream stream, string boundary, string name, byte[] payload)
         {
             var header =
                 $"--{boundary}\r\nContent-Type: application/octet-stream\r\n" +
                 $"Content-Disposition: form-data; name=\"{name}\"\r\n\r\n";
 
-            await WriteTextToStream(stream, header).ConfigureAwait(false);
+            await WriteTextToStreamAsync(stream, header).ConfigureAwait(false);
             await stream.WriteAsync(payload, 0, payload.Length).ConfigureAwait(false);
-            await WriteTextToStream(stream, "\r\n").ConfigureAwait(false);
+            await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
         }
 
-        private static async ValueTask WriteTextToStream(Stream stream, string text)
+        private static async ValueTask WriteTextToStreamAsync(Stream stream, string text)
         {
             var buffer = Encoding.UTF8.GetBytes(text);
             await stream.WriteAsync(buffer, 0, buffer.Length).ConfigureAwait(false);

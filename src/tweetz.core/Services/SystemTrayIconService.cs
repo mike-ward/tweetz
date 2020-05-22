@@ -42,7 +42,7 @@ namespace tweetz.core.Services
 
         private void UpdateVisibility(object? _, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.ShowInSystemTray))
+            if (string.CompareOrdinal(e.PropertyName, nameof(Settings.ShowInSystemTray)) == 0)
             {
                 var window = (Window)NotifyIcon.Tag;
                 ShowInSystemTray(window);
