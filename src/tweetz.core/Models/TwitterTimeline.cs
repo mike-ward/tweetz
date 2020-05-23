@@ -73,7 +73,7 @@ namespace tweetz.core.Models
         {
             if (inUpdate) { Trace.TraceInformation($"{timelineName}: inUpdate"); return; }
             if (SystemState.IsSleeping) { Trace.TraceInformation($"{timelineName}: isSleeping"); return; }
-            if (IsScrolled && Settings.PauseWhenScrolled) { Trace.TraceInformation($"{timelineName}: isPaused"); return; }
+            if (IsScrolled && !Settings.UpdateWhenScrolled) { Trace.TraceInformation($"{timelineName}: isPaused"); return; }
 
             try
             {
@@ -115,7 +115,7 @@ namespace tweetz.core.Models
                 SetProperty(ref isScrolled, value);
 
                 // ExceptionMessage is used by the TabItemIndicatorAdorner to show messages to the user
-                ExceptionMessage = isScrolled && Settings.PauseWhenScrolled
+                ExceptionMessage = isScrolled && !Settings.UpdateWhenScrolled
                     ? (string)Application.Current.FindResource("paused-due-to-scroll-pos")
                     : null;
             }

@@ -39,25 +39,27 @@
 
     <local:SettingsBlockDownloadControl />
 
-    <CheckBox
-      Content="{StaticResource hide-profile-images}"
-      IsChecked="{Binding Settings.HideProfileImages}" />
-
-    <CheckBox
-      Content="{StaticResource hide-images}"
-      IsChecked="{Binding Settings.HideImages}" />
-
-    <CheckBox
-      Content="{StaticResource hide-extended-content}"
-      IsChecked="{Binding Settings.HideExtendedContent}" />
-
-    <CheckBox
-      Content="{StaticResource hide-screen-name}"
-      IsChecked="{Binding Settings.HideScreenName}" />
-
-    <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
+    <CheckBox IsChecked="{Binding Settings.HideImages}">
       <TextBlock
-        Text="{StaticResource show-in-system-tray}"
+        Text="{StaticResource hide-images}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.HideProfileImages}">
+      <TextBlock
+        Text="{StaticResource hide-profile-images}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.HideExtendedContent}">
+      <TextBlock
+        Text="{StaticResource hide-extended-content}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.HideScreenName}">
+      <TextBlock
+        Text="{StaticResource hide-screen-name}"
         TextWrapping="Wrap" />
     </CheckBox>
 
@@ -67,19 +69,29 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
-    <CheckBox
-      Content="{StaticResource run-on-startup}"
-      IsChecked="{Binding SystemState.IsRegisteredInStartup}" />
-
-    <CheckBox IsChecked="{Binding Settings.PauseWhenScrolled}">
+    <CheckBox IsChecked="{Binding SystemState.IsRegisteredInStartup}">
       <TextBlock
-        Text="{StaticResource pause-when-scrolled}"
+        Text="{StaticResource run-on-startup}"
         TextWrapping="Wrap" />
     </CheckBox>
 
-    <CheckBox
-      Content="{StaticResource donated}"
-      IsChecked="{Binding Settings.Donated}" />
+    <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
+      <TextBlock
+        Text="{StaticResource show-in-system-tray}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.UpdateWhenScrolled}">
+      <TextBlock
+        Text="{StaticResource update-when-scrolled}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.Donated}">
+      <TextBlock
+        Text="{StaticResource donated}"
+        TextWrapping="Wrap" />
+    </CheckBox>
 
     <local:SettingsFontSizeBlock
       DataContext="{Binding Settings}"

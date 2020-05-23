@@ -36,7 +36,7 @@ namespace tweetz.core.Models
         private bool hideImages;
         private bool hideExtendedContent;
         private bool hideScreenName;
-        private bool pauseWhenScrolled;
+        private bool updateWhenScrolled;
         private bool donated;
         private bool spellCheck;
         private bool showInSystemTray;
@@ -75,7 +75,7 @@ namespace tweetz.core.Models
         public bool HideImages { get => hideImages; set => SetProperty(ref hideImages, value); }
         public bool HideExtendedContent { get => hideExtendedContent; set => SetProperty(ref hideExtendedContent, value); }
         public bool HideScreenName { get => hideScreenName; set => SetProperty(ref hideScreenName, value); }
-        public bool PauseWhenScrolled { get => pauseWhenScrolled; set => SetProperty(ref pauseWhenScrolled, value); }
+        public bool UpdateWhenScrolled { get => updateWhenScrolled; set => SetProperty(ref updateWhenScrolled, value); }
         public bool SpellCheck { get => spellCheck; set => SetProperty(ref spellCheck, value); }
         public bool ShowInSystemTray { get => showInSystemTray; set => SetProperty(ref showInSystemTray, value); }
         public bool AlwaysOnTop { get => alwaysOnTop; set => SetProperty(ref alwaysOnTop, value); }
@@ -104,7 +104,7 @@ namespace tweetz.core.Models
                 HideImages = settings.HideImages;
                 HideExtendedContent = settings.HideExtendedContent;
                 HideScreenName = settings.HideScreenName;
-                PauseWhenScrolled = settings.PauseWhenScrolled;
+                UpdateWhenScrolled = settings.UpdateWhenScrolled;
                 SpellCheck = settings.SpellCheck;
                 ShowInSystemTray = settings.showInSystemTray;
                 AlwaysOnTop = settings.alwaysOnTop;
