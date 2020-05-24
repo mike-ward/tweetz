@@ -30,6 +30,7 @@
   <sys:String x:Key="CheckSymbol">&#xE10B;</sys:String>
 
   <sys:String x:Key="SkipBackSymbol">&#xE100;</sys:String>
+  <sys:String x:Key="TenSkipBackSymbol">&#xE112;</sys:String>
   <sys:String x:Key="PauseSymbol">&#xE103;</sys:String>
   <sys:String x:Key="PlaySymbol">&#xE102;</sys:String>
   <sys:String x:Key="CopyUriClipboardSymbol">&#xE16F;</sys:String>

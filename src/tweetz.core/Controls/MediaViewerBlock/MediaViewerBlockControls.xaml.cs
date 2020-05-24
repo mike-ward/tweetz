@@ -106,5 +106,16 @@ namespace tweetz.core.Controls.MediaViewerBlock
             e.Handled = true;
             MediaElement.Position = TimeSpan.Zero;
         }
+
+        private void Rewind_Ten_Seconds_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+
+            MediaElement.Position = MediaElement.Position.TotalSeconds > 10
+                ? MediaElement.Position - TimeSpan.FromSeconds(10)
+                : TimeSpan.Zero;
+
+            ProgressIndicator.Value = MediaElement.Position.TotalSeconds;
+        }
     }
 }

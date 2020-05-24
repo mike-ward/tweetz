@@ -38,6 +38,12 @@
           FontFamily="{StaticResource SymbolFont}"
           ToolTip="{StaticResource skip-to-start-tooltip}" />
         <Button
+          x:Name="TenSecRewindButton"
+          Click="Rewind_Ten_Seconds_Click"
+          Content="{StaticResource TenSkipBackSymbol}"
+          FontFamily="{StaticResource SymbolFont}"
+          ToolTip="{StaticResource go-back-ten-tooltip}" />
+        <Button
           x:Name="PlayPauseButton"
           Click="PlayPause_Click"
           Content="{StaticResource PauseSymbol}"

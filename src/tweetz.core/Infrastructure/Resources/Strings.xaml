@@ -80,6 +80,7 @@
   <sys:String x:Key="copy-image-tooltip">Copy image to clipboard</sys:String>
   <sys:String x:Key="play-pause-tooltip">Play/Pause</sys:String>
   <sys:String x:Key="skip-to-start-tooltip">Skip to start</sys:String>
+  <sys:String x:Key="go-back-ten-tooltip">Go back 10 seconds</sys:String>
 
   <!--  Image Viewer  -->
   <sys:String x:Key="copy">copy</sys:String>
