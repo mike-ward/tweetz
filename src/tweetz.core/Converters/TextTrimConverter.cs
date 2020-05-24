@@ -10,7 +10,10 @@ namespace tweetz.core.Converters
         {
             var text = value as string ?? string.Empty;
             const int maxLength = 300;
-            return text.Length > maxLength ? text.Substring(0, maxLength) + "…" : text;
+
+            return text.Length > maxLength
+                ? text.Substring(0, maxLength) + "…"
+                : text;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

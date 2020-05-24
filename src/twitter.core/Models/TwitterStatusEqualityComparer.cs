@@ -7,7 +7,7 @@ namespace twitter.core.Models
     {
         public bool Equals([AllowNull] TwitterStatus x, [AllowNull] TwitterStatus y)
         {
-            return x != null && y != null && string.CompareOrdinal(x.Id, y.Id) == 0;
+            return string.CompareOrdinal(x?.Id, y?.Id) == 0;
         }
 
         public int GetHashCode([DisallowNull] TwitterStatus obj)

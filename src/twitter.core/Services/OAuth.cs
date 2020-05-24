@@ -21,7 +21,7 @@ namespace twitter.core.Services
             var encoded = Uri.EscapeDataString(value);
 
             return Regex
-                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpper(CultureInfo.InvariantCulture))
+                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpperInvariant())
                 .Replace("(", "%28", StringComparison.Ordinal)
                 .Replace(")", "%29", StringComparison.Ordinal)
                 .Replace("$", "%24", StringComparison.Ordinal)

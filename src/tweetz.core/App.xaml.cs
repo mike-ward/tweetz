@@ -20,7 +20,7 @@ namespace tweetz.core
 
         private void SettingsThemeChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Settings.Theme) && sender is Settings settings)
+            if (string.CompareOrdinal(e.PropertyName, nameof(Settings.Theme)) == 0 && sender is Settings settings)
             {
                 var uri = new Uri($"Infrastructure/Resources/{settings.Theme}.xaml", UriKind.Relative);
                 var colorDictionary = (ResourceDictionary)LoadComponent(uri);
