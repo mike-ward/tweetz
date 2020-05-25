@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.5.0 - 2020-05-25
+
+### Added
+- Add screen name to title bar with option to turn off [a2c78a1](https://github.com/mike-ward/tweetz/commit/a2c78a19fa890d5a3e4bc6bbe9cb78c44b2122c3)
+- Add rewind 10 seconds feature in media player [84f8a54](https://github.com/mike-ward/tweetz/commit/84f8a54fdaec058546764e6aa7605427897c56d8)
+
+### Fixed
+- Fix media upload error [4870dfb](https://github.com/mike-ward/tweetz/commit/4870dfb511c2402a30b9a13329b93595d9170071)
+
+### Changed
+- Spruce up settings dialog [ec87367](https://github.com/mike-ward/tweetz/commit/ec87367b736315c6364e54012d0ea805bdd9451b)
+
 ## 2.4.0 - 2020-05-02
 
 ### Added
