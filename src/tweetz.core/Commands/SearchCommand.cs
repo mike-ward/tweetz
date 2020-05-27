@@ -40,7 +40,7 @@ namespace tweetz.core.Commands
 
                 if (args.Parameter is string query)
                 {
-                    await SearchControlViewModel.Search(query).ConfigureAwait(false);
+                    await SearchControlViewModel.SearchAsync(query).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)

@@ -17,12 +17,12 @@ namespace tweetz.core.ViewModels
         {
             timelineName = (string)Application.Current.FindResource("favorites-timeline");
             TwitterService = twitterService;
-            AddUpdateTask(tl => GetAndUpdateFavorites(tl));
+            AddUpdateTask(tl => GetAndUpdateFavoritesAsync(tl));
             AddUpdateTask(tl => TruncateStatusCollectionTask.Execute(tl));
             AddUpdateTask(tl => UpdateTimeStampsTask.Execute(tl));
         }
 
-        private async ValueTask GetAndUpdateFavorites(TwitterTimeline timeline)
+        private async ValueTask GetAndUpdateFavoritesAsync(TwitterTimeline timeline)
         {
             var statuses = await TwitterService.GetFavoritesTimeline().ConfigureAwait(true);
             await UpdateStatuses.Execute(statuses, timeline).ConfigureAwait(true);

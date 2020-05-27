@@ -9,6 +9,6 @@ namespace tweetz.core.Infrastructure
 
         WindowPosition GetWindowPosition(Window window);
 
-        void PowerManagmentRegistration(Window window, ISystemState systemState);
+        void PowerManagementRegistration(Window window, ISystemState systemState);
     }
 }

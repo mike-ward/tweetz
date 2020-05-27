@@ -17,7 +17,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
         private void UpdateDataContext(object _, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             MediaControls.DataContext = e.NewValue;
-            ViewModel.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(MediaViewerBlockViewModel.Uri)) ShowLoadingIndicator(); };
+            ViewModel.PropertyChanged += (_, e) => { if (string.CompareOrdinal(e.PropertyName, nameof(MediaViewerBlockViewModel.Uri)) == 0) ShowLoadingIndicator(); };
         }
 
         private void ShowLoadingIndicator()

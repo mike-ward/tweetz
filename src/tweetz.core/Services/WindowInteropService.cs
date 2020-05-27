@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.PowerManagment;
+using tweetz.core.Infrastructure.PowerManagement;
 using tweetz.core.Models;
 
 namespace tweetz.core.Services
@@ -94,11 +94,11 @@ namespace tweetz.core.Services
         [DllImport("user32.dll")]
         private static extern bool GetWindowPlacement(IntPtr hWnd, out WINDOWPLACEMENT lpwndpl);
 
-        // Power Managment - detect when monitor is sleeping
+        // Power Management - detect when monitor is sleeping
 
         private ISystemState? SystemState { get; set; }
 
-        public void PowerManagmentRegistration(Window window, ISystemState systemState)
+        public void PowerManagementRegistration(Window window, ISystemState systemState)
         {
             SystemState = systemState;
             PowerManager.RegisterMonitorStatusChange(window);

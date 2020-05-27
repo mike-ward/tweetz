@@ -90,7 +90,7 @@ namespace tweetz.core.Commands
         {
             return
                 parameter is TwitterStatus twitterStatus
-                && twitterStatus.OriginatingStatus.User.ScreenName != Settings.ScreenName
+                && string.CompareOrdinal(twitterStatus.OriginatingStatus.User.ScreenName, Settings.ScreenName) != 0
                 && !twitterStatus.IsMyTweet
                     ? twitterStatus
                     : null;

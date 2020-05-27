@@ -23,26 +23,26 @@ namespace tweetz.core.ViewModels
         {
             timelineName = (string)Application.Current.FindResource("home-timeline");
             TwitterService = twitterService;
-            AddUpdateTask(tl => GetAndUpdateStatuses(tl));
+            AddUpdateTask(tl => GetAndUpdateStatusesAsync(tl));
             AddUpdateTask(tl => DonateNagTask.Execute(tl));
             AddUpdateTask(tl => TruncateStatusCollectionTask.Execute(tl));
             AddUpdateTask(tl => UpdateTimeStampsTask.Execute(tl));
         }
 
-        private async ValueTask GetAndUpdateStatuses(TwitterTimeline timeline)
+        private async ValueTask GetAndUpdateStatusesAsync(TwitterTimeline timeline)
         {
-            var mentions = await GetMentions().ConfigureAwait(true);
+            var mentions = await GetMentionsAsync().ConfigureAwait(true);
             var statuses = await TwitterService.GetHomeTimeline().ConfigureAwait(true);
             await UpdateStatuses.Execute(statuses.Concat(mentions), timeline).ConfigureAwait(true);
         }
 
-        private async ValueTask<IEnumerable<TwitterStatus>> GetMentions()
+        private async ValueTask<IEnumerable<TwitterStatus>> GetMentionsAsync()
         {
             try
             {
                 // Twitter limits getting mentions to 100,000 per day per Application.
                 // Application in this case means all running Tweetz clients. Once
-                // an hour allows everybody get mentions albiet not in a timely manner.
+                // an hour allows everybody get mentions albeit not in a timely manner.
                 if (mentionsCounter++ >= mentionsInterval)
                 {
                     mentionsCounter = 0;

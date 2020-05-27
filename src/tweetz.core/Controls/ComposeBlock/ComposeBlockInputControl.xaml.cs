@@ -16,7 +16,7 @@ namespace tweetz.core.Controls.ComposeBlock
 
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            // Could not figure a way to set data context for texblock in XAML.
+            // Could not figure a way to set data context for textblock in XAML.
             // DataContext=ComposeControlViewModel is needed to determine text of watermark
 
             var vm = (ComposeControlViewModel)DataContext;

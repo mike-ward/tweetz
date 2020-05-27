@@ -33,7 +33,7 @@ namespace tweetz.core.Services
                 }
                 else
                 {
-                    throw new InvalidOperationException($"Unrecogonized OSPlatform ({RuntimeInformation.OSDescription})");
+                    throw new InvalidOperationException($"Unrecognized OSPlatform ({RuntimeInformation.OSDescription})");
                 }
             }
         }

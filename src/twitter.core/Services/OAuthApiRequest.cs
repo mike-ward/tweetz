@@ -39,7 +39,7 @@ namespace twitter.core.Services
 
         public ValueTask<T> Get<T>(string url, IEnumerable<(string, string)> parameters)
         {
-            return Request<T>(url, parameters, GET);
+            return RequestAsync<T>(url, parameters, GET);
         }
 
         public ValueTask Post(string url, IEnumerable<(string, string)> parameters)
@@ -49,18 +49,18 @@ namespace twitter.core.Services
 
         public ValueTask<T> Post<T>(string url, IEnumerable<(string, string)> parameters)
         {
-            return Request<T>(url, parameters, POST);
+            return RequestAsync<T>(url, parameters, POST);
         }
 
         private ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            var _ = Request<string>(url, parameters, method);
+            var _ = RequestAsync<string>(url, parameters, method);
             return default;
         }
 
-        private async ValueTask<T> Request<T>(string url, IEnumerable<(string, string)> parameters, string method)
+        private ValueTask<T> RequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            return await OAuthRequestAsync<T>(url, parameters, method).ConfigureAwait(false);
+            return OAuthRequestAsync<T>(url, parameters, method);
         }
 
         /// <summary>

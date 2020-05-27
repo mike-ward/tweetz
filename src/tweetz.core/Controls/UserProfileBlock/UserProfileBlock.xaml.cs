@@ -22,7 +22,7 @@ namespace tweetz.core.Controls.UserProfileBlock
         {
             if (DataContext is UserProfileBlockViewModel vm)
             {
-                await vm.GetUserInfo(Tag as string).ConfigureAwait(false);
+                await vm.GetUserInfoAsync(Tag as string).ConfigureAwait(false);
             }
         }
     }

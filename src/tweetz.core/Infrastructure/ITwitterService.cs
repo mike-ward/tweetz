@@ -9,7 +9,7 @@ namespace tweetz.core.Infrastructure
     {
         ValueTask<OAuthTokens> GetPin();
 
-        ValueTask AuthenticateWithPin(OAuthTokens requestTokens, string pin);
+        ValueTask AuthenticateWithPinAsync(OAuthTokens requestTokens, string pin);
 
         ValueTask<IEnumerable<TwitterStatus>> GetHomeTimeline();
 

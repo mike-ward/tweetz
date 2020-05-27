@@ -37,7 +37,7 @@ namespace tweetz.core.ViewModels
 
             Settings.Load();
             SystemTrayIconService.Initialize(window);
-            WindowInteropService.PowerManagmentRegistration(window, SystemState);
+            WindowInteropService.PowerManagementRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());

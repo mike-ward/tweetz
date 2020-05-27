@@ -56,7 +56,7 @@ namespace tweetz.core.Commands
             {
                 ComposeControlViewModel.IsUpdating = false;
 
-                // AttachementUrl != null means tweet is being quoted (Retweet with comment).
+                // AttachmentUrl != null means tweet is being quoted (Retweet with comment).
                 // Ignore InReplyTo.Id to register as a quoted tweet.
                 // Twitter rules, not mine.
                 var replyId = string.IsNullOrEmpty(ComposeControlViewModel.AttachmentUrl)

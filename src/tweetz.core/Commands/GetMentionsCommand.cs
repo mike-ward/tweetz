@@ -36,7 +36,7 @@ namespace tweetz.core.Commands
             {
                 if (inCommand) return;
                 inCommand = true;
-                await SearchControlViewModel.Mentions().ConfigureAwait(false);
+                await SearchControlViewModel.MentionsAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {

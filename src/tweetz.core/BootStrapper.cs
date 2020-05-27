@@ -53,7 +53,7 @@ namespace tweetz.core
             services.AddSingleton<ICommandBinding, SearchCommand>();
             services.AddSingleton<ICommandBinding, ShowTwitterStatusCommand>();
             services.AddSingleton<ICommandBinding, SignOutCommand>();
-            services.AddSingleton<ICommandBinding, ToggleFavoritesCommand>();
+            services.AddSingleton<ICommandBinding, ToggleFavoriteCommand>();
             services.AddSingleton<ICommandBinding, ToggleFollowCommand>();
             services.AddSingleton<ICommandBinding, ToggleRetweetCommand>();
             services.AddSingleton<ICommandBinding, ToggleShowComposeCommand>();

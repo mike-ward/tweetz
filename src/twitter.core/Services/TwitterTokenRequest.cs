@@ -30,7 +30,7 @@ namespace twitter.core.Services
             var oauthSecret = Token(tokens[1]);
             var callbackConfirmed = Token(tokens[2]);
 
-            if (callbackConfirmed != "true")
+            if (string.CompareOrdinal(callbackConfirmed, "true") != 0)
             {
                 throw new InvalidProgramException("callback token not confirmed");
             }

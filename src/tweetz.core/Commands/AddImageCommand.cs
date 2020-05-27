@@ -54,7 +54,7 @@ namespace tweetz.core.Commands
                 try
                 {
                     ComposeControlViewModel.IsUploadingMedia = true;
-                    var mediaInfo = await UploadMedia(ofd.FileName).ConfigureAwait(true);
+                    var mediaInfo = await UploadMediaAsync(ofd.FileName).ConfigureAwait(true);
                     ComposeControlViewModel.Media.Add(mediaInfo);
                 }
                 catch (WebException ex)
@@ -75,14 +75,14 @@ namespace tweetz.core.Commands
             }
         }
 
-        private async ValueTask<MediaInfo> UploadMedia(string path)
+        private async ValueTask<MediaInfo> UploadMediaAsync(string path)
         {
             var contentType = ComposeControlViewModel.ContentType(path);
-            var mediaId = await Upload(path, contentType).ConfigureAwait(false);
+            var mediaId = await UploadAsync(path, contentType).ConfigureAwait(false);
             return new MediaInfo { Path = path, MediaId = mediaId };
         }
 
-        private async ValueTask<string> Upload(string filename, string mediaType)
+        private async ValueTask<string> UploadAsync(string filename, string mediaType)
         {
             var bytes = await File.ReadAllBytesAsync(filename).ConfigureAwait(false);
             var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
@@ -91,18 +91,18 @@ namespace tweetz.core.Commands
 
             if (finalize.ProcessingInfo != null)
             {
-                await UntilProcessingFinished(media.MediaId).ConfigureAwait(false);
+                await UntilProcessingFinishedAsync(media.MediaId).ConfigureAwait(false);
             }
 
             return media.MediaId;
         }
 
-        private async ValueTask UntilProcessingFinished(string mediaId)
+        private async ValueTask UntilProcessingFinishedAsync(string mediaId)
         {
             while (true)
             {
                 var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(false);
-                if (status.ProcessingInfo.State == ProcessingInfo.StateSucceeded) break;
+                if (string.CompareOrdinal(status.ProcessingInfo.State, ProcessingInfo.StateSucceeded) == 0) break;
                 var milliseconds = (int)TimeSpan.FromSeconds(status.ProcessingInfo.CheckAfterSecs).TotalMilliseconds;
                 await Task.Delay(milliseconds).ConfigureAwait(false);
             }

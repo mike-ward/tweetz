@@ -7,7 +7,7 @@ using twitter.core.Models;
 
 namespace tweetz.core.Commands
 {
-    public class ToggleFavoritesCommand : ICommandBinding
+    public class ToggleFavoriteCommand : ICommandBinding
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
 
@@ -18,7 +18,7 @@ namespace tweetz.core.Commands
 
         private bool inCommand;
 
-        public ToggleFavoritesCommand(
+        public ToggleFavoriteCommand(
             ISettings settings,
             ITwitterService twitterService,
             IMessageBoxService messageBoxService,

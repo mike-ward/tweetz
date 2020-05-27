@@ -22,17 +22,17 @@ namespace tweetz.core.ViewModels
             set => SetProperty(ref pin, value);
         }
 
-        internal async ValueTask GetPin()
+        internal async ValueTask GetPinAsync()
         {
             requestToken = await _twitterService.GetPin().ConfigureAwait(false);
         }
 
-        internal async ValueTask SignIn()
+        internal async ValueTask SignInAsync()
         {
             if (requestToken is null) throw new InvalidOperationException("requestToken is null");
             if (string.IsNullOrWhiteSpace(Pin)) throw new InvalidOperationException("Pin is null");
 
-            await _twitterService.AuthenticateWithPin(requestToken, Pin).ConfigureAwait(false);
+            await _twitterService.AuthenticateWithPinAsync(requestToken, Pin).ConfigureAwait(false);
             Pin = null;
         }
     }

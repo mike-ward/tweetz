@@ -13,7 +13,7 @@ namespace tweetz.core.Services
         private const int maxCacheSize = 100;
         private static readonly ConcurrentDictionary<string, string> UrlCache = new ConcurrentDictionary<string, string>(1, maxCacheSize + 1);
 
-        public static async ValueTask<string> TryGetLongUrl(string link)
+        public static async ValueTask<string> TryGetLongUrlAsync(string link)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace tweetz.core.Services
 
         private static async ValueTask HyperlinkToolTipOpeningHandlerAsync(Hyperlink hyperlink)
         {
-            var link = await TryGetLongUrl((string)hyperlink.CommandParameter).ConfigureAwait(true);
+            var link = await TryGetLongUrlAsync((string)hyperlink.CommandParameter).ConfigureAwait(true);
             hyperlink.ToolTip = link;
         }
     }

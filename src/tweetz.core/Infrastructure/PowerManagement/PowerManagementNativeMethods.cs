@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace tweetz.core.Infrastructure.PowerManagment
+namespace tweetz.core.Infrastructure.PowerManagement
 {
     internal static class PowerManagementNativeMethods
     {

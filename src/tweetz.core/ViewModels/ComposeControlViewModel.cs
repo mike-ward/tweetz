@@ -40,7 +40,7 @@ namespace tweetz.core.ViewModels
         public string WatermarkText { get => watermarkText; set => SetProperty(ref watermarkText, value); }
         public ObservableCollection<MediaInfo> Media { get; } = new ObservableCollection<MediaInfo>();
 
-        public async ValueTask GetUserInfo()
+        public async ValueTask GetUserInfoAsync()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace tweetz.core.ViewModels
 
         public void RemoveImage(string filename)
         {
-            var item = Media.FirstOrDefault(mi => mi.Path == filename);
+            var item = Media.FirstOrDefault(mi => string.CompareOrdinal(mi.Path, filename) == 0);
             if (item != null) Media.Remove(item);
         }
 

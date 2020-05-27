@@ -51,7 +51,7 @@
 
       <TextBlock.InputBindings>
         <MouseBinding
-          Command="commands:ToggleFavoritesCommand.Command"
+          Command="commands:ToggleFavoriteCommand.Command"
           CommandParameter="{Binding}"
           Gesture="LeftClick" />
       </TextBlock.InputBindings>
