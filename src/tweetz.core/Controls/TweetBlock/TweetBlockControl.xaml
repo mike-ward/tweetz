@@ -40,7 +40,7 @@
         Style="{StaticResource TweetBlockImageControlStyle}" />
 
       <local:TweetQuotedControl
-        DataContext="{Binding QuotedStatus, Mode=OneWay}"
+        DataContext="{Binding OriginatingStatus.QuotedStatus, Mode=OneWay}"
         Visibility="{Binding DataContext.IsQuoted, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
       <local:TweetRelatedLinkControl

@@ -13,15 +13,11 @@
     <StackPanel>
       <local:TweetNameInfoControl DataContext="{Binding Mode=OneWay}" />
 
+      <local:TweetTextControl DataContext="{Binding Mode=OneWay}" />
+
       <local:TweetImageControl
         DataContext="{Binding Mode=OneWay}"
         Style="{StaticResource TweetBlockImageControlStyle}" />
-
-      <local:TweetTextControl DataContext="{Binding Mode=OneWay}" />
-
-      <local:TweetCommandsControl
-        Margin="0,3,0,0"
-        DataContext="{Binding Mode=OneWay}" />
     </StackPanel>
   </Border>
 </UserControl>
