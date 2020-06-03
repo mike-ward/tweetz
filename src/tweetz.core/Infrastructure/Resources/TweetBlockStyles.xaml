@@ -200,10 +200,10 @@
   <Style
     x:Key="TweetBlockQuotedBorderStyle"
     TargetType="Border">
-    <Setter Property="Margin" Value="3,5" />
-    <Setter Property="BorderThickness" Value=".3,0" />
+    <Setter Property="Margin" Value="0,5" />
+    <Setter Property="Padding" Value="10,0" />
+    <Setter Property="BorderThickness" Value="0.3,0" />
     <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
-    <Setter Property="Padding" Value="10,10" />
   </Style>
 
   <Style

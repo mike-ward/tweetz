@@ -44,6 +44,7 @@ namespace tweetz.core.Controls.MediaViewerBlock
                 : Visibility.Collapsed;
 
             RewindButton.Visibility = visibility;
+            TenSecRewindButton.Visibility = visibility;
             PlayPauseButton.Visibility = visibility;
             ProgressIndicator.Visibility = visibility;
         }
