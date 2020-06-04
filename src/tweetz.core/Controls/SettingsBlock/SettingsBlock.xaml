@@ -63,6 +63,12 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.HidePossiblySensitive}">
+      <TextBlock
+        Text="{StaticResource hide-possibly-sensiive}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.AlwaysOnTop}">
       <TextBlock
         Text="{StaticResource always-on-top}"

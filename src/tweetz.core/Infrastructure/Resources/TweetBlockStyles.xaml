@@ -106,18 +106,6 @@
   </Style>
 
   <Style
-    x:Key="TweetImageUniformGridStyle"
-    TargetType="UniformGrid">
-    <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding ItemsSource.Length, ElementName=ItemsControl, Mode=OneWay}"
-        Value="2">
-        <Setter Property="Rows" Value="1" />
-      </DataTrigger>
-    </Style.Triggers>
-  </Style>
-
-  <Style
     x:Key="TweetBlockLinkStyle"
     BasedOn="{StaticResource BaseRunToolTipStyle}"
     TargetType="Run">

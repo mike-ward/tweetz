@@ -26,6 +26,7 @@
   <sys:String x:Key="hide-images">Hide images</sys:String>
   <sys:String x:Key="hide-extended-content">Hide extended content</sys:String>
   <sys:String x:Key="hide-screen-name">Hide screen name in title bar</sys:String>
+  <sys:String x:Key="hide-possibly-sensiive">Hide images marked sensitive</sys:String>
   <sys:String x:Key="run-on-startup">Run on startup</sys:String>
   <sys:String x:Key="font-size-title">Font size</sys:String>
   <sys:String x:Key="theme-title">Theme</sys:String>
@@ -84,6 +85,10 @@
 
   <!--  Image Viewer  -->
   <sys:String x:Key="copy">copy</sys:String>
+
+  <!--  Tweet Image Control  -->
+  <sys:String x:Key="image-possibly-sensitive">Image marked possibly sensitive</sys:String>
+  <sys:String x:Key="unblock-possibly-sensitive">Unblock Image</sys:String>
 
   <!--  Tips (in settings dialog)  -->
   <sys:String x:Key="tips">Tips</sys:String>

@@ -36,6 +36,7 @@ namespace tweetz.core.Models
         private bool hideImages;
         private bool hideExtendedContent;
         private bool hideScreenName;
+        private bool hidePossiblySensitive;
         private bool updateWhenScrolled;
         private bool donated;
         private bool spellCheck;
@@ -75,6 +76,7 @@ namespace tweetz.core.Models
         public bool HideImages { get => hideImages; set => SetProperty(ref hideImages, value); }
         public bool HideExtendedContent { get => hideExtendedContent; set => SetProperty(ref hideExtendedContent, value); }
         public bool HideScreenName { get => hideScreenName; set => SetProperty(ref hideScreenName, value); }
+        public bool HidePossiblySensitive { get => hidePossiblySensitive; set => SetProperty(ref hidePossiblySensitive, value); }
         public bool UpdateWhenScrolled { get => updateWhenScrolled; set => SetProperty(ref updateWhenScrolled, value); }
         public bool SpellCheck { get => spellCheck; set => SetProperty(ref spellCheck, value); }
         public bool ShowInSystemTray { get => showInSystemTray; set => SetProperty(ref showInSystemTray, value); }
@@ -104,6 +106,7 @@ namespace tweetz.core.Models
                 HideImages = settings.HideImages;
                 HideExtendedContent = settings.HideExtendedContent;
                 HideScreenName = settings.HideScreenName;
+                HidePossiblySensitive = settings.HidePossiblySensitive;
                 UpdateWhenScrolled = settings.UpdateWhenScrolled;
                 SpellCheck = settings.SpellCheck;
                 ShowInSystemTray = settings.showInSystemTray;

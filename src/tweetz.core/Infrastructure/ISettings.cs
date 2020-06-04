@@ -13,6 +13,7 @@ namespace tweetz.core.Infrastructure
         bool HideImages { get; }
         bool HideExtendedContent { get; }
         bool HideScreenName { get; }
+        bool HidePossiblySensitive { get; }
         bool UpdateWhenScrolled { get; set; }
         bool SpellCheck { get; set; }
         bool ShowInSystemTray { get; set; }

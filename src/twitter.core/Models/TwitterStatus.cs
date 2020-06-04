@@ -21,6 +21,7 @@ namespace twitter.core.Models
         private bool retweetedByMe;
         private bool favorited;
         private bool checkedRelatedInfo;
+        private bool isSensitive;
 
         [JsonPropertyName("id_str")]
         public string Id { get; set; } = string.Empty;
@@ -79,6 +80,9 @@ namespace twitter.core.Models
 
         [JsonPropertyName("reply_count")]
         public int ReplyCount { get => replyCount; set => SetProperty(ref replyCount, value); }
+
+        [JsonPropertyName("possibly_sensitive")]
+        public bool IsSensitive { get => isSensitive; set => SetProperty(ref isSensitive, value); }
 
         [JsonIgnore]
         public string? OverrideLink { get; set; }
