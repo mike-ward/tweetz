@@ -33,23 +33,39 @@
 
       <local:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
 
-      <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+      <StackPanel Style="{StaticResource TweetBlockIsSensitiveCollapsedStyle}">
+        <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
 
-      <local:TweetImageControl
-        DataContext="{Binding OriginatingStatus, Mode=OneWay}"
-        Style="{StaticResource TweetBlockImageControlStyle}" />
+        <local:TweetImageControl
+          DataContext="{Binding OriginatingStatus, Mode=OneWay}"
+          Style="{StaticResource TweetBlockImageControlStyle}" />
 
-      <local:TweetQuotedControl
-        DataContext="{Binding OriginatingStatus.QuotedStatus, Mode=OneWay}"
-        Visibility="{Binding DataContext.IsQuoted, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <local:TweetQuotedControl
+          DataContext="{Binding OriginatingStatus.QuotedStatus, Mode=OneWay}"
+          Visibility="{Binding DataContext.IsQuoted, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-      <local:TweetRelatedLinkControl
-        DataContext="{Binding RelatedLinkInfo, Mode=OneWay}"
-        Style="{StaticResource TweetBlockRelatedLinkControlStyle}" />
+        <local:TweetRelatedLinkControl
+          DataContext="{Binding RelatedLinkInfo, Mode=OneWay}"
+          Style="{StaticResource TweetBlockRelatedLinkControlStyle}" />
 
-      <local:TweetCommandsControl
-        Margin="0,3,0,0"
-        DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+        <local:TweetCommandsControl
+          Margin="0,3,0,0"
+          DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+      </StackPanel>
+
+      <!--  Blocked sensitive content section  -->
+
+      <StackPanel Style="{StaticResource TweetBlockIsIsSensitiveVisibleStyle}">
+        <TextBlock
+          HorizontalAlignment="Center"
+          Text="{StaticResource tweet-possibly-sensitive}" />
+
+        <Button
+          Width="150"
+          Margin="10"
+          Click="UnblockButtonClick"
+          Content="{StaticResource show-possibly-sensitive}" />
+      </StackPanel>
 
       <Separator
         Style="{StaticResource TweetBlockSeparator}"

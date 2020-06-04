@@ -54,19 +54,5 @@
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>
-
-    <!--  Unblock sensitive images panel  -->
-
-    <StackPanel Style="{StaticResource TweetImageControlStackPanelStyle}">
-      <TextBlock
-        HorizontalAlignment="Center"
-        Text="{StaticResource image-possibly-sensitive}"
-        TextWrapping="Wrap" />
-
-      <Button
-        Margin="10"
-        Click="UnblockButtonClick"
-        Content="{StaticResource unblock-possibly-sensitive}" />
-    </StackPanel>
   </Grid>
 </UserControl>

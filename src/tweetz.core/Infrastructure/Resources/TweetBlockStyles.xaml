@@ -4,6 +4,37 @@
   xmlns:controls="clr-namespace:tweetz.core.Controls">
 
   <Style
+    x:Key="TweetBlockIsSensitiveCollapsedStyle"
+    TargetType="StackPanel">
+    <Style.Triggers>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsSensitive, Mode=OneWay}" Value="True" />
+          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay}" Value="True" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Visibility" Value="Collapsed" />
+      </MultiDataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
+    x:Key="TweetBlockIsIsSensitiveVisibleStyle"
+    TargetType="StackPanel">
+    <Setter Property="Visibility" Value="Collapsed" />
+    <Setter Property="Margin" Value="0,10" />
+
+    <Style.Triggers>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsSensitive, Mode=OneWay}" Value="True" />
+          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay}" Value="True" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Visibility" Value="Visible" />
+      </MultiDataTrigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style
     x:Key="TweetBlockImageControlStyle"
     TargetType="{x:Type controls:TweetImageControl}">
     <Setter Property="Margin" Value="0,5,0,2" />
