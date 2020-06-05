@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.6.0 - 2020-06-05
+
+### Added
+- Optional block tweets marked as sensitive
+- Change borders and layout of quoted and related content
+
 ## 2.5.0 - 2020-05-25
 
 ### Added

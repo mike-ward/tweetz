@@ -8,7 +8,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ServerGarbageCollection>false</ServerGarbageCollection>
-    <Version>2.5.0</Version>
+    <Version>2.6.0</Version>
+    <FileVersion>2.6.0.0</FileVersion>
+    <AssemblyVersion>2.6.0.0</AssemblyVersion>
     <Description>A gadget-like desktop twitter client.</Description>
     <Copyright>Copyright 2020, Mike Ward</Copyright>
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
@@ -16,8 +18,6 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
-    <AssemblyVersion>2.5.0.0</AssemblyVersion>
-    <FileVersion>2.5.0.0</FileVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86</Platforms>
     <PublishReadyToRun>true</PublishReadyToRun>
