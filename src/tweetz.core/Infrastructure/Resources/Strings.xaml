@@ -94,7 +94,7 @@
   <sys:String x:Key="tips">Tips</sys:String>
   <sys:String x:Key="tips-ctrl-n">New tweet (Ctrl+N)</sys:String>
   <sys:String x:Key="tips-scroll">Right-click scrolls to top</sys:String>
-  <sys:String x:Key="tips-open">Open a tweet in twitter by clicking the timestamp</sys:String>
+  <sys:String x:Key="tips-open">Click timestamp to open in Twitter</sys:String>
   <sys:String x:Key="tips-font-size">Font size (Alt+Plus/Minus)</sys:String>
   <sys:String
     x:Key="tips-profiles"

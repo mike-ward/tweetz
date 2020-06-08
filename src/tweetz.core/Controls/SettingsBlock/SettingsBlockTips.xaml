@@ -14,10 +14,10 @@
       Margin="0,0,0,6"
       FontWeight="Bold"
       Text="{StaticResource tips}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
     <controls:BulletedItem BulletText="{StaticResource tips-scroll}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
     <controls:BulletedItem BulletText="{StaticResource tips-open}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
     <controls:BulletedItem BulletText="{StaticResource tips-profiles}" />
   </StackPanel>
 </UserControl>

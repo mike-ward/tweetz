@@ -63,11 +63,11 @@ namespace tweetz.core.Services
 
             var hyperlink = new Hyperlink(new Run(link))
             {
-                Command = OpenLinkCommand.Command,
                 CommandParameter = link,
                 ToolTip = link
             };
 
+            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, null);
             hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
 
             var textblock = new TextBlock(hyperlink)
@@ -88,13 +88,16 @@ namespace tweetz.core.Services
             tooltip.Content = userProfile;
             tooltip.Style = GetToolTipStyle();
             userProfile.Tag = text;
+            var link = $"https://twitter.com/{text}";
 
-            return new Hyperlink(new Run("@" + text))
+            var hyperlink = new Hyperlink(new Run("@" + text))
             {
-                Command = OpenLinkCommand.Command,
-                CommandParameter = $"https://twitter.com/{text}",
+                CommandParameter = link,
                 ToolTip = tooltip
             };
+
+            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, null);
+            return hyperlink;
         }
 
         private static Style? userProfileToolTipStyle;
@@ -107,11 +110,13 @@ namespace tweetz.core.Services
         private static Hyperlink Hashtag(string text)
         {
             var tag = "#" + text;
-            return new Hyperlink(new Run(tag))
+            var hyperlink = new Hyperlink(new Run(tag))
             {
-                Command = SearchCommand.Command,
                 CommandParameter = tag
             };
+
+            hyperlink.Click += (_, __) => SearchCommand.Command.Execute(tag, null);
+            return hyperlink;
         }
 
         private static string ConvertXmlEntities(string text)
