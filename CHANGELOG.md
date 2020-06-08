@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.6.1 - 2020-06-08
+
+### Fixed
+
+- Fix hyperlinks not working after scrolling [#17](https://github.com/mike-ward/tweetz/issues/17)
+
 ## 2.6.0 - 2020-06-05
 
 ### Added
