@@ -37,7 +37,7 @@ jobs:
         dotnet-version: 3.1.100
     
     - name: Build with dotnet
-      run: .\build.cmd
+      run: dotnet build src\tweetz.core
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
