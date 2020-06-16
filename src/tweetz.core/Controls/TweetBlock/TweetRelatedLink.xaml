@@ -18,8 +18,7 @@
 
       <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
         <Hyperlink
-          Command="commands:OpenLinkCommand.Command"
-          CommandParameter="{Binding Url, Mode=OneWay}"
+          Click="Hyperlink_Click"
           ToolTip="{Binding Url, Mode=OneWay}"
           ToolTipOpening="Hyperlink_ToolTipOpening">
           <Run Text="{Binding Title, Mode=OneWay}" />
