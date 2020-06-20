@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.6.2 - 2020-06-20
+
+### Fixed
+
+- Reduce text line height slightly [fcd9e0d](https://github.com/mike-ward/tweetz/commit/fcd9e0d372aa7f42c7ca06c7ecbda313c95355d0)
+- Hyperlinks in related links required focus [84a0cc1](https://github.com/mike-ward/tweetz/commit/84a0cc1924d8c51b3c6be384149125ca69e63a76)_
+
 ## 2.6.1 - 2020-06-08
 
 ### Fixed

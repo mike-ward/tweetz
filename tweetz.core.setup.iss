@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tweetz"
-#define MyAppVersion "2.6.1"
+#define MyAppVersion "2.6.2"
 #define MyAppPublisher "Mike Ward"
 #define MyAppURL "https://mike-ward.net/tweetz"
 #define MyAppExeName "tweetz.core.exe"
