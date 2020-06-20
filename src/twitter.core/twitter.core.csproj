@@ -9,8 +9,8 @@
     <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
     <Copyright>Copyright 2020, Mike Ward</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <Platforms>x86</Platforms>
     <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>

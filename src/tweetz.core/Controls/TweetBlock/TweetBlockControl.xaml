@@ -21,7 +21,7 @@
 
     <local:TweetProfileImageControl
       Grid.Column="0"
-      Margin="1,0,5,0"
+      Margin="1,5,5,0"
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
       Tag="{Binding ScreenName, Mode=OneWay}"

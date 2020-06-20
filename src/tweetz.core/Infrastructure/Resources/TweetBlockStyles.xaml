@@ -288,7 +288,8 @@
     BasedOn="{StaticResource BaseTextBlockStyle}"
     TargetType="TextBlock">
     <Setter Property="TextWrapping" Value="Wrap" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+    <Setter Property="LineHeight" Value="17" />
   </Style>
 
   <Style
