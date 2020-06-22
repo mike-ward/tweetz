@@ -13,11 +13,26 @@ namespace tweetz.core.Models
 {
     public class TwitterTimeline : NotifyPropertyChanged
     {
+        public ISettings Settings { get; }
+        public ISystemState SystemState { get; }
+
+        public double IntervalInMinutes { get; }
+        public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
+        public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
+        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
+
+        protected string timelineName = "unknown";
+        private bool inUpdate;
+        private bool isScrolled;
+        private string? exceptionMessage;
+        private readonly DispatcherTimer updateTimer;
+        private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new List<Func<TwitterTimeline, ValueTask>>();
+        private object SyncObject => new object();
+
         public TwitterTimeline(ISettings settings, ISystemState systemState, double intervalInMinutes)
         {
             Settings = settings;
             SystemState = systemState;
-            FadeInDuration = TimeSpan.Zero;
             IntervalInMinutes = intervalInMinutes;
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
@@ -98,15 +113,6 @@ namespace tweetz.core.Models
             }
         }
 
-        public ISettings Settings { get; }
-        public ISystemState SystemState { get; }
-
-        public double IntervalInMinutes { get; }
-        public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
-        public Duration FadeInDuration { get => fadeInDuration; set => SetProperty(ref fadeInDuration, value); }
-        public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
-        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
-
         public bool IsScrolled
         {
             get => isScrolled;
@@ -120,14 +126,5 @@ namespace tweetz.core.Models
                     : null;
             }
         }
-
-        protected string timelineName = "unknown";
-        private bool inUpdate;
-        private bool isScrolled;
-        private Duration fadeInDuration;
-        private string? exceptionMessage;
-        private readonly DispatcherTimer updateTimer;
-        private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new List<Func<TwitterTimeline, ValueTask>>();
-        private object SyncObject => new object();
     }
 }

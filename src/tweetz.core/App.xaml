@@ -19,6 +19,7 @@
         <ResourceDictionary Source="Infrastructure/Resources/TweetBlockStyles.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/UserProfileBlockStyles.xaml" />
         <ResourceDictionary Source="Infrastructure/Resources/TweetImageControlStyles.xaml" />
+        <ResourceDictionary Source="Infrastructure/Resources/TabControlStyles.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>

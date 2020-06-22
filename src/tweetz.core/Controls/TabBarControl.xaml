@@ -7,11 +7,11 @@
   xmlns:local="clr-namespace:tweetz.core.Controls"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
-  d:DesignHeight="300"
-  d:DesignWidth="300"
   DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneWay}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
+  d:DesignHeight="300"
+  d:DesignWidth="300"
   mc:Ignorable="d">
 
   <Grid>
@@ -20,7 +20,8 @@
       Background="{DynamicResource StandardBackgroundBrush}"
       BorderBrush="{DynamicResource StandardBackgroundBrush}"
       SelectionChanged="OnSelectionChanged"
-      SizeChanged="OnSizeChanged">
+      SizeChanged="OnSizeChanged"
+      Style="{StaticResource TabControlStyleWithoutTransparentRegions}">
 
       <TabControl.Resources>
         <Style TargetType="TabItem">
@@ -54,6 +55,7 @@
         </Style>
 
         <Style TargetType="local:TabItemHeaderWithIndicators">
+          <Setter Property="Margin" Value="0,3,0,0" />
           <Setter Property="Width" Value="{Binding DataContext.TabWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
         </Style>
       </TabControl.Resources>
@@ -133,10 +135,20 @@
   </Grid>
 
   <UserControl.InputBindings>
-    <KeyBinding Command="commands:ToggleShowComposeCommand.Command" Gesture="Ctrl+N" />
-    <KeyBinding Command="commands:DecreaseFontSizeCommand.Command" Gesture="Alt+Subtract" />
-    <KeyBinding Command="commands:IncreaseFontSizeCommand.Command" Gesture="Alt+Add" />
-    <KeyBinding Command="commands:DecreaseFontSizeCommand.Command" Gesture="Alt+OemMinus" />
-    <KeyBinding Command="commands:IncreaseFontSizeCommand.Command" Gesture="Alt+OemPlus" />
+    <KeyBinding
+      Command="commands:ToggleShowComposeCommand.Command"
+      Gesture="Ctrl+N" />
+    <KeyBinding
+      Command="commands:DecreaseFontSizeCommand.Command"
+      Gesture="Alt+Subtract" />
+    <KeyBinding
+      Command="commands:IncreaseFontSizeCommand.Command"
+      Gesture="Alt+Add" />
+    <KeyBinding
+      Command="commands:DecreaseFontSizeCommand.Command"
+      Gesture="Alt+OemMinus" />
+    <KeyBinding
+      Command="commands:IncreaseFontSizeCommand.Command"
+      Gesture="Alt+OemPlus" />
   </UserControl.InputBindings>
 </UserControl>

@@ -299,12 +299,4 @@
     <Setter Property="Margin" Value="0,9,0,0" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
-
-  <Storyboard x:Key="TweetBlockFadeIn">
-    <DoubleAnimation
-      Storyboard.TargetProperty="Opacity"
-      From="0"
-      To="1"
-      Duration="{Binding DataContext.FadeInDuration, ElementName=Timeline, Mode=OneWay}" />
-  </Storyboard>
 </ResourceDictionary>

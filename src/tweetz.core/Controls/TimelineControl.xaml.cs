@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Controls
 {
     public partial class TimelineControl : UserControl
     {
+        private static readonly ThicknessAnimation SlideDownAnimation =
+            new ThicknessAnimation(new Thickness(0, -100, 0, 0), new Thickness(0), TimeSpan.FromMilliseconds(100));
+
         public TimelineControl()
         {
             InitializeComponent();
@@ -21,18 +24,9 @@ namespace tweetz.core.Controls
             {
                 vm.StatusCollection.CollectionChanged += (s, args) =>
                 {
-                    const int duration = 1000;
-
-                    // Only animate when scrolled to top
-                    vm.FadeInDuration = vm.IsScrolled
-                        ? TimeSpan.Zero
-                        : TimeSpan.FromMilliseconds(duration);
-
-                    if (vm.FadeInDuration != TimeSpan.Zero)
+                    if (!vm.IsScrolled)
                     {
-                        _ = Task
-                            .Delay(duration + 200)
-                            .ContinueWith(_ => vm.FadeInDuration = TimeSpan.Zero);
+                        ItemsControl.BeginAnimation(MarginProperty, SlideDownAnimation);
                     }
                 };
             }

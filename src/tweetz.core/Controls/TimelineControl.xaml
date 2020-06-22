@@ -14,6 +14,7 @@
 
   <ItemsControl
     x:Name="ItemsControl"
+    ClipToBounds="True"
     ItemsSource="{Binding StatusCollection}"
     ScrollViewer.CanContentScroll="True"
     VirtualizingPanel.IsVirtualizing="True"
@@ -49,13 +50,7 @@
 
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <local:TweetBlockControl DataContext="{Binding Mode=OneWay}">
-          <local:TweetBlockControl.Triggers>
-            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-              <BeginStoryboard Storyboard="{StaticResource TweetBlockFadeIn}" />
-            </EventTrigger>
-          </local:TweetBlockControl.Triggers>
-        </local:TweetBlockControl>
+        <local:TweetBlockControl DataContext="{Binding Mode=OneWay}" />
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>
