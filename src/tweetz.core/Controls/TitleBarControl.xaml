@@ -42,7 +42,7 @@
         Padding="15,4"
         Cursor="Hand"
         FontSize="10"
-        MouseDown="ExecuteMinimizeCommand"
+        MouseDown="Minimize"
         Text="—"
         TextAlignment="Center"
         ToolTip="{StaticResource minimize-tooltip}">
@@ -64,7 +64,7 @@
         HorizontalAlignment="Right"
         Cursor="Hand"
         FontSize="10"
-        MouseDown="ExecuteCloseCommand"
+        MouseDown="Close"
         Text="&#x2573;"
         TextAlignment="Center"
         ToolTip="{StaticResource close-tooltip}">

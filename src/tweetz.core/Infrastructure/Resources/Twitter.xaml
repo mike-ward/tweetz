@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
-  <sys:Double x:Key="VerifiedBadgeSize">16</sys:Double>
+  <sys:Double x:Key="VerifiedBadgeSize">13</sys:Double>
   <SolidColorBrush x:Key="TwitterBlue">#1DA1F2</SolidColorBrush>
 
   <Style

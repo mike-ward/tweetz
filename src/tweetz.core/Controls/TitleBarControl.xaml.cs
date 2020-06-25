@@ -11,12 +11,12 @@ namespace tweetz.core.Controls
             InitializeComponent();
         }
 
-        private void ExecuteCloseCommand(object sender, MouseButtonEventArgs e)
+        private void Close(object sender, MouseButtonEventArgs e)
         {
             ApplicationCommands.Close.Execute(null, this);
         }
 
-        private void ExecuteMinimizeCommand(object sender, MouseButtonEventArgs e)
+        private void Minimize(object sender, MouseButtonEventArgs e)
         {
             MinimizeCommand.Command.Execute(null, this);
         }

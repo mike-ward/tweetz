@@ -1,0 +1,1 @@
+start .\bin\dist\tweetz-setup.exe /SILENT

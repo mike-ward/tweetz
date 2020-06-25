@@ -44,7 +44,9 @@
 
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <VirtualizingStackPanel Focusable="True" />
+        <VirtualizingStackPanel
+          Focusable="True"
+          IsItemsHost="True" />
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
 

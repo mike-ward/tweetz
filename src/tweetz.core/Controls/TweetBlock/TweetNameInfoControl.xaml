@@ -29,7 +29,7 @@
 
     <InlineUIContainer BaselineAlignment="Center">
       <Path
-        Margin="0,2,0,0"
+        Margin="0,.5,0,0"
         Data="{StaticResource TwitterVerifiedBadge}"
         Style="{StaticResource TwitterBadgeStyle}"
         Visibility="{Binding User.Verified, Converter={StaticResource BooleanToVisibilityConverter}}" />
