@@ -2,7 +2,7 @@
   x:Class="tweetz.core.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:controls="clr-namespace:tweetz.core.Controls"
+  xmlns:controls="clr-namespace:tweetz.core.Views"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
@@ -31,13 +31,13 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-    <controls:TitleBarControl Grid.Row="0" />
+    <controls:TitleBarView Grid.Row="0" />
 
-    <controls:GetPinControl
+    <controls:GetPinView
       Grid.Row="1"
       Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
-    <controls:TabBarControl
+    <controls:TabBarView
       Grid.Row="1"
       Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>

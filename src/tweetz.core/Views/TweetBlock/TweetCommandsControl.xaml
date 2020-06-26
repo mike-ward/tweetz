@@ -1,0 +1,91 @@
+﻿<UserControl
+  x:Class="tweetz.core.Views.TweetCommandsControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="25"
+  d:DesignWidth="200"
+  mc:Ignorable="d">
+
+  <StackPanel Orientation="Horizontal">
+    <TextBlock
+      Style="{StaticResource TweetBlockTextBlockStyle}"
+      ToolTip="{StaticResource reply-tooltip}">
+      <Run
+        Style="{StaticResource SymbolStyle}"
+        Text="{StaticResource ReplySymbol}" />
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="commands:ReplyToCommand.Command"
+          CommandParameter="{Binding Mode=OneWay}"
+          Gesture="LeftClick" />
+      </TextBlock.InputBindings>
+    </TextBlock>
+
+    <TextBlock
+      Style="{StaticResource TweetBlockTextBlockStyle}"
+      ToolTip="{StaticResource retweet-tooltip}">
+      <Run
+        Style="{StaticResource TweetBlockRetweetSymbolStyle}"
+        Text="{StaticResource RetweetSymbol}" />
+      <Run Text="{Binding RetweetCount, Mode=OneWay, Converter={StaticResource CountConverter}}" />
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="commands:ToggleRetweetCommand.Command"
+          CommandParameter="{Binding}"
+          Gesture="LeftClick" />
+      </TextBlock.InputBindings>
+    </TextBlock>
+
+    <TextBlock
+      Style="{StaticResource TweetBlockTextBlockStyle}"
+      ToolTip="{StaticResource like-tooltip}">
+      <Run
+        Style="{StaticResource TweetBlockLikeSymbolStyle}"
+        Text="{StaticResource LikeSymbol}" />
+      <Run Text="{Binding FavoriteCount, Mode=OneWay, Converter={StaticResource CountConverter}}" />
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="commands:ToggleFavoriteCommand.Command"
+          CommandParameter="{Binding}"
+          Gesture="LeftClick" />
+      </TextBlock.InputBindings>
+    </TextBlock>
+
+    <TextBlock
+      Style="{StaticResource TweetBlockTextBlockStyle}"
+      ToolTip="{StaticResource retweet-with-comment-tooltip}">
+      <Run
+        Style="{StaticResource SymbolStyle}"
+        Text="{StaticResource QuoteSymbol}" />
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="commands:QuoteTweetCommand.Command"
+          CommandParameter="{Binding Mode=OneWay}"
+          Gesture="LeftClick" />
+      </TextBlock.InputBindings>
+    </TextBlock>
+
+    <TextBlock
+      Style="{StaticResource TweetBlockTextBlockStyle}"
+      ToolTip="{StaticResource follow-tooltip}">
+      <Run
+        Style="{StaticResource TweetBlockFollowSymbolStyle}"
+        Text="{StaticResource AddFriendSymbol}" />
+      <Run Text="{Binding User.Followers, Mode=OneWay, Converter={StaticResource CountConverter}}" />
+
+      <TextBlock.InputBindings>
+        <MouseBinding
+          Command="commands:ToggleFollowCommand.Command"
+          CommandParameter="{Binding}"
+          Gesture="LeftClick" />
+      </TextBlock.InputBindings>
+    </TextBlock>
+  </StackPanel>
+</UserControl>

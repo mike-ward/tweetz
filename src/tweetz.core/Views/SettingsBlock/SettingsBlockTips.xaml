@@ -1,0 +1,23 @@
+﻿<UserControl
+  x:Class="tweetz.core.Views.SettingsBlock.SettingsBlockTips"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="clr-namespace:tweetz.core.Views"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="200"
+  d:DesignWidth="300"
+  mc:Ignorable="d">
+
+  <StackPanel>
+    <TextBlock
+      Margin="0,0,0,6"
+      FontWeight="Bold"
+      Text="{StaticResource tips}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-scroll}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-open}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-profiles}" />
+  </StackPanel>
+</UserControl>

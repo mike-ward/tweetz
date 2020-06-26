@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using tweetz.core.Controls;
+using tweetz.core.Views;
 using tweetz.core.Infrastructure;
 
 namespace tweetz.core.Commands
@@ -15,7 +15,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs args)
         {
-            var timeline = args.Parameter as TimelineControl;
+            var timeline = args.Parameter as TimelineView;
             timeline?.ScrollToHome();
             args.Handled = false;
         }

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using tweetz.core.Controls.MediaViewerBlock;
+using tweetz.core.Views.MediaViewerBlock;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
 using twitter.core.Models;

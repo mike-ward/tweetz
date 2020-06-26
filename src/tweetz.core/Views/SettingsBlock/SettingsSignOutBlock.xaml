@@ -1,0 +1,15 @@
+﻿<UserControl
+  x:Class="tweetz.core.Views.SettingsBlock.SettingsSignOutBlock"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="25"
+  d:DesignWidth="150"
+  mc:Ignorable="d">
+  <Button
+    Width="100"
+    Command="{x:Static commands:SignOutCommand.Command}"
+    Content="{StaticResource sign-out}" />
+</UserControl>

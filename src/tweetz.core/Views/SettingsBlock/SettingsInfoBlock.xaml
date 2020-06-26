@@ -1,0 +1,27 @@
+﻿<UserControl
+  x:Class="tweetz.core.Views.SettingsBlock.SettingsInfoBlock"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:models="clr-namespace:tweetz.core.Models"
+  d:DesignHeight="200"
+  d:DesignWidth="300"
+  mc:Ignorable="d">
+
+  <TextBlock TextAlignment="Center">
+    <Run>Tweetz,</Run>
+    <Run Text="{x:Static models:VersionInfo.Version}" />
+    <LineBreak />
+
+    <Hyperlink
+      Command="commands:OpenLinkCommand.Command"
+      CommandParameter="http://mike-ward.net">
+      http://Mike-Ward.Net
+    </Hyperlink>
+    <LineBreak />
+
+    <Run Text="{x:Static models:VersionInfo.Copyright}" />
+  </TextBlock>
+</UserControl>

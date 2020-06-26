@@ -1,0 +1,15 @@
+﻿<UserControl
+  x:Class="tweetz.core.Views.SettingsView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:settingsblock="clr-namespace:tweetz.core.Views.SettingsBlock"
+  d:DesignHeight="600"
+  d:DesignWidth="300"
+  mc:Ignorable="d">
+
+  <ScrollViewer FocusVisualStyle="{x:Null}">
+    <settingsblock:SettingsBlock />
+  </ScrollViewer>
+</UserControl>

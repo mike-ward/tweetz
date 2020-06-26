@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using tweetz.core.Commands;
-using tweetz.core.Controls.UserProfileBlock;
+using tweetz.core.Views.UserProfileBlock;
 using tweetz.core.Models;
 using twitter.core.Models;
 

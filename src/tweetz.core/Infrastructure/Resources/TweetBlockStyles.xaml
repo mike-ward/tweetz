@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:controls="clr-namespace:tweetz.core.Controls">
+  xmlns:controls="clr-namespace:tweetz.core.Views">
 
   <Style
     x:Key="TweetBlockIsSensitiveCollapsedStyle"
@@ -10,7 +10,7 @@
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding IsSensitive, Mode=OneWay}" Value="True" />
-          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay}" Value="True" />
+          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Collapsed" />
       </MultiDataTrigger>
@@ -27,7 +27,7 @@
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding IsSensitive, Mode=OneWay}" Value="True" />
-          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay}" Value="True" />
+          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Visible" />
       </MultiDataTrigger>
@@ -41,7 +41,7 @@
     <Setter Property="Cursor" Value="Hand" />
     <Style.Triggers>
       <DataTrigger
-        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay, FallbackValue=False}"
+        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, FallbackValue=False}"
         Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
@@ -63,7 +63,7 @@
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
       <DataTrigger
-        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineControl}, Mode=OneWay}"
+        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
         Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>

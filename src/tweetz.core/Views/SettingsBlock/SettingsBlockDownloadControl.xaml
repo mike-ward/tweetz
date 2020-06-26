@@ -1,0 +1,19 @@
+﻿<UserControl
+  x:Class="tweetz.core.Views.SettingsBlock.SettingsBlockDownloadControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DesignHeight="50"
+  d:DesignWidth="125"
+  Visibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
+  mc:Ignorable="d">
+
+  <Button
+    Width="125"
+    Margin="0,0,0,5"
+    Command="commands:OpenLinkCommand.Command"
+    CommandParameter="https://github.com/mike-ward/tweetz/releases/latest"
+    Content="{StaticResource get-the-update}" />
+</UserControl>
