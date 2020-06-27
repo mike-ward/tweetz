@@ -87,12 +87,6 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
-    <CheckBox IsChecked="{Binding Settings.UpdateWhenScrolled}">
-      <TextBlock
-        Text="{StaticResource update-when-scrolled}"
-        TextWrapping="Wrap" />
-    </CheckBox>
-
     <CheckBox IsChecked="{Binding Settings.Donated}">
       <TextBlock
         Text="{StaticResource donated}"
