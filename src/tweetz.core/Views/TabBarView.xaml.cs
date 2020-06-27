@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using tweetz.core.Commands;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
@@ -47,6 +48,13 @@ namespace tweetz.core.Views
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => scrollViewer.Focus()));
             }
+        }
+
+        private void TabItemHeaderWithIndicators_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var item = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
+            var timeline = item?.Content as TimelineView;
+            ScrollToHomeCommand.Command.Execute(timeline, this);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using tweetz.core.Models;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
@@ -44,9 +45,15 @@ namespace tweetz.core.Views
 
         private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (DataContext is HomeTimelineControlViewModel vm)
+            if (DataContext is TwitterTimeline model)
             {
-                vm.IsScrolled = e.VerticalOffset > 0;
+                model.IsScrolled = e.VerticalOffset > 0;
+
+                if (!model.IsScrolled)
+                {
+                    model.AddPendingToStatusCollection();
+                    ScrollToHome();
+                }
             }
         }
     }

@@ -9,7 +9,8 @@ namespace tweetz.core.Views
 {
     public partial class TabItemHeaderWithIndicators : UserControl
     {
-        private TabItemIndicatorAdorner? _adorner;
+        private TabItemErrorAdorner? _errorAdorner;
+        private TabItemNewTweetsAdorner? _newTweetsAdorner;
 
         public TabItemHeaderWithIndicators()
         {
@@ -28,28 +29,52 @@ namespace tweetz.core.Views
                 var layer = AdornerLayer.GetAdornerLayer(parent);
                 if (layer is null) return;
 
-                var brush = new SolidColorBrush(IndicatorColor);
-                brush.Freeze();
+                var errorBrush = new SolidColorBrush(ErrorIndicatorColor);
+                errorBrush.Freeze();
 
-                _adorner = new TabItemIndicatorAdorner(parent, brush);
-                layer.Add(_adorner);
+                _errorAdorner = new TabItemErrorAdorner(parent, errorBrush);
+                layer.Add(_errorAdorner);
 
-                var binding = new Binding()
+                var errorBinding = new Binding()
                 {
-                    Path = new PropertyPath("IndicatorVisibility", null),
+                    Path = new PropertyPath("ErrorIndicatorVisibility", null),
                     Source = this,
                     Mode = BindingMode.OneWay
                 };
 
-                _adorner.SetBinding(VisibilityProperty, binding);
+                _errorAdorner.SetBinding(VisibilityProperty, errorBinding);
+
+                // New tweets adorner
+
+                var newTweetsBrush = new SolidColorBrush(NewTweetsIndicatorColor);
+                newTweetsBrush.Freeze();
+
+                _newTweetsAdorner = new TabItemNewTweetsAdorner(parent, newTweetsBrush);
+                layer.Add(_newTweetsAdorner);
+
+                var newTweetsBinding = new Binding()
+                {
+                    Path = new PropertyPath("NewTweetsIndicatorVisibility", null),
+                    Source = this,
+                    Mode = BindingMode.OneWay
+                };
+
+                _newTweetsAdorner.SetBinding(VisibilityProperty, newTweetsBinding);
             }
             else
             {
-                var adorner = _adorner;
-                if (!(adorner is null))
+                var errorAdorner = _errorAdorner;
+                if (!(errorAdorner is null))
                 {
-                    AdornerLayer.GetAdornerLayer(parent)?.Remove(adorner);
-                    _adorner = null;
+                    AdornerLayer.GetAdornerLayer(parent)?.Remove(errorAdorner);
+                    _errorAdorner = null;
+                }
+
+                var newTweetsAdorner = _newTweetsAdorner;
+                if (!(newTweetsAdorner is null))
+                {
+                    AdornerLayer.GetAdornerLayer(parent)?.Remove(newTweetsAdorner);
+                    _newTweetsAdorner = null;
                 }
             }
         }
@@ -67,26 +92,50 @@ namespace tweetz.core.Views
                 typeof(TabItemHeaderWithIndicators),
                 new PropertyMetadata(string.Empty));
 
-        public Color IndicatorColor
+        public Color ErrorIndicatorColor
         {
-            get => (Color)GetValue(IndicatorColorProperty);
-            set => SetValue(IndicatorColorProperty, value);
+            get => (Color)GetValue(ErrorIndicatorColorProperty);
+            set => SetValue(ErrorIndicatorColorProperty, value);
         }
 
-        public static readonly DependencyProperty IndicatorColorProperty = DependencyProperty.Register(
-            nameof(IndicatorColor),
+        public static readonly DependencyProperty ErrorIndicatorColorProperty = DependencyProperty.Register(
+            nameof(ErrorIndicatorColor),
             typeof(Color),
             typeof(TabItemHeaderWithIndicators),
             new PropertyMetadata(Colors.Crimson));
 
-        public Visibility IndicatorVisibility
+        public Visibility ErrorIndicatorVisibility
         {
-            get => (Visibility)GetValue(IndicatorVisibilityProperty);
-            set => SetValue(IndicatorVisibilityProperty, value);
+            get => (Visibility)GetValue(ErrorIndicatorVisibilityProperty);
+            set => SetValue(ErrorIndicatorVisibilityProperty, value);
         }
 
-        public static readonly DependencyProperty IndicatorVisibilityProperty = DependencyProperty.Register(
-            nameof(IndicatorVisibility),
+        public static readonly DependencyProperty ErrorIndicatorVisibilityProperty = DependencyProperty.Register(
+            nameof(ErrorIndicatorVisibility),
+            typeof(Visibility),
+            typeof(TabItemHeaderWithIndicators),
+            new PropertyMetadata(Visibility.Collapsed));
+
+        public Color NewTweetsIndicatorColor
+        {
+            get => (Color)GetValue(NewTweetsIndicatorColorProperty);
+            set => SetValue(NewTweetsIndicatorColorProperty, value);
+        }
+
+        public static readonly DependencyProperty NewTweetsIndicatorColorProperty = DependencyProperty.Register(
+            nameof(NewTweetsIndicatorColor),
+            typeof(Color),
+            typeof(TabItemHeaderWithIndicators),
+            new PropertyMetadata(Colors.DarkGreen));
+
+        public Visibility NewTweetsIndicatorVisibility
+        {
+            get => (Visibility)GetValue(NewTweetsIndicatorVisibilityProperty);
+            set => SetValue(NewTweetsIndicatorVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty NewTweetsIndicatorVisibilityProperty = DependencyProperty.Register(
+            nameof(NewTweetsIndicatorVisibility),
             typeof(Visibility),
             typeof(TabItemHeaderWithIndicators),
             new PropertyMetadata(Visibility.Collapsed));

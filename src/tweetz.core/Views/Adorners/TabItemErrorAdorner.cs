@@ -4,9 +4,9 @@ using System.Windows.Media;
 
 namespace tweetz.core.Views.Adorners
 {
-    public class TabItemIndicatorAdorner : Adorner
+    public class TabItemErrorAdorner : Adorner
     {
-        public TabItemIndicatorAdorner(UIElement adornedElement, Brush brush)
+        public TabItemErrorAdorner(UIElement adornedElement, Brush brush)
             : base(adornedElement)
         {
             Brush = brush;
@@ -22,7 +22,7 @@ namespace tweetz.core.Views.Adorners
             var pen = new Pen(Brush, 1);
             pen.Freeze();
 
-            var point = new Point(size.Width / 2 + radius * 3, radius + 1);
+            var point = new Point(size.Width / 2 - radius * 3, radius + 1);
             drawingContext?.DrawEllipse(Brush, pen, point, radius, radius);
         }
     }

@@ -26,7 +26,16 @@ namespace tweetz.core.Services
                 {
                     timeline.AlreadyAdded.Add(status.Id);
                     status.UpdateAboutMeProperties(timeline.Settings.ScreenName);
-                    timeline.StatusCollection.Insert(0, status);
+
+                    if (timeline.IsScrolled)
+                    {
+                        timeline.PendingStatusCollection.Add(status);
+                        timeline.PendingStatusesAvailable = true;
+                    }
+                    else
+                    {
+                        timeline.StatusCollection.Insert(0, status);
+                    }
                 }
             }
 
