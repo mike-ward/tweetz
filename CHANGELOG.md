@@ -1,17 +1,31 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.7.0 - 2020-06-28
+
+### Changed
+- Replace fade-in with scroll-in animation when tweet arrives [abcb2aa](abcb2aa152a5bff118658a5de68950244ea9200d) 
+- Reduce size of verified badge [36476a7](36476a7522a20b0200a556592e7af88c8652064a)
+
+### Added
+- Automatically freeze scrolling of new tweets when scrolled and indicate new tweets arrived with green dot in tab [a2e1853](a2e1853a248eb176335adca00db585e31f84bb3e)
+- Click on active tab to scroll to top (right-click still works as well) [a2e1853](a2e1853a248eb176335adca00db585e31f84bb3e)
+- Check Desktop Window Manager enabled, notify and exit instead of crash [837e3b4](837e3b4ce2e6f648ac45ef171c612bd72e9fa228) 
+
+### Removed
+- Remove freeze timeline when scrolled (no longer needed with indicator feature) [8ee9f9a](8ee9f9abf064487963bc0a9b2252d0a5d63c5d4c)
+
 ## 2.6.2 - 2020-06-20
 
 ### Fixed
-
-- Reduce text line height slightly [fcd9e0d](https://github.com/mike-ward/tweetz/commit/fcd9e0d372aa7f42c7ca06c7ecbda313c95355d0)
 - Hyperlinks in related links required focus [84a0cc1](https://github.com/mike-ward/tweetz/commit/84a0cc1924d8c51b3c6be384149125ca69e63a76)_
 
+### Changed
+
+- Reduce text line height slightly [fcd9e0d](https://github.com/mike-ward/tweetz/commit/fcd9e0d372aa7f42c7ca06c7ecbda313c95355d0)
 ## 2.6.1 - 2020-06-08
 
 ### Fixed
-
 - Fix hyperlinks not working after scrolling [#17](https://github.com/mike-ward/tweetz/issues/17)
 
 ## 2.6.0 - 2020-06-05
@@ -35,7 +49,6 @@ All notable changes to this project will be documented in this file.
 ## 2.4.0 - 2020-05-02
 
 ### Added
-
 - Profile switch: on the command line or in a shortcut add a profile name (e.g. `tweetz.core.exe aname`). This instructs Tweetz to read and save settings to a file called `aname.settings.json` allowing Tweetz to access multiple accounts in multiple instances. [#11](https://github.com/mike-ward/tweetz/issues/11)
 
 ## 2.3.0 - 2020-04-26
