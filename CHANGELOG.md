@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.7.1 - 2020-06-30
+
+### Fixed
+
+- Fix issue with cross threading on UI thread
+
 ## 2.7.0 - 2020-06-28
 
 ### Changed
