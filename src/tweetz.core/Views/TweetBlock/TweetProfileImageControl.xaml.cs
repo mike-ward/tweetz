@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -29,6 +30,7 @@ namespace tweetz.core.Views
             var imageControl = (Image)sender;
             var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
             imageControl.Source = new BitmapImage(uri);
+            Trace.TraceError(e.ErrorException.ToString());
         }
     }
 }

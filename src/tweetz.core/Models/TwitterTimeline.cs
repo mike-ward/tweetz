@@ -94,25 +94,26 @@ namespace tweetz.core.Models
 
         public async ValueTask UpdateAsync()
         {
-            if (inUpdate) { Trace.TraceInformation($"{timelineName}: inUpdate"); return; }
-            if (SystemState.IsSleeping) { Trace.TraceInformation($"{timelineName}: isSleeping"); return; }
-
             try
             {
+                if (inUpdate) { Trace.TraceInformation($"{timelineName} inUpdate"); return; }
+
                 inUpdate = true;
+                ExceptionMessage = null;
+
+                if (SystemState.IsSleeping) { Trace.TraceInformation($"{timelineName}: isSleeping"); return; }
+
                 Trace.TraceInformation($"{timelineName}: Updating");
 
                 foreach (var updateTask in updateTasks)
                 {
-                    await updateTask(this).ConfigureAwait(false);
+                    await updateTask(this).ConfigureAwait(true);
                 }
-
-                ExceptionMessage = null;
             }
             catch (Exception ex)
             {
-                Trace.TraceError($"{timelineName}: ${ex.Message}");
-                ExceptionMessage = ex.Message;
+                Trace.TraceError($"{timelineName}: ${ex}");
+                ExceptionMessage = $"{ex.Message}";
             }
             finally
             {
@@ -139,9 +140,12 @@ namespace tweetz.core.Models
 
         private void UpdateTooltip(object sender, PropertyChangedEventArgs e)
         {
-            if (PendingStatusesAvailable) ToolTipText = (string)Application.Current.FindResource("new-tweets-arrived-tooltip");
-            else if (!(ExceptionMessage is null)) ToolTipText = ExceptionMessage;
-            else ToolTipText = null;
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (PendingStatusesAvailable) ToolTipText = (string)Application.Current.FindResource("new-tweets-arrived-tooltip");
+                else if (!(ExceptionMessage is null)) ToolTipText = ExceptionMessage;
+                else ToolTipText = null;
+            });
         }
     }
 }

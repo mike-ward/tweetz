@@ -49,7 +49,7 @@ namespace tweetz.core.Services
             catch (Exception ex)
             {
                 // also not fatal
-                Trace.TraceError(ex.Message);
+                Trace.TraceError(ex.ToString());
             }
             return link;
         }

@@ -28,7 +28,7 @@ namespace tweetz.core.Services
 
         public async ValueTask AuthenticateWithPinAsync(OAuthTokens requestTokens, string pin)
         {
-            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(false);
+            var access = await twitterApi.AuthenticateWithPin(requestTokens, pin).ConfigureAwait(true);
             if (access != null)
             {
                 settings.AccessToken = access.OAuthToken;

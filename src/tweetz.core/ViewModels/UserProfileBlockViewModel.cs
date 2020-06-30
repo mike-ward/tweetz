@@ -38,7 +38,7 @@ namespace tweetz.core.ViewModels
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.Message);
+                Trace.TraceError(ex.ToString());
                 ErrorMessage = ex.Message;
             }
         }

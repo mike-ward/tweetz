@@ -45,7 +45,7 @@ namespace tweetz.core.Services
             catch (Exception ex)
             {
                 // eat it, non-critical
-                Trace.TraceError(ex.Message);
+                Trace.TraceError(ex.ToString());
             }
         }
     }
