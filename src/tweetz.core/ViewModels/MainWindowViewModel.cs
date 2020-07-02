@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
+using tweetz.core.Services;
 
 namespace tweetz.core.ViewModels
 {
@@ -42,15 +43,24 @@ namespace tweetz.core.ViewModels
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
             window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (_, __) => window.Close()));
+
+            const int OneSecond = 1000;
+            var saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
+            window.SizeChanged += (_, __) => saveSettings(window);
+            window.LocationChanged += (_, __) => saveSettings(window);
         }
 
         public void OnClosing(Window window)
         {
-            Settings.MainWindowPosition = WindowInteropService.GetWindowPosition(window);
-            Settings.Save();
-
+            SaveSettings(window);
             ImageViewerService.Close();
             SystemTrayIconService.Close();
+        }
+
+        private void SaveSettings(Window window)
+        {
+            Settings.MainWindowPosition = WindowInteropService.GetWindowPosition(window);
+            Settings.Save();
         }
     }
 }
