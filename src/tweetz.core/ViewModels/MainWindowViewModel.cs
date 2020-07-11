@@ -10,11 +10,11 @@ namespace tweetz.core.ViewModels
     public class MainWindowViewModel : NotifyPropertyChanged
     {
         public ISettings Settings { get; }
-        public ISystemState SystemState { get; }
+        private ISystemState SystemState { get; }
         private IWindowInteropService WindowInteropService { get; }
-        public ISystemTrayIconService SystemTrayIconService { get; }
+        private ISystemTrayIconService SystemTrayIconService { get; }
         private IEnumerable<ICommandBinding> CommandBindings { get; }
-        public IImageViewerService ImageViewerService { get; }
+        private IImageViewerService ImageViewerService { get; }
 
         public MainWindowViewModel(
             ISettings settings,
@@ -26,28 +26,22 @@ namespace tweetz.core.ViewModels
         {
             Settings = settings;
             SystemState = systemState;
+            ImageViewerService = imageViewerService;
             WindowInteropService = windowInteropService;
             SystemTrayIconService = systemTrayIconService;
             CommandBindings = commandBindings;
-            ImageViewerService = imageViewerService;
         }
 
         public void Initialize(Window window)
         {
-            if (window is null) throw new System.ArgumentNullException(nameof(window));
-
             Settings.Load();
             SystemTrayIconService.Initialize(window);
             WindowInteropService.PowerManagementRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
+            SaveSettingsOnMove(window);
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
             window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (_, __) => window.Close()));
-
-            const int OneSecond = 1000;
-            var saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
-            window.SizeChanged += (_, __) => saveSettings(window);
-            window.LocationChanged += (_, __) => saveSettings(window);
         }
 
         public void OnClosing(Window window)
@@ -55,6 +49,14 @@ namespace tweetz.core.ViewModels
             SaveSettings(window);
             ImageViewerService.Close();
             SystemTrayIconService.Close();
+        }
+
+        private void SaveSettingsOnMove(Window window)
+        {
+            const int OneSecond = 1000;
+            var saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
+            window.SizeChanged += (_, __) => saveSettings(window);
+            window.LocationChanged += (_, __) => saveSettings(window);
         }
 
         private void SaveSettings(Window window)
