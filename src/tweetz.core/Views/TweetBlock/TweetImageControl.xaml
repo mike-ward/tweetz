@@ -12,6 +12,7 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid Height="200">
+
             <!--  Hour glass / Warning icon  -->
 
             <TextBlock

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using twitter.core.Models;
 
 namespace tweetz.core.Views
 {
@@ -12,14 +12,19 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
-        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs ea)
         {
-            e.Handled = true;
+            ea.Handled = true;
             var image = (Image)sender;
             var loadingIndicator = (TextBlock)image.Tag;
             loadingIndicator.Text = (string)Application.Current.FindResource("WarningSign");
-            var mediaUrl = (DataContext as Media)?.MediaUrl;
-            Trace.TraceError($"{e.ErrorException.Message} ({mediaUrl})");
+            Trace.TraceError(ea.ErrorException.Message);
+
+            if (ea.ErrorException is WebException ex &&
+                ex.Status == WebExceptionStatus.ProtocolError)
+            {
+                ((Grid)image.Parent).Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
