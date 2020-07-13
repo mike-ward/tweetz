@@ -13,15 +13,15 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty BiggerProperty = DependencyProperty.Register(
-            nameof(Bigger),
+        public static readonly DependencyProperty OriginalProperty = DependencyProperty.Register(
+            nameof(Original),
             typeof(bool),
             typeof(TweetProfileImageControl));
 
-        public bool Bigger
+        public bool Original
         {
-            get => (bool)GetValue(BiggerProperty);
-            set => SetValue(BiggerProperty, value);
+            get => (bool)GetValue(OriginalProperty);
+            set => SetValue(OriginalProperty, value);
         }
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
@@ -30,7 +30,7 @@ namespace tweetz.core.Views
             var imageControl = (Image)sender;
             var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
             imageControl.Source = new BitmapImage(uri);
-            Trace.TraceError(e.ErrorException.ToString());
+            Trace.TraceError(e.ErrorException.Message);
         }
     }
 }

@@ -3,13 +3,13 @@ using tweetz.core.Models;
 
 namespace tweetz.core.Services
 {
-    public static class UpdateTimeStampsTask
+    internal static class UpdateNamesTask
     {
         public static ValueTask Execute(TwitterTimeline timeline)
         {
             foreach (var status in timeline.StatusCollection)
             {
-                status.InvokeUpdateTimeStamp();
+                TwitterNamesService.Add(status.OriginatingStatus);
             }
 
             return default;

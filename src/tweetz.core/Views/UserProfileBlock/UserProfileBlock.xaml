@@ -31,7 +31,7 @@
       <Grid VerticalAlignment="Center">
         <controls:TweetProfileImageControl
           HorizontalAlignment="Left"
-          Bigger="True"
+          Original="True"
           DataContext="{Binding User, Mode=OneWay}" />
 
         <StackPanel VerticalAlignment="Center">

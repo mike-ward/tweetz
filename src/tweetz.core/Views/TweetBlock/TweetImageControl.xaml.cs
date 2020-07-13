@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
+using twitter.core.Models;
 
 namespace tweetz.core.Views
 {
@@ -16,6 +18,8 @@ namespace tweetz.core.Views
             var image = (Image)sender;
             var loadingIndicator = (TextBlock)image.Tag;
             loadingIndicator.Text = (string)Application.Current.FindResource("WarningSign");
+            var mediaUrl = (DataContext as Media)?.MediaUrl;
+            Trace.TraceError($"{e.ErrorException.Message} ({mediaUrl})");
         }
     }
 }

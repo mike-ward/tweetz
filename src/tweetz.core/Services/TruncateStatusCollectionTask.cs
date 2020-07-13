@@ -7,8 +7,6 @@ namespace tweetz.core.Services
     {
         public static ValueTask Execute(TwitterTimeline timeline)
         {
-            if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
-
             const int maxNumberOfStatuses = 500;
 
             while (timeline.StatusCollection.Count > maxNumberOfStatuses)

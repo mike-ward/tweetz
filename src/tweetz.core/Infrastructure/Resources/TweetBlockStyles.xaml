@@ -176,7 +176,7 @@
 
     <Style.Triggers>
       <DataTrigger
-        Binding="{Binding Bigger, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
         Value="False">
         <Setter Property="Source" Value="{Binding ProfileImageUrlBigger, Mode=OneWay, IsAsync=True}" />
         <Setter Property="Width" Value="47" />
@@ -193,7 +193,7 @@
       </DataTrigger>
 
       <DataTrigger
-        Binding="{Binding Bigger, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
         Value="True">
         <Setter Property="Source" Value="{Binding ProfileImageUrlOriginal, Mode=OneWay, IsAsync=True}" />
         <Setter Property="Width" Value="101" />

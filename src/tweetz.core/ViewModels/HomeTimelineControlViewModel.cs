@@ -27,6 +27,7 @@ namespace tweetz.core.ViewModels
             AddUpdateTask(tl => DonateNagTask.Execute(tl));
             AddUpdateTask(tl => TruncateStatusCollectionTask.Execute(tl));
             AddUpdateTask(tl => UpdateTimeStampsTask.Execute(tl));
+            AddUpdateTask(t1 => UpdateNamesTask.Execute(t1));
         }
 
         private async ValueTask GetAndUpdateStatusesAsync(TwitterTimeline timeline)
