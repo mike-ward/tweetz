@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -7,9 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using tweetz.core.Views.MediaViewerBlock;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
+using tweetz.core.Views.MediaViewerBlock;
 using twitter.core.Models;
 
 namespace tweetz.core.Services
@@ -100,7 +99,7 @@ namespace tweetz.core.Services
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.ToString());
+                TraceService.Message(ex.Message);
             }
         }
 

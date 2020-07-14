@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
+using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.Models
@@ -96,14 +97,18 @@ namespace tweetz.core.Models
         {
             try
             {
-                if (inUpdate) { Trace.TraceInformation($"{timelineName} inUpdate"); return; }
+                if (inUpdate)
+                {
+                    TraceService.Message($"{timelineName} inUpdate");
+                    return;
+                }
 
                 inUpdate = true;
                 ExceptionMessage = null;
 
                 if (SystemState.IsSleeping) { Trace.TraceInformation($"{timelineName}: isSleeping"); return; }
 
-                Trace.TraceInformation($"{timelineName}: Updating");
+                TraceService.Message($"{timelineName}: Updating");
 
                 foreach (var updateTask in updateTasks)
                 {
@@ -112,7 +117,7 @@ namespace tweetz.core.Models
             }
             catch (Exception ex)
             {
-                Trace.TraceError($"{timelineName}: ${ex}");
+                TraceService.Message($"{timelineName}: ${ex.Message}");
                 ExceptionMessage = $"{ex.Message}";
             }
             finally

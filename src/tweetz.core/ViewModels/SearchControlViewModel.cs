@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
+using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
@@ -43,7 +43,7 @@ namespace tweetz.core.ViewModels
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.ToString());
+                TraceService.Message(ex.Message);
                 ExceptionMessage = ex.Message;
             }
             finally
@@ -68,7 +68,7 @@ namespace tweetz.core.ViewModels
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.Message);
+                TraceService.Message(ex.Message);
                 ExceptionMessage = ex.Message;
             }
             finally

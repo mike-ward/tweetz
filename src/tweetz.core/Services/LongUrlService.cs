@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -41,15 +40,9 @@ namespace tweetz.core.Services
                     return uri;
                 }
             }
-            catch (WebException ex)
-            {
-                // not fatal, eat it
-                Trace.TraceWarning(ex.Message);
-            }
             catch (Exception ex)
             {
-                // also not fatal
-                Trace.TraceError(ex.ToString());
+                TraceService.Message(ex.Message);
             }
             return link;
         }

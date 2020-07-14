@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-using System.Net;
+﻿using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using tweetz.core.Services;
 
 namespace tweetz.core.Views
 {
@@ -18,12 +18,15 @@ namespace tweetz.core.Views
             var image = (Image)sender;
             var loadingIndicator = (TextBlock)image.Tag;
             loadingIndicator.Text = (string)Application.Current.FindResource("WarningSign");
-            Trace.TraceError(ea.ErrorException.Message);
 
-            if (ea.ErrorException is WebException ex &&
-                ex.Status == WebExceptionStatus.ProtocolError)
+            if (ea.ErrorException is WebException ex)
             {
+                TraceService.Message($"{ex.Message} (status: {ex.Status})");
                 ((Grid)image.Parent).Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TraceService.Message(ea.ErrorException.Message);
             }
         }
     }

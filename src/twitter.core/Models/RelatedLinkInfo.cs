@@ -1,11 +1,11 @@
 ﻿using HtmlAgilityPack;
 using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using twitter.core.Services;
 
 namespace twitter.core.Models
 {
@@ -83,7 +83,7 @@ namespace twitter.core.Models
                 }
                 catch (Exception ex)
                 {
-                    Trace.TraceWarning(ex.Message);
+                    TraceService.Message(ex.Message);
                 }
             }
 

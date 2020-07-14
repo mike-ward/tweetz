@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using twitter.core.Models;
 
 namespace tweetz.core.Services
@@ -28,7 +27,7 @@ namespace tweetz.core.Services
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.Message);
+                TraceService.Message(ex.Message);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -45,7 +44,7 @@ namespace tweetz.core.Services
             catch (Exception ex)
             {
                 // eat it, non-critical
-                Trace.TraceError(ex.ToString());
+                TraceService.Message(ex.Message);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using tweetz.core.Infrastructure;
+using tweetz.core.Services;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
@@ -38,7 +38,7 @@ namespace tweetz.core.ViewModels
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.ToString());
+                TraceService.Message(ex.Message);
                 ErrorMessage = ex.Message;
             }
         }

@@ -11,7 +11,7 @@ if ERRORLEVEL 1 goto ERROR
 
 popd
 
-iscc tweetz.core.setup.iss
+iscc /Qp tweetz.core.setup.iss 
 if ERRORLEVEL 1 goto ERROR
 
 pushd bin

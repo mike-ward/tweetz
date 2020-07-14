@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows;
 using tweetz.core.Infrastructure;
+using tweetz.core.Services;
 
 namespace tweetz.core.Models
 {
@@ -116,7 +116,7 @@ namespace tweetz.core.Models
             catch (Exception ex)
             {
                 // falls back to defaults
-                Trace.TraceError(ex.Message);
+                TraceService.Message(ex.Message);
             }
         }
 

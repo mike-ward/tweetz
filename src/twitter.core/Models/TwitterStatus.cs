@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using twitter.core.Services;
 
 namespace twitter.core.Models
 {
@@ -114,7 +114,7 @@ namespace twitter.core.Models
             }
             catch (Exception ex)
             {
-                Trace.TraceError(ex.Message);
+                TraceService.Message(ex.Message);
             }
         }
 
