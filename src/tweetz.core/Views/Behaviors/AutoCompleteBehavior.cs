@@ -70,7 +70,6 @@ namespace tweetz.core.Views.Behaviors
         {
             if (e.Key != Key.Enter) { return; }
             if (!(e.OriginalSource is TextBox tb)) { return; }
-            e.Handled = true;
 
             // If enter pressed and the selected text goes all the way to the
             // end, move caret position to the end
@@ -79,6 +78,7 @@ namespace tweetz.core.Views.Behaviors
             {
                 tb.SelectionStart = tb.CaretIndex = tb.Text.Length;
                 tb.SelectionLength = 0;
+                e.Handled = true;
             }
         }
 
