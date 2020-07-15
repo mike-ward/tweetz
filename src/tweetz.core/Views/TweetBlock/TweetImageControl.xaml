@@ -18,7 +18,8 @@
             <TextBlock
               x:Name="LoadingIndicator"
               Style="{StaticResource TweetImageControlHourGlassStyle}"
-              Text="{StaticResource Hourglass}" />
+              Text="{StaticResource Hourglass}"
+              ToolTipService.ShowDuration="{StaticResource ToolTipDuration}" />
 
             <!--  Image  -->
 
@@ -26,9 +27,9 @@
               ImageFailed="Image_ImageFailed"
               RenderOptions.BitmapScalingMode="LowQuality"
               RenderOptions.CachingHint="Cache"
-              Source="{Binding MediaUrl, IsAsync=True}"
+              Source="{Binding MediaUrl, Mode=OneWay, IsAsync=True}"
               Style="{StaticResource TweetImageControlImageStyle}"
-              Tag="{Binding ElementName=LoadingIndicator}" />
+              Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
 
             <!--  Play icon  -->
 
@@ -42,7 +43,7 @@
             <Grid.InputBindings>
               <MouseBinding
                 Command="{x:Static commands:ImageViewerCommand.Command}"
-                CommandParameter="{Binding}"
+                CommandParameter="{Binding Mode=OneWay}"
                 MouseAction="LeftClick" />
             </Grid.InputBindings>
           </Grid>

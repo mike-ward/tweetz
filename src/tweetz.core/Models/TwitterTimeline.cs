@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -106,7 +105,11 @@ namespace tweetz.core.Models
                 inUpdate = true;
                 ExceptionMessage = null;
 
-                if (SystemState.IsSleeping) { Trace.TraceInformation($"{timelineName}: isSleeping"); return; }
+                if (SystemState.IsSleeping)
+                {
+                    TraceService.Message($"{timelineName}: isSleeping");
+                    return;
+                }
 
                 TraceService.Message($"{timelineName}: Updating");
 
