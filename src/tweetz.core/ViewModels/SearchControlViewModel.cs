@@ -30,6 +30,7 @@ namespace tweetz.core.ViewModels
         {
             try
             {
+                TraceService.Message($"Search => {query}");
                 SetSearchText?.Invoke(query);
 
                 if (string.IsNullOrEmpty(query)) return;

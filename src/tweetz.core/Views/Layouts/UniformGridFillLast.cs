@@ -108,15 +108,17 @@ namespace tweetz.core.Views.Layouts
         protected override Size ArrangeOverride(Size finalSize)
         {
             Rect childBounds = new Rect(0, 0, finalSize.Width / _columns, finalSize.Height / _rows);
+            childBounds.X += childBounds.Width * FirstColumn;
+
+            var count = InternalChildren.Count;
+            var last = count - 1;
+
             double xStep = childBounds.Width;
             double xBound = finalSize.Width - 1.0;
 
-            childBounds.X += childBounds.Width * FirstColumn;
-            var count = InternalChildren.Count;
-
             for (var i = 0; i < count; ++i)
             {
-                if (i == count - 1)
+                if (i == last)
                 {
                     childBounds.Width = finalSize.Width - childBounds.X;
                 }
@@ -124,11 +126,14 @@ namespace tweetz.core.Views.Layouts
                 var child = InternalChildren[i];
                 child.Arrange(childBounds);
 
-                childBounds.X += xStep;
-                if (childBounds.X >= xBound)
+                if (child.Visibility == Visibility.Visible)
                 {
-                    childBounds.Y += childBounds.Height;
-                    childBounds.X = 0;
+                    childBounds.X += xStep;
+                    if (childBounds.X >= xBound)
+                    {
+                        childBounds.Y += childBounds.Height;
+                        childBounds.X = 0;
+                    }
                 }
             }
 
