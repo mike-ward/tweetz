@@ -5,13 +5,15 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  d:DesignHeight="50"
-  d:DesignWidth="50"
   ToolTipService.InitialShowDelay="{StaticResource InitialToolTipDelay}"
   ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
+  d:DesignHeight="50"
+  d:DesignWidth="50"
   mc:Ignorable="d">
 
-  <Image Style="{StaticResource TweetBlockProfileImageStyle}" ImageFailed="Image_ImageFailed">
+  <Image
+    ImageFailed="Image_ImageFailed"
+    Style="{StaticResource TweetBlockProfileImageStyle}">
 
     <Image.InputBindings>
       <MouseBinding

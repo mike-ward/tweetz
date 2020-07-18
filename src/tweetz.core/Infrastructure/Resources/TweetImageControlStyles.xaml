@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts">
 
   <Style
     x:Key="TweetImageControlHourGlassStyle"
@@ -34,7 +35,7 @@
 
   <Style
     x:Key="TweetImageControlUniformGridStyle"
-    TargetType="UniformGrid">
+    TargetType="layouts:UniformGridFillLast">
     <Style.Triggers>
       <DataTrigger
         Binding="{Binding ItemsSource.Length, ElementName=ItemsControl, Mode=OneWay}"
