@@ -5,6 +5,7 @@
 
   <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   <converters:CompareToConverter x:Key="CompareToConverter" />
+  <converters:ColorConverter x:Key="ColorConverter" />
   <converters:CountConverter x:Key="CountConverter" />
   <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
   <converters:FileNameConverter x:Key="FileNameConverter" />

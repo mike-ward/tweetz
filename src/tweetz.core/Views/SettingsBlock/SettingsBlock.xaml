@@ -101,6 +101,8 @@
       DataContext="{Binding Settings}"
       Style="{StaticResource BlockStyle}" />
 
+    <local:SettingsMyTweetColor DataContext="{Binding Settings}" />
+
     <Separator
       Margin="0,10"
       Visibility="Hidden" />

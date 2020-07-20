@@ -11,6 +11,8 @@ namespace tweetz.core.Models
 {
     public class Settings : NotifyPropertyChanged, ISettings
     {
+        public static Settings SettingsStatic { get; private set; }
+
         public Settings()
         {
             var args = Environment.GetCommandLineArgs();
@@ -24,6 +26,7 @@ namespace tweetz.core.Models
             : this()
         {
             MessageBoxService = messageBoxService;
+            SettingsStatic = this;
         }
 
         private string Profile { get; }
@@ -43,6 +46,7 @@ namespace tweetz.core.Models
         private bool alwaysOnTop;
         private double fontSize = 12;
         private string theme = "dark";
+        private string? myTweetColor = null;
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
@@ -82,6 +86,7 @@ namespace tweetz.core.Models
         public bool Donated { get => donated; set => SetProperty(ref donated, value); }
         public double FontSize { get => fontSize; set => SetProperty(ref fontSize, value); }
         public string Theme { get => theme; set => SetProperty(ref theme, value); }
+        public string? MyTweetColor { get => myTweetColor; set => SetProperty(ref myTweetColor, value); }
         public WindowPosition MainWindowPosition { get => mainWindowPosition; set => SetProperty(ref mainWindowPosition, value); }
 
         // Load / Save
@@ -110,6 +115,7 @@ namespace tweetz.core.Models
                 AlwaysOnTop = settings.alwaysOnTop;
                 FontSize = settings.FontSize;
                 Theme = settings.Theme;
+                MyTweetColor = settings.MyTweetColor;
                 Donated = settings.Donated;
                 MainWindowPosition = settings.MainWindowPosition;
             }

@@ -41,6 +41,7 @@
   <sys:String x:Key="donated">Yes, I donated!</sys:String>
   <sys:String x:Key="get-the-update">Get the Update</sys:String>
   <sys:String x:Key="try-again">Try again?</sys:String>
+  <sys:String x:Key="my-tweet-color">My tweets color 🛈</sys:String>
 
   <!--  Profile  -->
   <sys:String x:Key="profile-joined">Joined</sys:String>
@@ -82,6 +83,7 @@
   <sys:String x:Key="skip-to-start-tooltip">Skip to start</sys:String>
   <sys:String x:Key="go-back-ten-tooltip">Go back 10 seconds</sys:String>
   <sys:String x:Key="new-tweets-arrived-tooltip">New tweets arrived</sys:String>
+  <sys:String x:Key="my-tweet-color-tooltip">Background color (e.g. blue, #fff, #abccef) of tweets mentioning you. Blank for default</sys:String>
 
   <!--  Image Viewer  -->
   <sys:String x:Key="copy">copy</sys:String>
