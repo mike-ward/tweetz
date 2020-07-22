@@ -19,6 +19,7 @@ namespace tweetz.core.Infrastructure
         bool AlwaysOnTop { get; set; }
         double FontSize { get; set; }
         string? Theme { get; }
+        bool ApplyGrayscaleShader { get; set; }
         string? MyTweetColor { get; set; }
         bool Donated { get; }
         WindowPosition MainWindowPosition { get; set; }

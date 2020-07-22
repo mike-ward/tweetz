@@ -44,6 +44,7 @@ namespace tweetz.core.Models
         private bool spellCheck;
         private bool showInSystemTray;
         private bool alwaysOnTop;
+        private bool applyGrayscaleShader;
         private double fontSize = 12;
         private string theme = "dark";
         private string? myTweetColor = null;
@@ -84,6 +85,7 @@ namespace tweetz.core.Models
         public bool ShowInSystemTray { get => showInSystemTray; set => SetProperty(ref showInSystemTray, value); }
         public bool AlwaysOnTop { get => alwaysOnTop; set => SetProperty(ref alwaysOnTop, value); }
         public bool Donated { get => donated; set => SetProperty(ref donated, value); }
+        public bool ApplyGrayscaleShader { get => applyGrayscaleShader; set => SetProperty(ref applyGrayscaleShader, value); }
         public double FontSize { get => fontSize; set => SetProperty(ref fontSize, value); }
         public string Theme { get => theme; set => SetProperty(ref theme, value); }
         public string? MyTweetColor { get => myTweetColor; set => SetProperty(ref myTweetColor, value); }
@@ -115,6 +117,7 @@ namespace tweetz.core.Models
                 AlwaysOnTop = settings.alwaysOnTop;
                 FontSize = settings.FontSize;
                 Theme = settings.Theme;
+                ApplyGrayscaleShader = settings.ApplyGrayscaleShader;
                 MyTweetColor = settings.MyTweetColor;
                 Donated = settings.Donated;
                 MainWindowPosition = settings.MainWindowPosition;

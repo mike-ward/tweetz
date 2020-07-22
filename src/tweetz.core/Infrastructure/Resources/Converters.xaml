@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:converters="clr-namespace:tweetz.core.Converters">
+  xmlns:converters="clr-namespace:tweetz.core.Converters"
+  xmlns:services="clr-namespace:tweetz.core.Services">
 
   <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
   <converters:CompareToConverter x:Key="CompareToConverter" />
@@ -20,4 +21,6 @@
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <converters:ViewModelLocatorConverter x:Key="VMLC" />
+  <converters:BooleanToEffectConverter x:Key="BooleanToEffectConverter" />
+  <services:GrayscaleShaderEffect x:Key="GrayscaleShaderEffect" />
 </ResourceDictionary>

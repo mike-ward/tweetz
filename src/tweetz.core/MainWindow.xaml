@@ -12,6 +12,7 @@
   Height="900"
   Background="{DynamicResource StandardBackgroundBrush}"
   DataContext="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:MainWindowViewModel}, Mode=OneWay}"
+  Effect="{Binding Settings.ApplyGrayscaleShader, Mode=OneWay, Converter={StaticResource BooleanToEffectConverter}, ConverterParameter={StaticResource GrayscaleShaderEffect}}"
   FontSize="{Binding Settings.FontSize, Mode=OneWay}"
   Foreground="{DynamicResource StandardForegroundBrush}"
   SnapsToDevicePixels="True"
