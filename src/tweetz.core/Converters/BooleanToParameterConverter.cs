@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace tweetz.core.Converters
 {
-    internal class BooleanToEffectConverter : IValueConverter
+    internal class BooleanToParameterConverter : IValueConverter
     {
         public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

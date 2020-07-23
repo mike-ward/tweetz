@@ -21,6 +21,6 @@
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <converters:ViewModelLocatorConverter x:Key="VMLC" />
-  <converters:BooleanToEffectConverter x:Key="BooleanToEffectConverter" />
+  <converters:BooleanToParameterConverter x:Key="BooleanToParameterConverter" />
   <services:GrayscaleShaderEffect x:Key="GrayscaleShaderEffect" />
 </ResourceDictionary>
