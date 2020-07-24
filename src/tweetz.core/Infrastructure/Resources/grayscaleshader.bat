@@ -1,0 +1,1 @@
+fxc /T ps_3_0 /E main /FoGrayscaleShader.ps GrayscaleShader.hlsl
