@@ -1,10 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.0 - 2020-08-03
+
+### Added
+- Add setting to change color of logged in user tweets [#31](https://github.com/mike-ward/tweetz/issues/31)
+- Add grayscale option #32
+- \@username autocompletion, work in progress, suggestions welcomed [#21](https://github.com/mike-ward/tweetz/issues/21)
+
+### Changed
+- Change layout when tweet has 3 images
+- Improve trace messages for diagnosis and debugging
+
+### Fixed
+- Fix line height issue [#35](https://github.com/mike-ward/tweetz/issues/35)
+
+
 ## 2.7.1 - 2020-06-30
 
 ### Fixed
-
 - Fix issue with cross threading on UI thread
 
 ## 2.7.0 - 2020-06-28
