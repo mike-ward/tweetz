@@ -56,5 +56,17 @@ namespace tweetz.core.Views
             var timeline = item?.Content as TimelineView;
             ScrollToHomeCommand.Command.Execute(timeline, this);
         }
+
+        protected override void OnDragOver(DragEventArgs e)
+        {
+            base.OnDragOver(e);
+
+            e.Effects =
+                e.Data.GetDataPresent(DataFormats.Dib) ||
+                e.Data.GetDataPresent(DataFormats.Text) ||
+                e.Data.GetDataPresent(DataFormats.StringFormat)
+                    ? DragDropEffects.Copy
+                    : DragDropEffects.None;
+        }
     }
 }

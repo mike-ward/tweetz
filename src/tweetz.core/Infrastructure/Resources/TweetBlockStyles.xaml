@@ -289,7 +289,6 @@
     TargetType="TextBlock">
     <Setter Property="TextWrapping" Value="Wrap" />
     <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
-    <Setter Property="LineHeight" Value="17" />
   </Style>
 
   <Style

@@ -40,6 +40,8 @@
                 Text="{StaticResource PlaySymbol}" />
             </Border>
 
+            <!--  Open Image Viewer  -->
+
             <Grid.InputBindings>
               <MouseBinding
                 Command="{x:Static commands:ImageViewerCommand.Command}"

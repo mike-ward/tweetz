@@ -7,6 +7,7 @@
   xmlns:local="clr-namespace:tweetz.core.Views"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  AllowDrop="False"
   DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneWay}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
@@ -65,8 +66,8 @@
       <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:HomeTimelineControlViewModel}, Mode=OneWay}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
-            MouseLeftButtonDown="TabItemHeaderWithIndicators_MouseLeftButtonDown"
             ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
+            MouseLeftButtonDown="TabItemHeaderWithIndicators_MouseLeftButtonDown"
             NewTweetsIndicatorVisibility="{Binding PendingStatusesAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             Text="{StaticResource HomeSymbol}"
             ToolTip="{Binding ToolTipText, Mode=OneWay, TargetNullValue={StaticResource home-tooltip}}" />
