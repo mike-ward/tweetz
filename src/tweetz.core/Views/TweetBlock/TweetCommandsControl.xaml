@@ -20,7 +20,7 @@
       <TextBlock.InputBindings>
         <MouseBinding
           Command="commands:ReplyToCommand.Command"
-          CommandParameter="{Binding Mode=OneWay}"
+          CommandParameter="{Binding Mode=OneTime}"
           Gesture="LeftClick" />
       </TextBlock.InputBindings>
     </TextBlock>
@@ -36,7 +36,7 @@
       <TextBlock.InputBindings>
         <MouseBinding
           Command="commands:ToggleRetweetCommand.Command"
-          CommandParameter="{Binding}"
+          CommandParameter="{Binding Mode=OneTime}"
           Gesture="LeftClick" />
       </TextBlock.InputBindings>
     </TextBlock>
@@ -67,7 +67,7 @@
       <TextBlock.InputBindings>
         <MouseBinding
           Command="commands:QuoteTweetCommand.Command"
-          CommandParameter="{Binding Mode=OneWay}"
+          CommandParameter="{Binding Mode=OneTime}"
           Gesture="LeftClick" />
       </TextBlock.InputBindings>
     </TextBlock>
@@ -83,7 +83,7 @@
       <TextBlock.InputBindings>
         <MouseBinding
           Command="commands:ToggleFollowCommand.Command"
-          CommandParameter="{Binding}"
+          CommandParameter="{Binding Mode=OneTime}"
           Gesture="LeftClick" />
       </TextBlock.InputBindings>
     </TextBlock>

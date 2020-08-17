@@ -11,12 +11,12 @@
 
   <Border Style="{StaticResource TweetBlockQuotedBorderStyle}">
     <StackPanel>
-      <local:TweetNameInfoControl DataContext="{Binding Mode=OneWay}" />
+      <local:TweetNameInfoControl DataContext="{Binding Mode=OneTime}" />
 
-      <local:TweetTextControl DataContext="{Binding Mode=OneWay}" />
+      <local:TweetTextControl DataContext="{Binding Mode=OneTime}" />
 
       <local:TweetImageControl
-        DataContext="{Binding Mode=OneWay}"
+        DataContext="{Binding Mode=OneTime}"
         Style="{StaticResource TweetBlockImageControlStyle}" />
     </StackPanel>
   </Border>

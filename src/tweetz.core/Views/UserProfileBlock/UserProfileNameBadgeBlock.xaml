@@ -19,7 +19,7 @@
       <Path
         Data="{StaticResource TwitterVerifiedBadge}"
         Style="{StaticResource TwitterBadgeStyle}"
-        Visibility="{Binding Verified, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        Visibility="{Binding Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </InlineUIContainer>
   </TextBlock>
 </UserControl>

@@ -31,17 +31,17 @@
     <StackPanel Grid.Column="1">
       <local:TweetRetweetedBy DataContext="{Binding Mode=OneWay}" />
 
-      <local:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+      <local:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
 
       <StackPanel Style="{StaticResource TweetBlockIsSensitiveCollapsedStyle}">
-        <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+        <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
 
         <local:TweetImageControl
-          DataContext="{Binding OriginatingStatus, Mode=OneWay}"
+          DataContext="{Binding OriginatingStatus, Mode=OneTime}"
           Style="{StaticResource TweetBlockImageControlStyle}" />
 
         <local:TweetQuotedControl
-          DataContext="{Binding OriginatingStatus.QuotedStatus, Mode=OneWay}"
+          DataContext="{Binding OriginatingStatus.QuotedStatus, Mode=OneTime}"
           Visibility="{Binding DataContext.IsQuoted, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <local:TweetRelatedLinkControl
@@ -50,7 +50,7 @@
 
         <local:TweetCommandsControl
           Margin="0,3,0,0"
-          DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+          DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
       </StackPanel>
 
       <!--  Blocked sensitive content section  -->

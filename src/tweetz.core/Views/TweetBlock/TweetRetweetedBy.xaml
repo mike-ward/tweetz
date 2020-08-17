@@ -13,21 +13,21 @@
 
   <TextBlock
     Style="{StaticResource TweetBlockRetweetedByStyle}"
-    Tag="{Binding User.ScreenName, Mode=OneWay}"
+    Tag="{Binding User.ScreenName, Mode=OneTime}"
     ToolTip="{StaticResource UserProfileBlockToolTip}"
-    Visibility="{Binding IsRetweet, Converter={StaticResource BooleanToVisibilityConverter}}">
+    Visibility="{Binding IsRetweet, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}">
 
     <TextBlock.InputBindings>
       <MouseBinding
         Command="{x:Static commands:OpenLinkCommand.Command}"
-        CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ProfileLinkConverter}}"
+        CommandParameter="{Binding User.ScreenName, Mode=OneTime, Converter={StaticResource ProfileLinkConverter}}"
         Gesture="LeftClick" />
     </TextBlock.InputBindings>
 
     <Run
       Style="{StaticResource TweetBlockRetweetSymbolStyle}"
       Text="{StaticResource RetweetSymbol}" />
-    <Run Text="{Binding User.Name, Mode=OneWay}" />
+    <Run Text="{Binding User.Name, Mode=OneTime}" />
     <Run Text="{StaticResource retweeted}" />
   </TextBlock>
 </UserControl>

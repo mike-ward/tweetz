@@ -24,7 +24,7 @@
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"
-          CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ProfileLinkConverter}}"
+          CommandParameter="{Binding User.ScreenName, Mode=OneTime, Converter={StaticResource ProfileLinkConverter}}"
           Gesture="LeftClick" />
       </Run.InputBindings>
     </Run>
@@ -36,7 +36,7 @@
         Margin="0,.5,0,0"
         Data="{StaticResource TwitterVerifiedBadge}"
         Style="{StaticResource TwitterBadgeStyle}"
-        Visibility="{Binding User.Verified, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        Visibility="{Binding User.Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </InlineUIContainer>
 
     <!--  Screen Name  -->
@@ -49,7 +49,7 @@
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"
-          CommandParameter="{Binding User.ScreenName, Mode=OneWay, Converter={StaticResource ProfileLinkConverter}}"
+          CommandParameter="{Binding User.ScreenName, Mode=OneTime, Converter={StaticResource ProfileLinkConverter}}"
           Gesture="LeftClick" />
       </Run.InputBindings>
     </Run>
@@ -69,7 +69,7 @@
       <Run.InputBindings>
         <MouseBinding
           Command="{x:Static commands:OpenLinkCommand.Command}"
-          CommandParameter="{Binding StatusLink}"
+          CommandParameter="{Binding StatusLink, Mode=OneTime}"
           Gesture="LeftClick" />
       </Run.InputBindings>
     </Run>

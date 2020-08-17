@@ -19,29 +19,29 @@
       <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
         <Hyperlink
           Click="Hyperlink_Click"
-          ToolTip="{Binding Url, Mode=OneWay}"
+          ToolTip="{Binding Url, Mode=OneTime}"
           ToolTipOpening="Hyperlink_ToolTipOpening">
-          <Run Text="{Binding Title, Mode=OneWay}" />
+          <Run Text="{Binding Title, Mode=OneTime}" />
         </Hyperlink>
       </TextBlock>
 
       <TextBlock
         Style="{StaticResource TweetBlockDescriptionStyle}"
-        Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneWay}" />
+        Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneTime}" />
 
       <TextBlock
         Style="{StaticResource TweetBlockSiteNameStyle}"
-        ToolTip="{Binding Url, Mode=OneWay}">
+        ToolTip="{Binding Url, Mode=OneTime}">
 
         <TextBlock.InputBindings>
           <MouseBinding
             Command="{x:Static commands:OpenLinkCommand.Command}"
-            CommandParameter="{Binding Url, Mode=OneWay}"
+            CommandParameter="{Binding Url, Mode=OneTime}"
             MouseAction="LeftClick" />
         </TextBlock.InputBindings>
 
         <Run>↗</Run>
-        <Run Text="{Binding SiteName, Mode=OneWay}" />
+        <Run Text="{Binding SiteName, Mode=OneTime}" />
       </TextBlock>
     </StackPanel>
   </Border>

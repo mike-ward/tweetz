@@ -24,7 +24,7 @@
     <ItemsControl.InputBindings>
       <MouseBinding
         Command="commands:ScrollToHomeCommand.Command"
-        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}"
+        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
         MouseAction="RightClick" />
     </ItemsControl.InputBindings>
 
@@ -32,7 +32,7 @@
       <ControlTemplate>
         <local:WheelSpeedScrollViewer
           x:Name="ScrollViewer"
-          FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"
+          FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}, Mode=OneTime}"
           FocusVisualStyle="{x:Null}"
           Focusable="True"
           IsTabStop="True"
@@ -52,7 +52,7 @@
 
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <local:TweetBlockControl DataContext="{Binding Mode=OneWay}" />
+        <local:TweetBlockControl DataContext="{Binding Mode=OneTime}" />
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>

@@ -18,7 +18,7 @@
       Grid.Column="1"
       Margin="5,0,0,0">
       <TextBlock
-        Text="{Binding BulletText}"
+        Text="{Binding BulletText, Mode=OneTime}"
         TextWrapping="Wrap" />
     </TextBlock>
   </Grid>

@@ -8,7 +8,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
   AllowDrop="False"
-  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneWay}"
+  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneTime}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
   d:DesignHeight="300"
@@ -63,7 +63,7 @@
 
       <!--  Home Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:HomeTimelineControlViewModel}, Mode=OneWay}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:HomeTimelineControlViewModel}, Mode=OneTime}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
@@ -77,7 +77,7 @@
 
       <!--  Favorites Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:FavoritesTimelineControlViewModel}, Mode=OneWay}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:FavoritesTimelineControlViewModel}, Mode=OneTime}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
@@ -89,7 +89,7 @@
 
       <!--  Search Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SearchControlViewModel}, Mode=OneWay}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SearchControlViewModel}, Mode=OneTime}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
@@ -101,7 +101,7 @@
 
       <!--  Settings Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SettingsControlViewModel}, Mode=OneWay}">
+      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SettingsControlViewModel}, Mode=OneTime}">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
             NewTweetsIndicatorVisibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
@@ -132,7 +132,7 @@
     <local:ComposeView
       HorizontalAlignment="Stretch"
       VerticalAlignment="Bottom"
-      DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:ComposeControlViewModel}, Mode=OneWay}"
+      DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:ComposeControlViewModel}, Mode=OneTime}"
       Visibility="{Binding DataContext.ShowComposeControl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>
 

@@ -27,7 +27,7 @@
               ImageFailed="Image_ImageFailed"
               RenderOptions.BitmapScalingMode="LowQuality"
               RenderOptions.CachingHint="Cache"
-              Source="{Binding MediaUrl, Mode=OneWay, IsAsync=True}"
+              Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True}"
               Style="{StaticResource TweetImageControlImageStyle}"
               Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
 
@@ -45,7 +45,7 @@
             <Grid.InputBindings>
               <MouseBinding
                 Command="{x:Static commands:ImageViewerCommand.Command}"
-                CommandParameter="{Binding Mode=OneWay}"
+                CommandParameter="{Binding Mode=OneTime}"
                 MouseAction="LeftClick" />
             </Grid.InputBindings>
           </Grid>

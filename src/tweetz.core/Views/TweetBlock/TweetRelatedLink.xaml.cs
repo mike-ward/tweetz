@@ -22,7 +22,7 @@ namespace tweetz.core.Views
         {
             // Hyperlinks in ItemsControls don't work unless the app first has focus.
             // Use a click handler to work around this.
-            OpenLinkCommand.Command.Execute(((RelatedLinkInfo)DataContext).Url, this);
+            OpenLinkCommand.Command.Execute(((RelatedLinkInfo)DataContext)?.Url, this);
         }
     }
 }

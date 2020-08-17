@@ -7,7 +7,7 @@
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
   d:DesignHeight="300"
   d:DesignWidth="300"
-  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:GetPinControlViewModel}, Mode=OneWay}"
+  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:GetPinControlViewModel}, Mode=OneTime}"
   mc:Ignorable="d">
 
   <UserControl.Resources>
