@@ -10,6 +10,7 @@ namespace twitter.core.Models
     public class User : INotifyPropertyChanged
     {
         private bool isFollowing;
+        private bool isFollowedBy;
         private string? memberSince;
 
         [JsonPropertyName("id_str")]
@@ -58,7 +59,7 @@ namespace twitter.core.Models
         public bool IsFollowing { get => isFollowing; set => SetProperty(ref isFollowing, value); }
 
         [JsonPropertyName("followed_by")]
-        public bool IsFollowedBy { get; set; }
+        public bool IsFollowedBy { get => isFollowedBy; set => SetProperty(ref isFollowedBy, value); }
 
         [JsonIgnore]
         public string MemberSince

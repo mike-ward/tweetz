@@ -10,15 +10,11 @@
     <Setter Property="FontWeight" Value="Bold" />
 
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding IsFollowedBy, Mode=OneWay}"
-        Value="True">
+      <DataTrigger Binding="{Binding IsFollowedBy, Mode=OneWay}" Value="True">
         <Setter Property="Text" Value="{StaticResource profile-follows-you}" />
         <Setter Property="Visibility" Value="Visible" />
       </DataTrigger>
-      <DataTrigger
-        Binding="{Binding IsFollowedBy, Mode=OneWay}"
-        Value="False">
+      <DataTrigger Binding="{Binding IsFollowedBy, Mode=OneWay}" Value="False">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
     </Style.Triggers>
@@ -31,22 +27,16 @@
     <Setter Property="FontWeight" Value="Bold" />
 
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding IsFollowing, Mode=OneWay}"
-        Value="True">
+      <DataTrigger Binding="{Binding IsFollowing, Mode=OneWay}" Value="True">
         <Setter Property="Text" Value="{StaticResource profile-following}" />
       </DataTrigger>
-      <DataTrigger
-        Binding="{Binding IsFollowing, Mode=OneWay}"
-        Value="False">
+      <DataTrigger Binding="{Binding IsFollowing, Mode=OneWay}" Value="False">
         <Setter Property="Text" Value="{StaticResource profile-not-following}" />
       </DataTrigger>
     </Style.Triggers>
   </Style>
 
-  <ToolTip
-    x:Key="UserProfileBlockToolTip"
-    Style="{StaticResource ToolTipStyle}">
+  <ToolTip x:Key="UserProfileBlockToolTip" Style="{StaticResource ToolTipStyle}">
     <up:UserProfileBlock Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
   </ToolTip>
 </ResourceDictionary>

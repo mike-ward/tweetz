@@ -38,30 +38,50 @@ namespace twitter.core.Services
             oAuthApiRequest.AuthenticationTokens(accessToken, accessTokenSecret);
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> HomeTimeline()
+        private async ValueTask<IEnumerable<TwitterStatus>> UpdateUserConnections(IEnumerable<TwitterStatus> statuses)
         {
-            return oAuthApiRequest
+            // The timeline API's no longer report follwing and followed by
+            // status and the lookup connections API is rate limited. Keep a
+            // cached list and update the fields accordingly.
+            var list = statuses.ToList();
+            await UserConnectionsService.AddUserIdsAsync(list.Select(status => status.OriginatingStatus.User.Id).ToArray(), this);
+
+            // Needed to set the Following and FollowedBy properties because the
+            // timeline API's no longer report these fields
+            foreach (var status in list) { status.UpdateFromStatus(status); }
+            return list;
+        }
+
+        public async ValueTask<IEnumerable<TwitterStatus>> HomeTimeline()
+        {
+            var statuses = await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
                     TwitterOptions.Default());
+
+            return await UpdateUserConnections(statuses);
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
+        public async ValueTask<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
         {
-            return oAuthApiRequest
+            var statuses = await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
                     TwitterOptions.Default(count));
+
+            return await UpdateUserConnections(statuses);
         }
 
-        public ValueTask<IEnumerable<TwitterStatus>> FavoritesTimeline()
+        public async ValueTask<IEnumerable<TwitterStatus>> FavoritesTimeline()
         {
-            return oAuthApiRequest
+            var statuses = await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
                     TwitterOptions.Default());
+
+            return await UpdateUserConnections(statuses);
         }
 
-        public ValueTask<User> UserInfo(string screenName)
+        public async ValueTask<User> UserInfo(string screenName)
         {
-            return oAuthApiRequest
+            var user = await oAuthApiRequest
                 .Get<User>("https://api.twitter.com/1.1/users/show.json",
                     new[]
                     {
@@ -69,11 +89,16 @@ namespace twitter.core.Services
                         TwitterOptions.ExtendedTweetMode(),
                         TwitterOptions.ScreenName(screenName)
                     });
+
+            var userConnections = UserConnectionsService.LookupUserConnections(user.Id);
+            user.IsFollowing = userConnections?.IsFollowing ?? false;
+            user.IsFollowedBy = userConnections?.IsFollowedBy ?? false;
+            return user;
         }
 
-        public ValueTask<Tweet> Search(string query)
+        public async ValueTask<Tweet> Search(string query)
         {
-            return oAuthApiRequest
+            var tweets = await oAuthApiRequest
                 .Get<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
                     new[]
                     {
@@ -82,6 +107,8 @@ namespace twitter.core.Services
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode()
                     });
+
+            return tweets;
         }
 
         public ValueTask RetweetStatus(string statusId)
@@ -205,6 +232,16 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Command("FINALIZE"),
                         TwitterOptions.MediaId(mediaId)
+                    });
+        }
+
+        public ValueTask<IEnumerable<UserConnection>> GetFriendships(string[] ids)
+        {
+            return oAuthApiRequest
+                .Get<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",
+                    new[]
+                    {
+                       TwitterOptions.UserIds(ids)
                     });
         }
     }

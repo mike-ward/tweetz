@@ -45,6 +45,8 @@ namespace twitter.core.Services
 
         public static (string, string) MediaIds(string[] mediaIds) => ("media_ids", string.Join(',', mediaIds));
 
+        public static (string, string) UserIds(string[] userIds) => ("user_id", string.Join(',', userIds));
+
         public static (string, string)[] Default(int count = 150) => new (string, string)[]
         {
             Count(count),

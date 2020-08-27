@@ -183,6 +183,16 @@ namespace twitter.core.Models
             QuoteCount = status.QuoteCount;
             RetweetedByMe = status.RetweetedByMe;
             Favorited = status.Favorited;
+
+            var user = status.User;
+            var userConnections = UserConnectionsService.LookupUserConnections(user.Id);
+            user.IsFollowing = userConnections?.IsFollowing ?? false;
+            user.IsFollowedBy = userConnections?.IsFollowedBy ?? false;
+
+            var originatingUser = status.OriginatingStatus.User;
+            var originatingUserConnections = UserConnectionsService.LookupUserConnections(originatingUser.Id);
+            originatingUser.IsFollowing = originatingUserConnections?.IsFollowing ?? false;
+            originatingUser.IsFollowedBy = originatingUserConnections?.IsFollowedBy ?? false;
         }
 
         public void UpdateAboutMeProperties(string? screenName)

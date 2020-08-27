@@ -44,5 +44,7 @@ namespace tweetz.core.Infrastructure
         ValueTask<UploadMedia> UploadMediaStatus(string mediaId);
 
         ValueTask<UploadMedia> UploadMediaFinalize(string mediaId);
+
+        ValueTask<IEnumerable<UserConnection>> GetFriendships(string[] ids);
     }
 }
