@@ -23,7 +23,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            if (ea.Parameter is string url)
+            if (ea?.Parameter is string url)
             {
                 try
                 {
