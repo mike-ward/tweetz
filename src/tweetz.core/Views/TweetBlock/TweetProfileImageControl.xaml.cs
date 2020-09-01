@@ -30,29 +30,36 @@ namespace tweetz.core.Views
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            e.Handled = true;
-            var imageControl = (Image)sender;
-
-            if (Retries < MaxRetries)
+            try
             {
-                Retries += 1;
-                var user = (User)imageControl.DataContext;
-                var uri = new Uri(user.ProfileImageUrl!);
+                e.Handled = true;
+                var imageControl = (Image)sender;
 
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                bitmap.UriSource = uri;
-                bitmap.EndInit();
+                if (Retries < MaxRetries)
+                {
+                    Retries += 1;
+                    var user = (User)imageControl.DataContext;
+                    var uri = new Uri(user.ProfileImageUrl!);
 
-                imageControl.Source = bitmap;
-                TraceService.Message($"Retry ({Retries}) loading profile image: {uri}");
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    bitmap.UriSource = uri;
+                    bitmap.EndInit();
+
+                    imageControl.Source = bitmap;
+                    TraceService.Message($"Retry ({Retries}) loading profile image: {uri}");
+                }
+                else
+                {
+                    TraceService.Message(e.ErrorException.Message);
+                    var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
+                    imageControl.Source = new BitmapImage(uri);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TraceService.Message(e.ErrorException.Message);
-                var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
-                imageControl.Source = new BitmapImage(uri);
+                TraceService.Message(ex.Message);
             }
         }
     }

@@ -19,7 +19,6 @@ namespace twitter.core.Models
         public string Url { get; private set; }
         public string Title { get; private set; }
         public string? ImageUrl { get; private set; }
-
         public string Description { get; private set; }
         public string SiteName { get; private set; }
 
@@ -95,7 +94,7 @@ namespace twitter.core.Models
         {
             if (!UrlValid(url)) return null;
 
-            var request = WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             var response = await request.GetResponseAsync().ConfigureAwait(false);
 
             var htmlBuilder = new StringBuilder();
@@ -112,7 +111,7 @@ namespace twitter.core.Models
                 if (line.Contains(headCloseTag, StringComparison.OrdinalIgnoreCase)) break;
             }
 
-            var metaInfo = ParseForSocialTags(url, $"{htmlBuilder.ToString()}</html>");
+            var metaInfo = ParseForSocialTags(url, $"{htmlBuilder}</html>");
 
             return !string.IsNullOrEmpty(metaInfo.Title) && !string.IsNullOrEmpty(metaInfo.Description)
                 ? metaInfo

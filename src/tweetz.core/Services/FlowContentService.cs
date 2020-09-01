@@ -129,7 +129,7 @@ namespace tweetz.core.Services
                 .Replace("&amp;", "&", StringComparison.Ordinal);
         }
 
-        private static IEnumerable<FlowContentNode> FlowContentNodes(TwitterStatus twitterStatus)
+        private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text)> FlowContentNodes(TwitterStatus twitterStatus)
         {
             var start = 0;
             var twitterString = new TwitterString(twitterStatus.FullText ?? twitterStatus.Text ?? string.Empty);
@@ -140,63 +140,63 @@ namespace tweetz.core.Services
                 {
                     var len = item.Start - start;
                     var text = twitterString.Substring(start, len);
-                    yield return new FlowContentNode(FlowContentNodeType.Text, text);
+                    yield return (FlowContentNodeType.Text, text);
                 }
 
-                yield return new FlowContentNode(item.FlowContentNodeType, item.Text);
+                yield return (item.FlowContentNodeType, item.Text);
                 start = item.End;
             }
 
-            yield return new FlowContentNode(FlowContentNodeType.Text, twitterString.Substring(start));
+            yield return (FlowContentNodeType.Text, twitterString.Substring(start));
         }
 
-        private static IEnumerable<FlowContentItem> FlowControlItems(Entities entities)
+        private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)> FlowControlItems(Entities entities)
         {
             var urls = entities.Urls
-                 ?.Select(url => new FlowContentItem
+                 ?.Select(url =>
                  (
-                     nodeType: FlowContentNodeType.Url,
-                     text: url.ExpandedUrl,
-                     start: url.Indices[0],
-                     end: url.Indices[1]
+                     FlowContentNodeType: FlowContentNodeType.Url,
+                     Text: url.ExpandedUrl,
+                     Start: url.Indices[0],
+                     End: url.Indices[1]
                  ))
-                 ?? Enumerable.Empty<FlowContentItem>();
+                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var mentions = entities.Mentions
-                ?.Select(mention => new FlowContentItem
+                ?.Select(mention =>
                 (
-                    nodeType: FlowContentNodeType.Mention,
-                    text: mention.ScreenName,
-                    start: mention.Indices[0],
-                    end: mention.Indices[1]
+                    FlowContentNodeType: FlowContentNodeType.Mention,
+                    Text: mention.ScreenName,
+                    Start: mention.Indices[0],
+                    End: mention.Indices[1]
                 ))
-                ?? Enumerable.Empty<FlowContentItem>();
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var hashTags = entities.HashTags
-                ?.Select(hashtag => new FlowContentItem
+                ?.Select(hashtag =>
                 (
-                    nodeType: FlowContentNodeType.HashTag,
-                    text: hashtag.Text,
-                    start: hashtag.Indices[0],
-                    end: hashtag.Indices[1]
+                    FlowContentNodeType: FlowContentNodeType.HashTag,
+                    Text: hashtag.Text,
+                    Start: hashtag.Indices[0],
+                    End: hashtag.Indices[1]
                 ))
-                ?? Enumerable.Empty<FlowContentItem>();
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var media = entities.Media
-                ?.Select(media => new FlowContentItem
+                ?.Select(media =>
                 (
-                    nodeType: FlowContentNodeType.Media,
-                    text: media.Url,
-                    start: media.Indices[0],
-                    end: media.Indices[1]
+                    FlowContentNodeType: FlowContentNodeType.Media,
+                    Text: media.Url,
+                    Start: media.Indices[0],
+                    End: media.Indices[1]
                 ))
-                ?? Enumerable.Empty<FlowContentItem>();
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             return urls
                 .Concat(mentions)
                 .Concat(hashTags)
                 .Concat(media)
-                .OrderBy(o => o.Start);
+                .OrderBy(o => o.Start); // Start
         }
     }
 }

@@ -20,9 +20,9 @@ namespace tweetz.core.Views
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs ea)
         {
-            ea.Handled = true;
             try
             {
+                ea.Handled = true;
                 var image = (Image)sender;
 
                 if (Retries < MaxRetries)

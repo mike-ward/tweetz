@@ -27,7 +27,8 @@ namespace twitter.core.Models
         {
             var bstart = start * bytesPerChar;
             var bcount = count * bytesPerChar;
-            return Encoding.UTF32.GetString(bytes.Slice(bstart, bcount).Span);
+            var bslice = bytes.Slice(bstart, bcount).Span;
+            return Encoding.UTF32.GetString(bslice);
         }
     }
 }
