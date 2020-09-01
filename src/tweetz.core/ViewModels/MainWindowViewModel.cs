@@ -38,7 +38,7 @@ namespace tweetz.core.ViewModels
             SystemTrayIconService.Initialize(window);
             WindowInteropService.PowerManagementRegistration(window, SystemState);
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
-            SaveSettingsOnMove(window);
+            InitializeSaveSettingsOnMove(window);
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
             window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (_, __) => window.Close()));
@@ -51,7 +51,7 @@ namespace tweetz.core.ViewModels
             SystemTrayIconService.Close();
         }
 
-        private void SaveSettingsOnMove(Window window)
+        private void InitializeSaveSettingsOnMove(Window window)
         {
             const int OneSecond = 1000;
             var saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);

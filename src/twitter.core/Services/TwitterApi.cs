@@ -40,9 +40,9 @@ namespace twitter.core.Services
 
         private async ValueTask<IEnumerable<TwitterStatus>> UpdateUserConnections(IEnumerable<TwitterStatus> statuses)
         {
-            // The timeline API's no longer report follwing and followed by
-            // status and the lookup connections API is rate limited. Keep a
-            // cached list and update the fields accordingly.
+            // The timeline API's no longer report Following and FollowedBy status and the
+            // friendship lookup connections API is rate limited. Keep a cached list and update the
+            // fields accordingly.
             var list = statuses.ToList();
             await UserConnectionsService.AddUserIdsAsync(list.Select(status => status.OriginatingStatus.User.Id).ToArray(), this);
 
@@ -96,9 +96,9 @@ namespace twitter.core.Services
             return user;
         }
 
-        public async ValueTask<Tweet> Search(string query)
+        public ValueTask<Tweet> Search(string query)
         {
-            var tweets = await oAuthApiRequest
+            return oAuthApiRequest
                 .Get<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
                     new[]
                     {
@@ -107,8 +107,6 @@ namespace twitter.core.Services
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode()
                     });
-
-            return tweets;
         }
 
         public ValueTask RetweetStatus(string statusId)
