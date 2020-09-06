@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.1 - 2020-09-06
+
+### Added
+- Add retry logic to image downloads [#38](https://github.com/mike-ward/tweetz/issues/38)
+
+### Changed
+- Adapt to changes in `Follwing`, `FollowedBy` are reported in twitter api [380bd7d](https://github.com/mike-ward/tweetz/commit/380bd7df17968b07512c584e8a69ca89bde4831f)
+- Use tuples to reduce heap allocations [40c4aad](https://github.com/mike-ward/tweetz/commit/40c4aadde93a4b2fe7a41d10a07c41a531f47465)
+
+### Fixed
+- Check for null on opening links [380bd7d](https://github.com/mike-ward/tweetz/commit/380bd7df17968b07512c584e8a69ca89bde4831f)
+
 ## 2.8.0 - 2020-08-03
 
 ### Added
