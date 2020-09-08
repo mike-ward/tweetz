@@ -76,10 +76,10 @@ namespace twitter.core.Services
             var post = string.Equals(method, POST, StringComparison.Ordinal);
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
-            var parray = parameters;
+            var parray = parameters.ToArray();
             var signature = OAuth.Signature(method, url, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, parray);
             var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
-            var parameterStrings = parray.Select(p => $"{OAuth.UrlEncode(p.Item1)}={OAuth.UrlEncode(p.Item2)}").ToList();
+            var parameterStrings = parray.Select(p => $"{OAuth.UrlEncode(p.Item1)}={OAuth.UrlEncode(p.Item2)}");
             if (!post) url += $"?{string.Join("&", parameterStrings)}";
 
             var request = WebRequest.Create(url);
@@ -94,7 +94,8 @@ namespace twitter.core.Services
             }
 
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
-            var result = await JsonSerializer.DeserializeAsync<T>(response.GetResponseStream()).ConfigureAwait(false);
+            using var stream = response.GetResponseStream();
+            var result = await JsonSerializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
             return result;
         }
 
