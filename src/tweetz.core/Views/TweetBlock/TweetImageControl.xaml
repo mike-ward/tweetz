@@ -6,9 +6,7 @@
   xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts">
 
   <Grid>
-    <ItemsControl
-      Name="ItemsControl"
-      ItemsSource="{Binding ExtendedEntities.Media}">
+    <ItemsControl Name="ItemsControl" ItemsSource="{Binding ExtendedEntities.Media}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid Height="200">

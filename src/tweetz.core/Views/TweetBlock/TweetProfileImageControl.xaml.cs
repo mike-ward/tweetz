@@ -43,7 +43,7 @@ namespace tweetz.core.Views
 
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache | BitmapCreateOptions.IgnoreColorProfile;
                     bitmap.UriSource = uri;
                     bitmap.EndInit();
 
