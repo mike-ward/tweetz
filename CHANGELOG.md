@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.2 - 2020-09-09
+
+### Fixed
+- Crash when image meta data color palette is corrupt [89c845](https://github.com/mike-ward/tweetz/commit/89c84536f2fe40b4bac5ba428eb05d8c23db6dad)
+
 ## 2.8.1 - 2020-09-06
 
 ### Added
