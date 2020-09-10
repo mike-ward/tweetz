@@ -95,7 +95,7 @@ namespace twitter.core.Models
             if (!UrlValid(url)) return null;
 
             var request = (HttpWebRequest)WebRequest.Create(url);
-            var response = await request.GetResponseAsync().ConfigureAwait(false);
+            using var response = await request.GetResponseAsync().ConfigureAwait(false);
 
             var htmlBuilder = new StringBuilder();
             using var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);

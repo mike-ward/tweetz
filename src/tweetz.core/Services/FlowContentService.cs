@@ -5,8 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using tweetz.core.Commands;
-using tweetz.core.Views.UserProfileBlock;
 using tweetz.core.Models;
+using tweetz.core.Views.UserProfileBlock;
 using twitter.core.Models;
 
 namespace tweetz.core.Services
@@ -50,6 +50,76 @@ namespace tweetz.core.Services
                         throw new InvalidOperationException();
                 }
             }
+        }
+
+        private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text)> FlowContentNodes(TwitterStatus twitterStatus)
+        {
+            var start = 0;
+            var twitterString = new TwitterString(twitterStatus.FullText ?? twitterStatus.Text ?? string.Empty);
+
+            foreach (var item in FlowControlItems(twitterStatus.Entities ?? new Entities()))
+            {
+                if (item.Start >= start)
+                {
+                    var len = item.Start - start;
+                    var text = twitterString.Substring(start, len);
+                    yield return (FlowContentNodeType.Text, text);
+                }
+
+                yield return (item.FlowContentNodeType, item.Text);
+                start = item.End;
+            }
+
+            yield return (FlowContentNodeType.Text, twitterString.Substring(start));
+        }
+
+        private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)> FlowControlItems(Entities entities)
+        {
+            var urls = entities.Urls
+                 ?.Select(url =>
+                 (
+                     FlowContentNodeType: FlowContentNodeType.Url,
+                     Text: url.ExpandedUrl,
+                     Start: url.Indices[0],
+                     End: url.Indices[1]
+                 ))
+                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+
+            var mentions = entities.Mentions
+                ?.Select(mention =>
+                (
+                    FlowContentNodeType: FlowContentNodeType.Mention,
+                    Text: mention.ScreenName,
+                    Start: mention.Indices[0],
+                    End: mention.Indices[1]
+                ))
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+
+            var hashTags = entities.HashTags
+                ?.Select(hashtag =>
+                (
+                    FlowContentNodeType: FlowContentNodeType.HashTag,
+                    Text: hashtag.Text,
+                    Start: hashtag.Indices[0],
+                    End: hashtag.Indices[1]
+                ))
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+
+            var media = entities.Media
+                ?.Select(media =>
+                (
+                    FlowContentNodeType: FlowContentNodeType.Media,
+                    Text: media.Url,
+                    Start: media.Indices[0],
+                    End: media.Indices[1]
+                ))
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+
+            return urls
+                .Concat(mentions)
+                .Concat(hashTags)
+                .Concat(media)
+                .OrderBy(o => o.Start);
         }
 
         private static Run Run(string text)
@@ -127,76 +197,6 @@ namespace tweetz.core.Services
                 .Replace("&quot;", "\"", StringComparison.Ordinal)
                 .Replace("&apos;", "'", StringComparison.Ordinal)
                 .Replace("&amp;", "&", StringComparison.Ordinal);
-        }
-
-        private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text)> FlowContentNodes(TwitterStatus twitterStatus)
-        {
-            var start = 0;
-            var twitterString = new TwitterString(twitterStatus.FullText ?? twitterStatus.Text ?? string.Empty);
-
-            foreach (var item in FlowControlItems(twitterStatus.Entities ?? new Entities()))
-            {
-                if (item.Start >= start)
-                {
-                    var len = item.Start - start;
-                    var text = twitterString.Substring(start, len);
-                    yield return (FlowContentNodeType.Text, text);
-                }
-
-                yield return (item.FlowContentNodeType, item.Text);
-                start = item.End;
-            }
-
-            yield return (FlowContentNodeType.Text, twitterString.Substring(start));
-        }
-
-        private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)> FlowControlItems(Entities entities)
-        {
-            var urls = entities.Urls
-                 ?.Select(url =>
-                 (
-                     FlowContentNodeType: FlowContentNodeType.Url,
-                     Text: url.ExpandedUrl,
-                     Start: url.Indices[0],
-                     End: url.Indices[1]
-                 ))
-                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
-
-            var mentions = entities.Mentions
-                ?.Select(mention =>
-                (
-                    FlowContentNodeType: FlowContentNodeType.Mention,
-                    Text: mention.ScreenName,
-                    Start: mention.Indices[0],
-                    End: mention.Indices[1]
-                ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
-
-            var hashTags = entities.HashTags
-                ?.Select(hashtag =>
-                (
-                    FlowContentNodeType: FlowContentNodeType.HashTag,
-                    Text: hashtag.Text,
-                    Start: hashtag.Indices[0],
-                    End: hashtag.Indices[1]
-                ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
-
-            var media = entities.Media
-                ?.Select(media =>
-                (
-                    FlowContentNodeType: FlowContentNodeType.Media,
-                    Text: media.Url,
-                    Start: media.Indices[0],
-                    End: media.Indices[1]
-                ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
-
-            return urls
-                .Concat(mentions)
-                .Concat(hashTags)
-                .Concat(media)
-                .OrderBy(o => o.Start); // Start
         }
     }
 }

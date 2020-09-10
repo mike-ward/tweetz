@@ -22,9 +22,7 @@ namespace tweetz.core.Views.Layouts
                         "FirstColumn",
                         typeof(int),
                         typeof(UniformGridFillLast),
-                        new FrameworkPropertyMetadata(
-                                (int)0,
-                                FrameworkPropertyMetadataOptions.AffectsMeasure),
+                        new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure),
                         new ValidateValueCallback(ValidateFirstColumn));
 
         private static bool ValidateFirstColumn(object o)
@@ -43,9 +41,7 @@ namespace tweetz.core.Views.Layouts
                         "Columns",
                         typeof(int),
                         typeof(UniformGridFillLast),
-                        new FrameworkPropertyMetadata(
-                                (int)0,
-                                FrameworkPropertyMetadataOptions.AffectsMeasure),
+                        new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure),
                         new ValidateValueCallback(ValidateColumns));
 
         private static bool ValidateColumns(object o)
@@ -64,9 +60,7 @@ namespace tweetz.core.Views.Layouts
                         "Rows",
                         typeof(int),
                         typeof(UniformGridFillLast),
-                        new FrameworkPropertyMetadata(
-                                0,
-                                FrameworkPropertyMetadataOptions.AffectsMeasure),
+                        new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure),
                         new ValidateValueCallback(ValidateRows));
 
         private static bool ValidateRows(object o)

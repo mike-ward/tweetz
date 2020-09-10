@@ -7,7 +7,7 @@ using tweetz.core.Services;
 
 namespace tweetz.core.ViewModels
 {
-    public class MainWindowViewModel : NotifyPropertyChanged
+    public class MainWindowViewModel
     {
         public ISettings Settings { get; }
         private ISystemState SystemState { get; }
