@@ -44,11 +44,16 @@ namespace twitter.core.Services
             // friendship lookup connections API is rate limited. Keep a cached list and update the
             // fields accordingly.
             var list = statuses.ToList();
-            await UserConnectionsService.AddUserIdsAsync(list.Select(status => status.OriginatingStatus.User.Id).ToArray(), this);
+            await UserConnectionsService
+                .AddUserIdsAsync(list.Select(status => status.OriginatingStatus.User.Id), this)
+                .ConfigureAwait(false);
 
             // Needed to set the Following and FollowedBy properties because the
             // timeline API's no longer report these fields
-            foreach (var status in list) { status.UpdateFromStatus(status); }
+            foreach (var status in list)
+            {
+                status.UpdateFromStatus(status);
+            }
             return list;
         }
 
@@ -56,27 +61,30 @@ namespace twitter.core.Services
         {
             var statuses = await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
-                    TwitterOptions.Default());
+                    TwitterOptions.Default())
+                .ConfigureAwait(false);
 
-            return await UpdateUserConnections(statuses);
+            return await UpdateUserConnections(statuses).ConfigureAwait(false);
         }
 
         public async ValueTask<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
         {
             var statuses = await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
-                    TwitterOptions.Default(count));
+                    TwitterOptions.Default(count))
+                .ConfigureAwait(false);
 
-            return await UpdateUserConnections(statuses);
+            return await UpdateUserConnections(statuses).ConfigureAwait(false);
         }
 
         public async ValueTask<IEnumerable<TwitterStatus>> FavoritesTimeline()
         {
             var statuses = await oAuthApiRequest
                 .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
-                    TwitterOptions.Default());
+                    TwitterOptions.Default())
+                .ConfigureAwait(false);
 
-            return await UpdateUserConnections(statuses);
+            return await UpdateUserConnections(statuses).ConfigureAwait(false);
         }
 
         public async ValueTask<User> UserInfo(string screenName)
@@ -88,7 +96,8 @@ namespace twitter.core.Services
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode(),
                         TwitterOptions.ScreenName(screenName)
-                    });
+                    })
+                .ConfigureAwait(false);
 
             var userConnections = UserConnectionsService.LookupUserConnections(user.Id);
             user.IsFollowing = userConnections?.IsFollowing ?? false;
@@ -233,7 +242,7 @@ namespace twitter.core.Services
                     });
         }
 
-        public ValueTask<IEnumerable<UserConnection>> GetFriendships(string[] ids)
+        public ValueTask<IEnumerable<UserConnection>> GetFriendships(IEnumerable<string> ids)
         {
             return oAuthApiRequest
                 .Get<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",

@@ -20,7 +20,7 @@ namespace tweetz.core.Services
             {
                 if (hashSet.TryGetValue(status, out var statusToUpdate))
                 {
-                    statusToUpdate.OriginatingStatus.UpdateFromStatus(status.OriginatingStatus);
+                    statusToUpdate.UpdateFromStatus(status);
                 }
                 else if (!timeline.AlreadyAdded.Contains(status.Id))
                 {

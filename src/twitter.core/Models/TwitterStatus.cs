@@ -172,11 +172,12 @@ namespace twitter.core.Models
         /// Update a status's counts from a newer status
         /// </summary>
         /// <param name="status"></param>
-        public void UpdateFromStatus(TwitterStatus status)
+        public void UpdateFromStatus(TwitterStatus? status)
         {
+            if (status is null) return;
             if (Id is null) throw new InvalidOperationException("Status Id is null");
-
             if (!Id.Equals(status.Id, StringComparison.Ordinal)) return;
+
             ReplyCount = status.ReplyCount;
             RetweetCount = status.RetweetCount;
             FavoriteCount = status.FavoriteCount;
@@ -184,15 +185,12 @@ namespace twitter.core.Models
             RetweetedByMe = status.RetweetedByMe;
             Favorited = status.Favorited;
 
-            var user = status.User;
-            var userConnections = UserConnectionsService.LookupUserConnections(user.Id);
-            user.IsFollowing = userConnections?.IsFollowing ?? false;
-            user.IsFollowedBy = userConnections?.IsFollowedBy ?? false;
+            var userConnections = UserConnectionsService.LookupUserConnections(User.Id);
+            User.IsFollowing = userConnections?.IsFollowing ?? false;
+            User.IsFollowedBy = userConnections?.IsFollowedBy ?? false;
 
-            var originatingUser = status.OriginatingStatus.User;
-            var originatingUserConnections = UserConnectionsService.LookupUserConnections(originatingUser.Id);
-            originatingUser.IsFollowing = originatingUserConnections?.IsFollowing ?? false;
-            originatingUser.IsFollowedBy = originatingUserConnections?.IsFollowedBy ?? false;
+            QuotedStatus?.UpdateFromStatus(status?.QuotedStatus);
+            RetweetedStatus?.UpdateFromStatus(status?.RetweetedStatus);
         }
 
         public void UpdateAboutMeProperties(string? screenName)

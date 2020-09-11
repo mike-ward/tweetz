@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace twitter.core.Models
 {
-    public class UserConnection
+    public struct UserConnection
     {
         [JsonPropertyName("id_str")]
         public string Id { get; set; }

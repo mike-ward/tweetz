@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace twitter.core.Services
@@ -43,9 +44,9 @@ namespace twitter.core.Services
 
         public static (string, string) MediaData(byte[] data) => ("media_data", Convert.ToBase64String(data));
 
-        public static (string, string) MediaIds(string[] mediaIds) => ("media_ids", string.Join(',', mediaIds));
+        public static (string, string) MediaIds(IEnumerable<string> mediaIds) => ("media_ids", string.Join(',', mediaIds));
 
-        public static (string, string) UserIds(string[] userIds) => ("user_id", string.Join(',', userIds));
+        public static (string, string) UserIds(IEnumerable<string> userIds) => ("user_id", string.Join(',', userIds));
 
         public static (string, string)[] Default(int count = 150) => new (string, string)[]
         {

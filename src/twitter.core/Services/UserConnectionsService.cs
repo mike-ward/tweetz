@@ -22,8 +22,8 @@ namespace twitter.core.Services
         {
             try
             {
-                var ids = UserConnectionsDirectory.Keys.Skip(lastIndex).Take(maxIds).ToArray();
-                var connections = await twitterApi.GetFriendships(ids);
+                var ids = UserConnectionsDirectory.Keys.Skip(lastIndex).Take(maxIds);
+                var connections = await twitterApi.GetFriendships(ids).ConfigureAwait(false);
                 lastIndex = (lastIndex + maxIds) < UserConnectionsDirectory.Count ? lastIndex + maxIds : 0;
 
                 foreach (var connection in connections)
@@ -44,7 +44,7 @@ namespace twitter.core.Services
                 TryAddUserId(userId);
             }
 
-            await UpdateUserConnectionsAsync(twitterApi);
+            await UpdateUserConnectionsAsync(twitterApi).ConfigureAwait(false);
         }
 
         private static void TryAddUserId(string userId)
