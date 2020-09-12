@@ -34,8 +34,8 @@ namespace tweetz.core
             {
                 var uri = new Uri($"Infrastructure/Resources/{settings.Theme}.xaml", UriKind.Relative);
                 var colorDictionary = (ResourceDictionary)LoadComponent(uri);
-                Resources.MergedDictionaries.Insert(1, colorDictionary);
-                Resources.MergedDictionaries.RemoveAt(0);
+                Resources.MergedDictionaries.Add(colorDictionary);
+                Resources.MergedDictionaries.RemoveAt(Resources.MergedDictionaries.Count - 2);
             }
         }
     }

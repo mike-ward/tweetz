@@ -15,73 +15,37 @@
   <Color x:Key="GradientColor1">#2E3440</Color>
   <Color x:Key="GradientColor2">#4C566A</Color>
 
-  <SolidColorBrush
-    x:Key="TitleBarForegroundBrush"
-    Color="{StaticResource nord-text0}" />
-  <SolidColorBrush
-    x:Key="TitleBarBackgroundBrush"
-    Color="{StaticResource nord1}" />
+  <SolidColorBrush x:Key="TitleBarForegroundBrush" Color="{StaticResource nord-text0}" />
+  <SolidColorBrush x:Key="TitleBarBackgroundBrush" Color="{StaticResource nord1}" />
 
-  <SolidColorBrush
-    x:Key="StandardForegroundBrush"
-    Color="{StaticResource nord-text0}" />
-  <SolidColorBrush
-    x:Key="StandardBackgroundBrush"
-    Color="{StaticResource nord0}" />
-  <SolidColorBrush
-    x:Key="StandardBorderBrush"
-    Color="{StaticResource nord1}" />
+  <SolidColorBrush x:Key="StandardForegroundBrush" Color="{StaticResource nord-text0}" />
+  <SolidColorBrush x:Key="StandardBackgroundBrush" Color="{StaticResource nord0}" />
+  <SolidColorBrush x:Key="StandardBorderBrush" Color="{StaticResource nord1}" />
 
-  <SolidColorBrush
-    x:Key="SelectedForegroundBrush"
-    Color="{StaticResource nord-text1}" />
-  <SolidColorBrush
-    x:Key="SelectedBackgroundBrush"
-    Color="{StaticResource nord2}" />
-  <SolidColorBrush
-    x:Key="DisabledForegroundBrush"
-    Color="{StaticResource nord-text3}" />
+  <SolidColorBrush x:Key="SelectedForegroundBrush" Color="{StaticResource nord-text1}" />
+  <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="{StaticResource nord2}" />
+  <SolidColorBrush x:Key="DisabledForegroundBrush" Color="{StaticResource nord-text3}" />
 
-  <SolidColorBrush
-    x:Key="ButtonForegroundBrush"
-    Color="{StaticResource nord-text0}" />
-  <SolidColorBrush
-    x:Key="ButtonBackgroundBrush"
-    Color="{StaticResource nord1}" />
+  <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource nord-text0}" />
+  <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource nord1}" />
 
-  <SolidColorBrush
-    x:Key="ToolTipForegroundBrush"
-    Color="{StaticResource nord-text0}" />
-  <SolidColorBrush
-    x:Key="ToolTipBackgroundBrush"
-    Color="{StaticResource nord0}" />
-  <SolidColorBrush
-    x:Key="LinkForegroundBrush"
-    Color="{StaticResource nord-text1}" />
+  <SolidColorBrush x:Key="ToolTipForegroundBrush" Color="{StaticResource nord-text0}" />
+  <SolidColorBrush x:Key="ToolTipBackgroundBrush" Color="{StaticResource nord0}" />
+  <SolidColorBrush x:Key="LinkForegroundBrush" Color="{StaticResource nord-text1}" />
 
   <!--  Scrollbar  -->
-  <SolidColorBrush
-    x:Key="NormalBrush"
-    Color="{StaticResource nord2}" />
-  <SolidColorBrush
-    x:Key="NormalBorderBrush"
-    Color="{StaticResource nord2}" />
-  <SolidColorBrush
-    x:Key="HorizontalNormalBrush"
-    Color="{StaticResource nord2}" />
-  <SolidColorBrush
-    x:Key="HorizontalNormalBorderBrush"
-    Color="{StaticResource nord2}" />
+  <SolidColorBrush x:Key="NormalBrush" Color="{StaticResource nord2}" />
+  <SolidColorBrush x:Key="NormalBorderBrush" Color="{StaticResource nord2}" />
+  <SolidColorBrush x:Key="HorizontalNormalBrush" Color="{StaticResource nord2}" />
+  <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="{StaticResource nord2}" />
 
-  <SolidColorBrush
-    x:Key="TabItemHoverBrush"
-    Color="{StaticResource nord1}" />
+  <SolidColorBrush x:Key="TabItemHoverBrush" Color="{StaticResource nord1}" />
 
   <Color x:Key="MyTweetFallbackColorNord">#441f1f</Color>
 
   <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0.5,0" EndPoint="0.5, 1">
     <GradientStop Offset="0" Color="#323232" />
-    <GradientStop Offset="0.2" Color="{Binding Mode=OneWay, FallbackValue={StaticResource MyTweetFallbackColorNord}, TargetNullValue={StaticResource MyTweetFallbackColorNord}}" />
+    <GradientStop Offset="0.2" Color="{Binding MyTweetColor, Source={x:Static models:Settings.SettingsStatic}, Mode=OneWay, FallbackValue={StaticResource MyTweetFallbackColorNord}, TargetNullValue={StaticResource MyTweetFallbackColorNord}, Converter={StaticResource ColorConverter}}" />
     <GradientStop Offset="1" Color="#313131" />
   </LinearGradientBrush>
 </ResourceDictionary>
