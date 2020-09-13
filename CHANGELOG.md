@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.4 - 2020-09-13
+
+### Fixed
+
+- Move ColorConverter reference to theme files to avoid crash [a245e42](https://github.com/mike-ward/tweetz/commit/a245e424da8f2bc0aa1fc3ac636a2a8e9b544142)
+
 ## 2.8.3 - 2020-09-13
 
 ### Fixed
