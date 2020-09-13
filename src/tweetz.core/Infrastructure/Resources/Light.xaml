@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:converters="clr-namespace:tweetz.core.Converters"
   xmlns:models="clr-namespace:tweetz.core.Models">
 
   <Color x:Key="GradientColor1">#f8f8f8</Color>
@@ -34,6 +35,8 @@
   <SolidColorBrush x:Key="TabItemHoverBrush">#eee</SolidColorBrush>
 
   <Color x:Key="MyTweetFallbackColorLight">#d7e0e0</Color>
+
+  <converters:ColorConverter x:Key="ColorConverter" />
 
   <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0.5,0" EndPoint="0.5, 1">
     <GradientStop Offset="0" Color="#f8f8f8" />
