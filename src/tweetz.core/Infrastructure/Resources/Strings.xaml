@@ -71,7 +71,7 @@
   <sys:String x:Key="remove-tooltip">Remove</sys:String>
   <sys:String x:Key="add-image-tooltip">Add 1 gif (*.gif) or 1 video (*.mp4) or up to 4 images (*.jpg, *.png, *.webp)</sys:String>
   <sys:String x:Key="mentions-tooltip">Get mentions</sys:String>
-  <sys:String x:Key="new-version-available">Update available!\nClick here to get it.</sys:String>
+  <sys:String x:Key="new-version-available">Update available! Click here to get it.</sys:String>
   <sys:String x:Key="copy-to-clipboard">Copy to clipboard</sys:String>
   <sys:String x:Key="close-tooltip">Close</sys:String>
   <sys:String x:Key="minimize-tooltip">Minimize</sys:String>
@@ -99,7 +99,5 @@
   <sys:String x:Key="tips-scroll">Right-click scrolls to top</sys:String>
   <sys:String x:Key="tips-open">Click timestamp to open in Twitter</sys:String>
   <sys:String x:Key="tips-font-size">Font size (Alt+Plus/Minus)</sys:String>
-  <sys:String
-    x:Key="tips-profiles"
-    xml:space="preserve">Specify an alternate profile on the command line or shortcut.&#x0a;(e.g. tweetz.core.exe account2)</sys:String>
+  <sys:String x:Key="tips-profiles" xml:space="preserve">Specify an alternate profile on the command line or shortcut.&#x0a;(e.g. tweetz.core.exe account2)</sys:String>
 </ResourceDictionary>

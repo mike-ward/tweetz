@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.3 - 2020-09-13
+
+### Fixed
+
+- Follow/Followed By statuses didn't sync sometimes [759c07f](https://github.com/mike-ward/tweetz/commit/759c07f845e379f348ab6479b522d50c8960cf09)
+- Custom color not working in Nord and Dark themes [55449d0](https://github.com/mike-ward/tweetz/commit/55449d08acf1980ea6bf021efac2db4aa4661cc5) 
+
 ## 2.8.2 - 2020-09-09
 
 ### Fixed

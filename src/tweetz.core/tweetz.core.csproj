@@ -8,9 +8,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ServerGarbageCollection>false</ServerGarbageCollection>
-    <Version>2.8.2</Version>
+    <Version>2.8.3</Version>
     <FileVersion>2.8.3</FileVersion>
-    <AssemblyVersion>2.8.2</AssemblyVersion>
+    <AssemblyVersion>2.8.3</AssemblyVersion>
     <Description>A gadget-like desktop twitter client.</Description>
     <Copyright>Copyright 2020, Mike Ward</Copyright>
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
