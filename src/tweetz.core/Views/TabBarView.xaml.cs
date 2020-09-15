@@ -17,7 +17,7 @@ namespace tweetz.core.Views
 
         private TabBarControlViewModel ViewModel => (TabBarControlViewModel)DataContext;
 
-        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void OnIsVisibleChanged(object _, DependencyPropertyChangedEventArgs __)
         {
             if (Visibility == Visibility.Visible)
             {

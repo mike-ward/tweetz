@@ -158,9 +158,9 @@ namespace tweetz.core.Views.Adorners
         {
             return c switch
             {
-                ComboBox _ => string.IsNullOrEmpty((c as ComboBox).Text),
-                TextBoxBase _ => string.IsNullOrEmpty((c as TextBox).Text),
-                ItemsControl _ => (c as ItemsControl).Items.Count == 0,
+                ComboBox _ => string.IsNullOrEmpty((c as ComboBox)?.Text),
+                TextBoxBase _ => string.IsNullOrEmpty((c as TextBox)?.Text),
+                ItemsControl _ => (c as ItemsControl)?.Items.Count == 0,
                 _ => false,
             };
         }

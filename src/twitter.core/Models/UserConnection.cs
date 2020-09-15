@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace twitter.core.Models
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types")]
     public struct UserConnection
     {
         [JsonPropertyName("id_str")]

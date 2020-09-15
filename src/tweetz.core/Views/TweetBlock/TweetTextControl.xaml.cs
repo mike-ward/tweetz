@@ -11,7 +11,7 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
-        private void TextBlock_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        private void TextBlock_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs _)
         {
             if (sender is TextBlock textBlock && DataContext is TwitterStatus twitterStatus)
             {

@@ -37,7 +37,7 @@ namespace tweetz.core.Views
 
                 if (Retries < MaxRetries)
                 {
-                    Retries += 1;
+                    Retries++;
                     var user = (User)imageControl.DataContext;
                     var uri = new Uri(user.ProfileImageUrl!);
 

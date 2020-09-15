@@ -26,7 +26,7 @@ namespace tweetz.core.Views.ComposeBlock
             Loaded -= OnLoaded;
         }
 
-        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void OnIsVisibleChanged(object _, DependencyPropertyChangedEventArgs __)
         {
             if (IsVisible)
             {

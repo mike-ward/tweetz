@@ -8,18 +8,14 @@ namespace tweetz.core.Services
     {
         private static Matrix GetSizeFactors(Visual element)
         {
-            Matrix transformToDevice;
             var source = PresentationSource.FromVisual(element);
             if (source != null)
             {
-                transformToDevice = source.CompositionTarget.TransformToDevice;
+                return source.CompositionTarget.TransformToDevice;
             }
-            else
-            {
-                using var source2 = new HwndSource(new HwndSourceParameters());
-                transformToDevice = source2.CompositionTarget.TransformToDevice;
-            }
-            return transformToDevice;
+
+            using var source2 = new HwndSource(new HwndSourceParameters());
+            return source2.CompositionTarget.TransformToDevice;
         }
 
         public static double HorizontalDpiToPixel(UIElement element, double x) => x * GetSizeFactors(element).M11;

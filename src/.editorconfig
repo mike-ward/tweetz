@@ -17,3 +17,9 @@ dotnet_diagnostic.RCS1090.severity = none
 
 # CA1812: ShowTwitterStatusCommand is an internal class that is apparently never instantiated. If so, remove the code from the assembly. If this class is intended to contain only static members, make it static (Shared in Visual Basic).
 dotnet_diagnostic.CA1812.severity = silent
+
+# RCS1079: Throwing of new NotImplementedException.
+dotnet_diagnostic.RCS1079.severity = silent
+
+# RCS1226: Add paragraph to documentation comment.
+dotnet_diagnostic.RCS1226.severity = none

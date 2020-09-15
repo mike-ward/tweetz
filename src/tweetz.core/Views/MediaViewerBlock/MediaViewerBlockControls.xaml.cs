@@ -97,7 +97,7 @@ namespace tweetz.core.Views.MediaViewerBlock
             }
         }
 
-        private void SetPlayPauseButtonSymbol(Button button, string symbol)
+        private static void SetPlayPauseButtonSymbol(Button button, string symbol)
         {
             button.Content = Application.Current.FindResource(symbol);
         }

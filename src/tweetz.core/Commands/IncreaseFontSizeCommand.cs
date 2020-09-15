@@ -21,7 +21,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            Settings.FontSize = Settings.FontSize + 0.1;
+            Settings.FontSize += 0.1;
         }
     }
 }

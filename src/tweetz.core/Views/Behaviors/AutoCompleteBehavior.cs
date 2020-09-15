@@ -121,9 +121,10 @@ namespace tweetz.core.Views.Behaviors
             var comparer = GetAutoCompleteStringComparison(tb);
 
             var match = values
-                .Where(value => !string.IsNullOrEmpty(value))
-                .Where(value => value.Length >= textLength)
-                .Where(value => value[..textLength].Equals(matchingString, comparer))
+                .Where(value =>
+                    !string.IsNullOrEmpty(value) &&
+                    value.Length >= textLength &&
+                    value[..textLength].Equals(matchingString, comparer))
                 .Select(value => value[textLength..]) // Only select the last part of the suggestion
                 .FirstOrDefault();
 

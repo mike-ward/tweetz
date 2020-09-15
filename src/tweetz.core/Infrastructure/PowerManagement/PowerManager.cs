@@ -15,7 +15,7 @@ namespace tweetz.core.Infrastructure.PowerManagement
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "none")]
-        public static int MonitorStatus(IntPtr wParam, IntPtr lParam)
+        public static int MonitorStatus(IntPtr _, IntPtr lParam)
         {
 #pragma warning disable CS8605 // Unboxing a possibly null value.
             var ps = (PowerManagementNativeMethods.PowerBroadcastSetting)Marshal
