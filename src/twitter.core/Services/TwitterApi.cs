@@ -179,7 +179,7 @@ namespace twitter.core.Services
                 parameters.Add(TwitterOptions.AttachmentUrl(attachmentUrl));
             }
 
-            if (mediaIds != null && mediaIds.Length > 0)
+            if (mediaIds?.Length > 0)
             {
                 parameters.Add(TwitterOptions.MediaIds(mediaIds));
             }

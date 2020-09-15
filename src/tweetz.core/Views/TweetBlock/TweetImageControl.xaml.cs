@@ -27,7 +27,7 @@ namespace tweetz.core.Views
 
                 if (Retries < MaxRetries)
                 {
-                    Retries += 1;
+                    Retries++;
                     var uri = new Uri(((Media)image.DataContext).MediaUrl);
 
                     var bitmap = new BitmapImage();

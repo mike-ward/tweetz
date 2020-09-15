@@ -96,7 +96,7 @@ namespace tweetz.core.Views.Layouts
                 }
             }
 
-            return new Size((maxChildDesiredWidth * _columns), (maxChildDesiredHeight * _rows));
+            return new Size(maxChildDesiredWidth * _columns, maxChildDesiredHeight * _rows);
         }
 
         protected override Size ArrangeOverride(Size finalSize)

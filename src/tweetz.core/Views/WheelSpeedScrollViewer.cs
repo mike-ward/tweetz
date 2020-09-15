@@ -26,7 +26,7 @@ namespace tweetz.core.Views
                 ScrollInfo is VirtualizingStackPanel vsp &&
                 ComputedVerticalScrollBarVisibility == Visibility.Visible)
             {
-                vsp.SetVerticalOffset(VerticalOffset - e.Delta * SpeedFactor);
+                vsp.SetVerticalOffset(VerticalOffset - (e.Delta * SpeedFactor));
                 e.Handled = true;
             }
         }

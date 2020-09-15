@@ -24,7 +24,7 @@ namespace tweetz.core.Services
             }
             else
             {
-                donateNagCounter += 1;
+                donateNagCounter++;
             }
 
             return default;

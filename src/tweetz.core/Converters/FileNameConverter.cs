@@ -10,7 +10,7 @@ namespace tweetz.core.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value is string val
-                ? Path.GetFileName(val)
+                ? Path.GetFileName(val) ?? val
                 : string.Empty;
         }
 

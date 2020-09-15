@@ -60,7 +60,7 @@ namespace tweetz.core.Commands
                     else
                     {
                         await TwitterService.RetweetStatus(twitterStatus.Id).ConfigureAwait(true);
-                        twitterStatus.RetweetCount += 1;
+                        twitterStatus.RetweetCount++;
                         twitterStatus.RetweetedByMe = true;
                     }
                 }

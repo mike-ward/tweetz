@@ -70,7 +70,7 @@ namespace tweetz.core.Commands
                         var user = twitterStatus.User;
                         if (user != null)
                         {
-                            user.Followers += 1;
+                            user.Followers++;
                             user.IsFollowing = true;
                         }
                     }

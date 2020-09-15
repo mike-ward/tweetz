@@ -15,8 +15,8 @@ namespace twitter.core.Services
         public const string GET = "GET";
         public const string POST = "POST";
 
-        private string? ConsumerKey { get; set; }
-        private string? ConsumerSecret { get; set; }
+        private string? ConsumerKey { get; }
+        private string? ConsumerSecret { get; }
         private string? AccessToken { get; set; }
         private string? AccessTokenSecret { get; set; }
 
@@ -54,7 +54,7 @@ namespace twitter.core.Services
 
         private ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            var _ = RequestAsync<string>(url, parameters, method);
+            RequestAsync<string>(url, parameters, method);
             return default;
         }
 
@@ -110,7 +110,7 @@ namespace twitter.core.Services
         {
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
-            var uploadUrl = TwitterApi.UploadMediaUrl;
+            const string uploadUrl = TwitterApi.UploadMediaUrl;
             var signature = OAuth.Signature(POST, uploadUrl, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, null);
             var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
 
@@ -150,6 +150,7 @@ namespace twitter.core.Services
             await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage")]
         private static async ValueTask WriteTextToStreamAsync(Stream stream, string text)
         {
             var buffer = Encoding.UTF8.GetBytes(text);

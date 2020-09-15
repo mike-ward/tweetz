@@ -107,7 +107,7 @@ namespace tweetz.core.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "none")]
         public string ContentType(string filename)
         {
-            var ext = Path.GetExtension(filename);
+            var ext = Path.GetExtension(filename) ?? string.Empty;
             if (GifExtensions.Any(gif => gif.Equals(ext, StringComparison.OrdinalIgnoreCase))) return $"image/{ext.TrimStart('.')}";
             if (VidExtensions.Any(vid => vid.Equals(ext, StringComparison.OrdinalIgnoreCase))) return $"video/{ext.TrimStart('.')}";
             if (ImgExtensions.Any(vid => vid.Equals(ext, StringComparison.OrdinalIgnoreCase))) return $"image/{ext.TrimStart('.')}";

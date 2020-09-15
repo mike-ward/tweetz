@@ -28,7 +28,7 @@ namespace twitter.core.Services
 
                 foreach (var connection in connections)
                 {
-                    UserConnectionsDirectory.AddOrUpdate(connection.Id, connection, (_k, _v) => connection);
+                    UserConnectionsDirectory.AddOrUpdate(connection.Id, connection, (_, __) => connection);
                 }
             }
             catch (Exception ex)
@@ -37,14 +37,14 @@ namespace twitter.core.Services
             }
         }
 
-        public static async Task AddUserIdsAsync(IEnumerable<string> userIds, TwitterApi twitterApi)
+        public static Task AddUserIdsAsync(IEnumerable<string> userIds, TwitterApi twitterApi)
         {
             foreach (var userId in userIds)
             {
                 TryAddUserId(userId);
             }
 
-            await UpdateUserConnectionsAsync(twitterApi).ConfigureAwait(false);
+            return UpdateUserConnectionsAsync(twitterApi);
         }
 
         private static void TryAddUserId(string userId)

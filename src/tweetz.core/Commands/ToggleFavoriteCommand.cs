@@ -66,7 +66,7 @@ namespace tweetz.core.Commands
                     else
                     {
                         await TwitterService.CreateFavorite(twitterStatus.Id).ConfigureAwait(true);
-                        twitterStatus.FavoriteCount += 1;
+                        twitterStatus.FavoriteCount++;
                         twitterStatus.Favorited = true;
                     }
 
@@ -87,7 +87,7 @@ namespace tweetz.core.Commands
         {
             return
                 parameter is TwitterStatus twitterStatus
-                && string.Compare(twitterStatus.OriginatingStatus.User.ScreenName, Settings.ScreenName, StringComparison.Ordinal) != 0
+                && !string.Equals(twitterStatus.OriginatingStatus.User.ScreenName, Settings.ScreenName, StringComparison.Ordinal)
                 && !twitterStatus.IsMyTweet
                     ? twitterStatus
                     : null;
