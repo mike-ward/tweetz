@@ -146,7 +146,7 @@ namespace tweetz.core.Models
             PendingStatusesAvailable = false;
         }
 
-        private void UpdateTooltip(object sender, PropertyChangedEventArgs e)
+        private void UpdateTooltip(object? sender, PropertyChangedEventArgs? e)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {

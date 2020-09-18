@@ -21,8 +21,10 @@ namespace tweetz.core.ViewModels
             set => SetProperty(ref title, value);
         }
 
-        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs? e)
         {
+            if (e is null) { return; }
+
             if (string.CompareOrdinal(e.PropertyName, nameof(Settings.ScreenName)) == 0 ||
                 string.CompareOrdinal(e.PropertyName, nameof(Settings.HideScreenName)) == 0)
             {

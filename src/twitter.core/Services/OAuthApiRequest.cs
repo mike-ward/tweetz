@@ -96,7 +96,7 @@ namespace twitter.core.Services
             using var response = await request.GetResponseAsync().ConfigureAwait(false);
             using var stream = response.GetResponseStream();
             var result = await JsonSerializer.DeserializeAsync<T>(stream).ConfigureAwait(false);
-            return result;
+            return result ?? throw new InvalidOperationException("JsonSerializer.DeserializeAsync<T>(stream) return null");
         }
 
         /// <summary>

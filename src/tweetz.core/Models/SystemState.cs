@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Versioning;
 using System.Text;
 using Microsoft.Win32;
 using tweetz.core.Infrastructure;
@@ -12,6 +13,7 @@ namespace tweetz.core.Models
     {
         public bool IsSleeping { get; set; }
 
+        [SupportedOSPlatform("windows")]
         public bool IsRegisteredInStartup
         {
             get
@@ -41,6 +43,7 @@ namespace tweetz.core.Models
 
         private static string ApplicationName => ComputeMD5(Assembly.GetExecutingAssembly().Location);
 
+        [SupportedOSPlatform("windows")]
         private static RegistryKey OpenStartupSubKey() => Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true)!;
 
         private static string ComputeMD5(string input)
