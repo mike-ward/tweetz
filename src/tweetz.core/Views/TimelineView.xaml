@@ -7,9 +7,9 @@
   xmlns:local="clr-namespace:tweetz.core.Views"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   x:Name="Timeline"
-  Focusable="True"
   d:DesignHeight="200"
   d:DesignWidth="300"
+  Focusable="True"
   mc:Ignorable="d">
 
   <ItemsControl
@@ -36,7 +36,9 @@
           FocusVisualStyle="{x:Null}"
           Focusable="True"
           IsTabStop="True"
-          ScrollChanged="OnScrollChanged">
+          ScrollChanged="OnScrollChanged"
+          ScrollDuration="0:0:0:0.05"
+          SpeedFactor="1.4">
           <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
         </local:WheelSpeedScrollViewer>
       </ControlTemplate>
@@ -44,9 +46,7 @@
 
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <VirtualizingStackPanel
-          Focusable="True"
-          IsItemsHost="True" />
+        <VirtualizingStackPanel Focusable="True" IsItemsHost="True" />
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
 
