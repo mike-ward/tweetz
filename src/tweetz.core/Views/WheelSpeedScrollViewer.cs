@@ -8,21 +8,18 @@ namespace tweetz.core.Views
 {
     public class WheelSpeedScrollViewer : ScrollViewer
     {
-        // --- SpeedFactor
-
-        public static readonly DependencyProperty SpeedFactorProperty =
-            DependencyProperty.Register(nameof(SpeedFactor),
-                                        typeof(double),
-                                        typeof(WheelSpeedScrollViewer),
-                                        new PropertyMetadata(1.0));
-
         public double SpeedFactor
         {
             get => (double)GetValue(SpeedFactorProperty);
             set => SetValue(SpeedFactorProperty, value);
         }
 
-        // --- ScrollDuration
+        public static readonly DependencyProperty SpeedFactorProperty =
+            DependencyProperty.Register(
+                nameof(SpeedFactor),
+                typeof(double),
+                typeof(WheelSpeedScrollViewer),
+                new PropertyMetadata(1.0));
 
         public TimeSpan ScrollDuration
         {
@@ -36,8 +33,6 @@ namespace tweetz.core.Views
                 typeof(TimeSpan),
                 typeof(WheelSpeedScrollViewer),
                 new PropertyMetadata(TimeSpan.FromMilliseconds(50)));
-
-        // --- VerticalOffsetMediator
 
         public double VerticalOffsetMediator
         {
@@ -62,23 +57,20 @@ namespace tweetz.core.Views
             }
         }
 
-        /// <summary>
-        /// Animates the scroll viewer using key frames
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
         {
-            if (e is null) throw new ArgumentNullException(nameof(e));
-            if (e.Handled) return;
             AnimateScroll(VerticalOffset - (e.Delta * SpeedFactor));
             e.Handled = true;
         }
 
         private void AnimateScroll(double offset)
         {
-            var animation = new DoubleAnimation();
-            animation.To = offset;
-            animation.Duration = ScrollDuration;
+            var animation = new DoubleAnimation
+            {
+                To = offset,
+                Duration = ScrollDuration
+            };
+
             Storyboard.SetTarget(animation, this);
             Storyboard.SetTargetProperty(animation, new PropertyPath(VerticalOffsetMediatorProperty));
 
