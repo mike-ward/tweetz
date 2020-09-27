@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.5 - 2020-09-27
+
+### Changed
+
+- Smooth scrolling [688ab45](https://github.com/mike-ward/tweetz/commit/688ab45e49f5aeb5d7d14fa02e4e1c738c5e2020)
+
 ## 2.8.4 - 2020-09-13
 
 ### Fixed
