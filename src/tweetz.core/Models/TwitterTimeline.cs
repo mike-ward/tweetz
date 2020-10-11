@@ -43,34 +43,29 @@ namespace tweetz.core.Models
             IntervalInMinutes = intervalInMinutes;
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
-            updateTimer.Tick += (_, __) => Update();
+            updateTimer.Tick += async (_, __) => await UpdateAsync().ConfigureAwait(false);
 
             PropertyChanged += UpdateTooltip;
             Settings.PropertyChanged += OnAuthenticationChanged;
             BindingOperations.EnableCollectionSynchronization(StatusCollection, SyncObject);
         }
 
-        private void OnAuthenticationChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void OnAuthenticationChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (string.CompareOrdinal(e.PropertyName, nameof(Settings.IsAuthenticated)) == 0)
             {
                 if (Settings.IsAuthenticated)
                 {
-                    Start();
+                    if (!updateTimer.IsEnabled)
+                    {
+                        updateTimer.Start();
+                        await UpdateAsync().ConfigureAwait(false);
+                    }
                 }
                 else
                 {
                     Stop();
                 }
-            }
-        }
-
-        private void Start()
-        {
-            if (!updateTimer.IsEnabled)
-            {
-                updateTimer.Start();
-                Update();
             }
         }
 
@@ -84,11 +79,6 @@ namespace tweetz.core.Models
         public void AddUpdateTask(Func<TwitterTimeline, ValueTask> task)
         {
             updateTasks.Add(task);
-        }
-
-        private void Update()
-        {
-            Application.Current.Dispatcher.Invoke(async () => await UpdateAsync().ConfigureAwait(false));
         }
 
         public async ValueTask UpdateAsync()

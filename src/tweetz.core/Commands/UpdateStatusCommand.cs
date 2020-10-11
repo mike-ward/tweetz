@@ -46,9 +46,9 @@ namespace tweetz.core.Commands
                 !ComposeControlViewModel.IsUpdating;
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            Application.Current.Dispatcher.Invoke(async () => await CommandHandlerAsync().ConfigureAwait(false));
+            await CommandHandlerAsync().ConfigureAwait(false);
         }
 
         private async ValueTask CommandHandlerAsync()
@@ -78,8 +78,9 @@ namespace tweetz.core.Commands
                     mediaIds)
                     .ConfigureAwait(true);
 
-                // this call has to happen on the UI thread
-                await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
+                await Application.Current.Dispatcher.InvokeAsync(
+                    async () => await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel));
+
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
             }
