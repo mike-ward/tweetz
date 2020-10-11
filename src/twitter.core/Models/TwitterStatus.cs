@@ -97,7 +97,7 @@ namespace twitter.core.Models
             {
                 if (CheckedRelatedInfo) return relatedLinkInfo;
                 CheckedRelatedInfo = true;
-                GetRelatedInfoAsync().ConfigureAwait(false); // fire and forget
+                Task.Factory.StartNew(async () => await GetRelatedInfoAsync().ConfigureAwait(false));
                 return relatedLinkInfo;
             }
             set

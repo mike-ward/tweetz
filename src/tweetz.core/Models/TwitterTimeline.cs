@@ -88,8 +88,7 @@ namespace tweetz.core.Models
 
         private void Update()
         {
-            // Fire and forget pattern
-            UpdateAsync().ConfigureAwait(false);
+            Application.Current.Dispatcher.Invoke(async () => await UpdateAsync().ConfigureAwait(false));
         }
 
         public async ValueTask UpdateAsync()

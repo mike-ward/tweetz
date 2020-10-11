@@ -55,9 +55,9 @@ namespace tweetz.core.Views.Adorners
                 control.LostKeyboardFocus += Control_Loaded;
                 ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
             }
-            else if (d is ItemsControl && !(d is ComboBox))
+            else if (d is ItemsControl itemControl && d is not ComboBox)
             {
-                var i = (ItemsControl)d;
+                var i = itemControl;
 
                 // for Items property
                 i.ItemContainerGenerator.ItemsChanged += ItemsChanged;

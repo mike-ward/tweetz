@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using tweetz.core.Services;
@@ -47,7 +48,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            CommandHandlerAsync().ConfigureAwait(false);
+            Application.Current.Dispatcher.Invoke(async () => await CommandHandlerAsync().ConfigureAwait(false));
         }
 
         private async ValueTask CommandHandlerAsync()
@@ -77,16 +78,8 @@ namespace tweetz.core.Commands
                     mediaIds)
                     .ConfigureAwait(true);
 
-                // Something strange going on here. If I use the usual await
-                // mechanism here it works but I see a consistent 2-5% CPU usage
-                // when the program should be idling. It remains that way for
-                // the life of the program. Debugging shows WPF is cycling in an
-                // internal render loop. Since I don't need to wait for this
-                // task to complete I can just fire and forget it which seems to
-                // fix the problem. Total hack but I don't have the smarts to
-                // fix the issue correctly.
-                _ = UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
-
+                // this call has to happen on the UI thread
+                await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel);
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();
             }
@@ -95,7 +88,7 @@ namespace tweetz.core.Commands
                 var stream = ex.Response?.GetResponseStream();
                 if (stream is null) { return; }
                 using var reader = new StreamReader(stream);
-                var message = await reader.ReadToEndAsync().ConfigureAwait(false);
+                var message = await reader.ReadToEndAsync().ConfigureAwait(true);
                 await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
             }
             catch (Exception ex)

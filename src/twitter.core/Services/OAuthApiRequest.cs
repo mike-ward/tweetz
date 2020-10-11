@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using twitter.core.Models;
 
 namespace twitter.core.Services
 {
@@ -54,8 +55,7 @@ namespace twitter.core.Services
 
         private ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            RequestAsync<string>(url, parameters, method);
-            return default;
+            return RequestAsync<string>(url, parameters, method).AsValueTask();
         }
 
         private ValueTask<T> RequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
@@ -146,15 +146,14 @@ namespace twitter.core.Services
                 $"Content-Disposition: form-data; name=\"{name}\"\r\n\r\n";
 
             await WriteTextToStreamAsync(stream, header).ConfigureAwait(false);
-            await stream.WriteAsync(payload, 0, payload.Length).ConfigureAwait(false);
+            await stream.WriteAsync(payload.AsMemory(0, payload.Length)).ConfigureAwait(false);
             await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage")]
         private static async ValueTask WriteTextToStreamAsync(Stream stream, string text)
         {
             var buffer = Encoding.UTF8.GetBytes(text);
-            await stream.WriteAsync(buffer, 0, buffer.Length).ConfigureAwait(false);
+            await stream.WriteAsync(buffer.AsMemory(0, buffer.Length)).ConfigureAwait(false);
         }
     }
 }

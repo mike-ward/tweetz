@@ -35,9 +35,9 @@ namespace tweetz.core.Commands
             e.CanExecute = ComposeControlViewModel.CanAddImage();
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            CommandHandlerAsync().ConfigureAwait(false);
+            await CommandHandlerAsync().ConfigureAwait(false);
         }
 
         private async ValueTask CommandHandlerAsync()
