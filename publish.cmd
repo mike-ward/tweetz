@@ -1,4 +1,4 @@
-echo off
+@echo off
 del /f/s/q bin > nul && rmdir /s/q bin
 if EXIST bin goto ERROR
 pushd src\tweetz.core
@@ -10,12 +10,13 @@ dotnet publish -f net5.0-windows -r win10-x86 -c Release --self-contained true /
 if ERRORLEVEL 1 goto ERROR
 
 popd
-
+@echo Build Installer...
 iscc /Qp tweetz.core.setup.iss 
 if ERRORLEVEL 1 goto ERROR
 
 pushd bin
 
+@echo Build zip archives
 7z a -r dist/tweetz-framework-dependent.zip ./framework-dependent/*
 if ERRORLEVEL 1 goto ERROR
 
