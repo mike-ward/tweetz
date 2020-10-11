@@ -7,7 +7,6 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using twitter.core.Models;
 
 namespace twitter.core.Services
 {
@@ -53,9 +52,9 @@ namespace twitter.core.Services
             return RequestAsync<T>(url, parameters, POST);
         }
 
-        private ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
+        private async ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            return RequestAsync<string>(url, parameters, method).AsValueTask();
+            await RequestAsync<string>(url, parameters, method);
         }
 
         private ValueTask<T> RequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
