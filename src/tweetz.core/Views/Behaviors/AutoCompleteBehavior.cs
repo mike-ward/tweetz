@@ -69,7 +69,7 @@ namespace tweetz.core.Views.Behaviors
         private static void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Enter) { return; }
-            if (!(e.OriginalSource is TextBox tb)) { return; }
+            if (e.OriginalSource is not TextBox tb) { return; }
 
             // If enter pressed and the selected text goes all the way to the
             // end, move caret position to the end
@@ -85,7 +85,7 @@ namespace tweetz.core.Views.Behaviors
         private static void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is null ||
-                !(e.OriginalSource is TextBox tb) ||
+                e.OriginalSource is not TextBox tb ||
                 string.IsNullOrEmpty(tb.Text))
             {
                 return;

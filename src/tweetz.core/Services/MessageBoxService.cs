@@ -18,7 +18,6 @@ namespace tweetz.core.Services
             return MessageBox.Show(message, caption, MessageBoxButton.YesNo);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage")]
         public async ValueTask ShowMessageBoxAsync(string message)
         {
             await Task.Run(() => ShowMessageBox(message)).ConfigureAwait(true);

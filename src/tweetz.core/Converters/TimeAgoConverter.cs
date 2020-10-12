@@ -8,7 +8,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var time = value is DateTime ? (DateTime)value : default;
+            var time = value is DateTime val ? val : default;
             var timespan = DateTime.UtcNow - time;
             static string Format(string s, double t) => string.Format(CultureInfo.InvariantCulture, s, (int)t);
             if (timespan.TotalSeconds < 60) return Format("{0}s", timespan.TotalSeconds);

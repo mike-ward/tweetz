@@ -30,6 +30,9 @@ namespace tweetz.core.Views.Layouts
             return (int)o >= 0;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Critical Bug", "S4275:Getters and setters should access the expected fields",
+            Justification = "https://community.sonarsource.com/t/c-dependencyproperty-flagged-by-s4275-getters-and-setters-should-access-the-expected-fields/26739")]
         public int Columns
         {
             get { return (int)GetValue(ColumnsProperty); }
@@ -49,6 +52,9 @@ namespace tweetz.core.Views.Layouts
             return (int)o >= 0;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Critical Bug", "S4275:Getters and setters should access the expected fields",
+            Justification = "https://community.sonarsource.com/t/c-dependencyproperty-flagged-by-s4275-getters-and-setters-should-access-the-expected-fields/26739")]
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }

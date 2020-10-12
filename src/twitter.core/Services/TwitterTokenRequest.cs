@@ -77,7 +77,7 @@ namespace twitter.core.Services
 
         private static string Token(string pair)
         {
-            return pair.Substring(pair.IndexOf('=', StringComparison.Ordinal) + 1);
+            return pair[(pair.IndexOf('=', StringComparison.Ordinal) + 1)..];
         }
     }
 }

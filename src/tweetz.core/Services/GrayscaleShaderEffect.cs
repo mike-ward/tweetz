@@ -17,9 +17,10 @@ namespace tweetz.core.Services
 
         public GrayscaleShaderEffect()
         {
-            var pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("Infrastructure/Resources/GrayscaleShader.ps", UriKind.Relative);
-            PixelShader = pixelShader;
+            PixelShader = new PixelShader
+            {
+                UriSource = new Uri("Infrastructure/Resources/GrayscaleShader.ps", UriKind.Relative)
+            };
             UpdateShaderValue(InputProperty);
         }
 

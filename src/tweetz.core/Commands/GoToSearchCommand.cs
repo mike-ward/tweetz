@@ -18,10 +18,10 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            if (!(sender is DependencyObject dp)) return;
+            if (sender is not DependencyObject dp) { return; }
 
             var tabControl = dp.GetChildrenOfType<TabControl>().FirstOrDefault();
-            if (tabControl is null) return;
+            if (tabControl is null) { return; }
 
             const int SearchTab = 2;
             tabControl.SelectedIndex = SearchTab;

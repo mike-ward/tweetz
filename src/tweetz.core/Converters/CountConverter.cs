@@ -8,7 +8,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is int)) return value;
+            if (!(value is int)) { return value; }
             var count = (int)value;
             const double k = 1000;
 

@@ -16,7 +16,7 @@ namespace tweetz.core.Converters
                 : Visibility.Collapsed;
         }
 
-        private bool IsVideo(Media media)
+        private static bool IsVideo(Media media)
         {
             var url = ImageViewerService.MediaSource(media);
             return ImageViewerService.IsMp4(url.ToString());

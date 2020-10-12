@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
 using tweetz.core.Services;
@@ -34,7 +33,6 @@ namespace tweetz.core.Models
         private string? toolTipText;
         private readonly DispatcherTimer updateTimer;
         private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new List<Func<TwitterTimeline, ValueTask>>();
-        private object SyncObject => new object();
 
         public TwitterTimeline(ISettings settings, ISystemState systemState, double intervalInMinutes)
         {
@@ -47,10 +45,9 @@ namespace tweetz.core.Models
 
             PropertyChanged += UpdateTooltip;
             Settings.PropertyChanged += OnAuthenticationChanged;
-            BindingOperations.EnableCollectionSynchronization(StatusCollection, SyncObject);
         }
 
-        private async void OnAuthenticationChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void OnAuthenticationChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (string.CompareOrdinal(e.PropertyName, nameof(Settings.IsAuthenticated)) == 0)
             {
