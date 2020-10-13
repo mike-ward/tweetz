@@ -25,9 +25,9 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
+        private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            CommandHandlerAsync().ConfigureAwait(false);
+            await CommandHandlerAsync().ConfigureAwait(false);
         }
 
         private async ValueTask CommandHandlerAsync()

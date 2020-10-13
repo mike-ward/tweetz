@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace twitter.core.Models
@@ -12,7 +13,7 @@ namespace twitter.core.Models
 
         public int GetHashCode([DisallowNull] TwitterStatus obj)
         {
-            return obj.Id.GetHashCode();
+            return StringComparer.Ordinal.GetHashCode(obj.Id);
         }
     }
 }

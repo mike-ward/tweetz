@@ -18,10 +18,10 @@ namespace tweetz.core.Models
         public ISystemState SystemState { get; }
 
         public double IntervalInMinutes { get; }
-        public HashSet<string> AlreadyAdded { get; } = new HashSet<string>();
+        public ISet<string> AlreadyAdded { get; } = new HashSet<string>(StringComparer.Ordinal);
         public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
         public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
-        public List<TwitterStatus> PendingStatusCollection { get; } = new List<TwitterStatus>();
+        public IList<TwitterStatus> PendingStatusCollection { get; } = new List<TwitterStatus>();
         public bool PendingStatusesAvailable { get => pendingStatusesAvailable; set => SetProperty(ref pendingStatusesAvailable, value); }
         public string? ToolTipText { get => toolTipText; set => SetProperty(ref toolTipText, value); }
 

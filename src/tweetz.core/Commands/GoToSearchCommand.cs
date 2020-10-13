@@ -16,7 +16,7 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
+        private static void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
             if (sender is not DependencyObject dp) { return; }
 

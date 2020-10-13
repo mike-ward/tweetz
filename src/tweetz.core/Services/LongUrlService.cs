@@ -10,7 +10,7 @@ namespace tweetz.core.Services
     public static class LongUrlService
     {
         private const int maxCacheSize = 100;
-        private static readonly ConcurrentDictionary<string, string> UrlCache = new ConcurrentDictionary<string, string>(1, maxCacheSize + 1);
+        private static readonly ConcurrentDictionary<string, string> UrlCache = new ConcurrentDictionary<string, string>(1, maxCacheSize + 1, StringComparer.Ordinal);
 
         public static async ValueTask<string> TryGetLongUrlAsync(string link)
         {
@@ -47,22 +47,20 @@ namespace tweetz.core.Services
             return link;
         }
 
-        public static void HyperlinkToolTipOpeningHandler(object sender, ToolTipEventArgs args)
+        public static async void HyperlinkToolTipOpeningHandler(object sender, ToolTipEventArgs args)
         {
             if (sender is Hyperlink hyperlink)
             {
                 // Refresh tooltip now to prevent showing old link due to VirtualizingPanel.VirtualizationMode="Recycling"
                 hyperlink.ToolTip = hyperlink.CommandParameter ?? string.Empty;
 
-                // Fire and forget pattern
-                HyperlinkToolTipOpeningHandlerAsync(hyperlink).ConfigureAwait(false);
+                await HyperlinkToolTipOpeningHandlerAsync(hyperlink).ConfigureAwait(false);
             }
         }
 
         private static async ValueTask HyperlinkToolTipOpeningHandlerAsync(Hyperlink hyperlink)
         {
-            var link = await TryGetLongUrlAsync((string)hyperlink.CommandParameter).ConfigureAwait(true);
-            hyperlink.ToolTip = link;
+            hyperlink.ToolTip = await TryGetLongUrlAsync((string)hyperlink.CommandParameter).ConfigureAwait(true);
         }
     }
 }

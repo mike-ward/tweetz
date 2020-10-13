@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -27,19 +28,18 @@ namespace tweetz.core.Services
 
         private void Check()
         {
-            // fire and forget pattern
-            CheckAsync().ConfigureAwait(false);
+            Task.Factory.StartNew(() => CheckIt());
         }
 
-        private async ValueTask CheckAsync()
+        private void CheckIt()
         {
             try
             {
-                var url = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks}");
+                var url = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
                 var request = WebRequest.Create(url);
-                using var response = await request.GetResponseAsync().ConfigureAwait(false);
+                using var response = request.GetResponse();
                 using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                Version = await stream.ReadToEndAsync().ConfigureAwait(false);
+                Version = stream.ReadToEnd();
             }
             catch (Exception ex)
             {

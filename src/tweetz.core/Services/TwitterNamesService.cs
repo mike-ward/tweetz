@@ -6,7 +6,7 @@ namespace tweetz.core.Services
 {
     public static class TwitterNamesService
     {
-        private static readonly HashSet<string> hashSet = new HashSet<string>();
+        private static readonly HashSet<string> hashSet = new HashSet<string>(StringComparer.Ordinal);
 
         public static IEnumerable<string> Names => hashSet;
 

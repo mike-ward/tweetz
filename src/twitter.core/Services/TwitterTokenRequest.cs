@@ -32,7 +32,7 @@ namespace twitter.core.Services
 
             if (string.CompareOrdinal(callbackConfirmed, "true") != 0)
             {
-                throw new InvalidProgramException("callback token not confirmed");
+                throw new InvalidOperationException("callback token not confirmed");
             }
 
             return new OAuthTokens

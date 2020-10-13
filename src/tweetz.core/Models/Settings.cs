@@ -47,7 +47,7 @@ namespace tweetz.core.Models
         private bool applyGrayscaleShader;
         private double fontSize = 12;
         private string theme = "dark";
-        private string? myTweetColor = null;
+        private string? myTweetColor;
         private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]

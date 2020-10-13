@@ -13,7 +13,7 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs e)
+        private static void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }

@@ -15,8 +15,8 @@ namespace twitter.core.Services
     public static class UserConnectionsService
     {
         private const int maxIds = 100; // Twitter cap
-        private static int lastIndex = 0;
-        private static readonly ConcurrentDictionary<string, UserConnection> UserConnectionsDirectory = new ConcurrentDictionary<string, UserConnection>();
+        private static int lastIndex;
+        private static readonly ConcurrentDictionary<string, UserConnection> UserConnectionsDirectory = new ConcurrentDictionary<string, UserConnection>(StringComparer.Ordinal);
 
         public static async Task UpdateUserConnectionsAsync(TwitterApi twitterApi)
         {

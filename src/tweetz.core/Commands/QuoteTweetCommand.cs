@@ -38,7 +38,7 @@ namespace tweetz.core.Commands
             TabBarControlViewModel.ShowComposeControl = true;
         }
 
-        private TwitterStatus? StatusFromParameter(object parameter)
+        private static TwitterStatus? StatusFromParameter(object parameter)
         {
             return parameter is TwitterStatus twitterStatus && twitterStatus.Id != null && twitterStatus.User != null
                 ? twitterStatus

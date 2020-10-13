@@ -54,7 +54,7 @@ namespace twitter.core.Services
 
         private async ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            await RequestAsync<string>(url, parameters, method);
+            await RequestAsync<string>(url, parameters, method).ConfigureAwait(false);
         }
 
         private ValueTask<T> RequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
@@ -149,10 +149,10 @@ namespace twitter.core.Services
             await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
         }
 
-        private static async ValueTask WriteTextToStreamAsync(Stream stream, string text)
+        private static ValueTask WriteTextToStreamAsync(Stream stream, string text)
         {
             var buffer = Encoding.UTF8.GetBytes(text);
-            await stream.WriteAsync(buffer.AsMemory(0, buffer.Length)).ConfigureAwait(false);
+            return stream.WriteAsync(buffer.AsMemory(0, buffer.Length));
         }
     }
 }

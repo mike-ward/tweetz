@@ -36,9 +36,9 @@ namespace tweetz.core.Commands
             e.CanExecute = StatusFromParameter(e.Parameter) != null;
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs args)
+        private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
         {
-            CommandHandlerAsync(args).ConfigureAwait(false);
+            await CommandHandlerAsync(args).ConfigureAwait(false);
         }
 
         private async ValueTask CommandHandlerAsync(ExecutedRoutedEventArgs args)

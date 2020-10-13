@@ -106,7 +106,7 @@ namespace tweetz.core.Views.Behaviors
 
             if (!string.IsNullOrEmpty(indicator))
             {
-                startIndex = tb.Text.LastIndexOf(indicator);
+                startIndex = tb.Text.LastIndexOf(indicator, StringComparison.Ordinal);
                 if (startIndex == -1) { return; }
 
                 startIndex += indicator.Length;

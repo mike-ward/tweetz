@@ -78,8 +78,7 @@ namespace tweetz.core.Commands
                     mediaIds)
                     .ConfigureAwait(true);
 
-                await Application.Current.Dispatcher.InvokeAsync(
-                    async () => await UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel));
+                await Application.Current.Dispatcher.InvokeAsync(() => UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel));
 
                 TabBarControlViewModel.ShowComposeControl = false;
                 ComposeControlViewModel.Clear();

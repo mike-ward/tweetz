@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace twitter.core.Models
@@ -12,7 +13,7 @@ namespace twitter.core.Models
         [JsonPropertyName("connections")]
         public string[] Connections { get; set; }
 
-        public bool IsFollowing { get => Connections?.Contains("following") ?? false; }
-        public bool IsFollowedBy { get => Connections?.Contains("followed_by") ?? false; }
+        public bool IsFollowing { get => Connections?.Contains("following", StringComparer.Ordinal) ?? false; }
+        public bool IsFollowedBy { get => Connections?.Contains("followed_by", StringComparer.Ordinal) ?? false; }
     }
 }
