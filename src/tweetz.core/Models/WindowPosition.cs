@@ -2,6 +2,7 @@
 
 namespace tweetz.core.Models
 {
+    [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Auto)]
     public struct WindowPosition
     {
         public int Left { get; set; }

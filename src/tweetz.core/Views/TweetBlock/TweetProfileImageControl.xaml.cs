@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using tweetz.core.Infrastructure.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
@@ -48,7 +49,7 @@ namespace tweetz.core.Views
                     bitmap.EndInit();
 
                     imageControl.Source = bitmap;
-                    TraceService.Message($"Retry ({Retries}) loading profile image: {uri}");
+                    TraceService.Message($"Retry ({Retries.ToStringInvariant()}) loading profile image: {uri}");
                 }
                 else
                 {

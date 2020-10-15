@@ -13,12 +13,12 @@ namespace tweetz.core.Views
 
         private void Close(object sender, MouseButtonEventArgs e)
         {
-            ApplicationCommands.Close.Execute(null, this);
+            ApplicationCommands.Close.Execute(parameter: null, this);
         }
 
         private void Minimize(object sender, MouseButtonEventArgs e)
         {
-            MinimizeCommand.Command.Execute(null, this);
+            MinimizeCommand.Command.Execute(parameter: null, this);
         }
     }
 }

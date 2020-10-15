@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using tweetz.core.Infrastructure.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
@@ -37,7 +38,7 @@ namespace tweetz.core.Views
                     bitmap.EndInit();
 
                     image.Source = bitmap;
-                    TraceService.Message($"Retry ({Retries}) loading image: {uri}");
+                    TraceService.Message($"Retry ({Retries.ToStringInvariant()}) loading image: {uri.ToStringInvariant()}");
                 }
                 else
                 {

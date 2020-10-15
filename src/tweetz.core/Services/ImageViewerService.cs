@@ -61,7 +61,7 @@ namespace tweetz.core.Services
 
         public static bool IsMp4(string url)
         {
-            var findExtension = new Regex(@".+(\.\w{3})\?*.*");
+            var findExtension = new Regex(@".+(\.\w{3})\?*.*", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
             var result = findExtension.Match(url);
 
             return result.Success &&
@@ -83,7 +83,7 @@ namespace tweetz.core.Services
                     var vb = new VisualBrush(element);
 
                     using var dc = dv.RenderOpen();
-                    dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
+                    dc.DrawRectangle(vb, pen: null, new Rect(new Point(), new Size(width, height)));
                     dc.Close();
 
                     var bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);

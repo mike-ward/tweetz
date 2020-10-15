@@ -33,6 +33,6 @@ namespace tweetz.core.Infrastructure.PowerManagement
         /// <summary>
         /// Informs the system that the state being set should remain in effect until the next call that uses ES_CONTINUOUS and one of the other state flags is cleared.
         /// </summary>
-        Continuous = unchecked((int)0x80000000)
+        Continuous = unchecked((int)0x80000000),
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace twitter.core.Services
 {
-    internal class OAuthApiRequest
+    internal sealed class OAuthApiRequest
     {
         public const string GET = "GET";
         public const string POST = "POST";
@@ -52,6 +52,7 @@ namespace twitter.core.Services
             return RequestAsync<T>(url, parameters, POST);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage")]
         private async ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
             await RequestAsync<string>(url, parameters, method).ConfigureAwait(false);
@@ -110,7 +111,7 @@ namespace twitter.core.Services
             var nonce = OAuth.Nonce();
             var timestamp = OAuth.TimeStamp();
             const string uploadUrl = TwitterApi.UploadMediaUrl;
-            var signature = OAuth.Signature(POST, uploadUrl, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, null);
+            var signature = OAuth.Signature(POST, uploadUrl, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, parameters: null);
             var authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
 
             var request = WebRequest.Create(uploadUrl);

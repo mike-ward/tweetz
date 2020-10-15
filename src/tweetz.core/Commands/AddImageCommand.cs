@@ -46,7 +46,7 @@ namespace tweetz.core.Commands
 
             using var ofd = new OpenFileDialog
             {
-                Filter = filter
+                Filter = filter,
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)

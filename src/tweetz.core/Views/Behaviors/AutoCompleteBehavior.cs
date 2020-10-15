@@ -18,7 +18,7 @@ namespace tweetz.core.Views.Behaviors
                 "AutoCompleteItemsSource",
                 typeof(IEnumerable<string>),
                 typeof(AutoCompleteBehavior),
-                new UIPropertyMetadata(null, OnAutoCompleteItemsSource)
+                new UIPropertyMetadata(defaultValue: null, OnAutoCompleteItemsSource)
             );
 
         public static IEnumerable<string>? GetAutoCompleteItemsSource(DependencyObject obj) => obj.GetValue(AutoCompleteItemsSource) as IEnumerable<string>;

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
-using tweetz.core.Views;
 using tweetz.core.Infrastructure;
+using tweetz.core.Views;
 
 namespace tweetz.core.Commands
 {
@@ -13,7 +13,7 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
-        private void CommandHandler(object sender, ExecutedRoutedEventArgs args)
+        private static void CommandHandler(object sender, ExecutedRoutedEventArgs args)
         {
             var timeline = args.Parameter as TimelineView;
             timeline?.ScrollToHome();

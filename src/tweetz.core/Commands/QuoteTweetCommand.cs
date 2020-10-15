@@ -22,7 +22,7 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler, CanExecute);
         }
 
-        private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private static void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = StatusFromParameter(e.Parameter) != null;
         }

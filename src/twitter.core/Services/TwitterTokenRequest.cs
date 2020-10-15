@@ -17,7 +17,7 @@ namespace twitter.core.Services
             var timestamp = OAuth.TimeStamp();
             var parameters = new[] { ("oauth_callback", "oob") };
             var signature = OAuth.Signature(OAuthApiRequest.POST, requestTokenUrl, nonce, timestamp, consumerKey, consumerSecret, "", "", parameters);
-            var authorizationHeader = OAuth.AuthorizationHeader(nonce, timestamp, consumerKey, null, signature, parameters);
+            var authorizationHeader = OAuth.AuthorizationHeader(nonce, timestamp, consumerKey, accessToken: null, signature, parameters);
 
             var request = System.Net.WebRequest.Create(new Uri(requestTokenUrl));
             request.Method = OAuthApiRequest.POST;
@@ -38,7 +38,7 @@ namespace twitter.core.Services
             return new OAuthTokens
             {
                 OAuthToken = oauthToken,
-                OAuthSecret = oauthSecret
+                OAuthSecret = oauthSecret,
             };
         }
 
@@ -69,7 +69,7 @@ namespace twitter.core.Services
                 OAuthToken = Token(tokens[0]),
                 OAuthSecret = Token(tokens[1]),
                 UserId = Token(tokens[2]),
-                ScreenName = Token(tokens[3])
+                ScreenName = Token(tokens[3]),
             };
 
             return oauthTokens;

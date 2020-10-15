@@ -5,17 +5,17 @@ using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views.UserProfileBlock
 {
-    public partial class UserProfileBlock : UserControl
+    public partial class UserProfileBlockControl : UserControl
     {
-        public UserProfileBlock()
+        public UserProfileBlockControl()
         {
             InitializeComponent();
             Loaded += OnLoad;
         }
 
-        private void OnLoad(object sender, RoutedEventArgs e)
+        private async void OnLoad(object sender, RoutedEventArgs e)
         {
-            OnLoadAsync().ConfigureAwait(false);
+            await OnLoadAsync().ConfigureAwait(false);
         }
 
         private async ValueTask OnLoadAsync()

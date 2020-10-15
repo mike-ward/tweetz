@@ -99,7 +99,7 @@ namespace tweetz.core.Services
                 ?.Select(hashtag =>
                 (
                     FlowContentNodeType: FlowContentNodeType.HashTag,
-                    Text: hashtag.Text,
+                    hashtag.Text,
                     Start: hashtag.Indices[0],
                     End: hashtag.Indices[1]
                 ))
@@ -134,16 +134,16 @@ namespace tweetz.core.Services
             var hyperlink = new Hyperlink(new Run(link))
             {
                 CommandParameter = link,
-                ToolTip = link
+                ToolTip = link,
             };
 
-            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, null);
+            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, target: null);
             hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
 
             var textblock = new TextBlock(hyperlink)
             {
                 MaxWidth = maxDisplayLength,
-                TextTrimming = TextTrimming.CharacterEllipsis
+                TextTrimming = TextTrimming.CharacterEllipsis,
             };
 
             var container = new InlineUIContainer(textblock);
@@ -153,7 +153,7 @@ namespace tweetz.core.Services
         private static Hyperlink Mention(string text)
         {
             var tooltip = new ToolTip();
-            var userProfile = new UserProfileBlock();
+            var userProfile = new UserProfileBlockControl();
 
             tooltip.Content = userProfile;
             tooltip.Style = GetToolTipStyle();
@@ -163,10 +163,10 @@ namespace tweetz.core.Services
             var hyperlink = new Hyperlink(new Run("@" + text))
             {
                 CommandParameter = link,
-                ToolTip = tooltip
+                ToolTip = tooltip,
             };
 
-            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, null);
+            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, target: null);
             return hyperlink;
         }
 
@@ -182,10 +182,10 @@ namespace tweetz.core.Services
             var tag = "#" + text;
             var hyperlink = new Hyperlink(new Run(tag))
             {
-                CommandParameter = tag
+                CommandParameter = tag,
             };
 
-            hyperlink.Click += (_, __) => SearchCommand.Command.Execute(tag, null);
+            hyperlink.Click += (_, __) => SearchCommand.Command.Execute(tag, target: null);
             return hyperlink;
         }
 

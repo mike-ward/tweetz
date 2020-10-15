@@ -8,7 +8,7 @@ using tweetz.core.Models;
 
 namespace tweetz.core.Services
 {
-    public class WindowInteropService : IWindowInteropService
+    public sealed class WindowInteropService : IWindowInteropService
     {
         public void SetWindowPosition(Window window, WindowPosition windowPosition)
         {
@@ -40,8 +40,8 @@ namespace tweetz.core.Services
                     Left = position.Left,
                     Top = position.Top,
                     Right = position.Left + position.Width,
-                    Bottom = position.Top + position.Height
-                }
+                    Bottom = position.Top + position.Height,
+                },
             };
         }
 
@@ -52,7 +52,7 @@ namespace tweetz.core.Services
                 Left = placement.normalPosition.Left,
                 Top = placement.normalPosition.Top,
                 Width = placement.normalPosition.Right - placement.normalPosition.Left,
-                Height = placement.normalPosition.Bottom - placement.normalPosition.Top
+                Height = placement.normalPosition.Bottom - placement.normalPosition.Top,
             };
 
             return pos;

@@ -42,7 +42,7 @@ namespace tweetz.core.Views.ComposeBlock
             if (!e.Handled && e.Key == Key.Return && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
                 var command = UpdateStatusCommand.Command;
-                if (command.CanExecute(null, this)) command.Execute(null, this);
+                if (command.CanExecute(parameter: null, this)) command.Execute(parameter: null, this);
                 e.Handled = true;
             }
         }

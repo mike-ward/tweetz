@@ -19,9 +19,8 @@ namespace twitter.core.Services
         public static string UrlEncode(string value)
         {
             var encoded = Uri.EscapeDataString(value);
-
             return Regex
-                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpperInvariant())
+                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpperInvariant(), RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1))
                 .Replace("(", "%28", StringComparison.Ordinal)
                 .Replace(")", "%29", StringComparison.Ordinal)
                 .Replace("$", "%24", StringComparison.Ordinal)
@@ -54,7 +53,7 @@ namespace twitter.core.Services
             string accessTokenSecret,
             IEnumerable<(string, string)>? parameters)
         {
-            var parameterList = OrderedParameters(nonce, timestamp, consumerKey, accessToken, null, parameters);
+            var parameterList = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature: null, parameters);
             var parameterStrings = parameterList.Select(p => $"{p.Item1}={p.Item2}");
             var parameterString = string.Join("&", parameterStrings);
             var signatureBaseString = $"{httpMethod}&{UrlEncode(url)}&{UrlEncode(parameterString)}";

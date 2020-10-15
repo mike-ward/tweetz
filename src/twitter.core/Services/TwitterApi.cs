@@ -95,7 +95,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode(),
-                        TwitterOptions.ScreenName(screenName)
+                        TwitterOptions.ScreenName(screenName),
                     })
                 .ConfigureAwait(false);
 
@@ -114,7 +114,7 @@ namespace twitter.core.Services
                         TwitterOptions.Count(100),
                         TwitterOptions.Query(query),
                         TwitterOptions.IncludeEntities(),
-                        TwitterOptions.ExtendedTweetMode()
+                        TwitterOptions.ExtendedTweetMode(),
                     });
         }
 
@@ -165,7 +165,7 @@ namespace twitter.core.Services
             var parameters = new List<(string, string)>
             {
                 TwitterOptions.Status(text),
-                TwitterOptions.ExtendedTweetMode()
+                TwitterOptions.ExtendedTweetMode(),
             };
 
             if (!string.IsNullOrEmpty(replyToStatusId))
@@ -196,7 +196,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Id(statusId),
                         TwitterOptions.IncludeEntities(),
-                        TwitterOptions.ExtendedTweetMode()
+                        TwitterOptions.ExtendedTweetMode(),
                     });
         }
 
@@ -210,7 +210,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Command("INIT"),
                         TwitterOptions.TotalBytes(totalBytes),
-                        TwitterOptions.MediaType(mediaType)
+                        TwitterOptions.MediaType(mediaType),
                     });
         }
 
@@ -227,7 +227,7 @@ namespace twitter.core.Services
                     new[]
                     {
                         TwitterOptions.Command("STATUS"),
-                        TwitterOptions.MediaId(mediaId)
+                        TwitterOptions.MediaId(mediaId),
                     });
         }
 
@@ -238,7 +238,7 @@ namespace twitter.core.Services
                     new[]
                     {
                         TwitterOptions.Command("FINALIZE"),
-                        TwitterOptions.MediaId(mediaId)
+                        TwitterOptions.MediaId(mediaId),
                     });
         }
 
@@ -248,7 +248,7 @@ namespace twitter.core.Services
                 .Get<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",
                     new[]
                     {
-                       TwitterOptions.UserIds(ids)
+                       TwitterOptions.UserIds(ids),
                     });
         }
     }

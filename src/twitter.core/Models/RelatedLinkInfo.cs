@@ -38,10 +38,10 @@ namespace twitter.core.Models
                                 Url = ImageUrl,
                                 MediaUrl = ImageUrl,
                                 DisplayUrl = ImageUrl,
-                                ExpandedUrl = ImageUrl
-                            }
-                        }
-                }
+                                ExpandedUrl = ImageUrl,
+                            },
+                        },
+                },
             };
         }
 

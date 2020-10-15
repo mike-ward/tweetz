@@ -1,5 +1,5 @@
 ﻿<UserControl
-  x:Class="tweetz.core.Views.UserProfileBlock.UserProfileBlock"
+  x:Class="tweetz.core.Views.UserProfileBlock.UserProfileBlockControl"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Views"

@@ -9,7 +9,7 @@ namespace tweetz.core.Infrastructure.DesktopWindowManager
 
         public static bool IsDwmEnabled()
         {
-            DwmIsCompositionEnabled(out var enabled);
+            _ = DwmIsCompositionEnabled(out var enabled);
             return enabled;
         }
     }

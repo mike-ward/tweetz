@@ -63,7 +63,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private void CopyImageToClipboard_Click(object sender, RoutedEventArgs e)
         {
-            ImageViewerService.CopyUIElementToClipboard(MediaElement, null);
+            ImageViewerService.CopyUIElementToClipboard(MediaElement, uri: null);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)

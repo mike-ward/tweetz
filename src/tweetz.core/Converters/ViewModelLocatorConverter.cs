@@ -8,7 +8,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var type = parameter as Type ?? throw new NullReferenceException(nameof(parameter));
+            var type = parameter as Type ?? throw new ArgumentNullException(nameof(parameter));
             return BootStrapper.GetService(type);
         }
 

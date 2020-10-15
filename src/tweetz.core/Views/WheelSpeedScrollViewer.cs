@@ -68,7 +68,7 @@ namespace tweetz.core.Views
             var animation = new DoubleAnimation
             {
                 To = offset,
-                Duration = ScrollDuration
+                Duration = ScrollDuration,
             };
 
             Storyboard.SetTarget(animation, this);

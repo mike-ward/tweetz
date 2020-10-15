@@ -53,7 +53,7 @@ namespace twitter.core.Services
             Count(count),
             IncludeRetweets(),
             IncludeEntities(),
-            ExtendedTweetMode()
+            ExtendedTweetMode(),
         };
     }
 }

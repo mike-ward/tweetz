@@ -156,7 +156,7 @@ namespace tweetz.core.Infrastructure.PowerManagement
             ProcessorIdleDomains,
             WakeTimerList,
             SystemHiberFileSize,
-            PowerInformationLevelMaximum
+            PowerInformationLevelMaximum,
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -175,7 +175,7 @@ namespace tweetz.core.Infrastructure.PowerManagement
             Sleeping3 = 4,
             Hibernate = 5,
             Shutdown = 6,
-            Maximum = 7
+            Maximum = 7,
         }
 
         [StructLayout(LayoutKind.Sequential)]

@@ -37,9 +37,9 @@ namespace tweetz.core.Views
 
                 var errorBinding = new Binding()
                 {
-                    Path = new PropertyPath("ErrorIndicatorVisibility", null),
+                    Path = new PropertyPath("ErrorIndicatorVisibility", pathParameters: null),
                     Source = this,
-                    Mode = BindingMode.OneWay
+                    Mode = BindingMode.OneWay,
                 };
 
                 _errorAdorner.SetBinding(VisibilityProperty, errorBinding);
@@ -54,9 +54,9 @@ namespace tweetz.core.Views
 
                 var newTweetsBinding = new Binding()
                 {
-                    Path = new PropertyPath("NewTweetsIndicatorVisibility", null),
+                    Path = new PropertyPath("NewTweetsIndicatorVisibility", pathParameters: null),
                     Source = this,
-                    Mode = BindingMode.OneWay
+                    Mode = BindingMode.OneWay,
                 };
 
                 _newTweetsAdorner.SetBinding(VisibilityProperty, newTweetsBinding);

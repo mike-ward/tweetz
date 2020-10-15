@@ -22,8 +22,8 @@ namespace tweetz.core.Models
                     {
                        DisplayUrl = donateUrl,
                        ExpandedUrl = donateUrl,
-                       Indices = new[] {36, 64}
-                    }
+                       Indices = new[] {36, 64},
+                    },
                 },
             };
             ExtendedEntities = new Entities
@@ -33,8 +33,8 @@ namespace tweetz.core.Models
                     new Media
                     {
                         MediaUrl = "https://mike-ward.net/cdn/images/donate.png",
-                    }
-                }
+                    },
+                },
             };
             User = new User
             {
@@ -43,7 +43,7 @@ namespace tweetz.core.Models
                 Id = "14410002",
                 Location = "Dubuque, IA",
                 ProfileImageUrl = "https://pbs.twimg.com/profile_images/495209879749935104/AV0xDcXP_bigger.jpeg",
-                Description = ".NET, Technology, Life, Whatever..."
+                Description = ".NET, Technology, Life, Whatever...",
             };
         }
     }

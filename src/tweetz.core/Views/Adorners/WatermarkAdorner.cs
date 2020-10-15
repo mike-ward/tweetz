@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace tweetz.core.Views.Adorners
 {
-    internal class WatermarkAdorner : Adorner
+    internal sealed class WatermarkAdorner : Adorner
     {
         private readonly ContentPresenter contentPresenter;
 
@@ -19,7 +19,7 @@ namespace tweetz.core.Views.Adorners
             {
                 Content = watermark,
                 Opacity = 0.5,
-                Margin = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0)
+                Margin = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0),
             };
 
             if (Control is ItemsControl && !(Control is ComboBox))
@@ -31,7 +31,7 @@ namespace tweetz.core.Views.Adorners
             var binding = new Binding("IsVisible")
             {
                 Source = adornedElement,
-                Converter = new BooleanToVisibilityConverter()
+                Converter = new BooleanToVisibilityConverter(),
             };
             SetBinding(VisibilityProperty, binding);
         }

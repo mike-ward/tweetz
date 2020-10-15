@@ -6,7 +6,7 @@ using twitter.core.Models;
 
 namespace tweetz.core.Commands
 {
-    internal class ShowTwitterStatusCommand : ICommandBinding
+    internal sealed class ShowTwitterStatusCommand : ICommandBinding
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
         private IMessageBoxService MessageBoxService { get; }
