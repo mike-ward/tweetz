@@ -52,10 +52,10 @@ namespace twitter.core.Services
             return RequestAsync<T>(url, parameters, POST);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage", Justification = "Conversion from ValueTask<T> to ValueTask")]
         private async ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
         {
-            await RequestAsync<string>(url, parameters, method).ConfigureAwait(false);
+            await RequestAsync<object>(url, parameters, method).ConfigureAwait(false);
         }
 
         private ValueTask<T> RequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
