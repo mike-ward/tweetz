@@ -21,6 +21,6 @@ namespace twitter.core.Models
         public int[] Indices { get; set; } = Array.Empty<int>();
 
         [JsonPropertyName("video_info")]
-        public VideoInfo? VideoInfo { get; set; } = new VideoInfo();
+        public VideoInfo? VideoInfo { get; set; }
     }
 }

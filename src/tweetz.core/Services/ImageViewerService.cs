@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -42,7 +41,7 @@ namespace tweetz.core.Services
 
         public static Uri MediaSource(Media media)
         {
-            if (media is null) throw new ArgumentNullException(nameof(media));
+            if (media is null) { throw new ArgumentNullException(nameof(media)); }
 
             if (media.VideoInfo?.Variants?[0] is null)
             {
@@ -50,7 +49,7 @@ namespace tweetz.core.Services
             }
 
             var url = media.VideoInfo.Variants
-                .Where(variant => !string.IsNullOrWhiteSpace(variant.Url) && IsMp4(variant.Url))
+                .Where(variant => IsMp4(variant.Url))
                 .Select(variant => variant.Url)
                 .FirstOrDefault();
 
@@ -59,14 +58,10 @@ namespace tweetz.core.Services
                 : new Uri(media.MediaUrl ?? throw new InvalidOperationException("expected MediaUrl"));
         }
 
-        public static bool IsMp4(string url)
+        public static bool IsMp4(string? url)
         {
-            var findExtension = new Regex(@".+(\.\w{3})\?*.*", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-            var result = findExtension.Match(url);
-
-            return result.Success &&
-                   result.Groups.Count > 1 &&
-                   string.Equals(result.Groups[1].Value, ".mp4", StringComparison.InvariantCultureIgnoreCase);
+            return !string.IsNullOrWhiteSpace(url)
+                && url.Contains(".mp4", StringComparison.OrdinalIgnoreCase);
         }
 
         public static void CopyUIElementToClipboard(FrameworkElement element, Uri? uri)
