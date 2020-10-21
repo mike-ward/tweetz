@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -191,12 +192,7 @@ namespace tweetz.core.Services
 
         private static string ConvertXmlEntities(string text)
         {
-            return text
-                .Replace("&lt;", "<", StringComparison.Ordinal)
-                .Replace("&gt;", ">", StringComparison.Ordinal)
-                .Replace("&quot;", "\"", StringComparison.Ordinal)
-                .Replace("&apos;", "'", StringComparison.Ordinal)
-                .Replace("&amp;", "&", StringComparison.Ordinal);
+            return WebUtility.HtmlDecode(WebUtility.HtmlDecode(text)); // Twice to handle sequences like: "&amp;mdash;"
         }
     }
 }
