@@ -54,7 +54,7 @@ namespace tweetz.core.Services
                 .Select(variant => variant.Url)
                 .FirstOrDefault();
 
-            return url != null
+            return url is not null
                 ? new Uri(url)
                 : new Uri(media.MediaUrl ?? throw new InvalidOperationException("expected MediaUrl"));
         }

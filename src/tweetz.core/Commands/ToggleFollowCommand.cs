@@ -33,7 +33,7 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = StatusFromParameter(e.Parameter) != null;
+            e.CanExecute = StatusFromParameter(e.Parameter) is not null;
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
@@ -49,7 +49,7 @@ namespace tweetz.core.Commands
                 inCommand = true;
 
                 var twitterStatus = StatusFromParameter(args.Parameter);
-                if (twitterStatus != null)
+                if (twitterStatus is not null)
                 {
                     var screenName = twitterStatus.User.ScreenName;
                     if (screenName is null) return;
@@ -58,7 +58,7 @@ namespace tweetz.core.Commands
                     {
                         await TwitterService.Unfollow(screenName).ConfigureAwait(true);
                         var user = twitterStatus.User;
-                        if (user != null)
+                        if (user is not null)
                         {
                             user.Followers = Math.Max(0, user.Followers - 1);
                             user.IsFollowing = false;
@@ -68,7 +68,7 @@ namespace tweetz.core.Commands
                     {
                         await TwitterService.Follow(screenName).ConfigureAwait(true);
                         var user = twitterStatus.User;
-                        if (user != null)
+                        if (user is not null)
                         {
                             user.Followers++;
                             user.IsFollowing = true;

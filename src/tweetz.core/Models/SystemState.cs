@@ -19,7 +19,7 @@ namespace tweetz.core.Models
             get
             {
                 using var registryKey = OpenStartupSubKey();
-                return registryKey.GetValue(ApplicationName) != null;
+                return registryKey.GetValue(ApplicationName) is not null;
             }
 
             set

@@ -16,11 +16,11 @@ namespace twitter.core.Models
     /// </summary>
     public class RelatedLinkInfo
     {
-        public string Url { get; private set; }
-        public string Title { get; private set; }
+        public string Url { get; private set; } = string.Empty;
+        public string Title { get; private set; } = string.Empty;
         public string? ImageUrl { get; private set; }
-        public string Description { get; private set; }
-        public string SiteName { get; private set; }
+        public string Description { get; private set; } = string.Empty;
+        public string SiteName { get; private set; } = string.Empty;
 
         public TwitterStatus ImageTwitterStatus
         {
@@ -126,7 +126,7 @@ namespace twitter.core.Models
             var metaTags = document.DocumentNode.SelectNodes("//meta");
             var metaInfo = new RelatedLinkInfo { Url = url };
 
-            if (metaTags != null)
+            if (metaTags is not null)
             {
                 foreach (var tag in metaTags)
                 {
@@ -134,7 +134,7 @@ namespace twitter.core.Models
                     var tagContent = tag.Attributes["content"];
                     var tagProperty = tag.Attributes["property"];
 
-                    if (tagName != null && tagContent != null)
+                    if (tagName is not null && tagContent is not null)
                     {
                         switch (tagName.Value.ToLower(CultureInfo.InvariantCulture))
                         {
@@ -171,7 +171,7 @@ namespace twitter.core.Models
                                 break;
                         }
                     }
-                    else if (tagProperty != null && tagContent != null)
+                    else if (tagProperty is not null && tagContent is not null)
                     {
                         switch (tagProperty.Value.ToLower(CultureInfo.InvariantCulture))
                         {

@@ -1,25 +1,4 @@
 ﻿[*.cs]
 
-# CS8618: Non-nullable field is uninitialized. Consider declaring as nullable.
-dotnet_diagnostic.CS8618.severity = none
-
-# CA2211: Non-constant fields should not be visible
-dotnet_diagnostic.CA2211.severity = none
-
-# CA1031: Do not catch general exception types
-dotnet_diagnostic.CA1031.severity = none
-
-# CA1724: The type name ComposeBlock conflicts in whole or in part with the namespace name 'tweetz.core.Controls.ComposeBlock'. Change either name to eliminate the conflict.
-dotnet_diagnostic.CA1724.severity = none
-
-# RCS1090: Call 'ConfigureAwait(false)'.
-dotnet_diagnostic.RCS1090.severity = none
-
-# CA1812: ShowTwitterStatusCommand is an internal class that is apparently never instantiated. If so, remove the code from the assembly. If this class is intended to contain only static members, make it static (Shared in Visual Basic).
-dotnet_diagnostic.CA1812.severity = silent
-
-# RCS1079: Throwing of new NotImplementedException.
-dotnet_diagnostic.RCS1079.severity = silent
-
 # RCS1226: Add paragraph to documentation comment.
 dotnet_diagnostic.RCS1226.severity = none

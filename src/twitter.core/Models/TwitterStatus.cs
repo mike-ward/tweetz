@@ -33,10 +33,10 @@ namespace twitter.core.Models
         public string? Text { get; set; }
 
         [JsonPropertyName("user")]
-        public User User { get; set; }
+        public User User { get; set; } = User.Empty;
 
         [JsonPropertyName("created_at")]
-        public string CreatedAt { get; set; }
+        public string CreatedAt { get; set; } = string.Empty;
 
         [JsonPropertyName("entities")]
         public Entities? Entities { get; set; }
@@ -44,7 +44,7 @@ namespace twitter.core.Models
         [JsonPropertyName("extended_entities")]
         public Entities? ExtendedEntities { get; set; }
 
-        public bool IsQuoted => QuotedStatus != null;
+        public bool IsQuoted => QuotedStatus is not null;
 
         [JsonPropertyName("quoted_status")]
         public TwitterStatus? QuotedStatus { get; set; }
@@ -52,7 +52,7 @@ namespace twitter.core.Models
         [JsonPropertyName("quote_count")]
         public int QuoteCount { get => quoteCount; set => SetProperty(ref quoteCount, value); }
 
-        public bool IsRetweet => RetweetedStatus != null;
+        public bool IsRetweet => RetweetedStatus is not null;
 
         [JsonPropertyName("retweeted_status")]
         public TwitterStatus? RetweetedStatus { get; set; }
@@ -208,6 +208,19 @@ namespace twitter.core.Models
             PropertyChanged?.Invoke(OriginatingStatus, new PropertyChangedEventArgs(nameof(CreatedDate)));
         }
 
+        // Overrides
+        //
+
+        public override bool Equals(object? obj)
+        {
+            return obj is TwitterStatus tw && Id.Equals(tw.Id, StringComparison.Ordinal);
+        }
+
+        public override int GetHashCode()
+        {
+            return StringComparer.Ordinal.GetHashCode(Id);
+        }
+
         // INotifyPropertyChanged Implementation
         //
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -221,7 +234,7 @@ namespace twitter.core.Models
             }
         }
 
-        protected virtual void OnPropertyChanged(string? propertyName)
+        protected void OnPropertyChanged(string? propertyName)
         {
             if (propertyName is null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

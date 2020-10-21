@@ -15,7 +15,7 @@ namespace tweetz.core.Infrastructure
             OnPropertyChanged(propertyName);
         }
 
-        protected virtual void OnPropertyChanged(string? propertyName)
+        protected void OnPropertyChanged(string? propertyName)
         {
             if (propertyName is null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

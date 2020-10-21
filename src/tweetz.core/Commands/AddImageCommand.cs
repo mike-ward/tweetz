@@ -90,7 +90,7 @@ namespace tweetz.core.Commands
             await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
             var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);
 
-            if (finalize.ProcessingInfo != null)
+            if (finalize.ProcessingInfo is not null)
             {
                 await UntilProcessingFinishedAsync(media.MediaId).ConfigureAwait(false);
             }

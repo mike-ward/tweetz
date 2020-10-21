@@ -11,7 +11,7 @@ namespace tweetz.core.Models
 {
     public class Settings : NotifyPropertyChanged, ISettings
     {
-        public static Settings SettingsStatic { get; private set; }
+        public static Settings? SettingsStatic { get; private set; }
 
         public Settings()
         {
@@ -30,7 +30,7 @@ namespace tweetz.core.Models
         }
 
         private string Profile { get; }
-        private IMessageBoxService MessageBoxService { get; }
+        private IMessageBoxService? MessageBoxService { get; }
 
         private string? accessToken;
         private string? accessTokenSecret;
@@ -139,7 +139,7 @@ namespace tweetz.core.Models
             catch (IOException ex)
             {
                 var retry = (string)Application.Current.FindResource("try-again") ?? string.Empty;
-                var result = MessageBoxService.ShowMessageBoxYesNo(ex.Message + $"\n\n{retry}");
+                var result = MessageBoxService?.ShowMessageBoxYesNo(ex.Message + $"\n\n{retry}");
                 if (result == MessageBoxResult.Yes) Save();
             }
         }

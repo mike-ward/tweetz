@@ -9,6 +9,7 @@ namespace tweetz.core.ViewModels
 
         public TitleBarControlViewModel(ISettings settings)
         {
+            title = string.Empty;
             Settings = settings;
             Settings.PropertyChanged += Settings_PropertyChanged;
         }

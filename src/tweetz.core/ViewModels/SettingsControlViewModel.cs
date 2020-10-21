@@ -17,7 +17,7 @@ namespace tweetz.core.ViewModels
             Settings = settings;
             SystemState = systemState;
 
-            if (checkForUpdates != null)
+            if (checkForUpdates is not null)
             {
                 checkForUpdates.PropertyChanged += (s, args) =>
                     UpdateAvailableToolTip = string.CompareOrdinal(checkForUpdates.Version.Trim(), VersionInfo.Version) != 0

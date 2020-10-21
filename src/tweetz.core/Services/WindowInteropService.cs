@@ -113,7 +113,7 @@ namespace tweetz.core.Services
                     if ((int)wParam == PowerManagementNativeMethods.PowerSettingChangeMessage)
                     {
                         var monitorStatus = PowerManager.MonitorStatus(wParam, lParam);
-                        if (SystemState != null)
+                        if (SystemState is not null)
                         {
                             SystemState.IsSleeping = monitorStatus == 0;
                         }

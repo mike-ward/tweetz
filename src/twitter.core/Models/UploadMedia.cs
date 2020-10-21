@@ -5,7 +5,7 @@ namespace twitter.core.Models
     public class UploadMedia
     {
         [JsonPropertyName("media_id_string")]
-        public string MediaId { get; set; }
+        public string MediaId { get; set; } = string.Empty;
 
         [JsonPropertyName("size")]
         public int Size { get; set; }
@@ -14,6 +14,6 @@ namespace twitter.core.Models
         public int ExpiresAfterSecs { get; set; }
 
         [JsonPropertyName("processing_info")]
-        public ProcessingInfo ProcessingInfo { get; set; }
+        public ProcessingInfo ProcessingInfo { get; set; } = ProcessingInfo.Empty;
     }
 }

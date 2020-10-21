@@ -1,10 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace twitter.core.Models
 {
     public class Tweet
     {
         [JsonPropertyName("statuses")]
-        public TwitterStatus[] Statuses { get; set; }
+        public TwitterStatus[] Statuses { get; set; } = Array.Empty<TwitterStatus>();
     }
 }

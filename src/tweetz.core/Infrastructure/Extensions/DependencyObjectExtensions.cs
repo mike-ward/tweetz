@@ -34,7 +34,7 @@ namespace tweetz.core.Infrastructure.Extensions
             where T : DependencyObject
         {
             for (var parent = VisualTreeHelper.GetParent(dependencyObject);
-                parent != null;
+                parent is not null;
                 parent = VisualTreeHelper.GetParent(parent))
             {
                 if (parent is T result) return result;

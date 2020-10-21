@@ -9,7 +9,7 @@ namespace tweetz.core.Services
         private static Matrix GetSizeFactors(Visual element)
         {
             var source = PresentationSource.FromVisual(element);
-            if (source != null)
+            if (source is not null)
             {
                 return source.CompositionTarget.TransformToDevice;
             }

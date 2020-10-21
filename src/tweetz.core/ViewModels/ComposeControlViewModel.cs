@@ -19,10 +19,11 @@ namespace tweetz.core.ViewModels
         private TwitterStatus? inReplyTo;
         private string statusText = string.Empty;
         private string attachmentUrl = string.Empty;
-        private string watermarkText;
+        private string? watermarkText;
 
         public ComposeControlViewModel(ISettings settings, ITwitterService twitterService)
         {
+            user = User.Empty;
             Settings = settings;
             TwitterService = twitterService;
         }
@@ -37,7 +38,7 @@ namespace tweetz.core.ViewModels
         public TwitterStatus? InReplyTo { get => inReplyTo; set => SetProperty(ref inReplyTo, value); }
         public string StatusText { get => statusText; set => SetProperty(ref statusText, value); }
         public string AttachmentUrl { get => attachmentUrl; set => SetProperty(ref attachmentUrl, value); }
-        public string WatermarkText { get => watermarkText; set => SetProperty(ref watermarkText, value); }
+        public string WatermarkText { get => watermarkText ?? string.Empty; set => SetProperty(ref watermarkText, value); }
         public ObservableCollection<MediaInfo> Media { get; } = new ObservableCollection<MediaInfo>();
 
         public async ValueTask GetUserInfoAsync()
@@ -79,7 +80,7 @@ namespace tweetz.core.ViewModels
         public void RemoveImage(string filename)
         {
             var item = Media.FirstOrDefault(mi => string.CompareOrdinal(mi.Path, filename) == 0);
-            if (item != null) Media.Remove(item);
+            if (item is not null) Media.Remove(item);
         }
 
         private bool CanAdd(string filename)

@@ -114,7 +114,7 @@ namespace twitter.core.Services
                 yield return ("oauth_token", UrlEncode(accessToken));
             }
 
-            if (parameters != null)
+            if (parameters is not null)
             {
                 foreach (var par in parameters.Select(par => (UrlEncode(par.Item1), UrlEncode(par.Item2))))
                 {

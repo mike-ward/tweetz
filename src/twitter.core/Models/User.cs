@@ -9,12 +9,14 @@ namespace twitter.core.Models
 {
     public class User : INotifyPropertyChanged
     {
+        public static readonly User Empty = new User();
+
         private bool isFollowing;
         private bool isFollowedBy;
         private string? memberSince;
 
         [JsonPropertyName("id_str")]
-        public string Id { get; set; }
+        public string Id { get; set; } = string.Empty;
 
         [JsonPropertyName("name")]
         public string? Name { get; set; }

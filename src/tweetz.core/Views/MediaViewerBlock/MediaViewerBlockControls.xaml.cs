@@ -23,7 +23,7 @@ namespace tweetz.core.Views.MediaViewerBlock
             set => SetValue(MediaElementProperty, value);
         }
 
-        private DispatcherTimer timer;
+        private DispatcherTimer? timer;
         private const string PlayButtonSymbol = "PlaySymbol";
         private const string PauseButtonSymbol = "PauseSymbol";
 
@@ -36,7 +36,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private void OnMediaOpened(object _, RoutedEventArgs __)
         {
-            timer.Start();
+            timer?.Start();
             SetPlayPauseButtonSymbol(PlayPauseButton, PauseButtonSymbol);
 
             var visibility = MediaElement.NaturalDuration.HasTimeSpan
@@ -76,7 +76,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
             if (MediaElement.Source is null)
             {
-                timer.Stop();
+                timer?.Stop();
                 ProgressIndicator.Value = 0;
             }
         }

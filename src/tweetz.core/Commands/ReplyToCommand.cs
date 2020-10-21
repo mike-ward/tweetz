@@ -32,7 +32,7 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = StatusFromParameter(e.Parameter) != null;
+            e.CanExecute = StatusFromParameter(e.Parameter) is not null;
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs e)

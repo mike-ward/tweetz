@@ -32,7 +32,7 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = StatusFromParameter(e.Parameter) != null;
+            e.CanExecute = StatusFromParameter(e.Parameter) is not null;
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
@@ -47,7 +47,7 @@ namespace tweetz.core.Commands
                 if (inCommand) return;
                 inCommand = true;
                 var twitterStatus = StatusFromParameter(args.Parameter);
-                if (twitterStatus != null)
+                if (twitterStatus is not null)
                 {
                     if (twitterStatus.IsMyTweet) return;
 
