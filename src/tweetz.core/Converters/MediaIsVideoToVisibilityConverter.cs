@@ -22,6 +22,7 @@ namespace tweetz.core.Converters
             return ImageViewerService.IsMp4(url.ToString());
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

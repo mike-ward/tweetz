@@ -14,7 +14,7 @@
   <SolidColorBrush x:Key="TitleBarForegroundBrush">Black</SolidColorBrush>
   <SolidColorBrush x:Key="TitleBarBackgroundBrush">Gainsboro</SolidColorBrush>
 
-  <SolidColorBrush x:Key="SelectedForegroundBrush">DarkBlue</SolidColorBrush>
+  <SolidColorBrush x:Key="SelectedForegroundBrush">#003</SolidColorBrush>
   <SolidColorBrush x:Key="SelectedBackgroundBrush">#808080</SolidColorBrush>
   <SolidColorBrush x:Key="DisabledForegroundBrush">#666</SolidColorBrush>
 
@@ -24,7 +24,7 @@
   <SolidColorBrush x:Key="ToolTipForegroundBrush">#000</SolidColorBrush>
   <SolidColorBrush x:Key="ToolTipBackgroundBrush">#f8f8f8</SolidColorBrush>
 
-  <SolidColorBrush x:Key="LinkForegroundBrush">#002</SolidColorBrush>
+  <SolidColorBrush x:Key="LinkForegroundBrush">#003</SolidColorBrush>
 
   <SolidColorBrush x:Key="GlyphBrush">#444</SolidColorBrush>
   <SolidColorBrush x:Key="NormalBrush">#888</SolidColorBrush>

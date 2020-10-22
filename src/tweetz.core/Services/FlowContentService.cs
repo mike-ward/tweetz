@@ -192,7 +192,9 @@ namespace tweetz.core.Services
 
         private static string ConvertXmlEntities(string text)
         {
-            return WebUtility.HtmlDecode(WebUtility.HtmlDecode(text)); // Twice to handle sequences like: "&amp;mdash;"
+            // Twice to handle sequences like: "&amp;mdash;"
+            return WebUtility.HtmlDecode(
+                WebUtility.HtmlDecode(text));
         }
     }
 }
