@@ -11,9 +11,7 @@
   mc:Ignorable="d">
 
   <UserControl.Resources>
-    <Style
-      x:Key="StackPanelStyle"
-      TargetType="StackPanel">
+    <Style x:Key="StackPanelStyle" TargetType="StackPanel">
       <Setter Property="Margin" Value="30" />
       <Setter Property="MaxWidth" Value="200" />
     </Style>
@@ -35,9 +33,7 @@
       <Setter Property="Margin" Value="0,0,0,10" />
     </Style>
 
-    <Style
-      x:Key="TextBox"
-      TargetType="TextBox">
+    <Style x:Key="TextBox" TargetType="TextBox">
       <Setter Property="MaxWidth" Value="100" />
       <Setter Property="Margin" Value="0,0,0,10" />
       <Setter Property="FontSize" Value="16" />
@@ -50,9 +46,7 @@
       BasedOn="{StaticResource GetPinButtonStyle}"
       TargetType="Button">
       <Style.Triggers>
-        <DataTrigger
-          Binding="{Binding ElementName=PinTextBox, Path=Text.Length}"
-          Value="0">
+        <DataTrigger Binding="{Binding ElementName=PinTextBox, Path=Text.Length}" Value="0">
           <Setter Property="UIElement.IsEnabled" Value="False" />
         </DataTrigger>
       </Style.Triggers>
@@ -71,24 +65,18 @@
   <Grid>
     <Grid x:Name="Page1">
       <StackPanel Style="{StaticResource StackPanelStyle}">
-        <TextBlock
-          Style="{StaticResource TextBlock}"
-          Text="{StaticResource pin-instructions-1}" />
+        <TextBlock Style="{StaticResource TextBlock}" Text="{StaticResource pin-instructions-1}" />
 
         <Button
-          Click="GetPinClick"
+          Click="GetPinClickAsync"
           Content="{StaticResource pin-get-pin}"
           Style="{StaticResource GetPinButtonStyle}" />
       </StackPanel>
     </Grid>
 
-    <Grid
-      x:Name="Page2"
-      Visibility="Hidden">
+    <Grid x:Name="Page2" Visibility="Hidden">
       <StackPanel Style="{StaticResource StackPanelStyle}">
-        <TextBlock
-          Style="{StaticResource TextBlock}"
-          Text="{StaticResource pin-instructions-2}" />
+        <TextBlock Style="{StaticResource TextBlock}" Text="{StaticResource pin-instructions-2}" />
 
         <TextBox
           x:Name="PinTextBox"
@@ -96,13 +84,11 @@
           Text="{Binding Pin, Mode=TwoWay}" />
 
         <Button
-          Click="SignInClick"
+          Click="SignInClickAsync"
           Content="{StaticResource pin-sign-in}"
           Style="{StaticResource SignInButton}" />
 
-        <TextBlock
-          Style="{StaticResource TextBlock}"
-          Text="{StaticResource pin-about}" />
+        <TextBlock Style="{StaticResource TextBlock}" Text="{StaticResource pin-about}" />
 
         <Button
           Click="BackButton"

@@ -8,13 +8,11 @@ namespace tweetz.core.Services
 {
     public static class UpdateStatuses
     {
-        private static readonly IEqualityComparer<TwitterStatus> twitterStatusComparer = new TwitterStatusEqualityComparer();
-
         public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {
             // Build a hashset for faster lookups.
             var statusesNoNags = timeline.StatusCollection.Where(status => string.CompareOrdinal(status.Id, DonateNagStatus.DonateNagStatusId) != 0);
-            var hashSet = new HashSet<TwitterStatus>(statusesNoNags, twitterStatusComparer);
+            var hashSet = new HashSet<TwitterStatus>(statusesNoNags);
 
             foreach (var status in statuses.OrderBy(status => status.OriginatingStatus.CreatedDate))
             {

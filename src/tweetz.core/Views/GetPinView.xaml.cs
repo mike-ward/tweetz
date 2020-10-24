@@ -16,12 +16,7 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
-        private void GetPinClick(object sender, RoutedEventArgs e)
-        {
-            GetPinClickAsync().ConfigureAwait(false);
-        }
-
-        private async ValueTask GetPinClickAsync()
+        private async void GetPinClickAsync(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -40,12 +35,7 @@ namespace tweetz.core.Views
             }
         }
 
-        private void SignInClick(object sender, RoutedEventArgs e)
-        {
-            SignInClickAsync().ConfigureAwait(false);
-        }
-
-        private async ValueTask SignInClickAsync()
+        private async void SignInClickAsync(object sender, RoutedEventArgs e)
         {
             try
             {

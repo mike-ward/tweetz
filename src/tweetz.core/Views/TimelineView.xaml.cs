@@ -11,7 +11,10 @@ namespace tweetz.core.Views
     public partial class TimelineView : UserControl
     {
         private static readonly ThicknessAnimation SlideDownAnimation =
-            new ThicknessAnimation(new Thickness(0, -100, 0, 0), new Thickness(0), TimeSpan.FromMilliseconds(100));
+            new ThicknessAnimation(
+                fromValue: new Thickness(0, -100, 0, 0),
+                toValue: new Thickness(0),
+                duration: TimeSpan.FromMilliseconds(100));
 
         public TimelineView()
         {

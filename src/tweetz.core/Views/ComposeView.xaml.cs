@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
@@ -9,15 +8,10 @@ namespace tweetz.core.Views
         public ComposeView()
         {
             InitializeComponent();
-            IsVisibleChanged += OnIsVisibleChnaged;
+            IsVisibleChanged += OnIsVisibleChangedAsync;
         }
 
-        private void OnIsVisibleChnaged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-            OnIsVisibleChnagedAsync().ConfigureAwait(false);
-        }
-
-        private async ValueTask OnIsVisibleChnagedAsync()
+        private async void OnIsVisibleChangedAsync(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             if (DataContext is ComposeControlViewModel vm)
             {

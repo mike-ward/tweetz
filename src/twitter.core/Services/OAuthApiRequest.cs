@@ -32,27 +32,27 @@ namespace twitter.core.Services
             AccessTokenSecret = accessTokenSecret;
         }
 
-        public ValueTask Get(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask GetAsync(string url, IEnumerable<(string, string)> parameters)
         {
-            return Request(url, parameters, GET);
+            return RequestAsync(url, parameters, GET);
         }
 
-        public ValueTask<T> Get<T>(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask<T> GetAsync<T>(string url, IEnumerable<(string, string)> parameters)
         {
             return RequestAsync<T>(url, parameters, GET);
         }
 
-        public ValueTask Post(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask PostAsync(string url, IEnumerable<(string, string)> parameters)
         {
-            return Request(url, parameters, POST);
+            return RequestAsync(url, parameters, POST);
         }
 
-        public ValueTask<T> Post<T>(string url, IEnumerable<(string, string)> parameters)
+        public ValueTask<T> PostAsync<T>(string url, IEnumerable<(string, string)> parameters)
         {
             return RequestAsync<T>(url, parameters, POST);
         }
 
-        private async ValueTask Request(string url, IEnumerable<(string, string)> parameters, string method)
+        private async ValueTask RequestAsync(string url, IEnumerable<(string, string)> parameters, string method)
         {
             _ = await RequestAsync<object>(url, parameters, method).ConfigureAwait(false);
         }

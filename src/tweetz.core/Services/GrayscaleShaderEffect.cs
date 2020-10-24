@@ -6,7 +6,7 @@ using System.Windows.Media.Effects;
 namespace tweetz.core.Services
 {
     /// <summary>
-    /// Represents a grayscale pixel shader effect using the HSP method.
+    /// Grayscale pixel shader effect using the HSP method.
     /// </summary>
     public class GrayscaleShaderEffect : ShaderEffect
     {

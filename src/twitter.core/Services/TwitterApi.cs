@@ -60,7 +60,7 @@ namespace twitter.core.Services
         public async ValueTask<IEnumerable<TwitterStatus>> HomeTimeline()
         {
             var statuses = await oAuthApiRequest
-                .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
+                .GetAsync<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/home_timeline.json",
                     TwitterOptions.Default())
                 .ConfigureAwait(false);
 
@@ -70,7 +70,7 @@ namespace twitter.core.Services
         public async ValueTask<IEnumerable<TwitterStatus>> MentionsTimeline(int count)
         {
             var statuses = await oAuthApiRequest
-                .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
+                .GetAsync<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/mentions_timeline.json",
                     TwitterOptions.Default(count))
                 .ConfigureAwait(false);
 
@@ -80,7 +80,7 @@ namespace twitter.core.Services
         public async ValueTask<IEnumerable<TwitterStatus>> FavoritesTimeline()
         {
             var statuses = await oAuthApiRequest
-                .Get<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
+                .GetAsync<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/favorites/list.json",
                     TwitterOptions.Default())
                 .ConfigureAwait(false);
 
@@ -90,7 +90,7 @@ namespace twitter.core.Services
         public async ValueTask<User> UserInfo(string screenName)
         {
             var user = await oAuthApiRequest
-                .Get<User>("https://api.twitter.com/1.1/users/show.json",
+                .GetAsync<User>("https://api.twitter.com/1.1/users/show.json",
                     new[]
                     {
                         TwitterOptions.IncludeEntities(),
@@ -108,7 +108,7 @@ namespace twitter.core.Services
         public ValueTask<Tweet> Search(string query)
         {
             return oAuthApiRequest
-                .Get<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
+                .GetAsync<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
                     new[]
                     {
                         TwitterOptions.Count(100),
@@ -121,42 +121,42 @@ namespace twitter.core.Services
         public ValueTask RetweetStatus(string statusId)
         {
             return oAuthApiRequest
-               .Post($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
+               .PostAsync($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
                    Enumerable.Empty<(string, string)>());
         }
 
         public ValueTask UnretweetStatus(string statusId)
         {
             return oAuthApiRequest
-                .Post($"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
+                .PostAsync($"https://api.twitter.com/1.1/statuses/unretweet/{statusId}.json",
                     Enumerable.Empty<(string, string)>());
         }
 
         public ValueTask CreateFavorite(string statusId)
         {
             return oAuthApiRequest
-                .Post("https://api.twitter.com/1.1/favorites/create.json",
+                .PostAsync("https://api.twitter.com/1.1/favorites/create.json",
                      new[] { TwitterOptions.Id(statusId) });
         }
 
         public ValueTask DestroyFavorite(string statusId)
         {
             return oAuthApiRequest
-               .Post("https://api.twitter.com/1.1/favorites/destroy.json",
+               .PostAsync("https://api.twitter.com/1.1/favorites/destroy.json",
                   new[] { TwitterOptions.Id(statusId) });
         }
 
         public ValueTask Follow(string screenName)
         {
             return oAuthApiRequest
-               .Post("https://api.twitter.com/1.1/friendships/create.json",
+               .PostAsync("https://api.twitter.com/1.1/friendships/create.json",
                    new[] { TwitterOptions.ScreenName(screenName), });
         }
 
         public ValueTask Unfollow(string screenName)
         {
             return oAuthApiRequest
-               .Post("https://api.twitter.com/1.1/friendships/destroy.json",
+               .PostAsync("https://api.twitter.com/1.1/friendships/destroy.json",
                    new[] { TwitterOptions.ScreenName(screenName) });
         }
 
@@ -185,13 +185,13 @@ namespace twitter.core.Services
             }
 
             return oAuthApiRequest
-                .Post<TwitterStatus>("https://api.twitter.com/1.1/statuses/update.json", parameters);
+                .PostAsync<TwitterStatus>("https://api.twitter.com/1.1/statuses/update.json", parameters);
         }
 
         public ValueTask<TwitterStatus> GetStatus(string statusId)
         {
             return oAuthApiRequest
-                .Get<TwitterStatus>("https://api.twitter.com/1.1/statuses/show.json",
+                .GetAsync<TwitterStatus>("https://api.twitter.com/1.1/statuses/show.json",
                     new[]
                     {
                         TwitterOptions.Id(statusId),
@@ -205,7 +205,7 @@ namespace twitter.core.Services
         public ValueTask<UploadMedia> UploadMediaInit(int totalBytes, string mediaType)
         {
             return oAuthApiRequest
-                .Post<UploadMedia>(UploadMediaUrl,
+                .PostAsync<UploadMedia>(UploadMediaUrl,
                     new[]
                     {
                         TwitterOptions.Command("INIT"),
@@ -223,7 +223,7 @@ namespace twitter.core.Services
         public ValueTask<UploadMedia> UploadMediaStatus(string mediaId)
         {
             return oAuthApiRequest
-                .Get<UploadMedia>(UploadMediaUrl,
+                .GetAsync<UploadMedia>(UploadMediaUrl,
                     new[]
                     {
                         TwitterOptions.Command("STATUS"),
@@ -234,7 +234,7 @@ namespace twitter.core.Services
         public ValueTask<UploadMedia> UploadMediaFinalize(string mediaId)
         {
             return oAuthApiRequest
-                .Post<UploadMedia>(UploadMediaUrl,
+                .PostAsync<UploadMedia>(UploadMediaUrl,
                     new[]
                     {
                         TwitterOptions.Command("FINALIZE"),
@@ -245,7 +245,7 @@ namespace twitter.core.Services
         public ValueTask<IEnumerable<UserConnection>> GetFriendships(IEnumerable<string> ids)
         {
             return oAuthApiRequest
-                .Get<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",
+                .GetAsync<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",
                     new[]
                     {
                        TwitterOptions.UserIds(ids),

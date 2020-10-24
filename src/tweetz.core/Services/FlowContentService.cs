@@ -147,8 +147,7 @@ namespace tweetz.core.Services
                 TextTrimming = TextTrimming.CharacterEllipsis,
             };
 
-            var container = new InlineUIContainer(textblock);
-            return container;
+            return new InlineUIContainer(textblock);
         }
 
         private static Hyperlink Mention(string text)

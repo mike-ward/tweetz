@@ -213,7 +213,7 @@ namespace twitter.core.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is TwitterStatus tw && Id.Equals(tw.Id, StringComparison.Ordinal);
+            return obj is TwitterStatus twitterStatus && Id.Equals(twitterStatus.Id, StringComparison.Ordinal);
         }
 
         public override int GetHashCode()
@@ -236,8 +236,10 @@ namespace twitter.core.Models
 
         protected void OnPropertyChanged(string? propertyName)
         {
-            if (propertyName is null) return;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName is not null && PropertyChanged is not null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
