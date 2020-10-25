@@ -49,14 +49,12 @@ namespace twitter.core.Models
         {
             if (status.IsQuoted)
             {
-                status.CheckedRelatedInfo = true;
                 return status.RelatedLinkInfo;
             }
 
             var urls = status.Entities?.Urls;
             if (urls is null)
             {
-                status.CheckedRelatedInfo = true;
                 return status.RelatedLinkInfo;
             }
 
@@ -71,8 +69,6 @@ namespace twitter.core.Models
                     var relatedLinkInfo = await GetLinkInfoAsync(uri).ConfigureAwait(false);
                     if (relatedLinkInfo is null) continue;
 
-                    status.CheckedRelatedInfo = true;
-
                     if (hasMedia || !UrlValid(relatedLinkInfo.ImageUrl))
                     {
                         relatedLinkInfo.ImageUrl = null;
@@ -86,7 +82,6 @@ namespace twitter.core.Models
                 }
             }
 
-            status.CheckedRelatedInfo = true;
             return status.RelatedLinkInfo;
         }
 

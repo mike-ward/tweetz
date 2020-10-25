@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using twitter.core.Services;
 
@@ -20,7 +21,6 @@ namespace twitter.core.Models
         private RelatedLinkInfo? relatedLinkInfo;
         private bool retweetedByMe;
         private bool favorited;
-        private bool checkedRelatedInfo;
         private bool isSensitive;
 
         [JsonPropertyName("id_str")]
@@ -87,34 +87,22 @@ namespace twitter.core.Models
         [JsonIgnore]
         public string? OverrideLink { get; set; }
 
-        [JsonIgnore]
-        public bool CheckedRelatedInfo { get => checkedRelatedInfo; set => SetProperty(ref checkedRelatedInfo, value); }
+        private int checkedRelatedInfo; // Interlocked.CompareExchange() does not support bool
 
         [JsonIgnore]
         public RelatedLinkInfo? RelatedLinkInfo
         {
             get
             {
-                if (CheckedRelatedInfo) return relatedLinkInfo;
-                CheckedRelatedInfo = true;
-                Task.Factory.StartNew(async () => await GetRelatedInfoAsync().ConfigureAwait(false));
+                if (Interlocked.CompareExchange(ref checkedRelatedInfo, value: 1, comparand: 0) == 0)
+                {
+                    Task.Factory.StartNew(async () => relatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false));
+                }
                 return relatedLinkInfo;
             }
             set
             {
                 SetProperty(ref relatedLinkInfo, value);
-            }
-        }
-
-        private async ValueTask GetRelatedInfoAsync()
-        {
-            try
-            {
-                RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                TraceService.Message(ex.Message);
             }
         }
 
