@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
@@ -47,11 +46,6 @@ namespace tweetz.core.Commands
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
-        {
-            await CommandHandlerAsync().ConfigureAwait(false);
-        }
-
-        private async ValueTask CommandHandlerAsync()
         {
             try
             {

@@ -96,7 +96,7 @@ namespace twitter.core.Models
             {
                 if (Interlocked.CompareExchange(ref checkedRelatedInfo, value: 1, comparand: 0) == 0)
                 {
-                    Task.Factory.StartNew(async () => relatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false));
+                    Task.Factory.StartNew(async () => RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false));
                 }
                 return relatedLinkInfo;
             }

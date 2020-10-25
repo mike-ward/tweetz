@@ -52,15 +52,9 @@ namespace tweetz.core.Services
             if (sender is Hyperlink hyperlink)
             {
                 // Refresh tooltip now to prevent showing old link due to VirtualizingPanel.VirtualizationMode="Recycling"
-                hyperlink.ToolTip = hyperlink.CommandParameter ?? string.Empty;
-
-                await HyperlinkToolTipOpeningHandlerAsync(hyperlink).ConfigureAwait(false);
+                hyperlink.ToolTip = hyperlink.CommandParameter as string ?? string.Empty;
+                hyperlink.ToolTip = await TryGetLongUrlAsync((string)hyperlink.ToolTip).ConfigureAwait(true);
             }
-        }
-
-        private static async ValueTask HyperlinkToolTipOpeningHandlerAsync(Hyperlink hyperlink)
-        {
-            hyperlink.ToolTip = await TryGetLongUrlAsync((string)hyperlink.CommandParameter).ConfigureAwait(true);
         }
     }
 }

@@ -46,6 +46,7 @@ namespace tweetz.core.Views
                     loadingIndicator.ToolTip = ea.ErrorException.Message;
                     loadingIndicator.Text = (string)Application.Current.FindResource("WarningSign");
                     TraceService.Message(ea.ErrorException.Message);
+                    Retries = 0;
                 }
             }
             catch (Exception ex)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using tweetz.core.ViewModels;
@@ -41,11 +40,6 @@ namespace tweetz.core.Commands
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
-        {
-            await CommandHandlerAsync(args).ConfigureAwait(false);
-        }
-
-        private async ValueTask CommandHandlerAsync(ExecutedRoutedEventArgs args)
         {
             if (inCommand) return;
 

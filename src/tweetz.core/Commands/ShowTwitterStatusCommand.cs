@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
 using twitter.core.Models;
@@ -22,11 +21,6 @@ namespace tweetz.core.Commands
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            await CommandHandlerAsync(e).ConfigureAwait(false);
-        }
-
-        private async ValueTask CommandHandlerAsync(ExecutedRoutedEventArgs e)
         {
             if (e.Parameter is TwitterStatus status)
             {

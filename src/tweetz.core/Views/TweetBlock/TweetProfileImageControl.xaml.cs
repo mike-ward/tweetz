@@ -56,6 +56,7 @@ namespace tweetz.core.Views
                     TraceService.Message(e.ErrorException.Message);
                     var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
                     imageControl.Source = new BitmapImage(uri);
+                    Retries = 0;
                 }
             }
             catch (Exception ex)

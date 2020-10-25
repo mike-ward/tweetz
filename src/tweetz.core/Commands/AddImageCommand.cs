@@ -37,11 +37,6 @@ namespace tweetz.core.Commands
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            await CommandHandlerAsync().ConfigureAwait(false);
-        }
-
-        private async ValueTask CommandHandlerAsync()
-        {
             const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 
             using var ofd = new OpenFileDialog

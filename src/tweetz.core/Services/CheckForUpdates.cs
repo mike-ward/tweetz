@@ -3,7 +3,6 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
 using tweetz.core.Models;
@@ -19,27 +18,22 @@ namespace tweetz.core.Services
             version = VersionInfo.Version;
             var twoHours = TimeSpan.FromHours(2);
             var timer = new DispatcherTimer { Interval = twoHours };
-            timer.Tick += (_, __) => Check();
+            timer.Tick += Check;
             timer.Start();
-            Check();
+            Check(this, EventArgs.Empty);
         }
 
         public string Version { get => version; set => SetProperty(ref version, value); }
 
-        private void Check()
-        {
-            Task.Factory.StartNew(() => CheckIt());
-        }
-
-        private void CheckIt()
+        private async void Check(object? sender, EventArgs e)
         {
             try
             {
                 var url = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
                 var request = WebRequest.Create(url);
-                using var response = request.GetResponse();
+                using var response = await request.GetResponseAsync().ConfigureAwait(true);
                 using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                Version = stream.ReadToEnd();
+                Version = await stream.ReadToEndAsync().ConfigureAwait(true);
             }
             catch (Exception ex)
             {
