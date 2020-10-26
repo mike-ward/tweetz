@@ -21,7 +21,7 @@ namespace tweetz.core.Models
         public ISet<string> AlreadyAdded { get; } = new HashSet<string>(StringComparer.Ordinal);
         public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
         public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
-        public IList<TwitterStatus> PendingStatusCollection { get; } = new List<TwitterStatus>();
+        public ISet<TwitterStatus> PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
         public bool PendingStatusesAvailable { get => pendingStatusesAvailable; set => SetProperty(ref pendingStatusesAvailable, value); }
         public string? ToolTipText { get => toolTipText; set => SetProperty(ref toolTipText, value); }
 
@@ -137,7 +137,7 @@ namespace tweetz.core.Models
             Application.Current.Dispatcher.Invoke(() =>
             {
                 if (PendingStatusesAvailable) { ToolTipText = (string)Application.Current.FindResource("new-tweets-arrived-tooltip"); }
-                else if (!(ExceptionMessage is null)) { ToolTipText = ExceptionMessage; }
+                else if (ExceptionMessage is not null) { ToolTipText = ExceptionMessage; }
                 else { ToolTipText = null; }
             });
         }

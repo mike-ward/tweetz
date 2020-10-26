@@ -32,7 +32,7 @@ namespace tweetz.core.Views.Behaviors
                 tb.TextChanged -= TextChanged;
                 tb.PreviewKeyDown -= KeyDown;
 
-                if (!(e.NewValue is null))
+                if (e.NewValue is not null)
                 {
                     tb.TextChanged += TextChanged;
                     tb.PreviewKeyDown += KeyDown;

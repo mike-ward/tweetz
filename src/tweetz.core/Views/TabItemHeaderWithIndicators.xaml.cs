@@ -64,14 +64,14 @@ namespace tweetz.core.Views
             else
             {
                 var errorAdorner = _errorAdorner;
-                if (!(errorAdorner is null))
+                if (errorAdorner is not null)
                 {
                     AdornerLayer.GetAdornerLayer(parent)?.Remove(errorAdorner);
                     _errorAdorner = null;
                 }
 
                 var newTweetsAdorner = _newTweetsAdorner;
-                if (!(newTweetsAdorner is null))
+                if (newTweetsAdorner is not null)
                 {
                     AdornerLayer.GetAdornerLayer(parent)?.Remove(newTweetsAdorner);
                     _newTweetsAdorner = null;

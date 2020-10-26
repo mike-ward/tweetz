@@ -8,7 +8,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(value is null);
+            return value is not null;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]

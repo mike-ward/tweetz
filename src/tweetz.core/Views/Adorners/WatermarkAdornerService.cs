@@ -124,7 +124,7 @@ namespace tweetz.core.Views.Adorners
             var layer = AdornerLayer.GetAdornerLayer(control);
 
             // layer could be null if control is no longer in the visual tree
-            if (!(layer is null))
+            if (layer is not null)
             {
                 var adorners = layer.GetAdorners(control);
                 if (adorners is null)
@@ -148,7 +148,7 @@ namespace tweetz.core.Views.Adorners
             var layer = AdornerLayer.GetAdornerLayer(control);
 
             // layer could be null if control is no longer in the visual tree
-            if (!(layer is null))
+            if (layer is not null)
             {
                 layer.Add(new WatermarkAdorner(control, GetWatermark(control)));
             }
