@@ -36,7 +36,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ViewModel.Uri = null;
+            Close();
             e.Handled = true;
         }
 
@@ -47,12 +47,12 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private void Popup_Closed(object sender, System.EventArgs e)
         {
-            ViewModel.Uri = null;
+            Close();
         }
 
         private void Popup_KeyDown(object sender, KeyEventArgs e)
         {
-            ViewModel.Uri = null;
+            Close();
             e.Handled = true;
         }
 
@@ -66,6 +66,12 @@ namespace tweetz.core.Views.MediaViewerBlock
         {
             LoadingIndicator.Visibility = System.Windows.Visibility.Collapsed;
             ViewModel.ErrorMessage = e.ErrorException.Message;
+        }
+
+        private void Close()
+        {
+            ViewModel.Uri = null;
+            MediaElement?.Close();
         }
     }
 }
