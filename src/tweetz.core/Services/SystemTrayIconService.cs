@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using tweetz.core.Infrastructure;
+using tweetz.core.Infrastructure.Extensions;
 
 namespace tweetz.core.Services
 {
@@ -42,7 +43,7 @@ namespace tweetz.core.Services
 
         private void UpdateVisibility(object? _, PropertyChangedEventArgs e)
         {
-            if (string.CompareOrdinal(e.PropertyName, nameof(Settings.ShowInSystemTray)) == 0)
+            if (e.PropertyName.IsEqualTo(nameof(Settings.ShowInSystemTray)))
             {
                 var window = (Window)NotifyIcon.Tag;
                 ShowInSystemTray(window);

@@ -97,5 +97,20 @@ namespace twitter.core.Models
             if (propertyName is null) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is User user && Id.Equals(user.Id, StringComparison.Ordinal);
+        }
+
+        public override int GetHashCode()
+        {
+            return StringComparer.Ordinal.GetHashCode(Id);
+        }
+
+        public override string? ToString()
+        {
+            return Name;
+        }
     }
 }

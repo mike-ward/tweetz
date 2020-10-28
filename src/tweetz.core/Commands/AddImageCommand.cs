@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
+using tweetz.core.Infrastructure.Extensions;
 using tweetz.core.Models;
 using tweetz.core.ViewModels;
 using twitter.core.Models;
@@ -98,7 +99,7 @@ namespace tweetz.core.Commands
             while (true)
             {
                 var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(false);
-                if (string.CompareOrdinal(status.ProcessingInfo.State, ProcessingInfo.StateSucceeded) == 0) break;
+                if (status.ProcessingInfo.State.IsEqualTo(ProcessingInfo.StateSucceeded)) break;
                 var milliseconds = (int)TimeSpan.FromSeconds(status.ProcessingInfo.CheckAfterSecs).TotalMilliseconds;
                 await Task.Delay(milliseconds).ConfigureAwait(false);
             }

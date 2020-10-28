@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using tweetz.core.Infrastructure.Extensions;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views.MediaViewerBlock
@@ -17,7 +18,7 @@ namespace tweetz.core.Views.MediaViewerBlock
         private void UpdateDataContext(object _, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             MediaControls.DataContext = e.NewValue;
-            ViewModel.PropertyChanged += (_, e) => { if (string.CompareOrdinal(e.PropertyName, nameof(MediaViewerBlockViewModel.Uri)) == 0) ShowLoadingIndicator(); };
+            ViewModel.PropertyChanged += (_, e) => { if (e.PropertyName.IsEqualTo(nameof(MediaViewerBlockViewModel.Uri))) ShowLoadingIndicator(); };
         }
 
         private void ShowLoadingIndicator()

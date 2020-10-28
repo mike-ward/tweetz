@@ -164,7 +164,7 @@ namespace twitter.core.Models
         {
             if (status is null) return;
             if (Id is null) throw new InvalidOperationException("Status Id is null");
-            if (!Id.Equals(status.Id, StringComparison.Ordinal)) return;
+            if (Id.Equals(status.Id, StringComparison.Ordinal)) return;
 
             ReplyCount = status.ReplyCount;
             RetweetCount = status.RetweetCount;

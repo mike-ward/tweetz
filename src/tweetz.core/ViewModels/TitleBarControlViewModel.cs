@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using tweetz.core.Infrastructure;
+using tweetz.core.Infrastructure.Extensions;
 
 namespace tweetz.core.ViewModels
 {
@@ -26,8 +27,8 @@ namespace tweetz.core.ViewModels
         {
             if (e is null) { return; }
 
-            if (string.CompareOrdinal(e.PropertyName, nameof(Settings.ScreenName)) == 0 ||
-                string.CompareOrdinal(e.PropertyName, nameof(Settings.HideScreenName)) == 0)
+            if (e.PropertyName.IsEqualTo(nameof(Settings.ScreenName)) ||
+                e.PropertyName.IsEqualTo(nameof(Settings.HideScreenName)))
             {
                 var appTitle = (string)Application.Current.FindResource("title");
 

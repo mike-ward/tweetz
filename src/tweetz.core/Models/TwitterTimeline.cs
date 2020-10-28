@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using tweetz.core.Infrastructure;
+using tweetz.core.Infrastructure.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
@@ -49,7 +50,7 @@ namespace tweetz.core.Models
 
         private async void OnAuthenticationChanged(object? sender, PropertyChangedEventArgs e)
         {
-            if (string.CompareOrdinal(e.PropertyName, nameof(Settings.IsAuthenticated)) == 0)
+            if (e.PropertyName.IsEqualTo(nameof(Settings.IsAuthenticated)))
             {
                 if (Settings.IsAuthenticated)
                 {

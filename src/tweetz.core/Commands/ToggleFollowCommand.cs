@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using tweetz.core.Infrastructure;
+using tweetz.core.Infrastructure.Extensions;
 using twitter.core.Models;
 
 namespace tweetz.core.Commands
@@ -84,7 +85,7 @@ namespace tweetz.core.Commands
         {
             return
                 parameter is TwitterStatus twitterStatus
-                && string.CompareOrdinal(twitterStatus.OriginatingStatus.User.ScreenName, Settings.ScreenName) != 0
+                && twitterStatus.OriginatingStatus.User.ScreenName.IsNotEqualTo(Settings.ScreenName)
                 && !twitterStatus.IsMyTweet
                     ? twitterStatus
                     : null;

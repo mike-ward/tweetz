@@ -6,11 +6,6 @@ namespace tweetz.core.Views.Layouts
 {
     public class UniformGridFillLast : Panel
     {
-        public UniformGridFillLast()
-            : base()
-        {
-        }
-
         public int FirstColumn
         {
             get { return (int)GetValue(FirstColumnProperty); }

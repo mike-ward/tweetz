@@ -12,11 +12,12 @@ namespace tweetz.core.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is WindowPosition position &&
-                   Left == position.Left &&
-                   Top == position.Top &&
-                   Width == position.Width &&
-                   Height == position.Height;
+            return
+                obj is WindowPosition position
+                && Left == position.Left
+                && Top == position.Top
+                && Width == position.Width
+                && Height == position.Height;
         }
 
         public override int GetHashCode()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using tweetz.core.Infrastructure.Extensions;
 using tweetz.core.Models;
 using twitter.core.Models;
 
@@ -13,7 +14,7 @@ namespace tweetz.core.Services
         public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {
             // Build a hashset for faster lookups.
-            var statusesNoNags = timeline.StatusCollection.Where(status => string.CompareOrdinal(status.Id, DonateNagStatus.DonateNagStatusId) != 0);
+            var statusesNoNags = timeline.StatusCollection.Where(status => status.Id.IsNotEqualTo(DonateNagStatus.DonateNagStatusId));
             var hashSet = new HashSet<TwitterStatus>(statusesNoNags);
 
             foreach (var status in statuses.OrderBy(status => status.OriginatingStatus.CreatedDate))
