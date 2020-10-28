@@ -24,7 +24,6 @@
             <Image
               ImageFailed="Image_ImageFailed"
               RenderOptions.BitmapScalingMode="LowQuality"
-              RenderOptions.CachingHint="Cache"
               Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True}"
               Style="{StaticResource TweetImageControlImageStyle}"
               Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
