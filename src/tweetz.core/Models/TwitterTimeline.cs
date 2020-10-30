@@ -104,8 +104,6 @@ namespace tweetz.core.Models
                 {
                     await updateTask(this).ConfigureAwait(true);
                 }
-
-                _ = Task.Factory.StartNew(() => GC.Collect()); // don't await
             }
             catch (Exception ex)
             {

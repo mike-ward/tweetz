@@ -28,4 +28,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Design", "MA0049:Type name should not match namespace", Scope = "type", Target = "~T:tweetz.core.Views.SettingsBlock.SettingsBlock")]
 [assembly: SuppressMessage("Performance", "MA0028:Optimize StringBuilder usage", Scope = "member", Target = "~M:tweetz.core.Models.SystemState.ComputeMD5(System.String)~System.String")]
 [assembly: SuppressMessage("Performance", "RCS1096:Convert 'HasFlag' call to bitwise operation (or vice versa).", Scope = "member", Target = "~M:tweetz.core.Views.ComposeBlock.ComposeBlockInputControl.TextBoxOnPreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)")]
-[assembly: SuppressMessage("Critical Code Smell", "S1215:\"GC.Collect\" should not be called", Scope = "member", Target = "~M:tweetz.core.Models.TwitterTimeline.UpdateAsync~System.Threading.Tasks.ValueTask")]
+[assembly: SuppressMessage("Critical Code Smell", "S1215:\"GC.Collect\" should not be called", Justification = "<Pending>", Scope = "member", Target = "~M:tweetz.core.Services.CollectAllTask.Execute~System.Threading.Tasks.ValueTask")]
