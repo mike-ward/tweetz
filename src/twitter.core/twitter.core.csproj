@@ -11,6 +11,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <AnalysisLevel>latest</AnalysisLevel>
     <Platforms>x86</Platforms>
     <PublishReadyToRun>false</PublishReadyToRun>
   </PropertyGroup>
