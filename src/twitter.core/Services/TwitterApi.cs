@@ -43,18 +43,17 @@ namespace twitter.core.Services
             // The timeline API's no longer report Following and FollowedBy status and the
             // friendship lookup connections API is rate limited. Keep a cached list and update the
             // fields accordingly.
-            var list = statuses.ToList();
             await UserConnectionsService
-                .AddUserIdsAsync(list.Select(status => status.OriginatingStatus.User.Id), this)
+                .AddUserIdsAsync(statuses.Select(status => status.OriginatingStatus.User.Id), this)
                 .ConfigureAwait(false);
 
             // Needed to set the Following and FollowedBy properties because the
             // timeline API's no longer report these fields
-            foreach (var status in list)
+            foreach (var status in statuses)
             {
                 status.UpdateFromStatus(status);
             }
-            return list;
+            return statuses;
         }
 
         public async ValueTask<IEnumerable<TwitterStatus>> HomeTimeline()
