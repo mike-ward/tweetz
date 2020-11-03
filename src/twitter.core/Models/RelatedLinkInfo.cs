@@ -134,35 +134,27 @@ namespace twitter.core.Models
                         switch (tagName.Value.ToLower(CultureInfo.InvariantCulture))
                         {
                             case "title":
-                                metaInfo.Title = DecodeHtml(tagContent.Value) ?? string.Empty;
+                                metaInfo.Title = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "description":
-                                metaInfo.Description = DecodeHtml(tagContent.Value) ?? string.Empty;
+                                metaInfo.Description = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "twitter:title":
-                                metaInfo.Title = string.IsNullOrEmpty(metaInfo.Title)
-                                    ? DecodeHtml(tagContent.Value) ?? string.Empty
-                                    : DecodeHtml(metaInfo.Title) ?? string.Empty;
+                                metaInfo.Title = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "twitter:description":
-                                metaInfo.Description = string.IsNullOrEmpty(metaInfo.Description)
-                                    ? DecodeHtml(tagContent.Value) ?? string.Empty
-                                    : DecodeHtml(metaInfo.Description) ?? string.Empty;
+                                metaInfo.Description = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "twitter:image:src":
-                                metaInfo.ImageUrl = string.IsNullOrEmpty(metaInfo.ImageUrl)
-                                    ? tagContent.Value
-                                    : metaInfo.ImageUrl;
+                                metaInfo.ImageUrl = tagContent.Value;
                                 break;
 
                             case "twitter:site":
-                                metaInfo.SiteName = string.IsNullOrEmpty(metaInfo.SiteName)
-                                    ? DecodeHtml(tagContent.Value) ?? string.Empty
-                                    : DecodeHtml(metaInfo.SiteName) ?? string.Empty;
+                                metaInfo.SiteName = DecodeHtml(tagContent.Value);
                                 break;
                         }
                     }
@@ -171,27 +163,19 @@ namespace twitter.core.Models
                         switch (tagProperty.Value.ToLower(CultureInfo.InvariantCulture))
                         {
                             case "og:title":
-                                metaInfo.Title = string.IsNullOrEmpty(metaInfo.Title)
-                                    ? DecodeHtml(tagContent.Value) ?? string.Empty
-                                    : DecodeHtml(metaInfo.Title) ?? string.Empty;
+                                metaInfo.Title = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "og:description":
-                                metaInfo.Description = string.IsNullOrEmpty(metaInfo.Description)
-                                    ? DecodeHtml(tagContent.Value) ?? string.Empty
-                                    : DecodeHtml(metaInfo.Description) ?? string.Empty;
+                                metaInfo.Description = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "og:image":
-                                metaInfo.ImageUrl = string.IsNullOrEmpty(metaInfo.ImageUrl)
-                                    ? tagContent.Value
-                                    : metaInfo.ImageUrl;
+                                metaInfo.ImageUrl = tagContent.Value;
                                 break;
 
                             case "og:site_name":
-                                metaInfo.SiteName = string.IsNullOrEmpty(metaInfo.SiteName)
-                                    ? DecodeHtml(tagContent.Value) ?? string.Empty
-                                    : DecodeHtml(metaInfo.SiteName) ?? string.Empty;
+                                metaInfo.SiteName = DecodeHtml(tagContent.Value);
                                 break;
                         }
                     }
@@ -219,7 +203,7 @@ namespace twitter.core.Models
         private static string DecodeHtml(string text)
         {
             // Twice to handle sequences like: "&amp;mdash;"
-            return WebUtility.HtmlDecode(WebUtility.HtmlDecode(text));
+            return WebUtility.HtmlDecode(WebUtility.HtmlDecode(text)) ?? string.Empty;
         }
     }
 }

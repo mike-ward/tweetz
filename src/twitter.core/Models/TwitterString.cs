@@ -7,8 +7,7 @@ namespace twitter.core.Models
     /// Twitter indices are by Unicode code points, not characters.
     /// See: https://developer.twitter.com/en/docs/basics/counting-characters
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types")]
-    public struct TwitterString
+    public readonly struct TwitterString
     {
         private const int bytesPerChar = 4;
         private readonly ReadOnlyMemory<byte> bytes;
