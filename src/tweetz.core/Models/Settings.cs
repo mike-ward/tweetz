@@ -48,7 +48,7 @@ namespace tweetz.core.Models
         private double fontSize = 12;
         private string theme = "dark";
         private string? myTweetColor;
-        private WindowPosition mainWindowPosition = new WindowPosition { Left = 10, Top = 10, Width = 350, Height = 900 };
+        private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
         public bool IsAuthenticated =>

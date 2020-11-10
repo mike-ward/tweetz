@@ -73,7 +73,7 @@ namespace tweetz.core.Views.Layouts
         {
             UpdateComputedValues();
 
-            Size childConstraint = new Size(availableSize.Width / _columns, availableSize.Height / _rows);
+            Size childConstraint = new(availableSize.Width / _columns, availableSize.Height / _rows);
             double maxChildDesiredWidth = 0.0;
             double maxChildDesiredHeight = 0.0;
 
@@ -102,7 +102,7 @@ namespace tweetz.core.Views.Layouts
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            Rect childBounds = new Rect(0, 0, finalSize.Width / _columns, finalSize.Height / _rows);
+            Rect childBounds = new(0, 0, finalSize.Width / _columns, finalSize.Height / _rows);
             childBounds.X += childBounds.Width * FirstColumn;
 
             var count = InternalChildren.Count;

@@ -33,7 +33,7 @@ namespace tweetz.core.Models
         private bool pendingStatusesAvailable;
         private string? toolTipText;
         private readonly DispatcherTimer updateTimer;
-        private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new List<Func<TwitterTimeline, ValueTask>>();
+        private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new();
 
         public TwitterTimeline(ISettings settings, ISystemState systemState, double intervalInMinutes)
         {

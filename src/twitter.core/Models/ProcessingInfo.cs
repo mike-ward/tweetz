@@ -4,7 +4,7 @@ namespace twitter.core.Models
 {
     public class ProcessingInfo
     {
-        public static readonly ProcessingInfo Empty = new ProcessingInfo();
+        public static readonly ProcessingInfo Empty = new();
 
         public const string StateSucceeded = "succeeded";
         public const string StateInProgress = "in_progress";

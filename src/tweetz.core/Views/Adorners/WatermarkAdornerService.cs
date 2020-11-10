@@ -18,7 +18,7 @@ namespace tweetz.core.Views.Adorners
            typeof(WatermarkAdornerService),
            new FrameworkPropertyMetadata(defaultValue: null, new PropertyChangedCallback(OnWatermarkChanged)));
 
-        private static readonly Dictionary<object, ItemsControl> itemsControls = new Dictionary<object, ItemsControl>();
+        private static readonly Dictionary<object, ItemsControl> itemsControls = new();
 
         public static object GetWatermark(DependencyObject d)
         {

@@ -41,12 +41,12 @@
     <Setter Property="Cursor" Value="Hand" />
     <Style.Triggers>
       <DataTrigger
-        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, FallbackValue=False}"
+        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, TargetNullValue=False, FallbackValue=False}"
         Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
       <DataTrigger
-        Binding="{Binding ExtendedEntities.Media, Mode=OneWay}"
+        Binding="{Binding ExtendedEntities.Media, Mode=OneWay, TargetNullValue={x:Null}}"
         Value="{x:Null}">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
@@ -58,7 +58,7 @@
     TargetType="{x:Type controls:TweetRelatedLinkControl}">
     <Style.Triggers>
       <DataTrigger
-        Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, TargetNullValue={x:Null}}"
         Value="{x:Null}">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>

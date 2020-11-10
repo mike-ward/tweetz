@@ -24,7 +24,7 @@ namespace twitter.core.Models
 
         public TwitterStatus ImageTwitterStatus
         {
-            get => new TwitterStatus
+            get => new()
             {
                 Id = Guid.NewGuid().ToString(),
                 ExtendedEntities = new Entities

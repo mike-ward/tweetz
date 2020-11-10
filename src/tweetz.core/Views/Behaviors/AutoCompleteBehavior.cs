@@ -9,8 +9,8 @@ namespace tweetz.core.Views.Behaviors
 {
     public static class AutoCompleteBehavior
     {
-        private static readonly KeyEventHandler KeyDown = new KeyEventHandler(OnPreviewKeyDown);
-        private static readonly TextChangedEventHandler TextChanged = new TextChangedEventHandler(OnTextChanged);
+        private static readonly KeyEventHandler KeyDown = new(OnPreviewKeyDown);
+        private static readonly TextChangedEventHandler TextChanged = new(OnTextChanged);
 
         public static readonly DependencyProperty AutoCompleteItemsSource =
             DependencyProperty.RegisterAttached

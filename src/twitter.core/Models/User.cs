@@ -9,7 +9,7 @@ namespace twitter.core.Models
 {
     public class User : INotifyPropertyChanged
     {
-        public static readonly User Empty = new User();
+        public static readonly User Empty = new();
 
         private bool isFollowing;
         private bool isFollowedBy;

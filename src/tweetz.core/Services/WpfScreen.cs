@@ -20,6 +20,6 @@ namespace tweetz.core.Services
             return new WpfScreen(display);
         }
 
-        public Rect DisplaySize => new Rect(_display.Bounds.X, _display.Bounds.Y, _display.Bounds.Width, _display.Bounds.Height);
+        public Rect DisplaySize => new(_display.Bounds.X, _display.Bounds.Y, _display.Bounds.Width, _display.Bounds.Height);
     }
 }

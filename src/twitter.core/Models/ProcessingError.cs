@@ -4,7 +4,7 @@ namespace twitter.core.Models
 {
     public class ProcessingError
     {
-        public static readonly ProcessingError Empty = new ProcessingError();
+        public static readonly ProcessingError Empty = new();
 
         [JsonPropertyName("code")]
         public double Code { get; set; }
