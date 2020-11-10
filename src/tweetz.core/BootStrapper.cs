@@ -80,7 +80,7 @@ namespace tweetz.core
 
         public static T GetService<T>()
         {
-            return ServiceProvider.GetService<T>();
+            return ServiceProvider.GetService<T>() ?? throw new NotSupportedException(typeof(T).Name);
         }
     }
 }
