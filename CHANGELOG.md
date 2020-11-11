@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.8.6 - 2020-11-11
+
+### Changed
+
+- Update to .Net 5.0
+
 ## 2.8.5 - 2020-09-27
 
 ### Changed

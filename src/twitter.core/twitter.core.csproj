@@ -1,21 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <Nullable>Enable</Nullable>
-    <Version>2.0.0</Version>
-    <Description />
-    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
-    <Copyright>Copyright 2020, Mike Ward</Copyright>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <AnalysisLevel>latest</AnalysisLevel>
+    <Copyright>Copyright 2020, Mike Ward</Copyright>
+    <Description>A gadget-like desktop twitter client.</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Nullable>Enable</Nullable>
+    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
     <Platforms>x86</Platforms>
     <PublishReadyToRun>false</PublishReadyToRun>
+    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
+    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>  
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <TieredCompilation>true</TieredCompilation>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <AssemblyVersion>2.8.6</AssemblyVersion>
+    <FileVersion>2.8.6</FileVersion>
+    <Version>2.8.6</Version>    
+  </PropertyGroup>
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
@@ -27,6 +35,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.27" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.28" />
   </ItemGroup>
 </Project>

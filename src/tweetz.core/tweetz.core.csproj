@@ -1,27 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <Nullable>Enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationIcon>app.ico</ApplicationIcon>
-    <ServerGarbageCollection>false</ServerGarbageCollection>
-    <Version>2.8.5</Version>
-    <FileVersion>2.8.5</FileVersion>
-    <AssemblyVersion>2.8.5</AssemblyVersion>
-    <Description>A gadget-like desktop twitter client.</Description>
-    <Copyright>Copyright 2020, Mike Ward</Copyright>
-    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <AnalysisLevel>latest</AnalysisLevel>
+    <ApplicationIcon>app.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Copyright>Copyright 2020, Mike Ward</Copyright>
+    <Description>A gadget-like desktop twitter client.</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Nullable>Enable</Nullable>
+    <OutputType>WinExe</OutputType>
+    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
     <Platforms>x86</Platforms>
     <PublishReadyToRun>false</PublishReadyToRun>
+    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <TieredCompilation>true</TieredCompilation>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyVersion>2.8.6</AssemblyVersion>
+    <FileVersion>2.8.6</FileVersion>
+    <Version>2.8.6</Version>    
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
