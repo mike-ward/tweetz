@@ -5,7 +5,7 @@
 
   <sys:String x:Key="title">Tweetz</sys:String>
 
-  <sys:String x:Key="pin-instructions-1">To get started, click the \&quot;Get PIN\&quot; button. This opens a Web page where you'll authorize access.</sys:String>
+  <sys:String x:Key="pin-instructions-1">To get started, click the &quot;Get PIN&quot; button. This opens a Web page where you'll authorize access.</sys:String>
   <sys:String x:Key="pin-instructions-2">Copy the PIN from the Web page to here and click &quot;Sign In&quot;</sys:String>
   <sys:String x:Key="pin-get-pin">Get PIN</sys:String>
   <sys:String x:Key="pin-sign-in">Sign In</sys:String>
