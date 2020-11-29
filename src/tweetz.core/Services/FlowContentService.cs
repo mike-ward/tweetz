@@ -138,7 +138,7 @@ namespace tweetz.core.Services
                 ToolTip = link,
             };
 
-            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, target: null);
+            hyperlink.Click += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
             hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
 
             var textblock = new TextBlock(hyperlink)
@@ -166,7 +166,7 @@ namespace tweetz.core.Services
                 ToolTip = tooltip,
             };
 
-            hyperlink.Click += (_, __) => OpenLinkCommand.Command.Execute(link, target: null);
+            hyperlink.Click += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
             return hyperlink;
         }
 
@@ -185,7 +185,7 @@ namespace tweetz.core.Services
                 CommandParameter = tag,
             };
 
-            hyperlink.Click += (_, __) => SearchCommand.Command.Execute(tag, target: null);
+            hyperlink.Click += delegate { SearchCommand.Command.Execute(tag, target: null); };
             return hyperlink;
         }
 

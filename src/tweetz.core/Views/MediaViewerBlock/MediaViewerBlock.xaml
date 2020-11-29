@@ -12,17 +12,18 @@
   <Popup
     x:Name="Popup"
     AllowsTransparency="true"
+    Closed="Popup_Closed"
     IsOpen="{Binding Uri, Mode=OneWay, Converter={StaticResource IsNotNullConverter}}"
     KeyDown="Popup_KeyDown"
     MouseDown="Popup_MouseDown"
     Opened="Popup_Opened"
-    Closed="Popup_Closed"
     Placement="Center"
     PopupAnimation="Fade"
     SnapsToDevicePixels="True"
     UseLayoutRounding="True">
 
     <Border
+      Background="{DynamicResource DisabledForegroundBrush}"
       BorderBrush="Black"
       BorderThickness="1">
       <Grid>
