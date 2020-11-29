@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using twitter.core.Models;
 using twitter.core.Services;
 
-namespace tweetz.core.Infrastructure
+namespace tweetz.core.Interfaces
 {
     public interface ITwitterService
     {

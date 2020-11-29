@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.Views;
 
 namespace tweetz.core.Commands

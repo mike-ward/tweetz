@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Interfaces;
+using tweetz.core.Interfaces.Extensions;
 
 namespace tweetz.core.ViewModels
 {

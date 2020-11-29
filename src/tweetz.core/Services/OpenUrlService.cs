@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 
 namespace tweetz.core.Services
 {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 
-namespace tweetz.core.Infrastructure
+namespace tweetz.core.Interfaces
 {
     public interface IMessageBoxService
     {

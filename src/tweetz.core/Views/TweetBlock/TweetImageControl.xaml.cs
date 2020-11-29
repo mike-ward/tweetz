@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 

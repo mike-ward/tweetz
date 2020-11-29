@@ -42,15 +42,15 @@
 
   <ItemGroup>
     <None Remove="app.ico" />
-    <None Remove="Infrastructure\Resources\grayscaleshader.bat" />
-    <None Remove="Infrastructure\Resources\GrayscaleShader.ps" />
-    <None Remove="Infrastructure\Resources\profile.png" />
-    <None Remove="Infrastructure\Resources\splash.png" />
+    <None Remove="Resources\grayscaleshader.bat" />
+    <None Remove="Resources\GrayscaleShader.ps" />
+    <None Remove="Resources\profile.png" />
+    <None Remove="Resources\splash.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Infrastructure\Resources\GrayscaleShader.ps" />
-    <Resource Include="Infrastructure\Resources\profile.png" />
+    <Resource Include="Resources\GrayscaleShader.ps" />
+    <Resource Include="Resources\profile.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,7 +68,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SplashScreen Include="Infrastructure\Resources\splash.png" />
+    <SplashScreen Include="Resources\splash.png" />
   </ItemGroup>
 
   <ItemGroup>

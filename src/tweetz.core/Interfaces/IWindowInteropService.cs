@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using tweetz.core.Models;
 
-namespace tweetz.core.Infrastructure
+namespace tweetz.core.Interfaces
 {
     public interface IWindowInteropService
     {

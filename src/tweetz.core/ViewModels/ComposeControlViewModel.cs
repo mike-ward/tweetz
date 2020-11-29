@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.Models;
 using tweetz.core.Services;
 using twitter.core.Models;

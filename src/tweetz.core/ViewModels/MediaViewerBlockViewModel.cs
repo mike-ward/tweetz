@@ -1,5 +1,5 @@
 ﻿using System;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 
 namespace tweetz.core.ViewModels
 {

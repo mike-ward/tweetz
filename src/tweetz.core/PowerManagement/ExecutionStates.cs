@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace tweetz.core.Infrastructure.PowerManagement
+namespace tweetz.core.PowerManagement
 {
     [Flags]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4070:Non-flags enums should not be marked with \"FlagsAttribute\"")]

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace tweetz.core.Infrastructure.Extensions
+namespace tweetz.core.Extensions
 {
     public static class ObjectExtensions
 

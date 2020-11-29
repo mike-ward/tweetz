@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Extensions;
 
 namespace tweetz.core.Services
 {

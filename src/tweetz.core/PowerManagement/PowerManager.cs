@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace tweetz.core.Infrastructure.PowerManagement
+namespace tweetz.core.PowerManagement
 {
     internal static class PowerManager
     {

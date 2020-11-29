@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Threading;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.Models;
 
 namespace tweetz.core.Services

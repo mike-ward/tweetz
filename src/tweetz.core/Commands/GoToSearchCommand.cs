@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Extensions;
+using tweetz.core.Interfaces;
 
 namespace tweetz.core.Commands
 {

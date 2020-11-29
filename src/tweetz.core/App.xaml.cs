@@ -1,12 +1,12 @@
-﻿using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows;
-using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.DesktopWindowManager;
-using tweetz.core.Infrastructure.Extensions;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using tweetz.core.DesktopWindowManagerNamespace;
+using tweetz.core.Interfaces;
+using tweetz.core.Interfaces.Extensions;
 using tweetz.core.Models;
 
 namespace tweetz.core
@@ -33,7 +33,7 @@ namespace tweetz.core
         {
             if (e.PropertyName.IsEqualTo(nameof(Settings.Theme)) && sender is Settings settings)
             {
-                var uri = new Uri($"Infrastructure/Resources/{settings.Theme}.xaml", UriKind.Relative);
+                var uri = new Uri($"Resources/{settings.Theme}.xaml", UriKind.Relative);
                 var colorDictionary = (ResourceDictionary)LoadComponent(uri);
                 Resources.MergedDictionaries.Add(colorDictionary);
             }

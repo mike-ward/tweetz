@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace tweetz.core.Infrastructure.Extensions
+namespace tweetz.core.Extensions
 {
     public static class DependencyObjectExtensions
     {

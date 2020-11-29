@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace tweetz.core.Infrastructure
+namespace tweetz.core.Interfaces
 {
     public interface ICheckForUpdates : INotifyPropertyChanged
     {

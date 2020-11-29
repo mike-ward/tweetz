@@ -21,7 +21,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Design", "MA0025:TODO Implement the functionality", Scope = "member", Target = "~M:tweetz.core.Converters.TextTrimConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)~System.Object")]
 [assembly: SuppressMessage("Design", "MA0025:TODO Implement the functionality", Scope = "member", Target = "~M:tweetz.core.Converters.ProfileLinkConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)~System.Object")]
 [assembly: SuppressMessage("Design", "MA0025:TODO Implement the functionality", Scope = "member", Target = "~M:tweetz.core.Converters.TimeAgoConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)~System.Object")]
-[assembly: SuppressMessage("Design", "MA0049:Type name should not match namespace", Scope = "type", Target = "~T:tweetz.core.Infrastructure.DesktopWindowManager.DesktopWindowManager")]
+[assembly: SuppressMessage("Design", "MA0049:Type name should not match namespace", Scope = "type", Target = "~T:tweetz.core.Interfaces.DesktopWindowManager.DesktopWindowManager")]
 [assembly: SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage", Scope = "member", Target = "~M:tweetz.core.Services.MessageBoxService.ShowMessageBoxAsync(System.String)~System.Threading.Tasks.ValueTask")]
 [assembly: SuppressMessage("Design", "MA0049:Type name should not match namespace", Scope = "type", Target = "~T:tweetz.core.Views.ComposeBlock.ComposeBlock")]
 [assembly: SuppressMessage("Design", "MA0049:Type name should not match namespace", Scope = "type", Target = "~T:tweetz.core.Views.MediaViewerBlock.MediaViewerBlock")]

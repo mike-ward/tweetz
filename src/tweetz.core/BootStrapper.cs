@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using tweetz.core.Commands;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.Models;
 using tweetz.core.Services;
 using tweetz.core.ViewModels;
@@ -60,7 +60,7 @@ namespace tweetz.core
             services.AddSingleton<ICommandBinding, ToggleSpellCheckerCommand>();
             services.AddSingleton<ICommandBinding, UpdateStatusCommand>();
 
-            // Infrastructure
+            // Interfaces
             services.AddSingleton<ICheckForUpdates, CheckForUpdates>();
             services.AddSingleton<IImageViewerService, ImageViewerService>();
             services.AddSingleton<IMessageBoxService, MessageBoxService>();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using twitter.core.Models;
 
 namespace tweetz.core.Commands

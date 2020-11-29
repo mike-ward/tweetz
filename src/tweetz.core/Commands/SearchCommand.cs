@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Commands

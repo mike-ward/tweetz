@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace tweetz.core.Infrastructure.DesktopWindowManager
+namespace tweetz.core.DesktopWindowManagerNamespace
 {
     internal static class DesktopWindowManager
     {

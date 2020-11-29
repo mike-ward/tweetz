@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
-using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Interfaces;
+using tweetz.core.Interfaces.Extensions;
 
 namespace tweetz.core.Services
 {

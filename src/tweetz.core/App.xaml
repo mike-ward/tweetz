@@ -6,20 +6,20 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Infrastructure/Resources/Dark.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/Strings.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/Symbols.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/ToolTip.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/Button.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/TextBlock.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/Hyperlink.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/ScrollBar.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/Twitter.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/Converters.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/TweetBlockStyles.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/UserProfileBlockStyles.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/TweetImageControlStyles.xaml" />
-        <ResourceDictionary Source="Infrastructure/Resources/TabControlStyles.xaml" />
+        <ResourceDictionary Source="Resources/Dark.xaml" />
+        <ResourceDictionary Source="Resources/Strings.xaml" />
+        <ResourceDictionary Source="Resources/Symbols.xaml" />
+        <ResourceDictionary Source="Resources/ToolTip.xaml" />
+        <ResourceDictionary Source="Resources/Button.xaml" />
+        <ResourceDictionary Source="Resources/TextBlock.xaml" />
+        <ResourceDictionary Source="Resources/Hyperlink.xaml" />
+        <ResourceDictionary Source="Resources/ScrollBar.xaml" />
+        <ResourceDictionary Source="Resources/Twitter.xaml" />
+        <ResourceDictionary Source="Resources/Converters.xaml" />
+        <ResourceDictionary Source="Resources/TweetBlockStyles.xaml" />
+        <ResourceDictionary Source="Resources/UserProfileBlockStyles.xaml" />
+        <ResourceDictionary Source="Resources/TweetImageControlStyles.xaml" />
+        <ResourceDictionary Source="Resources/TabControlStyles.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>

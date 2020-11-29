@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace tweetz.core.Infrastructure.Extensions
+namespace tweetz.core.Interfaces.Extensions
 {
     public static class StringExtensions
     {

@@ -65,11 +65,6 @@ namespace twitter.core.Services
         /// <summary>
         /// Builds, signs and delivers an OAuth Request
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="url"></param>
-        /// <param name="parameters"></param>
-        /// <param name="method"></param>
-        /// <returns></returns>
         private async ValueTask<T> OAuthRequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
             var post = string.Equals(method, POST, StringComparison.Ordinal);
@@ -101,10 +96,6 @@ namespace twitter.core.Services
         /// <summary>
         /// Twitter requires media upload to be multipart form with specific parameters
         /// </summary>
-        /// <param name="mediaId"></param>
-        /// <param name="segmentIndex"></param>
-        /// <param name="payload"></param>
-        /// <returns></returns>
         public async ValueTask AppendMediaAsync(string mediaId, int segmentIndex, byte[] payload)
         {
             var nonce = OAuth.Nonce();

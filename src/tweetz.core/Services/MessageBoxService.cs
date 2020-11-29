@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 
 namespace tweetz.core.Services
 {

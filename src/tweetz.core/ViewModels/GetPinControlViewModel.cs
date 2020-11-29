@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using twitter.core.Services;
 
 namespace tweetz.core.ViewModels

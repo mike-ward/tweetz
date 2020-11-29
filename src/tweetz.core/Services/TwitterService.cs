@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using twitter.core.Models;
 using twitter.core.Services;
 

@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.Models;
 
 namespace tweetz.core.ViewModels

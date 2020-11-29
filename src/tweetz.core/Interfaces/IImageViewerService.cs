@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace tweetz.core.Infrastructure
+namespace tweetz.core.Interfaces
 {
     public interface IImageViewerService
     {

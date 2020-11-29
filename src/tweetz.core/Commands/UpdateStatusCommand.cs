@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.Services;
 using tweetz.core.ViewModels;
 

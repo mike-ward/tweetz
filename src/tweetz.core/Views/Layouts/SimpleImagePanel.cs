@@ -21,7 +21,7 @@ namespace tweetz.core.Views.Layouts
 
             switch (Children.Count)
             {
-                // fill enire panel
+                // fill entire panel
                 case 1:
                     w = finalSize.Width;
                     h = finalSize.Height;

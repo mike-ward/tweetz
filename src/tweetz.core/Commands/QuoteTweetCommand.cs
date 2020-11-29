@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using tweetz.core.Infrastructure;
+using tweetz.core.Interfaces;
 using tweetz.core.ViewModels;
 using twitter.core.Models;
 

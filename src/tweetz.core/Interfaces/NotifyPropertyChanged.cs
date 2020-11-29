@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace tweetz.core.Infrastructure
+namespace tweetz.core.Interfaces
 {
     public class NotifyPropertyChanged : INotifyPropertyChanged
     {

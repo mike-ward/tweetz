@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
@@ -54,7 +54,7 @@ namespace tweetz.core.Views
                 else
                 {
                     TraceService.Message(e.ErrorException.Message);
-                    var uri = new Uri("/Infrastructure/Resources/profile.png", UriKind.Relative);
+                    var uri = new Uri("/Resources/profile.png", UriKind.Relative);
                     imageControl.Source = new BitmapImage(uri);
                     Retries = 0;
                 }

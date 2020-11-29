@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.PowerManagement;
+using tweetz.core.Interfaces;
 using tweetz.core.Models;
+using tweetz.core.PowerManagement;
 
 namespace tweetz.core.Services
 {

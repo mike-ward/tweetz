@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Interfaces.Extensions;
 using tweetz.core.Models;
 using twitter.core.Models;
 

@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using tweetz.core.Infrastructure;
-using tweetz.core.Infrastructure.Extensions;
+using tweetz.core.Interfaces;
+using tweetz.core.Interfaces.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
@@ -17,8 +17,8 @@ namespace tweetz.core.Models
     {
         public ISettings Settings { get; }
         public ISystemState SystemState { get; }
-
         public double IntervalInMinutes { get; }
+
         public ISet<string> AlreadyAdded { get; } = new HashSet<string>(StringComparer.Ordinal);
         public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
         public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
@@ -54,16 +54,21 @@ namespace tweetz.core.Models
             {
                 if (Settings.IsAuthenticated)
                 {
-                    if (!updateTimer.IsEnabled)
-                    {
-                        updateTimer.Start();
-                        await UpdateAsync().ConfigureAwait(false);
-                    }
+                    await Start().ConfigureAwait(false);
                 }
                 else
                 {
                     Stop();
                 }
+            }
+        }
+
+        private async Task Start()
+        {
+            if (!updateTimer.IsEnabled)
+            {
+                updateTimer.Start();
+                await UpdateAsync().ConfigureAwait(false);
             }
         }
 
