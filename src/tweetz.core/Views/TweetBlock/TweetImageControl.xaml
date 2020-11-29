@@ -51,7 +51,7 @@
 
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
-          <layouts:UniformGridFillLast Style="{StaticResource TweetImageControlUniformGridStyle}" />
+          <layouts:SimpleImagePanel />
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>

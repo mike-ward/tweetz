@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts">
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Style
     x:Key="TweetImageControlHourGlassStyle"
@@ -31,18 +30,6 @@
     <Setter Property="CornerRadius" Value="20" />
     <Setter Property="Background" Value="{StaticResource TwitterBlue}" />
     <Setter Property="Visibility" Value="{Binding Mode=OneWay, Converter={StaticResource MediaIsVideoToVisibilityConverter}}" />
-  </Style>
-
-  <Style
-    x:Key="TweetImageControlUniformGridStyle"
-    TargetType="layouts:UniformGridFillLast">
-    <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding ItemsSource.Length, ElementName=ItemsControl, Mode=OneWay}"
-        Value="2">
-        <Setter Property="Rows" Value="1" />
-      </DataTrigger>
-    </Style.Triggers>
   </Style>
 
   <Style
