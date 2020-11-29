@@ -6,10 +6,12 @@
   xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts">
 
   <Grid>
-    <ItemsControl Name="ItemsControl" ItemsSource="{Binding ExtendedEntities.Media}">
+    <ItemsControl
+      Name="ItemsControl"
+      ItemsSource="{Binding ExtendedEntities.Media}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <Grid Height="200">
+          <Grid>
 
             <!--  Hour glass / Warning icon  -->
 
@@ -51,7 +53,7 @@
 
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
-          <layouts:SimpleImagePanel />
+          <layouts:SimpleImagePanel Height="{StaticResource ImagePanelHeight}" />
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>

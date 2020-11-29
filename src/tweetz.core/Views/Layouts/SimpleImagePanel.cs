@@ -3,17 +3,15 @@ using System.Windows.Controls;
 
 namespace tweetz.core.Views.Layouts
 {
+    /// <summary>
+    /// Limited image panel designed specifically to display the 1-4 images
+    /// that twitter returns. Not generic.
+    /// </summary>
     internal class SimpleImagePanel : Panel
     {
-        /// <summary>
-        /// Limited image panel designed specifically to display the 1-4 images
-        /// that twitter returns. Not at all generic.
-        /// </summary>
-        /// <param name="availableSize"></param>
-        /// <returns></returns>
         protected override Size MeasureOverride(Size availableSize)
         {
-            return new Size(availableSize.Width, 200);
+            return new Size(availableSize.Width, Height);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
