@@ -5,57 +5,55 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts">
 
-  <Grid>
-    <ItemsControl
-      Name="ItemsControl"
-      ItemsSource="{Binding ExtendedEntities.Media}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <Grid>
+  <ItemsControl
+    Name="ItemsControl"
+    ItemsSource="{Binding ExtendedEntities.Media}">
+    <ItemsControl.ItemTemplate>
+      <DataTemplate>
+        <Grid>
 
-            <!--  Hour glass / Warning icon  -->
+          <!--  Hour glass / Warning icon  -->
 
+          <TextBlock
+            x:Name="LoadingIndicator"
+            Style="{StaticResource TweetImageControlHourGlassStyle}"
+            Text="{StaticResource Hourglass}"
+            ToolTipService.ShowDuration="{StaticResource ToolTipDuration}" />
+
+          <!--  Image  -->
+
+          <Image
+            ImageFailed="Image_ImageFailed"
+            RenderOptions.BitmapScalingMode="LowQuality"
+            Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True}"
+            Style="{StaticResource TweetImageControlImageStyle}"
+            Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
+
+          <!--  Play icon  -->
+
+          <Border Style="{StaticResource TweetImageControlPlayBorderStyle}">
             <TextBlock
-              x:Name="LoadingIndicator"
-              Style="{StaticResource TweetImageControlHourGlassStyle}"
-              Text="{StaticResource Hourglass}"
-              ToolTipService.ShowDuration="{StaticResource ToolTipDuration}" />
+              x:Name="PlayIndicator"
+              Style="{StaticResource TweetImageControlPlayIconStyle}"
+              Text="{StaticResource PlaySymbol}" />
+          </Border>
 
-            <!--  Image  -->
+          <!--  Open Image Viewer  -->
 
-            <Image
-              ImageFailed="Image_ImageFailed"
-              RenderOptions.BitmapScalingMode="LowQuality"
-              Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True}"
-              Style="{StaticResource TweetImageControlImageStyle}"
-              Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
+          <Grid.InputBindings>
+            <MouseBinding
+              Command="{x:Static commands:ImageViewerCommand.Command}"
+              CommandParameter="{Binding Mode=OneTime}"
+              MouseAction="LeftClick" />
+          </Grid.InputBindings>
+        </Grid>
+      </DataTemplate>
+    </ItemsControl.ItemTemplate>
 
-            <!--  Play icon  -->
-
-            <Border Style="{StaticResource TweetImageControlPlayBorderStyle}">
-              <TextBlock
-                x:Name="PlayIndicator"
-                Style="{StaticResource TweetImageControlPlayIconStyle}"
-                Text="{StaticResource PlaySymbol}" />
-            </Border>
-
-            <!--  Open Image Viewer  -->
-
-            <Grid.InputBindings>
-              <MouseBinding
-                Command="{x:Static commands:ImageViewerCommand.Command}"
-                CommandParameter="{Binding Mode=OneTime}"
-                MouseAction="LeftClick" />
-            </Grid.InputBindings>
-          </Grid>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <layouts:SimpleImagePanel Height="{StaticResource ImagePanelHeight}" />
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-    </ItemsControl>
-  </Grid>
+    <ItemsControl.ItemsPanel>
+      <ItemsPanelTemplate>
+        <layouts:SimpleImagePanel Height="{StaticResource ImagePanelHeight}" />
+      </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+  </ItemsControl>
 </UserControl>

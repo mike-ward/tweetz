@@ -17,10 +17,10 @@
   <Style
     x:Key="TweetImageControlImageStyle"
     TargetType="Image">
-    <Setter Property="Height" Value="200" />
     <Setter Property="Margin" Value="1" />
     <Setter Property="Stretch" Value="UniformToFill" />
     <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Height" Value="{StaticResource ImagePanelHeight}" />
   </Style>
 
   <Style
