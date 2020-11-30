@@ -46,13 +46,15 @@
 
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <VirtualizingStackPanel Focusable="True" IsItemsHost="True" />
+        <VirtualizingStackPanel
+          Focusable="True"
+          IsItemsHost="True" />
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
 
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <local:TweetBlockControl DataContext="{Binding Mode=OneTime}" />
+        <local:TweetBlockControl />
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>

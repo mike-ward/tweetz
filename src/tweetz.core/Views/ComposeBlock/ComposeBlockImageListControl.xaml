@@ -12,7 +12,7 @@
   <ItemsControl ItemsSource="{Binding Mode=OneWay}">
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <local:ComposeBlockImageControl DataContext="{Binding Mode=OneWay}" />
+        <local:ComposeBlockImageControl />
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>
