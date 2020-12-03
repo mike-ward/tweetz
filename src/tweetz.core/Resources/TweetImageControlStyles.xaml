@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
-  <sys:Double x:Key="ImagePanelHeight">200</sys:Double>
+  <sys:Double x:Key="ImagePanelHeight">190</sys:Double>
 
   <Style
     x:Key="TweetImageControlHourGlassStyle"
