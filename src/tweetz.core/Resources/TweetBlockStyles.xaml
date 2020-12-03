@@ -178,16 +178,15 @@
       <DataTrigger
         Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
         Value="False">
-        <Setter Property="Source" Value="{Binding ProfileImageUrlBigger, Mode=OneWay, IsAsync=True}" />
-        <Setter Property="Width" Value="47" />
-        <Setter Property="Height" Value="47" />
-        <Setter Property="RenderOptions.BitmapScalingMode" Value="LowQuality" />
+        <Setter Property="Source" Value="{Binding ProfileImageUrl, Mode=OneWay, IsAsync=True}" />
+        <Setter Property="Width" Value="48" />
+        <Setter Property="Height" Value="48" />
         <Setter Property="Clip">
           <Setter.Value>
             <EllipseGeometry
-              Center="23,23"
-              RadiusX="23"
-              RadiusY="23" />
+              Center="23.5,23.5"
+              RadiusX="23.5"
+              RadiusY="23.5" />
           </Setter.Value>
         </Setter>
       </DataTrigger>

@@ -42,7 +42,7 @@ namespace tweetz.core.Models
                 Name = "Mike Ward",
                 Id = "14410002",
                 Location = "Dubuque, IA",
-                ProfileImageUrl = "https://pbs.twimg.com/profile_images/495209879749935104/AV0xDcXP_bigger.jpeg",
+                ProfileImageUrl = "https://pbs.twimg.com/profile_images/495209879749935104/AV0xDcXP_normal.jpeg",
                 Description = ".NET, Technology, Life, Whatever...",
             };
         }
