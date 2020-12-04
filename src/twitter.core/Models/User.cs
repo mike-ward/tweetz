@@ -80,6 +80,9 @@ namespace twitter.core.Models
         [JsonIgnore]
         public string? ProfileImageUrlOriginal => ProfileImageUrl?.Replace("_normal", "", StringComparison.Ordinal);
 
+        [JsonIgnore]
+        public string? ProfileImageUrlBigger => ProfileImageUrl?.Replace("_normal", "_bigger", StringComparison.Ordinal);
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void SetProperty<T>(ref T item, T value, [CallerMemberName] string? propertyName = null)

@@ -40,7 +40,7 @@ namespace tweetz.core.Views
                 {
                     Retries++;
                     var user = (User)imageControl.DataContext;
-                    var uri = new Uri(user.ProfileImageUrl!);
+                    var uri = new Uri(user.ProfileImageUrlBigger!);
 
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
