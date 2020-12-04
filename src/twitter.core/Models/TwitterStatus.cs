@@ -22,6 +22,8 @@ namespace twitter.core.Models
         private bool retweetedByMe;
         private bool favorited;
         private bool isSensitive;
+        private string? translatedText;
+        private string? language;
 
         [JsonPropertyName("id_str")]
         public string Id { get; set; } = string.Empty;
@@ -83,6 +85,12 @@ namespace twitter.core.Models
 
         [JsonPropertyName("possibly_sensitive")]
         public bool IsSensitive { get => isSensitive; set => SetProperty(ref isSensitive, value); }
+
+        [JsonPropertyName("lang")]
+        public string? Language { get => language; set => SetProperty(ref language, value); }
+
+        [JsonIgnore]
+        public string? TranslatedText { get => translatedText; set => SetProperty(ref translatedText, value); }
 
         [JsonIgnore]
         public string? OverrideLink { get; set; }

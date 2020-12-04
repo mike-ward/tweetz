@@ -161,7 +161,13 @@
     BasedOn="{StaticResource TweetBlockLinkStyle}"
     TargetType="Run">
     <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+
+  <Style
+    x:Key="TweetBlockTranslateStyle"
+    BasedOn="{StaticResource TweetBlockLinkStyle}"
+    TargetType="Run">
+    <Setter Property="Foreground" Value="{DynamicResource LinkForegroundBrush}" />
   </Style>
 
   <Style
@@ -179,14 +185,14 @@
         Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
         Value="False">
         <Setter Property="Source" Value="{Binding ProfileImageUrl, Mode=OneWay, IsAsync=True}" />
-        <Setter Property="Width" Value="48" />
-        <Setter Property="Height" Value="48" />
+        <Setter Property="Width" Value="45" />
+        <Setter Property="Height" Value="45" />
         <Setter Property="Clip">
           <Setter.Value>
             <EllipseGeometry
-              Center="23.5,23.5"
-              RadiusX="23.5"
-              RadiusY="23.5" />
+              Center="22,22"
+              RadiusX="22"
+              RadiusY="22" />
           </Setter.Value>
         </Setter>
       </DataTrigger>
@@ -295,6 +301,14 @@
     TargetType="Separator">
     <Setter Property="Height" Value="0.5" />
     <Setter Property="Margin" Value="0,9,0,0" />
+    <Setter Property="SnapsToDevicePixels" Value="False" />
+  </Style>
+
+  <Style
+    x:Key="TweetTranslateSeparator"
+    TargetType="Separator">
+    <Setter Property="Height" Value="0.5" />
+    <Setter Property="Margin" Value="30,10,40,5" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
 </ResourceDictionary>

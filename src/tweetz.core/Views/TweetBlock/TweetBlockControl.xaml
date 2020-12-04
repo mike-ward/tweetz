@@ -35,6 +35,7 @@
 
       <StackPanel Style="{StaticResource TweetBlockIsSensitiveCollapsedStyle}">
         <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
+        <local:TweetTranslateControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
 
         <local:TweetImageControl
           DataContext="{Binding OriginatingStatus, Mode=OneTime}"

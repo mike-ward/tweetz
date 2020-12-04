@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using tweetz.core.Commands;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
@@ -58,6 +58,7 @@ namespace tweetz.core
             services.AddSingleton<ICommandBinding, ToggleRetweetCommand>();
             services.AddSingleton<ICommandBinding, ToggleShowComposeCommand>();
             services.AddSingleton<ICommandBinding, ToggleSpellCheckerCommand>();
+            services.AddSingleton<ICommandBinding, TranslateCommand>();
             services.AddSingleton<ICommandBinding, UpdateStatusCommand>();
 
             // Interfaces
