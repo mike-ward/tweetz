@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using tweetz.core.Interfaces.Extensions;
+using tweetz.core.Extensions;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views.MediaViewerBlock

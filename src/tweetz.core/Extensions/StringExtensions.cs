@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace tweetz.core.Interfaces.Extensions
+namespace tweetz.core.Extensions
 {
     public static class StringExtensions
     {
@@ -14,6 +14,15 @@ namespace tweetz.core.Interfaces.Extensions
         public static bool IsNotEqualTo(this string? a, string? b)
         {
             return string.CompareOrdinal(a, b) != 0;
+        }
+
+        public static string? Truncate(this string? source, int length)
+        {
+            if (source is not null && source.Length > length)
+            {
+                source = source.Substring(0, length);
+            }
+            return source;
         }
     }
 }

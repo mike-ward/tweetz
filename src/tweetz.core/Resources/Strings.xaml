@@ -94,7 +94,7 @@
   <sys:String x:Key="show-possibly-sensitive">Show Tweet</sys:String>
 
   <!--  Translate  -->
-  <sys:String x:Key="translate-text-label">Translate…</sys:String>
+  <sys:String x:Key="translate-text-label">TRANSLATE</sys:String>
   <sys:String x:Key="translate-text-working">working…</sys:String>
 
   <!--  Tips (in settings dialog)  -->

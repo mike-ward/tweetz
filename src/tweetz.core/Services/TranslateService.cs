@@ -33,10 +33,10 @@ namespace tweetz.core.Services
 
                 var body = new object[] { new { Text = source } };
                 var requestBody = JsonSerializer.Serialize(body);
-                var bytes = Encoding.UTF8.GetBytes(requestBody);
+                var bytes = Encoding.UTF8.GetBytes(requestBody).AsMemory();
 
                 var content = await request.GetRequestStreamAsync().ConfigureAwait(false);
-                await content.WriteAsync(bytes, 0, bytes.Length).ConfigureAwait(false);
+                await content.WriteAsync(bytes).ConfigureAwait(false);
                 content.Close();
 
                 using var response = await request.GetResponseAsync().ConfigureAwait(false);

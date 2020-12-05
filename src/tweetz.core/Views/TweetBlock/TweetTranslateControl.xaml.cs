@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Windows.Controls;
-using tweetz.core.Interfaces.Extensions;
+using tweetz.core.Extensions;
 using twitter.core.Models;
 
 namespace tweetz.core.Views
@@ -12,7 +12,7 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
-        private void OnDataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        private void OnDataContextChanged(object _, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             Visibility = e.NewValue is TwitterStatus status && status.Language.IsNotEqualTo(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
                 ? System.Windows.Visibility.Visible

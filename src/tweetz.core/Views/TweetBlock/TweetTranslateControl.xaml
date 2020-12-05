@@ -13,6 +13,7 @@
   <StackPanel>
     <TextBlock
       HorizontalAlignment="Right"
+      FontSize="9.5"
       Visibility="{Binding TranslatedText, Converter={StaticResource NullToVisibilityConverter}}">
       <Run>↗</Run>
       <Run
@@ -21,7 +22,7 @@
         <Run.InputBindings>
           <MouseBinding
             Command="{x:Static commands:TranslateCommand.Command}"
-            CommandParameter="{Binding ., Mode=OneTime}"
+            CommandParameter="{Binding Mode=OneTime}"
             Gesture="LeftClick" />
         </Run.InputBindings>
       </Run>

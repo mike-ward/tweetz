@@ -43,6 +43,8 @@
         <Run>↗</Run>
         <Run Text="{Binding SiteName, Mode=OneTime}" />
       </TextBlock>
+
+      <local:TweetTranslateControl DataContext="{Binding ImageTwitterStatus, Mode=OneWay}" />
     </StackPanel>
   </Border>
 </UserControl>

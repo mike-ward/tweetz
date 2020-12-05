@@ -1,10 +1,10 @@
-﻿using HtmlAgilityPack;
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using twitter.core.Services;
 
 namespace twitter.core.Models
@@ -21,12 +21,15 @@ namespace twitter.core.Models
         public string? ImageUrl { get; private set; }
         public string Description { get; private set; } = string.Empty;
         public string SiteName { get; private set; } = string.Empty;
+        public string Language { get; private set; } = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
         public TwitterStatus ImageTwitterStatus
         {
             get => new()
             {
                 Id = Guid.NewGuid().ToString(),
+                Language = Language,
+                FullText = Description,
                 ExtendedEntities = new Entities
                 {
                     Media = string.IsNullOrWhiteSpace(ImageUrl)
@@ -118,8 +121,11 @@ namespace twitter.core.Models
             var document = new HtmlDocument();
             document.LoadHtml(html);
 
+            var language = document.DocumentNode.SelectSingleNode("//html")?.Attributes["lang"]?.Value
+                ?? CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
             var metaTags = document.DocumentNode.SelectNodes("//meta");
-            var metaInfo = new RelatedLinkInfo { Url = url };
+            var linkInfo = new RelatedLinkInfo { Url = url, Language = Truncate(language, 2) };
 
             if (metaTags is not null)
             {
@@ -134,27 +140,27 @@ namespace twitter.core.Models
                         switch (tagName.Value.ToLower(CultureInfo.InvariantCulture))
                         {
                             case "title":
-                                metaInfo.Title = DecodeHtml(tagContent.Value);
+                                linkInfo.Title = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "description":
-                                metaInfo.Description = DecodeHtml(tagContent.Value);
+                                linkInfo.Description = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "twitter:title":
-                                metaInfo.Title = DecodeHtml(tagContent.Value);
+                                linkInfo.Title = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "twitter:description":
-                                metaInfo.Description = DecodeHtml(tagContent.Value);
+                                linkInfo.Description = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "twitter:image:src":
-                                metaInfo.ImageUrl = tagContent.Value;
+                                linkInfo.ImageUrl = tagContent.Value;
                                 break;
 
                             case "twitter:site":
-                                metaInfo.SiteName = DecodeHtml(tagContent.Value);
+                                linkInfo.SiteName = DecodeHtml(tagContent.Value);
                                 break;
                         }
                     }
@@ -163,26 +169,26 @@ namespace twitter.core.Models
                         switch (tagProperty.Value.ToLower(CultureInfo.InvariantCulture))
                         {
                             case "og:title":
-                                metaInfo.Title = DecodeHtml(tagContent.Value);
+                                linkInfo.Title = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "og:description":
-                                metaInfo.Description = DecodeHtml(tagContent.Value);
+                                linkInfo.Description = DecodeHtml(tagContent.Value);
                                 break;
 
                             case "og:image":
-                                metaInfo.ImageUrl = tagContent.Value;
+                                linkInfo.ImageUrl = tagContent.Value;
                                 break;
 
                             case "og:site_name":
-                                metaInfo.SiteName = DecodeHtml(tagContent.Value);
+                                linkInfo.SiteName = DecodeHtml(tagContent.Value);
                                 break;
                         }
                     }
                 }
             }
 
-            return metaInfo;
+            return linkInfo;
         }
 
         private static bool UrlValid(string? source)
@@ -204,6 +210,15 @@ namespace twitter.core.Models
         {
             // Twice to handle sequences like: "&amp;mdash;"
             return WebUtility.HtmlDecode(WebUtility.HtmlDecode(text)) ?? string.Empty;
+        }
+
+        private static string Truncate(string source, int length)
+        {
+            if (source.Length > length)
+            {
+                source = source.Substring(0, length);
+            }
+            return source;
         }
     }
 }

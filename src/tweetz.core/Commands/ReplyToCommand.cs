@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
+using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
-using tweetz.core.Interfaces.Extensions;
 using tweetz.core.ViewModels;
 using twitter.core.Models;
 

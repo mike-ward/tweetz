@@ -13,7 +13,7 @@ namespace tweetz.core.Views
         private static readonly ThicknessAnimation SlideDownAnimation =
             new(fromValue: new Thickness(0, -80, 0, 0),
                 toValue: new Thickness(0),
-                duration: TimeSpan.FromMilliseconds(100));
+                duration: TimeSpan.FromMilliseconds(80));
 
         public TimelineView()
         {

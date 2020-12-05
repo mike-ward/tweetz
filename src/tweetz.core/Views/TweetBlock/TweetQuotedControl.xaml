@@ -14,6 +14,7 @@
       <local:TweetNameInfoControl DataContext="{Binding Mode=OneTime}" />
 
       <local:TweetTextControl DataContext="{Binding Mode=OneTime}" />
+      <local:TweetTranslateControl DataContext="{Binding Mode=OneTime}" />
 
       <local:TweetImageControl
         DataContext="{Binding Mode=OneTime}"

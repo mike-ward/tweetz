@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
-using tweetz.core.Interfaces.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
