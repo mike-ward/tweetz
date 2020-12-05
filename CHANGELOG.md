@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.9.0 - 2020-12-05
+
+### Added
+
+- Translate tweets on demand
+
+### Changed
+
+- Improved image layout for multiple images
+
 ## 2.8.6 - 2020-11-11
 
 ### Changed

@@ -14,7 +14,7 @@ namespace tweetz.core.Views
 
         private void OnDataContextChanged(object _, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            Visibility = e.NewValue is TwitterStatus status && status.Language.IsNotEqualTo(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            Visibility = e.NewValue is TwitterStatus status && status.Language.IsNotEqualToIgnoreCase(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
         }

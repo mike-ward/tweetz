@@ -19,9 +19,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyVersion>2.8.6</AssemblyVersion>
-    <FileVersion>2.8.6</FileVersion>
-    <Version>2.8.6</Version>    
+    <AssemblyVersion>2.9.0</AssemblyVersion>
+    <FileVersion>2.9.0</FileVersion>
+    <Version>2.9.0</Version>    
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
