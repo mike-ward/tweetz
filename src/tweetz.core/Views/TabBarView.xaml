@@ -7,12 +7,12 @@
   xmlns:local="clr-namespace:tweetz.core.Views"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  d:DesignHeight="300"
+  d:DesignWidth="300"
   AllowDrop="False"
   DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneTime}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
-  d:DesignHeight="300"
-  d:DesignWidth="300"
   mc:Ignorable="d">
 
   <Grid>
@@ -39,7 +39,7 @@
                   Name="Panel"
                   Margin="0,0,0,3"
                   BorderBrush="{DynamicResource StandardForegroundBrush}"
-                  BorderThickness="0,0,0,0.3">
+                  BorderThickness="0,0,0,0.6">
                   <ContentPresenter
                     x:Name="ContentSite"
                     Margin="0,0,0,2"

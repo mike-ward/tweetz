@@ -299,7 +299,7 @@
   <Style
     x:Key="TweetBlockSeparator"
     TargetType="Separator">
-    <Setter Property="Height" Value="0.5" />
+    <Setter Property="Height" Value="0.6" />
     <Setter Property="Margin" Value="0,9,0,0" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
@@ -307,7 +307,7 @@
   <Style
     x:Key="TweetTranslateSeparator"
     TargetType="Separator">
-    <Setter Property="Height" Value="0.5" />
+    <Setter Property="Height" Value="0.6" />
     <Setter Property="Margin" Value="30,10,40,5" />
     <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
