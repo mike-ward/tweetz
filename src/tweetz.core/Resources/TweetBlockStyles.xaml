@@ -226,8 +226,8 @@
     TargetType="Border">
     <Setter Property="Margin" Value="0,5" />
     <Setter Property="Padding" Value="10,0" />
-    <Setter Property="BorderThickness" Value="0.3,0" />
-    <Setter Property="BorderBrush" Value="{DynamicResource StandardForegroundBrush}" />
+    <Setter Property="BorderThickness" Value="0.6,0" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StandardBorderBrush}" />
   </Style>
 
   <Style
@@ -296,19 +296,20 @@
     <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
   </Style>
 
+  <Style TargetType="Separator">
+    <Setter Property="BorderBrush" Value="{DynamicResource StandardBorderBrush}" />
+    <Setter Property="Height" Value="0" />
+  </Style>
+
   <Style
     x:Key="TweetBlockSeparator"
     TargetType="Separator">
-    <Setter Property="Height" Value="0.6" />
     <Setter Property="Margin" Value="0,9,0,0" />
-    <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
 
   <Style
     x:Key="TweetTranslateSeparator"
     TargetType="Separator">
-    <Setter Property="Height" Value="0.6" />
     <Setter Property="Margin" Value="30,10,40,5" />
-    <Setter Property="SnapsToDevicePixels" Value="False" />
   </Style>
 </ResourceDictionary>
