@@ -298,7 +298,7 @@
 
   <Style TargetType="Separator">
     <Setter Property="BorderBrush" Value="{DynamicResource StandardBorderBrush}" />
-    <Setter Property="Height" Value="0" />
+    <Setter Property="Height" Value="1" />
   </Style>
 
   <Style
