@@ -15,8 +15,9 @@
   Effect="{Binding Settings.ApplyGrayscaleShader, Mode=OneWay, Converter={StaticResource BooleanToParameterConverter}, ConverterParameter={StaticResource GrayscaleShaderEffect}}"
   FontSize="{Binding Settings.FontSize, Mode=OneWay}"
   Foreground="{DynamicResource StandardForegroundBrush}"
-  SnapsToDevicePixels="True"
+  TextOptions.TextFormattingMode="Display"
   Topmost="{Binding Settings.AlwaysOnTop, Mode=OneWay}"
+  UseLayoutRounding="true"
   WindowStyle="None"
   mc:Ignorable="d">
 
