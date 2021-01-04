@@ -19,9 +19,10 @@ namespace tweetz.core.Commands
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
             var tweet = (TwitterStatus)ea.Parameter;
-            var lang = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
+            var fromLang = tweet.Language ?? "und";
+            var toLang = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
             tweet.TranslatedText = (string)Application.Current.FindResource("translate-text-working");
-            tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, lang).ConfigureAwait(true);
+            tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, fromLang, toLang).ConfigureAwait(true);
         }
     }
 }

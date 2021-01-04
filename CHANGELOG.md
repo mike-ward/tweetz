@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.9.1 - 2021-01-04
+
+### Fixed
+
+- Use new service provider for translations #61
+
 ## 2.9.0 - 2020-12-05
 
 ### Added

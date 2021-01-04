@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -8,32 +7,29 @@ using System.Threading.Tasks;
 
 namespace tweetz.core.Services
 {
-    public static class TranslateService
+    internal static class TranslateService
     {
-        private const string serviceKey = "c32750406743418d86186b20b9903154";
-        public static readonly string endpoint = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0";
+        public static readonly string endpoint = "https://libretranslate.com/translate";
 
-        public static async ValueTask<string> Translate(string? source, string toLanguage)
+        public static async ValueTask<string> Translate(string? text, string fromLanguage, string toLanguage)
         {
-            if (string.IsNullOrEmpty(source))
+            if (string.IsNullOrEmpty(text))
             {
                 return "no source text to translate";
             }
 
             try
             {
-                var uri = endpoint + $"&to={toLanguage}";
+                var request = WebRequest.Create(endpoint);
 
-                var request = WebRequest.Create(uri);
+                var q = "q=" + Uri.EscapeDataString(text);
+                var s = "&source=" + Uri.EscapeDataString(fromLanguage);
+                var t = "&target=" + Uri.EscapeDataString(toLanguage);
+                var bytes = Encoding.UTF8.GetBytes(q + s + t);
+
                 request.Method = "POST";
-                request.ContentType = "application/json";
-                request.Headers.Add("Ocp-Apim-Subscription-Key", serviceKey);
-                request.Headers.Add("Ocp-Apim-Subscription-Region", "centralus");
-                request.Headers.Add("X-ClientTraceId", Guid.NewGuid().ToString());
-
-                var body = new object[] { new { Text = source } };
-                var requestBody = JsonSerializer.Serialize(body);
-                var bytes = Encoding.UTF8.GetBytes(requestBody).AsMemory();
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = bytes.Length;
 
                 var content = await request.GetRequestStreamAsync().ConfigureAwait(false);
                 await content.WriteAsync(bytes).ConfigureAwait(false);
@@ -41,8 +37,8 @@ namespace tweetz.core.Services
 
                 using var response = await request.GetResponseAsync().ConfigureAwait(false);
                 using var stream = response.GetResponseStream();
-                var result = await JsonSerializer.DeserializeAsync<TranslatorResult[]>(stream).ConfigureAwait(false);
-                return result![0].Translations![0].Text!;
+                var result = await JsonSerializer.DeserializeAsync<TranslatorResult>(stream).ConfigureAwait(false);
+                return result?.TranslatedText ?? "{error}";
             }
             catch (Exception ex)
             {
@@ -51,20 +47,9 @@ namespace tweetz.core.Services
         }
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "MA0048:File name must match type name")]
     public class TranslatorResult
     {
-        [JsonPropertyName("translations")]
-        public IList<TranslationsItem>? Translations { get; set; }
-    }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "MA0048:File name must match type name")]
-    public class TranslationsItem
-    {
-        [JsonPropertyName("text")]
-        public string? Text { get; set; }
-
-        [JsonPropertyName("to")]
-        public string? To { get; set; }
+        [JsonPropertyName("translatedText")]
+        public string? TranslatedText { get; set; }
     }
 }
