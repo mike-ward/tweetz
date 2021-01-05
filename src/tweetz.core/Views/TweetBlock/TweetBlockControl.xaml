@@ -1,11 +1,11 @@
 ﻿<UserControl
   x:Class="tweetz.core.Views.TweetBlockControl"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:local="clr-namespace:tweetz.core.Views"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:local="clr-namespace:tweetz.core.Views"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -21,7 +21,7 @@
 
     <local:TweetProfileImageControl
       Grid.Column="0"
-      Margin="1,5,5,0"
+      Margin="1 5 5 0"
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
       Tag="{Binding ScreenName, Mode=OneWay}"
@@ -35,7 +35,9 @@
 
       <StackPanel Style="{StaticResource TweetBlockIsSensitiveCollapsedStyle}">
         <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
-        <local:TweetTranslateControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
+        <local:TweetTranslateControl
+          DataContext="{Binding OriginatingStatus, Mode=OneTime}"
+          Tag="{Binding DataContext.Settings.HideTranslate, RelativeSource={RelativeSource AncestorType=local:TimelineView}}" />
 
         <local:TweetImageControl
           DataContext="{Binding OriginatingStatus, Mode=OneTime}"
@@ -50,7 +52,7 @@
           Style="{StaticResource TweetBlockRelatedLinkControlStyle}" />
 
         <local:TweetCommandsControl
-          Margin="0,3,0,0"
+          Margin="0 3 0 0"
           DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
       </StackPanel>
 

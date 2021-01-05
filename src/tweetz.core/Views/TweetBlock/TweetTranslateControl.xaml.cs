@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 using tweetz.core.Extensions;
 using twitter.core.Models;
@@ -12,11 +13,29 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
-        private void OnDataContextChanged(object _, System.Windows.DependencyPropertyChangedEventArgs e)
+        private void OnDataContextChanged(object _, DependencyPropertyChangedEventArgs __)
         {
-            Visibility = e.NewValue is TwitterStatus status && status.Language.IsNotEqualToIgnoreCase(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-                ? System.Windows.Visibility.Visible
-                : System.Windows.Visibility.Collapsed;
+            SetVisibility();
+        }
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            if (e.Property.Name.IsEqualTo(nameof(Tag)))
+            {
+                SetVisibility();
+            }
+
+            base.OnPropertyChanged(e);
+        }
+
+        private void SetVisibility()
+        {
+            Visibility = Tag is bool val
+                && !val
+                && DataContext is TwitterStatus status
+                && status.Language.IsNotEqualToIgnoreCase(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+                    ? Visibility.Visible
+                    : Visibility.Collapsed;
         }
     }
 }
