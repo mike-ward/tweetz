@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.9.3 - 2021-01-05
+
+### Fixed
+
+- [Menu takes up 2 rows since 2.9.1 #64](https://github.com/mike-ward/tweetz/issues/64) 
+
 ## 2.9.2 - 2021-01-05
 
 ### Added
