@@ -32,7 +32,7 @@
 
   <SolidColorBrush x:Key="ToolTipForegroundBrush" Color="{StaticResource nord-text0}" />
   <SolidColorBrush x:Key="ToolTipBackgroundBrush" Color="{StaticResource nord0}" />
-  <SolidColorBrush x:Key="LinkForegroundBrush" Color="{StaticResource nord-text1}" />
+  <SolidColorBrush x:Key="LinkForegroundBrush" Color="{StaticResource nord-text0}" />
 
   <!--  Scrollbar  -->
   <SolidColorBrush x:Key="NormalBrush" Color="{StaticResource nord2}" />
