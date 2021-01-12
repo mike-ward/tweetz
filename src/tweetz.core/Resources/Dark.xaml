@@ -10,13 +10,13 @@
   <SolidColorBrush x:Key="TitleBarForegroundBrush">#bbb</SolidColorBrush>
   <SolidColorBrush x:Key="TitleBarBackgroundBrush">#444</SolidColorBrush>
 
-  <SolidColorBrush x:Key="StandardForegroundBrush">#bbb</SolidColorBrush>
+  <SolidColorBrush x:Key="StandardForegroundBrush">#ccc</SolidColorBrush>
   <SolidColorBrush x:Key="StandardBackgroundBrush">#333</SolidColorBrush>
-  <SolidColorBrush x:Key="StandardBorderBrush">#888</SolidColorBrush>
+  <SolidColorBrush x:Key="StandardBorderBrush">#505050</SolidColorBrush>
 
   <SolidColorBrush x:Key="SelectedForegroundBrush">#9be</SolidColorBrush>
   <SolidColorBrush x:Key="SelectedBackgroundBrush">#808080</SolidColorBrush>
-  <SolidColorBrush x:Key="DisabledForegroundBrush">#888</SolidColorBrush>
+  <SolidColorBrush x:Key="DisabledForegroundBrush">#aaa</SolidColorBrush>
 
   <SolidColorBrush x:Key="ButtonForegroundBrush">#cccccc</SolidColorBrush>
   <SolidColorBrush x:Key="ButtonBackgroundBrush">#585858</SolidColorBrush>
@@ -24,7 +24,7 @@
   <SolidColorBrush x:Key="ToolTipForegroundBrush">#fff</SolidColorBrush>
   <SolidColorBrush x:Key="ToolTipBackgroundBrush">#333</SolidColorBrush>
 
-  <SolidColorBrush x:Key="LinkForegroundBrush">#bbb</SolidColorBrush>
+  <SolidColorBrush x:Key="LinkForegroundBrush">#888</SolidColorBrush>
 
   <SolidColorBrush x:Key="GlyphBrush">#444</SolidColorBrush>
   <SolidColorBrush x:Key="NormalBrush">#888</SolidColorBrush>

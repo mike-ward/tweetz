@@ -19,6 +19,7 @@
       <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
         <Hyperlink
           Click="Hyperlink_Click"
+          Foreground="{DynamicResource StandardForegroundBrush}"
           ToolTip="{Binding Url, Mode=OneTime}"
           ToolTipOpening="Hyperlink_ToolTipOpening">
           <Run Text="{Binding Title, Mode=OneTime}" />
