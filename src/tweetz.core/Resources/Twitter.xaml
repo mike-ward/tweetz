@@ -50,8 +50,6 @@
     <Setter Property="Height" Value="{StaticResource VerifiedBadgeSize}" />
     <Setter Property="Fill" Value="{DynamicResource StandardForegroundBrush}" />
     <Setter Property="Stretch" Value="Uniform" />
-    <Setter Property="Stroke" Value="White" />
-    <Setter Property="Fill" Value="{StaticResource TwitterBlue}" />
   </Style>
 
   <Geometry x:Key="TwitterVerifiedBadge">

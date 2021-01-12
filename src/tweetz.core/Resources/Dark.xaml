@@ -14,7 +14,7 @@
   <SolidColorBrush x:Key="StandardBackgroundBrush">#333</SolidColorBrush>
   <SolidColorBrush x:Key="StandardBorderBrush">#505050</SolidColorBrush>
 
-  <SolidColorBrush x:Key="SelectedForegroundBrush">#9be</SolidColorBrush>
+  <SolidColorBrush x:Key="SelectedForegroundBrush">#ccc</SolidColorBrush>
   <SolidColorBrush x:Key="SelectedBackgroundBrush">#808080</SolidColorBrush>
   <SolidColorBrush x:Key="DisabledForegroundBrush">#aaa</SolidColorBrush>
 
@@ -24,7 +24,7 @@
   <SolidColorBrush x:Key="ToolTipForegroundBrush">#fff</SolidColorBrush>
   <SolidColorBrush x:Key="ToolTipBackgroundBrush">#333</SolidColorBrush>
 
-  <SolidColorBrush x:Key="LinkForegroundBrush">#888</SolidColorBrush>
+  <SolidColorBrush x:Key="LinkForegroundBrush">#999</SolidColorBrush>
 
   <SolidColorBrush x:Key="GlyphBrush">#444</SolidColorBrush>
   <SolidColorBrush x:Key="NormalBrush">#888</SolidColorBrush>
@@ -38,7 +38,7 @@
 
   <converters:ColorConverter x:Key="ColorConverter" />
 
-  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0.5,0" EndPoint="0.5, 1">
+  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0.5,0" EndPoint="0.5,1">
     <GradientStop Offset="0" Color="#323232" />
     <GradientStop Offset="0.2" Color="{Binding MyTweetColor, Source={x:Static models:Settings.SettingsStatic}, Mode=OneWay, FallbackValue={StaticResource MyTweetFallbackColorDark}, TargetNullValue={StaticResource MyTweetFallbackColorDark}, Converter={StaticResource ColorConverter}}" />
     <GradientStop Offset="1" Color="#313131" />

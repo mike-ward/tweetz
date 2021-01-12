@@ -16,7 +16,7 @@
   <sys:String x:Key="SearchSymbol">&#xE11A;</sys:String>
   <sys:String x:Key="SettingsSymbol">&#xE115;</sys:String>
   <sys:String x:Key="WriteSymbol">&#xE104;</sys:String>
-  <sys:String x:Key="AddFriendSymbol">&#xE1E2;</sys:String>
+  <sys:String x:Key="AddFriendSymbol">&#xE13D;</sys:String>
   <sys:String x:Key="FontSizeSymbol">&#xE1C8;</sys:String>
   <sys:String x:Key="QuoteSymbol">&#xE134;</sys:String>
 

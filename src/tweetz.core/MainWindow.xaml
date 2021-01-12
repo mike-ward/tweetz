@@ -1,11 +1,11 @@
 ﻿<Window
   x:Class="tweetz.core.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:controls="clr-namespace:tweetz.core.Views"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  xmlns:controls="clr-namespace:tweetz.core.Views"
   Name="Main"
   Title="{StaticResource title}"
   Width="355"
@@ -15,9 +15,8 @@
   Effect="{Binding Settings.ApplyGrayscaleShader, Mode=OneWay, Converter={StaticResource BooleanToParameterConverter}, ConverterParameter={StaticResource GrayscaleShaderEffect}}"
   FontSize="{Binding Settings.FontSize, Mode=OneWay}"
   Foreground="{DynamicResource StandardForegroundBrush}"
-  TextOptions.TextFormattingMode="Display"
   Topmost="{Binding Settings.AlwaysOnTop, Mode=OneWay}"
-  UseLayoutRounding="true"
+  UseLayoutRounding="True"
   WindowStyle="None"
   mc:Ignorable="d">
 
