@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.9.4 - 2021-01-12
+
+### Changed
+
+- UI tweaks
+
 ## 2.9.3 - 2021-01-05
 
 ### Fixed
