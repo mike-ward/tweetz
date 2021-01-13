@@ -23,7 +23,7 @@ namespace tweetz.core.Services
 
                 var request = WebRequest.Create(new Uri(link));
                 request.Method = "HEAD";
-                const int timeoutInMilliseconds = 2000;
+                const int timeoutInMilliseconds = 5000;
                 request.Timeout = timeoutInMilliseconds;
 
                 using var response = await request.GetResponseAsync().ConfigureAwait(false);
