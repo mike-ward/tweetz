@@ -24,7 +24,7 @@
   <SolidColorBrush x:Key="ToolTipForegroundBrush">#000</SolidColorBrush>
   <SolidColorBrush x:Key="ToolTipBackgroundBrush">#f8f8f8</SolidColorBrush>
 
-  <SolidColorBrush x:Key="LinkForegroundBrush">#003</SolidColorBrush>
+  <SolidColorBrush x:Key="LinkForegroundBrush">#34d</SolidColorBrush>
 
   <SolidColorBrush x:Key="GlyphBrush">#444</SolidColorBrush>
   <SolidColorBrush x:Key="NormalBrush">#888</SolidColorBrush>
