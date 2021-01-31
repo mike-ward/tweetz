@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.9.5 - 2021-01-31
+
+### Changed
+
+- Change link colors
+- Extend timeout to 5 seconds for reverse lookup of short urls
+
 ## 2.9.4 - 2021-01-12
 
 ### Changed
