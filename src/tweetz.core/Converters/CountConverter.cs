@@ -8,7 +8,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is int)) { return value; }
+            if (value is not int) return value;
             var count = (int)value;
             const double k = 1000;
 
@@ -21,10 +21,9 @@ namespace tweetz.core.Converters
             };
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return value;
         }
     }
 }

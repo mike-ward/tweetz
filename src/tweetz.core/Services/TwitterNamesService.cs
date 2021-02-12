@@ -21,7 +21,7 @@ namespace tweetz.core.Services
                     hashSet.Add(status.RetweetedStatus!.User.ScreenName!);
                 }
 
-                if (status.Entities is not null && status.Entities.Mentions is not null)
+                if (status.Entities?.Mentions != null)
                 {
                     foreach (var mention in status.Entities.Mentions)
                     {

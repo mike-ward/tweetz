@@ -8,7 +8,6 @@
     <Nullable>Enable</Nullable>
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
-    <Platforms>x86</Platforms>
     <PublishReadyToRun>false</PublishReadyToRun>
     <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
     <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>  

@@ -10,7 +10,6 @@
     <Nullable>Enable</Nullable>
     <OutputType>WinExe</OutputType>
     <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
-    <Platforms>x86</Platforms>
     <PublishReadyToRun>false</PublishReadyToRun>
     <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>

@@ -3,9 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Views">
 
-  <Style
-    x:Key="TweetBlockIsSensitiveCollapsedStyle"
-    TargetType="StackPanel">
+  <Style x:Key="TweetBlockIsSensitiveCollapsedStyle" TargetType="StackPanel">
     <Style.Triggers>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
@@ -17,11 +15,9 @@
     </Style.Triggers>
   </Style>
 
-  <Style
-    x:Key="TweetBlockIsIsSensitiveVisibleStyle"
-    TargetType="StackPanel">
+  <Style x:Key="TweetBlockIsIsSensitiveVisibleStyle" TargetType="StackPanel">
     <Setter Property="Visibility" Value="Collapsed" />
-    <Setter Property="Margin" Value="0 10" />
+    <Setter Property="Margin" Value="0,10" />
 
     <Style.Triggers>
       <MultiDataTrigger>
@@ -34,55 +30,37 @@
     </Style.Triggers>
   </Style>
 
-  <Style
-    x:Key="TweetBlockImageControlStyle"
-    TargetType="{x:Type controls:TweetImageControl}">
-    <Setter Property="Margin" Value="0 5 0 2" />
+  <Style x:Key="TweetBlockImageControlStyle" TargetType="{x:Type controls:TweetImageControl}">
+    <Setter Property="Margin" Value="0,5,0,2" />
     <Setter Property="Cursor" Value="Hand" />
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, TargetNullValue=False, FallbackValue=False}"
-        Value="True">
+      <DataTrigger Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, TargetNullValue=False, FallbackValue=False}" Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
-      <DataTrigger
-        Binding="{Binding ExtendedEntities.Media, Mode=OneWay, TargetNullValue={x:Null}}"
-        Value="{x:Null}">
+      <DataTrigger Binding="{Binding ExtendedEntities.Media, Mode=OneWay, TargetNullValue={x:Null}}" Value="{x:Null}">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
     </Style.Triggers>
   </Style>
 
-  <Style
-    x:Key="TweetBlockRelatedLinkControlStyle"
-    TargetType="{x:Type controls:TweetRelatedLinkControl}">
+  <Style x:Key="TweetBlockRelatedLinkControlStyle" TargetType="{x:Type controls:TweetRelatedLinkControl}">
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, TargetNullValue={x:Null}}"
-        Value="{x:Null}">
+      <DataTrigger Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, TargetNullValue={x:Null}}" Value="{x:Null}">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
-      <DataTrigger
-        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
-        Value="True">
+      <DataTrigger Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
     </Style.Triggers>
   </Style>
 
-  <Style
-    x:Key="TweetBlockGridStyle"
-    TargetType="Grid">
-    <Setter Property="Margin" Value="0 0 0 10" />
+  <Style x:Key="TweetBlockGridStyle" TargetType="Grid">
+    <Setter Property="Margin" Value="0,0,0,10" />
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding IsMyTweet, Mode=OneWay}"
-        Value="True">
+      <DataTrigger Binding="{Binding IsMyTweet, Mode=OneWay}" Value="True">
         <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
       </DataTrigger>
-      <DataTrigger
-        Binding="{Binding MentionsMe, Mode=OneWay}"
-        Value="True">
+      <DataTrigger Binding="{Binding MentionsMe, Mode=OneWay}" Value="True">
         <Setter Property="Background" Value="{DynamicResource MyTweetBackgroundBrush}" />
       </DataTrigger>
     </Style.Triggers>
@@ -93,7 +71,7 @@
     BasedOn="{StaticResource BaseTextBlockStyle}"
     TargetType="TextBlock">
     <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
-    <Setter Property="Margin" Value="0 0 12 0" />
+    <Setter Property="Margin" Value="0,0,12,0" />
     <Setter Property="Cursor" Value="Hand" />
   </Style>
 
@@ -102,9 +80,7 @@
     BasedOn="{StaticResource SymbolStyle}"
     TargetType="Run">
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding RetweetedByMe}"
-        Value="True">
+      <DataTrigger Binding="{Binding RetweetedByMe}" Value="True">
         <Setter Property="Foreground" Value="Green" />
       </DataTrigger>
     </Style.Triggers>
@@ -115,9 +91,7 @@
     BasedOn="{StaticResource SymbolStyle}"
     TargetType="Run">
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding Favorited}"
-        Value="True">
+      <DataTrigger Binding="{Binding Favorited}" Value="True">
         <Setter Property="Foreground" Value="Firebrick" />
       </DataTrigger>
     </Style.Triggers>
@@ -128,9 +102,7 @@
     BasedOn="{StaticResource SymbolStyle}"
     TargetType="Run">
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding User.IsFollowing}"
-        Value="True">
+      <DataTrigger Binding="{Binding User.IsFollowing}" Value="True">
         <Setter Property="Foreground" Value="{StaticResource TwitterBlue}" />
       </DataTrigger>
     </Style.Triggers>
@@ -180,9 +152,7 @@
     TargetType="Image">
 
     <Style.Triggers>
-      <DataTrigger
-        Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-        Value="False">
+      <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Value="False">
         <Setter Property="Source" Value="{Binding ProfileImageUrl, Mode=OneWay, IsAsync=True}" />
         <Setter Property="Width" Value="45" />
         <Setter Property="Height" Value="45" />
@@ -196,9 +166,7 @@
         </Setter>
       </DataTrigger>
 
-      <DataTrigger
-        Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-        Value="True">
+      <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Value="True">
         <Setter Property="Source" Value="{Binding ProfileImageUrlOriginal, Mode=OneWay, IsAsync=True}" />
         <Setter Property="Width" Value="101" />
         <Setter Property="Height" Value="101" />
@@ -217,29 +185,25 @@
     <Setter Property="Stretch" Value="Uniform" />
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="RenderOptions.CachingHint" Value="Cache" />
+    <Setter Property="RenderOptions.CachingHint" Value="Unspecified" />
   </Style>
 
-  <Style
-    x:Key="TweetBlockQuotedBorderStyle"
-    TargetType="Border">
-    <Setter Property="Margin" Value="0 5" />
-    <Setter Property="Padding" Value="10 0" />
-    <Setter Property="BorderThickness" Value="0.6 0" />
+  <Style x:Key="TweetBlockQuotedBorderStyle" TargetType="Border">
+    <Setter Property="Margin" Value="0,5" />
+    <Setter Property="Padding" Value="10,0" />
+    <Setter Property="BorderThickness" Value="0.6,0" />
     <Setter Property="BorderBrush" Value="{DynamicResource StandardBorderBrush}" />
   </Style>
 
-  <Style
-    x:Key="TweetBlockRelatedBorderStyle"
-    TargetType="Border">
-    <Setter Property="Margin" Value="0 3" />
+  <Style x:Key="TweetBlockRelatedBorderStyle" TargetType="Border">
+    <Setter Property="Margin" Value="0,3" />
   </Style>
 
   <Style
     x:Key="TweetBlockTitleStyle"
     BasedOn="{StaticResource BaseTextBlockStyle}"
     TargetType="TextBlock">
-    <Setter Property="Margin" Value="0 2 0 2" />
+    <Setter Property="Margin" Value="0,2,0,2" />
     <Setter Property="FontWeight" Value="Bold" />
     <Setter Property="TextWrapping" Value="Wrap" />
     <Setter Property="TextTrimming" Value="WordEllipsis" />
@@ -300,15 +264,11 @@
     <Setter Property="Height" Value="0.6" />
   </Style>
 
-  <Style
-    x:Key="TweetBlockSeparator"
-    TargetType="Separator">
-    <Setter Property="Margin" Value="0 9 0 0" />
+  <Style x:Key="TweetBlockSeparator" TargetType="Separator">
+    <Setter Property="Margin" Value="0,9,0,0" />
   </Style>
 
-  <Style
-    x:Key="TweetTranslateSeparator"
-    TargetType="Separator">
-    <Setter Property="Margin" Value="30 10 40 5" />
+  <Style x:Key="TweetTranslateSeparator" TargetType="Separator">
+    <Setter Property="Margin" Value="30,10,40,5" />
   </Style>
 </ResourceDictionary>

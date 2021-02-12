@@ -23,8 +23,8 @@ namespace tweetz.core.Views
 
         public TimeSpan ScrollDuration
         {
-            get { return (TimeSpan)GetValue(ScrollDurationProperty); }
-            set { SetValue(ScrollDurationProperty, value); }
+            get => (TimeSpan)GetValue(ScrollDurationProperty);
+            set => SetValue(ScrollDurationProperty, value);
         }
 
         public static readonly DependencyProperty ScrollDurationProperty =
@@ -36,8 +36,8 @@ namespace tweetz.core.Views
 
         public double VerticalOffsetMediator
         {
-            get { return (double)GetValue(VerticalOffsetMediatorProperty); }
-            set { SetValue(VerticalOffsetMediatorProperty, value); }
+            get => (double)GetValue(VerticalOffsetMediatorProperty);
+            set => SetValue(VerticalOffsetMediatorProperty, value);
         }
 
         public static readonly DependencyProperty VerticalOffsetMediatorProperty =
@@ -49,9 +49,7 @@ namespace tweetz.core.Views
 
         private static void OnVerticalOffsetChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
-            if (target is WheelSpeedScrollViewer scrollViewer &&
-                scrollViewer.ScrollInfo is VirtualizingStackPanel virtualizingStackPanel &&
-                scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible)
+            if (target is WheelSpeedScrollViewer {ScrollInfo: VirtualizingStackPanel virtualizingStackPanel, ComputedVerticalScrollBarVisibility: Visibility.Visible})
             {
                 virtualizingStackPanel.SetVerticalOffset((double)e.NewValue);
             }
@@ -68,7 +66,7 @@ namespace tweetz.core.Views
             var animation = new DoubleAnimation
             {
                 To = offset,
-                Duration = ScrollDuration,
+                Duration = ScrollDuration
             };
 
             Storyboard.SetTarget(animation, this);

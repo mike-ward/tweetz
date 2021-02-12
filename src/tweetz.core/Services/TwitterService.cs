@@ -21,9 +21,12 @@ namespace tweetz.core.Services
             twitterApi = new TwitterApi(consumerKey, consumerSecret);
             this.settings = settings;
 
-            this.settings.PropertyChanged += (s, args) => twitterApi.AuthenticationTokens(
-                this.settings.AccessToken,
-                this.settings.AccessTokenSecret);
+            this.settings.PropertyChanged += delegate
+            {
+                twitterApi.AuthenticationTokens(
+                    this.settings.AccessToken,
+                    this.settings.AccessTokenSecret);
+            };
         }
 
         public async ValueTask AuthenticateWithPinAsync(OAuthTokens requestTokens, string pin)

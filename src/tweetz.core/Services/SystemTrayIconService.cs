@@ -22,7 +22,7 @@ namespace tweetz.core.Services
         public void Initialize(Window window)
         {
             NotifyIcon.Tag = window;
-            NotifyIcon.Text = (string)System.Windows.Application.Current.FindResource("title");
+            NotifyIcon.Text = ((string)System.Windows.Application.Current.FindResource("title"))!;
 
             var path = System.Reflection.Assembly.GetEntryAssembly()!.ManifestModule.FullyQualifiedName;
             NotifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(path);

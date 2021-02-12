@@ -16,11 +16,6 @@ namespace tweetz.core.Services
     {
         public static IEnumerable<Inline> FlowContentInlines(TwitterStatus twitterStatus)
         {
-            if (twitterStatus is null)
-            {
-                yield break;
-            }
-
             var nodes = FlowContentNodes(twitterStatus);
 
             foreach (var node in nodes)
@@ -107,12 +102,12 @@ namespace tweetz.core.Services
                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var media = entities.Media
-                ?.Select(media =>
+                ?.Select(entity =>
                 (
                     FlowContentNodeType: FlowContentNodeType.Media,
-                    Text: media.Url,
-                    Start: media.Indices[0],
-                    End: media.Indices[1]
+                    Text: entity.Url,
+                    Start: entity.Indices[0],
+                    End: entity.Indices[1]
                 ))
                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
@@ -174,7 +169,7 @@ namespace tweetz.core.Services
 
         private static Style GetToolTipStyle()
         {
-            return userProfileToolTipStyle ??= (Style)Application.Current.FindResource("ToolTipStyle");
+            return userProfileToolTipStyle ??= ((Style)Application.Current.FindResource("ToolTipStyle"))!;
         }
 
         private static Hyperlink Hashtag(string text)

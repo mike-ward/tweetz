@@ -16,15 +16,15 @@ namespace tweetz.core.Models
     public class TwitterTimeline : NotifyPropertyChanged
     {
         public ISettings Settings { get; }
-        public ISystemState SystemState { get; }
-        public double IntervalInMinutes { get; }
+        private ISystemState SystemState { get; }
+        private double IntervalInMinutes { get; }
 
         public ISet<string> AlreadyAdded { get; } = new HashSet<string>(StringComparer.Ordinal);
-        public string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
+        protected string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
         public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
         public ISet<TwitterStatus> PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
         public bool PendingStatusesAvailable { get => pendingStatusesAvailable; set => SetProperty(ref pendingStatusesAvailable, value); }
-        public string? ToolTipText { get => toolTipText; set => SetProperty(ref toolTipText, value); }
+        private string? ToolTipText { get => toolTipText; set => SetProperty(ref toolTipText, value); }
 
         protected string timelineName = "unknown";
         private bool inUpdate;
@@ -35,14 +35,14 @@ namespace tweetz.core.Models
         private readonly DispatcherTimer updateTimer;
         private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new();
 
-        public TwitterTimeline(ISettings settings, ISystemState systemState, double intervalInMinutes)
+        protected TwitterTimeline(ISettings settings, ISystemState systemState, double intervalInMinutes)
         {
             Settings = settings;
             SystemState = systemState;
             IntervalInMinutes = intervalInMinutes;
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
-            updateTimer.Tick += async (_, __) => await UpdateAsync().ConfigureAwait(false);
+            updateTimer.Tick += async delegate { await UpdateAsync().ConfigureAwait(false); };
 
             PropertyChanged += UpdateTooltip;
             Settings.PropertyChanged += OnAuthenticationChanged;
@@ -79,7 +79,7 @@ namespace tweetz.core.Models
             StatusCollection.Clear();
         }
 
-        public void AddUpdateTask(Func<TwitterTimeline, ValueTask> task)
+        protected void AddUpdateTask(Func<TwitterTimeline, ValueTask> task)
         {
             updateTasks.Add(task);
         }

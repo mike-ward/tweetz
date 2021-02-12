@@ -9,7 +9,7 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is null || (value is string val && string.IsNullOrWhiteSpace(val))
+            return string.IsNullOrWhiteSpace(value as string)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

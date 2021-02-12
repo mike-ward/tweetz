@@ -20,7 +20,7 @@ namespace tweetz.core.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new System.Windows.Media.ColorConverter().ConvertToInvariantString(value);
+            return new System.Windows.Media.ColorConverter().ConvertToInvariantString(value)!;
         }
     }
 }

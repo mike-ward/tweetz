@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -41,7 +42,7 @@ namespace tweetz.core.ViewModels
             InitializeSaveSettingsOnMove(window);
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
-            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, (_, __) => window.Close()));
+            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, delegate { window.Close(); }));
         }
 
         public void OnClosing(Window window)
@@ -55,8 +56,8 @@ namespace tweetz.core.ViewModels
         {
             const int OneSecond = 1000;
             var saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
-            window.SizeChanged += (_, __) => saveSettings(window);
-            window.LocationChanged += (_, __) => saveSettings(window);
+            window.SizeChanged += delegate { saveSettings(window); };
+            window.LocationChanged += delegate { saveSettings(window); };
         }
 
         private void SaveSettings(Window window)

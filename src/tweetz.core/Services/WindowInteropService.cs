@@ -102,7 +102,7 @@ namespace tweetz.core.Services
         {
             SystemState = systemState;
             PowerManager.RegisterMonitorStatusChange(window);
-            HwndSource.FromHwnd(new WindowInteropHelper(window).Handle).AddHook(WndProc);
+            HwndSource.FromHwnd(new WindowInteropHelper(window).Handle)?.AddHook(WndProc);
         }
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

@@ -44,7 +44,7 @@ namespace tweetz.core.Views
                 {
                     var loadingIndicator = (TextBlock)image.Tag;
                     loadingIndicator.ToolTip = ea.ErrorException.Message;
-                    loadingIndicator.Text = (string)Application.Current.FindResource("WarningSign");
+                    loadingIndicator.Text = ((string)Application.Current.FindResource("WarningSign"))!;
                     TraceService.Message(ea.ErrorException.Message);
                     Retries = 0;
                 }

@@ -25,7 +25,7 @@ namespace tweetz.core.Views
         {
             if (DataContext is HomeTimelineControlViewModel vm)
             {
-                vm.StatusCollection.CollectionChanged += (s, args) =>
+                vm.StatusCollection.CollectionChanged += delegate
                 {
                     if (!vm.IsScrolled)
                     {

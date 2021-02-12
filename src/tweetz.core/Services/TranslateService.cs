@@ -36,7 +36,7 @@ namespace tweetz.core.Services
                 content.Close();
 
                 using var response = await request.GetResponseAsync().ConfigureAwait(false);
-                using var stream = response.GetResponseStream();
+                await using var stream = response.GetResponseStream();
                 var result = await JsonSerializer.DeserializeAsync<TranslatorResult>(stream).ConfigureAwait(false);
                 return result?.TranslatedText ?? "{error}";
             }
