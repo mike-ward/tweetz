@@ -19,5 +19,6 @@
     <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
     <controls:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
     <controls:BulletedItem BulletText="{StaticResource tips-profiles}" />
+    <controls:BulletedItem BulletText="{StaticResource tips-volume}" />
   </StackPanel>
 </UserControl>

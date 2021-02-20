@@ -16,6 +16,7 @@
     IsOpen="{Binding Uri, Mode=OneWay, Converter={StaticResource IsNotNullConverter}}"
     KeyDown="Popup_KeyDown"
     MouseDown="Popup_MouseDown"
+    MouseWheel="Popup_OnMouseWheel"
     Opened="Popup_Opened"
     Placement="Center"
     PopupAnimation="Fade"

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 using tweetz.core.Extensions;
 using tweetz.core.ViewModels;
@@ -18,7 +19,10 @@ namespace tweetz.core.Views.MediaViewerBlock
         private void UpdateDataContext(object _, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             MediaControls.DataContext = e.NewValue;
-            ViewModel.PropertyChanged += (_, e) => { if (e.PropertyName.IsEqualTo(nameof(MediaViewerBlockViewModel.Uri))) ShowLoadingIndicator(); };
+            ViewModel.PropertyChanged += (_, ea) =>
+            {
+                if (ea.PropertyName.IsEqualTo(nameof(MediaViewerBlockViewModel.Uri))) ShowLoadingIndicator();
+            };
         }
 
         private void ShowLoadingIndicator()
@@ -41,12 +45,12 @@ namespace tweetz.core.Views.MediaViewerBlock
             e.Handled = true;
         }
 
-        private void Popup_Opened(object sender, System.EventArgs e)
+        private void Popup_Opened(object sender, EventArgs e)
         {
             ShowLoadingIndicator();
         }
 
-        private void Popup_Closed(object sender, System.EventArgs e)
+        private void Popup_Closed(object sender, EventArgs e)
         {
             Close();
         }
@@ -73,6 +77,13 @@ namespace tweetz.core.Views.MediaViewerBlock
         {
             ViewModel.Uri = null;
             MediaElement?.Close();
+        }
+
+        private void Popup_OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            MediaElement.Volume = e.Delta > 0
+                ? Math.Min(MediaElement.Volume + 0.1, 1.0)
+                : Math.Max(MediaElement.Volume - 0.1, 0.0);
         }
     }
 }
