@@ -7,9 +7,9 @@ namespace tweetz.core.Converters
 {
     public class NullToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.IsNullOrWhiteSpace(value as string)
+            return value is null
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

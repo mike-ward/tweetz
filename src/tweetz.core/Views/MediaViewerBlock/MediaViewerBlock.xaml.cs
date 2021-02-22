@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using tweetz.core.Extensions;
@@ -16,7 +17,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private MediaViewerBlockViewModel ViewModel => (MediaViewerBlockViewModel)DataContext;
 
-        private void UpdateDataContext(object _, System.Windows.DependencyPropertyChangedEventArgs e)
+        private void UpdateDataContext(object _, DependencyPropertyChangedEventArgs e)
         {
             MediaControls.DataContext = e.NewValue;
             ViewModel.PropertyChanged += (_, ea) =>
@@ -28,26 +29,37 @@ namespace tweetz.core.Views.MediaViewerBlock
         private void ShowLoadingIndicator()
         {
             MediaElement.Stop();
+            MediaElement.Source = null;
+            MediaElement.Visibility = Visibility.Collapsed;
+            ImageElement.Visibility = Visibility.Collapsed;
+            MediaControls.Visibility = Visibility.Collapsed;
+            MediaControls.SetControlVisibilities(Visibility.Collapsed);
             ViewModel.ErrorMessage = null;
-            MediaControls.Visibility = System.Windows.Visibility.Collapsed;
-            LoadingIndicator.Visibility = System.Windows.Visibility.Visible;
+            LoadingIndicator.Visibility = Visibility.Collapsed;
+
+            var uri = ((MediaViewerBlockViewModel)DataContext).Uri;
+            if (Services.ImageViewerService.IsMp4(uri?.ToString()))
+            {
+                MediaElement.Source = uri;
+                LoadingIndicator.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ImageElement.Visibility = Visibility.Visible;
+                MediaControls.Visibility = Visibility.Visible;
+            }
         }
 
         private void ShowMediaControls()
         {
-            LoadingIndicator.Visibility = System.Windows.Visibility.Collapsed;
-            MediaControls.Visibility = System.Windows.Visibility.Visible;
+            LoadingIndicator.Visibility = Visibility.Collapsed;
+            MediaControls.Visibility = Visibility.Visible;
         }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
             e.Handled = true;
-        }
-
-        private void Popup_Opened(object sender, EventArgs e)
-        {
-            ShowLoadingIndicator();
         }
 
         private void Popup_Closed(object sender, EventArgs e)
@@ -61,22 +73,30 @@ namespace tweetz.core.Views.MediaViewerBlock
             e.Handled = true;
         }
 
-        private void MediaElement_MediaOpened(object sender, System.Windows.RoutedEventArgs e)
+        private void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
             ShowMediaControls();
             MediaElement.Play();
+            MediaElement.Visibility = Visibility.Visible;
         }
 
-        private void MediaElement_MediaFailed(object sender, System.Windows.ExceptionRoutedEventArgs e)
+        private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            LoadingIndicator.Visibility = System.Windows.Visibility.Collapsed;
+            LoadingIndicator.Visibility = Visibility.Collapsed;
             ViewModel.ErrorMessage = e.ErrorException.Message;
         }
 
         private void Close()
         {
             ViewModel.Uri = null;
-            MediaElement?.Close();
+            if (MediaElement is not null)
+            {
+                MediaElement.Close();
+                MediaElement.Source = null;
+                MediaElement.Visibility = Visibility.Collapsed;
+            }
+
+            ImageElement.Visibility = Visibility.Collapsed;
         }
 
         private void Popup_OnMouseWheel(object sender, MouseWheelEventArgs e)

@@ -7,11 +7,11 @@ namespace tweetz.core.Converters
 {
     public class NotNullToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.IsNullOrWhiteSpace(value as string)
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+            return value is not null
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]

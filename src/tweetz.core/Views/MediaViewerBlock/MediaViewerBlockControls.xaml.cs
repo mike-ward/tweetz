@@ -43,6 +43,11 @@ namespace tweetz.core.Views.MediaViewerBlock
                 ? Visibility.Visible
                 : Visibility.Collapsed;
 
+            SetControlVisibilities(visibility);
+        }
+
+        public void SetControlVisibilities(Visibility visibility)
+        {
             RewindButton.Visibility = visibility;
             TenSecRewindButton.Visibility = visibility;
             PlayPauseButton.Visibility = visibility;

@@ -2,14 +2,14 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tweetz"
-#define MyAppVersion "2.9.5"
+#define MyAppVersion "2021.1"
 #define MyAppPublisher "Mike Ward"
 #define MyAppURL "https://mike-ward.net/tweetz"
 #define MyAppExeName "tweetz.core.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+; (To generate a new GUID, cpublick Tools | Generate GUID inside the IDE.)
 AppId={{275FCDB5-30AE-4EE0-AFFC-F0F49C42AF75}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}

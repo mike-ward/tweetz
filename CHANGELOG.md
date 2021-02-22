@@ -1,69 +1,69 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2021.1 - 2021-02-21
+
+### Added
+- Mouse wheel controls volume when playing videos
+
+### Changed
+- Version numbers are year the revision based
+- Image viewer uses media element for videos only. Other images use image element
+- Update packages and SDK to latest releases
+- Removed cache hinting option from profile images
+
 ## 2.9.5 - 2021-01-31
 
 ### Changed
-
 - Change link colors
 - Extend timeout to 5 seconds for reverse lookup of short urls
 
 ## 2.9.4 - 2021-01-12
 
 ### Changed
-
 - UI tweaks
 
 ## 2.9.3 - 2021-01-05
 
 ### Fixed
-
 - [Menu takes up 2 rows since 2.9.1 #64](https://github.com/mike-ward/tweetz/issues/64) 
 
 ## 2.9.2 - 2021-01-05
 
 ### Added
-
 - "Hide translate link" option
 
 ## 2.9.1 - 2021-01-04
 
 ### Fixed
-
 - Use new service provider for translations #61
 
 ## 2.9.0 - 2020-12-05
 
 ### Added
-
 - Translate tweets on demand
 
 ### Changed
-
 - Improved image layout for multiple images
 
 ## 2.8.6 - 2020-11-11
 
 ### Changed
-
 - Update to .Net 5.0
 
 ## 2.8.5 - 2020-09-27
 
 ### Changed
-
 - Smooth scrolling [688ab45](https://github.com/mike-ward/tweetz/commit/688ab45e49f5aeb5d7d14fa02e4e1c738c5e2020)
 
 ## 2.8.4 - 2020-09-13
 
 ### Fixed
-
 - Move ColorConverter reference to theme files to avoid crash [a245e42](https://github.com/mike-ward/tweetz/commit/a245e424da8f2bc0aa1fc3ac636a2a8e9b544142)
 
 ## 2.8.3 - 2020-09-13
 
 ### Fixed
-
 - Follow/Followed By statuses didn't sync sometimes [759c07f](https://github.com/mike-ward/tweetz/commit/759c07f845e379f348ab6479b522d50c8960cf09)
 - Custom color not working in Nord and Dark themes [55449d0](https://github.com/mike-ward/tweetz/commit/55449d08acf1980ea6bf021efac2db4aa4661cc5) 
 
@@ -97,7 +97,6 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fix line height issue [#35](https://github.com/mike-ward/tweetz/issues/35)
-
 
 ## 2.7.1 - 2020-06-30
 

@@ -17,7 +17,6 @@
     KeyDown="Popup_KeyDown"
     MouseDown="Popup_MouseDown"
     MouseWheel="Popup_OnMouseWheel"
-    Opened="Popup_Opened"
     Placement="Center"
     PopupAnimation="Fade"
     SnapsToDevicePixels="True"
@@ -40,6 +39,7 @@
           IsIndeterminate="True" />
 
         <TextBlock
+          Grid.Row="0"
           MinWidth="200"
           MinHeight="100"
           Padding="30"
@@ -52,59 +52,21 @@
           Visibility="{Binding ErrorMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}" />
 
         <MediaElement
+          Grid.Row="0"
           x:Name="MediaElement"
+          Visibility="Collapsed"
           LoadedBehavior="Manual"
           MediaFailed="MediaElement_MediaFailed"
-          MediaOpened="MediaElement_MediaOpened"
-          Source="{Binding Uri, Mode=OneWay}">
-
-          <MediaElement.RenderTransform>
-            <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
-          </MediaElement.RenderTransform>
-
-          <MediaElement.RenderTransformOrigin>
-            <Point
-              X="0.5"
-              Y="0.5" />
-          </MediaElement.RenderTransformOrigin>
-
-          <MediaElement.Triggers>
-            <EventTrigger RoutedEvent="MediaElement.MediaOpened">
-              <BeginStoryboard>
-                <Storyboard
-                  Storyboard.TargetName="MediaElement"
-                  Storyboard.TargetProperty="RenderTransform.ScaleX">
-                  <DoubleAnimation
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.1" />
-                </Storyboard>
-              </BeginStoryboard>
-
-              <BeginStoryboard>
-                <Storyboard
-                  Storyboard.TargetName="MediaElement"
-                  Storyboard.TargetProperty="RenderTransform.ScaleY">
-                  <DoubleAnimation
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.1" />
-                </Storyboard>
-              </BeginStoryboard>
-
-              <BeginStoryboard>
-                <Storyboard
-                  Storyboard.TargetName="MediaElement"
-                  Storyboard.TargetProperty="Opacity">
-                  <DoubleAnimation
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.1" />
-                </Storyboard>
-              </BeginStoryboard>
-            </EventTrigger>
-          </MediaElement.Triggers>
+          MediaOpened="MediaElement_MediaOpened">
         </MediaElement>
+
+        <Image
+          Grid.Row="0"
+          x:Name="ImageElement"
+          Visibility="Collapsed"
+          Source="{Binding Uri, IsAsync=True}"
+          Stretch="UniformToFill">
+        </Image>
 
         <local:MediaViewerBlockControls
           x:Name="MediaControls"
