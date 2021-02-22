@@ -1,0 +1,1 @@
+return {["views"]={[1]={["filename"]="CHANGELOG.md",["active"]=true,["text"]=false,["scroll"]={["y"]=350,["x"]=0},["selection"]={[1]=19,[2]=63,[3]=19,[4]=63},["type"]="doc"}},["active_view"]=1,["type"]="leaf"}
