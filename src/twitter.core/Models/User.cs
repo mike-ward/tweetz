@@ -30,6 +30,11 @@ namespace twitter.core.Models
         [JsonPropertyName("profile_banner_url")]
         public string? ProfileBannerUrl { get; set; }
 
+        [JsonIgnore]
+        public string? ProfileBannerUrlSmall => string.IsNullOrWhiteSpace(ProfileBannerUrl)
+            ? null
+            : ProfileBannerUrl + "/300x100";
+
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 

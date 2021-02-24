@@ -26,6 +26,7 @@ namespace tweetz.core
 
             // View models
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<MainViewModel>();
             services.AddSingleton<GetPinControlViewModel>();
             services.AddSingleton<TabBarControlViewModel>();
             services.AddSingleton<HomeTimelineControlViewModel>();
@@ -36,6 +37,7 @@ namespace tweetz.core
             services.AddSingleton<UserProfileBlockViewModel>();
             services.AddSingleton<MediaViewerBlockViewModel>();
             services.AddSingleton<TitleBarControlViewModel>();
+            services.AddSingleton<UserProfileTimelineViewModel>();
 
             // Commands
             services.AddSingleton<ICommandBinding, AddImageCommand>();
@@ -52,6 +54,7 @@ namespace tweetz.core
             services.AddSingleton<ICommandBinding, ScrollToHomeCommand>();
             services.AddSingleton<ICommandBinding, SearchCommand>();
             services.AddSingleton<ICommandBinding, ShowTwitterStatusCommand>();
+            services.AddSingleton<ICommandBinding, ShowUserProfileCommand>();
             services.AddSingleton<ICommandBinding, SignOutCommand>();
             services.AddSingleton<ICommandBinding, ToggleFavoriteCommand>();
             services.AddSingleton<ICommandBinding, ToggleFollowCommand>();

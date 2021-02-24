@@ -1,20 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Interfaces;
 using tweetz.core.Services;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace tweetz.core.ViewModels
 {
     public class MainWindowViewModel
     {
         public ISettings Settings { get; }
+
         private ISystemState SystemState { get; }
+
         private IWindowInteropService WindowInteropService { get; }
+
         private ISystemTrayIconService SystemTrayIconService { get; }
+
         private IEnumerable<ICommandBinding> CommandBindings { get; }
+
         private IImageViewerService ImageViewerService { get; }
 
         public MainWindowViewModel(

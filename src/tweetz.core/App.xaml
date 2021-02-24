@@ -20,6 +20,7 @@
         <ResourceDictionary Source="Resources/UserProfileBlockStyles.xaml" />
         <ResourceDictionary Source="Resources/TweetImageControlStyles.xaml" />
         <ResourceDictionary Source="Resources/TabControlStyles.xaml" />
+        <ResourceDictionary Source="Resources/UserProfileViewStyles.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>

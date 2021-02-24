@@ -78,5 +78,7 @@ namespace tweetz.core.Services
         public ValueTask<UploadMedia> UploadMediaFinalize(string mediaId) => twitterApi.UploadMediaFinalize(mediaId);
 
         public ValueTask<IEnumerable<UserConnection>> GetFriendships(string[] ids) => twitterApi.GetFriendships(ids);
+
+        public ValueTask<IEnumerable<TwitterStatus>> GetUserTimeline(string screenName) => twitterApi.GetUserTimeline(screenName);
     }
 }

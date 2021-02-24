@@ -53,6 +53,7 @@ namespace twitter.core.Services
             {
                 status.UpdateFromStatus(status);
             }
+
             return statuses;
         }
 
@@ -94,7 +95,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode(),
-                        TwitterOptions.ScreenName(screenName),
+                        TwitterOptions.ScreenName(screenName)
                     })
                 .ConfigureAwait(false);
 
@@ -113,15 +114,15 @@ namespace twitter.core.Services
                         TwitterOptions.Count(100),
                         TwitterOptions.Query(query),
                         TwitterOptions.IncludeEntities(),
-                        TwitterOptions.ExtendedTweetMode(),
+                        TwitterOptions.ExtendedTweetMode()
                     });
         }
 
         public ValueTask RetweetStatus(string statusId)
         {
             return oAuthApiRequest
-               .PostAsync($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
-                   Enumerable.Empty<(string, string)>());
+                .PostAsync($"https://api.twitter.com/1.1/statuses/retweet/{statusId}.json",
+                    Enumerable.Empty<(string, string)>());
         }
 
         public ValueTask UnretweetStatus(string statusId)
@@ -135,28 +136,28 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .PostAsync("https://api.twitter.com/1.1/favorites/create.json",
-                     new[] { TwitterOptions.Id(statusId) });
+                    new[] { TwitterOptions.Id(statusId) });
         }
 
         public ValueTask DestroyFavorite(string statusId)
         {
             return oAuthApiRequest
-               .PostAsync("https://api.twitter.com/1.1/favorites/destroy.json",
-                  new[] { TwitterOptions.Id(statusId) });
+                .PostAsync("https://api.twitter.com/1.1/favorites/destroy.json",
+                    new[] { TwitterOptions.Id(statusId) });
         }
 
         public ValueTask Follow(string screenName)
         {
             return oAuthApiRequest
-               .PostAsync("https://api.twitter.com/1.1/friendships/create.json",
-                   new[] { TwitterOptions.ScreenName(screenName), });
+                .PostAsync("https://api.twitter.com/1.1/friendships/create.json",
+                    new[] { TwitterOptions.ScreenName(screenName) });
         }
 
         public ValueTask Unfollow(string screenName)
         {
             return oAuthApiRequest
-               .PostAsync("https://api.twitter.com/1.1/friendships/destroy.json",
-                   new[] { TwitterOptions.ScreenName(screenName) });
+                .PostAsync("https://api.twitter.com/1.1/friendships/destroy.json",
+                    new[] { TwitterOptions.ScreenName(screenName) });
         }
 
         public ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
@@ -164,7 +165,7 @@ namespace twitter.core.Services
             var parameters = new List<(string, string)>
             {
                 TwitterOptions.Status(text),
-                TwitterOptions.ExtendedTweetMode(),
+                TwitterOptions.ExtendedTweetMode()
             };
 
             if (!string.IsNullOrEmpty(replyToStatusId))
@@ -195,7 +196,7 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Id(statusId),
                         TwitterOptions.IncludeEntities(),
-                        TwitterOptions.ExtendedTweetMode(),
+                        TwitterOptions.ExtendedTweetMode()
                     });
         }
 
@@ -209,14 +210,14 @@ namespace twitter.core.Services
                     {
                         TwitterOptions.Command("INIT"),
                         TwitterOptions.TotalBytes(totalBytes),
-                        TwitterOptions.MediaType(mediaType),
+                        TwitterOptions.MediaType(mediaType)
                     });
         }
 
         public ValueTask UploadMediaAppend(string mediaId, int segmentIndex, byte[] data)
         {
             return oAuthApiRequest
-               .AppendMediaAsync(mediaId, segmentIndex, data);
+                .AppendMediaAsync(mediaId, segmentIndex, data);
         }
 
         public ValueTask<UploadMedia> UploadMediaStatus(string mediaId)
@@ -226,7 +227,7 @@ namespace twitter.core.Services
                     new[]
                     {
                         TwitterOptions.Command("STATUS"),
-                        TwitterOptions.MediaId(mediaId),
+                        TwitterOptions.MediaId(mediaId)
                     });
         }
 
@@ -237,7 +238,7 @@ namespace twitter.core.Services
                     new[]
                     {
                         TwitterOptions.Command("FINALIZE"),
-                        TwitterOptions.MediaId(mediaId),
+                        TwitterOptions.MediaId(mediaId)
                     });
         }
 
@@ -247,7 +248,21 @@ namespace twitter.core.Services
                 .GetAsync<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",
                     new[]
                     {
-                       TwitterOptions.UserIds(ids),
+                        TwitterOptions.UserIds(ids)
+                    });
+        }
+
+        public ValueTask<IEnumerable<TwitterStatus>> GetUserTimeline(string screenName)
+        {
+            return oAuthApiRequest
+                .GetAsync<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/user_timeline.json",
+                    new[]
+                    {
+                        TwitterOptions.ScreenName(screenName),
+                        TwitterOptions.Count(25),
+                        TwitterOptions.IncludeEntities(),
+                        TwitterOptions.IncludeRetweets(),
+                        TwitterOptions.ExtendedTweetMode()
                     });
         }
     }

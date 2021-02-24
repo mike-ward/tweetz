@@ -5,12 +5,13 @@
   xmlns:services="clr-namespace:tweetz.core.Services">
 
   <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+  <converters:BooleanToParameterConverter x:Key="BooleanToParameterConverter" />
   <converters:CompareToConverter x:Key="CompareToConverter" />
   <converters:CountConverter x:Key="CountConverter" />
   <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
   <converters:FileNameConverter x:Key="FileNameConverter" />
-  <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+  <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:MediaIsVideoToVisibilityConverter x:Key="MediaIsVideoToVisibilityConverter" />
   <converters:NotBooleanConverter x:Key="NotBooleanConverter" />
   <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
@@ -20,6 +21,5 @@
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <converters:ViewModelLocatorConverter x:Key="VMLC" />
-  <converters:BooleanToParameterConverter x:Key="BooleanToParameterConverter" />
   <services:GrayscaleShaderEffect x:Key="GrayscaleShaderEffect" />
 </ResourceDictionary>

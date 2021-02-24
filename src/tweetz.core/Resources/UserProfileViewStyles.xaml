@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Style
+    x:Key="ProfileBackBarButtonStyle"
+    BasedOn="{StaticResource BaseButtonToolTipStyle}"
+    TargetType="Button">
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+      </Trigger>
+    </Style.Triggers>
+
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundBrush}" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border
+            x:Name="border"
+            Background="{DynamicResource StandardBackgroundBrush}">
+            <ContentPresenter
+              x:Name="ButtonContentPresenter"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center">
+              <ContentPresenter.Resources>
+                <Style TargetType="TextBlock">
+                  <Setter Property="TextWrapping" Value="NoWrap" />
+                  <Setter Property="TextAlignment" Value="Left" />
+                  <Setter Property="Padding" Value="9,2,9,5.5" />
+                </Style>
+              </ContentPresenter.Resources>
+            </ContentPresenter>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style
+    x:Key="ProfileFollowButtonStyle"
+    TargetType="Button">
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+      </Trigger>
+    </Style.Triggers>
+
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="Margin" Value="0,0,7,0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border
+            x:Name="border"
+            Background="{DynamicResource TwitterBlue}"
+            MinWidth="95"
+            Padding="15 4 15 6"
+            CornerRadius="15">
+            <ContentPresenter
+              x:Name="ButtonContentPresenter"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+              <ContentPresenter.Resources>
+                <Style TargetType="TextBlock">
+                  <Setter Property="TextAlignment" Value="Center" />
+                  <Setter Property="Padding" Value="9,2,9,5.5" />
+                </Style>
+              </ContentPresenter.Resources>
+            </ContentPresenter>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

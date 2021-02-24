@@ -48,9 +48,11 @@
   <!--  Profile  -->
   <sys:String x:Key="profile-joined">Joined</sys:String>
   <sys:String x:Key="profile-following">Following</sys:String>
+  <sys:String x:Key="profile-unfollow">Unfollow</sys:String>
   <sys:String x:Key="profile-followers">Followers</sys:String>
   <sys:String x:Key="profile-not-following">Not Following</sys:String>
   <sys:String x:Key="profile-follows-you">Follows You</sys:String>
+  <sys:String x:Key="profile-tweets">Tweets</sys:String>
 
   <!--  Compose  -->
   <sys:String x:Key="whats-happening">What's Happening?</sys:String>

@@ -38,7 +38,7 @@
       Grid.Row="1"
       Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
-    <controls:TabBarView
+    <controls:MainView
       Grid.Row="1"
       Visibility="{Binding DataContext.Settings.IsAuthenticated, ElementName=Main, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>

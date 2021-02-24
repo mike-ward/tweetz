@@ -35,7 +35,8 @@
   <sys:String x:Key="PlaySymbol">&#xE102;</sys:String>
   <sys:String x:Key="CopyUriClipboardSymbol">&#xE16F;</sys:String>
   <sys:String x:Key="CopyImageClipboardSymbol">&#x1f304;</sys:String>
-
+  <sys:String x:Key="PreviousSymbol">&#xE112;</sys:String>
+  
   <!--  Standard font symbols  -->
 
   <sys:String x:Key="Hourglass">&#x231B;</sys:String>
