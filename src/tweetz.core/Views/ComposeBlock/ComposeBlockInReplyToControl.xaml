@@ -5,6 +5,7 @@
   xmlns:controls="clr-namespace:tweetz.core.Views"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -17,7 +18,7 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <controls:TweetProfileImageControl
+    <tweetBlock:TweetProfileImageControl
       Grid.Column="0"
       Margin="1,0,5,0"
       Cursor="Hand"
@@ -32,8 +33,8 @@
       Stroke="{DynamicResource StandardBorderBrush}" />
 
     <StackPanel Grid.Column="1">
-      <controls:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
-      <controls:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+      <tweetBlock:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
+      <tweetBlock:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneWay}" />
     </StackPanel>
   </Grid>
 </UserControl>

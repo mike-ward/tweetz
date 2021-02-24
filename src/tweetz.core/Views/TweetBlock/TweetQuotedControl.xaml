@@ -1,24 +1,25 @@
 ﻿<UserControl
-  x:Class="tweetz.core.Views.TweetQuotedControl"
+  x:Class="tweetz.core.Views.TweetBlock.TweetQuotedControl"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:local="clr-namespace:tweetz.core.Views"
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
 
   <Border Style="{StaticResource TweetBlockQuotedBorderStyle}">
     <StackPanel>
-      <local:TweetNameInfoControl DataContext="{Binding Mode=OneTime}" />
+      <tweetBlock:TweetNameInfoControl DataContext="{Binding Mode=OneTime}" />
 
-      <local:TweetTextControl DataContext="{Binding Mode=OneTime}" />
-      <local:TweetTranslateControl
+      <tweetBlock:TweetTextControl DataContext="{Binding Mode=OneTime}" />
+      <tweetBlock:TweetTranslateControl
         DataContext="{Binding Mode=OneTime}"
         Tag="{Binding DataContext.Settings.HideTranslate, RelativeSource={RelativeSource AncestorType=local:TimelineView}}" />
 
-      <local:TweetImageControl
+      <tweetBlock:TweetImageControl
         DataContext="{Binding Mode=OneTime}"
         Style="{StaticResource TweetBlockImageControlStyle}" />
     </StackPanel>

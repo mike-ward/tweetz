@@ -7,7 +7,7 @@ using tweetz.core.Extensions;
 using tweetz.core.Services;
 using twitter.core.Models;
 
-namespace tweetz.core.Views
+namespace tweetz.core.Views.TweetBlock
 {
     public partial class TweetImageControl : UserControl
     {

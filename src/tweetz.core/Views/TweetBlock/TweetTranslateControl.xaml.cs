@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using tweetz.core.Extensions;
 using twitter.core.Models;
 
-namespace tweetz.core.Views
+namespace tweetz.core.Views.TweetBlock
 {
     public partial class TweetTranslateControl : UserControl
     {

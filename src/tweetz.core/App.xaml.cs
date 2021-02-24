@@ -4,7 +4,6 @@ using System.Windows;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using tweetz.core.DesktopWindowManagerNamespace;
 using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
@@ -15,7 +14,7 @@ namespace tweetz.core
     {
         static App()
         {
-            if (!DesktopWindowManager.IsDwmEnabled())
+            if (!DesktopWindowManager.DesktopWindowManager.IsDwmEnabled())
             {
                 MessageBox.Show("Desktop Window Manager service must be enabled to run", "Tweetz");
                 Environment.Exit(1);

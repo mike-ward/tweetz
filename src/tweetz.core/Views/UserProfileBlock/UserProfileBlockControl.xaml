@@ -7,6 +7,7 @@
   xmlns:local="clr-namespace:tweetz.core.Views.UserProfileBlock"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
   MinWidth="250"
   MaxWidth="275"
   Background="{DynamicResource StandardBackgroundBrush}"
@@ -29,7 +30,7 @@
     <StackPanel Visibility="{Binding User, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}">
 
       <Grid VerticalAlignment="Center">
-        <controls:TweetProfileImageControl
+        <tweetBlock:TweetProfileImageControl
           HorizontalAlignment="Left"
           DataContext="{Binding User, Mode=OneWay}"
           Original="True" />

@@ -1,11 +1,12 @@
 ﻿<UserControl
-  x:Class="tweetz.core.Views.TweetBlockControl"
+  x:Class="tweetz.core.Views.TweetBlock.TweetBlockControl"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:local="clr-namespace:tweetz.core.Views"
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -19,7 +20,7 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <local:TweetProfileImageControl
+    <tweetBlock:TweetProfileImageControl
       Grid.Column="0"
       Margin="1 5 5 0"
       Cursor="Hand"
@@ -29,29 +30,29 @@
       Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineView}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
     <StackPanel Grid.Column="1">
-      <local:TweetRetweetedBy DataContext="{Binding Mode=OneWay}" />
+      <tweetBlock:TweetRetweetedBy DataContext="{Binding Mode=OneWay}" />
 
-      <local:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
+      <tweetBlock:TweetNameInfoControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
 
       <StackPanel Style="{StaticResource TweetBlockIsSensitiveCollapsedStyle}">
-        <local:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
-        <local:TweetTranslateControl
+        <tweetBlock:TweetTextControl DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
+        <tweetBlock:TweetTranslateControl
           DataContext="{Binding OriginatingStatus, Mode=OneTime}"
           Tag="{Binding DataContext.Settings.HideTranslate, RelativeSource={RelativeSource AncestorType=local:TimelineView}}" />
 
-        <local:TweetImageControl
+        <tweetBlock:TweetImageControl
           DataContext="{Binding OriginatingStatus, Mode=OneTime}"
           Style="{StaticResource TweetBlockImageControlStyle}" />
 
-        <local:TweetQuotedControl
+        <tweetBlock:TweetQuotedControl
           DataContext="{Binding OriginatingStatus.QuotedStatus, Mode=OneTime}"
           Visibility="{Binding DataContext.IsQuoted, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <local:TweetRelatedLinkControl
+        <tweetBlock:TweetRelatedLinkControl
           DataContext="{Binding RelatedLinkInfo, Mode=OneWay}"
           Style="{StaticResource TweetBlockRelatedLinkControlStyle}" />
 
-        <local:TweetCommandsControl
+        <tweetBlock:TweetCommandsControl
           Margin="0 3 0 0"
           DataContext="{Binding OriginatingStatus, Mode=OneTime}" />
       </StackPanel>

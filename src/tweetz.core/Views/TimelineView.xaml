@@ -6,6 +6,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Views"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
   x:Name="Timeline"
   d:DesignHeight="200"
   d:DesignWidth="300"
@@ -54,7 +55,7 @@
 
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <local:TweetBlockControl />
+        <tweetBlock:TweetBlockControl />
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>
