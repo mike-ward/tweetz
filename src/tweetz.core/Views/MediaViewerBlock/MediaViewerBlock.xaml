@@ -72,6 +72,7 @@
           x:Name="MediaControls"
           Grid.Row="1"
           MediaElement="{Binding ElementName=MediaElement, Mode=OneWay}"
+          ImageElement="{Binding ElementName=ImageElement, Mode=OneWay}"
           Visibility="Collapsed" />
       </Grid>
     </Border>

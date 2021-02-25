@@ -20,6 +20,10 @@
             <DataTrigger Binding="{Binding IsFollowing}" Value="True">
               <Setter Property="Text" Value="{StaticResource profile-following}" />
             </DataTrigger>
+            <Trigger Property="TextBlock.IsMouseOver" Value="True">
+              <Setter Property="TextBlock.Foreground" Value="White" />
+              <Setter Property="TextBlock.Background" Value="{StaticResource ButtonHoverBrush}" />
+            </Trigger>
           </Style.Triggers>
         </Style>
       </TextBlock.Style>

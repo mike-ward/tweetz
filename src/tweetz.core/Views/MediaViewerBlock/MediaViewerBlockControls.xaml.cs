@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using tweetz.core.Services;
+using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views.MediaViewerBlock
 {
@@ -21,6 +23,15 @@ namespace tweetz.core.Views.MediaViewerBlock
         {
             get => (MediaElement)GetValue(MediaElementProperty);
             set => SetValue(MediaElementProperty, value);
+        }
+
+        public static readonly DependencyProperty ImageElementProperty = DependencyProperty.Register(
+            nameof(ImageElement), typeof(Image), typeof(MediaViewerBlockControls), new PropertyMetadata(default(Image)));
+
+        public Image ImageElement
+        {
+            get => (Image)GetValue(ImageElementProperty);
+            set => SetValue(ImageElementProperty, value);
         }
 
         private DispatcherTimer? timer;
@@ -63,12 +74,16 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private void CopyUriToClipboard_Click(object sender, RoutedEventArgs e)
         {
-            ImageViewerService.CopyUIElementToClipboard(MediaElement, MediaElement.Source);
+            if (MediaElement.Source is not null) ImageViewerService.CopyUIElementToClipboard(MediaElement, MediaElement.Source);
+            else ImageViewerService.CopyUIElementToClipboard(ImageElement, ((MediaViewerBlockViewModel)ImageElement.DataContext).Uri);
         }
 
         private void CopyImageToClipboard_Click(object sender, RoutedEventArgs e)
         {
-            ImageViewerService.CopyUIElementToClipboard(MediaElement, uri: null);
+            ImageViewerService.CopyUIElementToClipboard(MediaElement.Source is not null
+                    ? MediaElement
+                    : ImageElement,
+                uri: null);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)

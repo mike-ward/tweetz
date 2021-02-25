@@ -47,7 +47,7 @@
       Orientation="Horizontal">
 
       <!-- <up:UserProfileMoreButton /> -->
-      <local:UserProfileFollowButton />
+      <!-- <local:UserProfileFollowButton /> -->
     </StackPanel>
   </Grid>
 </UserControl>
