@@ -74,7 +74,7 @@ namespace tweetz.core.Models
 
         private void Stop()
         {
-            updateTimer?.Stop();
+            updateTimer.Stop();
             AlreadyAdded.Clear();
             StatusCollection.Clear();
         }
@@ -142,7 +142,7 @@ namespace tweetz.core.Models
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if (PendingStatusesAvailable) { ToolTipText = (string)Application.Current.FindResource("new-tweets-arrived-tooltip"); }
+                if (PendingStatusesAvailable) { ToolTipText = (string)Application.Current.FindResource("new-tweets-arrived-tooltip")!; }
                 else if (ExceptionMessage is not null) { ToolTipText = ExceptionMessage; }
                 else { ToolTipText = null; }
             });

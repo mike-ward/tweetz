@@ -9,17 +9,19 @@ namespace twitter.core.Models
     /// </summary>
     public readonly struct TwitterString
     {
-        private const int bytesPerChar = 4;
+        private const    int                  bytesPerChar = 4;
+        private readonly int                  length;
         private readonly ReadOnlyMemory<byte> bytes;
 
         public TwitterString(string text)
         {
-            bytes = Encoding.UTF32.GetBytes(text.Normalize());
+            bytes  = Encoding.UTF32.GetBytes(text.Normalize());
+            length = bytes.Length / bytesPerChar;
         }
 
         public string Substring(int start)
         {
-            var count = (bytes.Length / bytesPerChar) - start;
+            var count = length - start;
             return Substring(start, count);
         }
 

@@ -18,24 +18,24 @@ namespace tweetz.core.Services
         {
             var nodes = FlowContentNodes(twitterStatus);
 
-            foreach (var node in nodes)
+            foreach (var (flowContentNodeType, text) in nodes)
             {
-                switch (node.FlowContentNodeType)
+                switch (flowContentNodeType)
                 {
                     case FlowContentNodeType.Text:
-                        yield return Run(node.Text);
+                        yield return Run(text);
                         break;
 
                     case FlowContentNodeType.Url:
-                        yield return Link(node.Text);
+                        yield return Link(text);
                         break;
 
                     case FlowContentNodeType.Mention:
-                        yield return Mention(node.Text);
+                        yield return Mention(text);
                         break;
 
                     case FlowContentNodeType.HashTag:
-                        yield return Hashtag(node.Text);
+                        yield return Hashtag(text);
                         break;
 
                     case FlowContentNodeType.Media:
@@ -50,14 +50,14 @@ namespace tweetz.core.Services
 
         private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text)> FlowContentNodes(TwitterStatus twitterStatus)
         {
-            var start = 0;
+            var start         = 0;
             var twitterString = new TwitterString(twitterStatus.FullText ?? twitterStatus.Text ?? string.Empty);
 
             foreach (var item in FlowControlItems(twitterStatus.Entities ?? new Entities()))
             {
                 if (item.Start >= start)
                 {
-                    var len = item.Start - start;
+                    var len  = item.Start - start;
                     var text = twitterString.Substring(start, len);
                     yield return (FlowContentNodeType.Text, text);
                 }
@@ -72,43 +72,43 @@ namespace tweetz.core.Services
         private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)> FlowControlItems(Entities entities)
         {
             var urls = entities.Urls
-                 ?.Select(url =>
-                 (
-                     FlowContentNodeType: FlowContentNodeType.Url,
-                     Text: url.ExpandedUrl,
-                     Start: url.Indices[0],
-                     End: url.Indices[1]
-                 ))
-                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+                    ?.Select(url =>
+                    (
+                        FlowContentNodeType: FlowContentNodeType.Url,
+                        Text: url.ExpandedUrl,
+                        Start: url.Indices[0],
+                        End: url.Indices[1]
+                    ))
+                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var mentions = entities.Mentions
-                ?.Select(mention =>
-                (
-                    FlowContentNodeType: FlowContentNodeType.Mention,
-                    Text: mention.ScreenName,
-                    Start: mention.Indices[0],
-                    End: mention.Indices[1]
-                ))
+                    ?.Select(mention =>
+                    (
+                        FlowContentNodeType: FlowContentNodeType.Mention,
+                        Text: mention.ScreenName,
+                        Start: mention.Indices[0],
+                        End: mention.Indices[1]
+                    ))
                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var hashTags = entities.HashTags
-                ?.Select(hashtag =>
-                (
-                    FlowContentNodeType: FlowContentNodeType.HashTag,
-                    hashtag.Text,
-                    Start: hashtag.Indices[0],
-                    End: hashtag.Indices[1]
-                ))
+                    ?.Select(hashtag =>
+                    (
+                        FlowContentNodeType: FlowContentNodeType.HashTag,
+                        hashtag.Text,
+                        Start: hashtag.Indices[0],
+                        End: hashtag.Indices[1]
+                    ))
                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var media = entities.Media
-                ?.Select(entity =>
-                (
-                    FlowContentNodeType: FlowContentNodeType.Media,
-                    Text: entity.Url,
-                    Start: entity.Indices[0],
-                    End: entity.Indices[1]
-                ))
+                    ?.Select(entity =>
+                    (
+                        FlowContentNodeType: FlowContentNodeType.Media,
+                        Text: entity.Url,
+                        Start: entity.Indices[0],
+                        End: entity.Indices[1]
+                    ))
                 ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             return urls
@@ -130,16 +130,16 @@ namespace tweetz.core.Services
             var hyperlink = new Hyperlink(new Run(link))
             {
                 CommandParameter = link,
-                ToolTip = link,
+                ToolTip          = link
             };
 
-            hyperlink.Click += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
+            hyperlink.Click          += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
             hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
 
             var textblock = new TextBlock(hyperlink)
             {
-                MaxWidth = maxDisplayLength,
-                TextTrimming = TextTrimming.CharacterEllipsis,
+                MaxWidth     = maxDisplayLength,
+                TextTrimming = TextTrimming.CharacterEllipsis
             };
 
             return new InlineUIContainer(textblock);
@@ -147,18 +147,18 @@ namespace tweetz.core.Services
 
         private static Hyperlink Mention(string text)
         {
-            var tooltip = new ToolTip();
+            var tooltip     = new ToolTip();
             var userProfile = new UserProfileBlockControl();
 
             tooltip.Content = userProfile;
-            tooltip.Style = GetToolTipStyle();
+            tooltip.Style   = GetToolTipStyle();
             userProfile.Tag = text;
             var link = $"https://twitter.com/{text}";
 
             var hyperlink = new Hyperlink(new Run("@" + text))
             {
                 CommandParameter = link,
-                ToolTip = tooltip,
+                ToolTip          = tooltip
             };
 
             hyperlink.Click += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
@@ -177,7 +177,7 @@ namespace tweetz.core.Services
             var tag = "#" + text;
             var hyperlink = new Hyperlink(new Run(tag))
             {
-                CommandParameter = tag,
+                CommandParameter = tag
             };
 
             hyperlink.Click += delegate { SearchCommand.Command.Execute(tag, target: null); };

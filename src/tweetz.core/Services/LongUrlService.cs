@@ -12,7 +12,7 @@ namespace tweetz.core.Services
         private const int maxCacheSize = 100;
         private static readonly ConcurrentDictionary<string, string> UrlCache = new(concurrencyLevel: 1, capacity: maxCacheSize + 1, comparer: StringComparer.Ordinal);
 
-        public static async ValueTask<string> TryGetLongUrlAsync(string link)
+        private static async ValueTask<string> TryGetLongUrlAsync(string link)
         {
             try
             {

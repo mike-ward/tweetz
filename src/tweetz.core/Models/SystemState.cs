@@ -1,10 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using System;
 using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
+using Microsoft.Win32;
 using tweetz.core.Interfaces;
 
 namespace tweetz.core.Models
@@ -29,7 +27,7 @@ namespace tweetz.core.Models
                 using var registryKey = OpenStartupSubKey();
                 if (value)
                 {
-                    var path = $"\"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\tweetz.core.exe\"";
+                    var path = $"\"{AppContext.BaseDirectory}\\tweetz.core.exe\"";
                     registryKey.SetValue(ApplicationName, path);
                 }
                 else
@@ -41,7 +39,7 @@ namespace tweetz.core.Models
             }
         }
 
-        private static string ApplicationName => ComputeMD5(Assembly.GetExecutingAssembly().Location);
+        private static string ApplicationName => ComputeMD5(AppContext.BaseDirectory);
 
         [SupportedOSPlatform("windows")]
         private static RegistryKey OpenStartupSubKey() => Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", writable: true)!;
@@ -49,16 +47,10 @@ namespace tweetz.core.Models
         private static string ComputeMD5(string input)
         {
             using var md5 = System.Security.Cryptography.MD5.Create();
-            var inputBytes = Encoding.UTF8.GetBytes(input);
-            var hashBytes = md5.ComputeHash(inputBytes);
 
-            // Convert the byte array to hexadecimal string
-            var sb = new StringBuilder();
-            for (var i = 0; i < hashBytes.Length; i++)
-            {
-                sb.Append(hashBytes[i].ToString("X2", CultureInfo.InvariantCulture));
-            }
-            return sb.ToString();
+            var inputBytes = Encoding.UTF8.GetBytes(input);
+            var hashBytes  = md5.ComputeHash(inputBytes);
+            return Convert.ToHexString(hashBytes);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -9,7 +9,7 @@ namespace tweetz.core.Services
 {
     internal static class TranslateService
     {
-        public static readonly string endpoint = "https://libretranslate.com/translate";
+        private const string endpoint = "https://libretranslate.com/translate";
 
         public static async ValueTask<string> Translate(string? text, string fromLanguage, string toLanguage)
         {

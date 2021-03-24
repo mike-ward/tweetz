@@ -54,9 +54,6 @@ namespace tweetz.core.Views.Layouts
                     Children[2].Arrange(new Rect(0, h, w, h));
                     Children[3].Arrange(new Rect(w, h, w, h));
                     break;
-
-                default:
-                    break;
             }
 
             return finalSize;

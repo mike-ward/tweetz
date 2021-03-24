@@ -29,23 +29,23 @@ namespace tweetz.core.Views.MediaViewerBlock
         private void ShowLoadingIndicator()
         {
             MediaElement.Stop();
-            MediaElement.Source = null;
-            MediaElement.Visibility = Visibility.Collapsed;
-            ImageElement.Visibility = Visibility.Collapsed;
+            MediaElement.Source      = null;
+            MediaElement.Visibility  = Visibility.Collapsed;
+            ImageElement.Visibility  = Visibility.Collapsed;
             MediaControls.Visibility = Visibility.Collapsed;
             MediaControls.SetControlVisibilities(Visibility.Collapsed);
-            ViewModel.ErrorMessage = null;
+            ViewModel.ErrorMessage      = null;
             LoadingIndicator.Visibility = Visibility.Collapsed;
 
             var uri = ((MediaViewerBlockViewModel)DataContext).Uri;
             if (Services.ImageViewerService.IsMp4(uri?.ToString()))
             {
-                MediaElement.Source = uri;
+                MediaElement.Source         = uri;
                 LoadingIndicator.Visibility = Visibility.Visible;
             }
             else
             {
-                ImageElement.Visibility = Visibility.Visible;
+                ImageElement.Visibility  = Visibility.Visible;
                 MediaControls.Visibility = Visibility.Visible;
             }
         }
@@ -53,7 +53,7 @@ namespace tweetz.core.Views.MediaViewerBlock
         private void ShowMediaControls()
         {
             LoadingIndicator.Visibility = Visibility.Collapsed;
-            MediaControls.Visibility = Visibility.Visible;
+            MediaControls.Visibility    = Visibility.Visible;
         }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
@@ -83,7 +83,7 @@ namespace tweetz.core.Views.MediaViewerBlock
         private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
             LoadingIndicator.Visibility = Visibility.Collapsed;
-            ViewModel.ErrorMessage = e.ErrorException.Message;
+            ViewModel.ErrorMessage      = e.ErrorException.Message;
         }
 
         private void Close()
@@ -92,7 +92,7 @@ namespace tweetz.core.Views.MediaViewerBlock
             if (MediaElement is not null)
             {
                 MediaElement.Close();
-                MediaElement.Source = null;
+                MediaElement.Source     = null;
                 MediaElement.Visibility = Visibility.Collapsed;
             }
 

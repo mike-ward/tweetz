@@ -22,7 +22,7 @@ namespace tweetz.core.Views
             if (Visibility == Visibility.Visible)
             {
                 ViewModel.ShowComposeControl = false;
-                TabControl.SelectedIndex = 0;
+                TabControl.SelectedIndex     = 0;
             }
         }
 
@@ -39,8 +39,8 @@ namespace tweetz.core.Views
         /// </summary>
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
-            var timeline = item?.Content as TimelineView;
+            var headered = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
+            var timeline = headered?.Content as TimelineView;
 
             if (timeline?.FindName("ItemsControl") is ItemsControl itemsControl
                 && VisualTreeHelper.GetChildrenCount(itemsControl) > 0
@@ -52,8 +52,8 @@ namespace tweetz.core.Views
 
         private void TabItemHeaderWithIndicators_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var item = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
-            var timeline = item?.Content as TimelineView;
+            var headered = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
+            var timeline = headered?.Content as TimelineView;
             ScrollToHomeCommand.Command.Execute(timeline, this);
         }
 

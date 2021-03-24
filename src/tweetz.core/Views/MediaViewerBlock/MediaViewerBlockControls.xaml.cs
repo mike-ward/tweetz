@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using tweetz.core.Services;
 using tweetz.core.ViewModels;
@@ -35,13 +34,14 @@ namespace tweetz.core.Views.MediaViewerBlock
         }
 
         private DispatcherTimer? timer;
-        private const string PlayButtonSymbol = "PlaySymbol";
+
+        private const string PlayButtonSymbol  = "PlaySymbol";
         private const string PauseButtonSymbol = "PauseSymbol";
 
         private void MediaViewerBlockControls_Loaded(object sender, RoutedEventArgs e)
         {
-            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.5) };
-            timer.Tick += Timer_Tick;
+            timer                    =  new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.5) };
+            timer.Tick               += Timer_Tick;
             MediaElement.MediaOpened += OnMediaOpened;
         }
 
@@ -59,10 +59,10 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         public void SetControlVisibilities(Visibility visibility)
         {
-            RewindButton.Visibility = visibility;
+            RewindButton.Visibility       = visibility;
             TenSecRewindButton.Visibility = visibility;
-            PlayPauseButton.Visibility = visibility;
-            ProgressIndicator.Visibility = visibility;
+            PlayPauseButton.Visibility    = visibility;
+            ProgressIndicator.Visibility  = visibility;
         }
 
         private void PlayPause_Click(object sender, RoutedEventArgs e)
@@ -91,7 +91,7 @@ namespace tweetz.core.Views.MediaViewerBlock
             if (MediaElement.NaturalDuration.HasTimeSpan)
             {
                 ProgressIndicator.Maximum = MediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-                ProgressIndicator.Value = MediaElement.Position.TotalSeconds;
+                ProgressIndicator.Value   = MediaElement.Position.TotalSeconds;
             }
 
             if (MediaElement.Source is null)
@@ -124,7 +124,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private void Rewind_Click(object sender, RoutedEventArgs e)
         {
-            e.Handled = true;
+            e.Handled             = true;
             MediaElement.Position = TimeSpan.Zero;
         }
 

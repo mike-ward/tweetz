@@ -17,23 +17,28 @@ namespace tweetz.core.Services
         {
             version = VersionInfo.Version;
             var twoHours = TimeSpan.FromHours(2);
-            var timer = new DispatcherTimer { Interval = twoHours };
+            var timer    = new DispatcherTimer { Interval = twoHours };
             timer.Tick += Check;
             timer.Start();
             Check(this, EventArgs.Empty);
         }
 
-        public string Version { get => version; set => SetProperty(ref version, value); }
+        public string Version
+        {
+            get => version;
+            private set => SetProperty(ref version, value);
+        }
 
         private async void Check(object? sender, EventArgs e)
         {
             try
             {
-                var url = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
+                var url     = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
                 var request = WebRequest.Create(url);
+
                 using var response = await request.GetResponseAsync().ConfigureAwait(true);
-                using var stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                Version = await stream.ReadToEndAsync().ConfigureAwait(true);
+                using var reader   = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                Version = await reader.ReadToEndAsync().ConfigureAwait(true);
             }
             catch (Exception ex)
             {

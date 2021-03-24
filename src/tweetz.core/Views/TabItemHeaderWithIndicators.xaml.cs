@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -9,7 +10,7 @@ namespace tweetz.core.Views
 {
     public partial class TabItemHeaderWithIndicators : UserControl
     {
-        private TabItemErrorAdorner? _errorAdorner;
+        private TabItemErrorAdorner?     _errorAdorner;
         private TabItemNewTweetsAdorner? _newTweetsAdorner;
 
         public TabItemHeaderWithIndicators()
@@ -19,8 +20,7 @@ namespace tweetz.core.Views
 
         private void OnIsVisibleChanged(object _, DependencyPropertyChangedEventArgs __)
         {
-            var parent = (UIElement)HeaderTextBlock.Parent;
-            if (parent is null) return;
+            if (!(HeaderTextBlock.Parent is UIElement parent)) return;
 
             if (IsVisible)
             {
@@ -35,11 +35,11 @@ namespace tweetz.core.Views
                 _errorAdorner = new TabItemErrorAdorner(parent, errorBrush);
                 layer.Add(_errorAdorner);
 
-                var errorBinding = new Binding()
+                var errorBinding = new Binding
                 {
-                    Path = new PropertyPath("ErrorIndicatorVisibility", pathParameters: null),
+                    Path   = new PropertyPath("ErrorIndicatorVisibility", pathParameters: Array.Empty<object>()),
                     Source = this,
-                    Mode = BindingMode.OneWay,
+                    Mode   = BindingMode.OneWay
                 };
 
                 _errorAdorner.SetBinding(VisibilityProperty, errorBinding);
@@ -52,11 +52,11 @@ namespace tweetz.core.Views
                 _newTweetsAdorner = new TabItemNewTweetsAdorner(parent, newTweetsBrush);
                 layer.Add(_newTweetsAdorner);
 
-                var newTweetsBinding = new Binding()
+                var newTweetsBinding = new Binding
                 {
-                    Path = new PropertyPath("NewTweetsIndicatorVisibility", pathParameters: null),
+                    Path   = new PropertyPath("NewTweetsIndicatorVisibility", pathParameters: Array.Empty<object>()),
                     Source = this,
-                    Mode = BindingMode.OneWay,
+                    Mode   = BindingMode.OneWay
                 };
 
                 _newTweetsAdorner.SetBinding(VisibilityProperty, newTweetsBinding);
