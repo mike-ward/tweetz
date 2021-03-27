@@ -30,7 +30,7 @@ namespace tweetz.core.Views.TweetBlock
 
         private void SetVisibility()
         {
-            Visibility = Tag is true
+            Visibility = Tag is false
                 && DataContext is TwitterStatus status
                 && status.Language.IsNotEqualTo("und")
                 && status.Language.IsNotEqualToIgnoreCase(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
