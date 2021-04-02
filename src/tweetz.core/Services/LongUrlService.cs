@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Net;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -9,8 +10,8 @@ namespace tweetz.core.Services
 {
     public static class LongUrlService
     {
-        private const int maxCacheSize = 100;
-        private static readonly ConcurrentDictionary<string, string> UrlCache = new(concurrencyLevel: 1, capacity: maxCacheSize + 1, comparer: StringComparer.Ordinal);
+        private const           int                                  maxCacheSize = 100;
+        private static readonly ConcurrentDictionary<string, string> UrlCache     = new(concurrencyLevel: 1, capacity: maxCacheSize + 1, comparer: StringComparer.Ordinal);
 
         private static async ValueTask<string> TryGetLongUrlAsync(string link)
         {
@@ -21,13 +22,12 @@ namespace tweetz.core.Services
                     return longUrl;
                 }
 
-                var request = WebRequest.Create(new Uri(link));
-                request.Method = "HEAD";
-                const int timeoutInMilliseconds = 5000;
-                request.Timeout = timeoutInMilliseconds;
+                const int FiveSeconds = 5000;
+                using var tokenSource = new CancellationTokenSource(FiveSeconds);
 
-                using var response = await request.GetResponseAsync().ConfigureAwait(false);
-                var uri = response.ResponseUri.AbsoluteUri;
+                var       request  = new HttpRequestMessage { Method = HttpMethod.Head, RequestUri = new Uri(link) };
+                using var response = await App.GetHttpClient().SendAsync(request, tokenSource.Token).ConfigureAwait(false);
+                var       uri      = response.RequestMessage?.RequestUri?.AbsoluteUri;
 
                 if (!string.IsNullOrWhiteSpace(uri))
                 {
@@ -44,6 +44,7 @@ namespace tweetz.core.Services
             {
                 TraceService.Message(ex.Message);
             }
+
             return link;
         }
 

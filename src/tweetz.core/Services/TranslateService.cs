@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Net;
-using System.Text;
-using System.Text.Json;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
@@ -20,24 +21,18 @@ namespace tweetz.core.Services
 
             try
             {
-                var request = WebRequest.Create(endpoint);
+                var request = new HttpRequestMessage {
+                    Method     = HttpMethod.Post,
+                    RequestUri = new Uri(endpoint),
+                    Content = new FormUrlEncodedContent(new[] {
+                        new KeyValuePair<string?, string?>("q", text),
+                        new KeyValuePair<string?, string?>("source", fromLanguage),
+                        new KeyValuePair<string?, string?>("target", toLanguage)
+                    })
+                };
 
-                var q = "q=" + Uri.EscapeDataString(text);
-                var s = "&source=" + Uri.EscapeDataString(fromLanguage);
-                var t = "&target=" + Uri.EscapeDataString(toLanguage);
-                var bytes = Encoding.UTF8.GetBytes(q + s + t);
-
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = bytes.Length;
-
-                var content = await request.GetRequestStreamAsync().ConfigureAwait(false);
-                await content.WriteAsync(bytes).ConfigureAwait(false);
-                content.Close();
-
-                using var response = await request.GetResponseAsync().ConfigureAwait(false);
-                await using var stream = response.GetResponseStream();
-                var result = await JsonSerializer.DeserializeAsync<TranslatorResult>(stream).ConfigureAwait(false);
+                using var response = await App.GetHttpClient().SendAsync(request).ConfigureAwait(false);
+                var       result   = await response.Content.ReadFromJsonAsync<TranslatorResult>().ConfigureAwait(false);
                 return result?.TranslatedText ?? "{error}";
             }
             catch (Exception ex)
@@ -47,9 +42,10 @@ namespace tweetz.core.Services
         }
     }
 
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class TranslatorResult
     {
-        [JsonPropertyName("translatedText")]
-        public string? TranslatedText { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        [JsonPropertyName("translatedText")] public string? TranslatedText { get; set; }
     }
 }

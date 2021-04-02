@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
-using System.Net;
-using System.Text;
 using System.Windows.Threading;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
@@ -33,12 +30,8 @@ namespace tweetz.core.Services
         {
             try
             {
-                var url     = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
-                var request = WebRequest.Create(url);
-
-                using var response = await request.GetResponseAsync().ConfigureAwait(true);
-                using var reader   = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                Version = await reader.ReadToEndAsync().ConfigureAwait(true);
+                var uri = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
+                Version = await App.GetHttpClient().GetStringAsync(uri).ConfigureAwait(true);
             }
             catch (Exception ex)
             {

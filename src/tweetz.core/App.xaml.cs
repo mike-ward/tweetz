@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Windows;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -36,6 +37,11 @@ namespace tweetz.core
                 var colorDictionary = (ResourceDictionary)LoadComponent(uri);
                 Resources.MergedDictionaries.Add(colorDictionary);
             }
+        }
+
+        public static HttpClient GetHttpClient()
+        {
+            return twitter.core.Services.OAuthApiRequest.MyHttpClient;
         }
     }
 }

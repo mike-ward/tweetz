@@ -16,35 +16,31 @@ namespace twitter.core.Models
     /// </summary>
     public class RelatedLinkInfo
     {
-        public string Url { get; private set; } = string.Empty;
-        public string Title { get; private set; } = string.Empty;
-        public string? ImageUrl { get; private set; }
-        public string Description { get; private set; } = string.Empty;
-        public string SiteName { get; private set; } = string.Empty;
-        public string Language { get; private set; } = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        public string  Url         { get; private set; } = string.Empty;
+        public string  Title       { get; private set; } = string.Empty;
+        public string? ImageUrl    { get; private set; }
+        public string  Description { get; private set; } = string.Empty;
+        public string  SiteName    { get; private set; } = string.Empty;
+        public string  Language    { get; private set; } = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
         public TwitterStatus ImageTwitterStatus
         {
-            get => new()
-            {
-                Id = Guid.NewGuid().ToString(),
+            get => new() {
+                Id       = Guid.NewGuid().ToString(),
                 Language = Language,
                 FullText = Description,
-                ExtendedEntities = new Entities
-                {
+                ExtendedEntities = new Entities {
                     Media = string.IsNullOrWhiteSpace(ImageUrl)
                         ? null
-                        : new[]
-                        {
-                            new Media
-                            {
-                                Url = ImageUrl,
-                                MediaUrl = ImageUrl,
-                                DisplayUrl = ImageUrl,
-                                ExpandedUrl = ImageUrl,
-                            },
-                        },
-                },
+                        : new[] {
+                            new Media {
+                                Url         = ImageUrl,
+                                MediaUrl    = ImageUrl,
+                                DisplayUrl  = ImageUrl,
+                                ExpandedUrl = ImageUrl
+                            }
+                        }
+                }
             };
         }
 
@@ -92,11 +88,9 @@ namespace twitter.core.Models
         {
             if (!UrlValid(url)) return null;
 
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            using var response = await request.GetResponseAsync().ConfigureAwait(false);
-
-            var htmlBuilder = new StringBuilder();
-            using var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            var       htmlBuilder = new StringBuilder();
+            var       stream      = await OAuthApiRequest.MyHttpClient.GetStreamAsync(new Uri(url)).ConfigureAwait(false);
+            using var reader      = new StreamReader(stream, Encoding.UTF8);
 
             while (true)
             {
@@ -131,8 +125,8 @@ namespace twitter.core.Models
             {
                 foreach (var tag in metaTags)
                 {
-                    var tagName = tag.Attributes["name"];
-                    var tagContent = tag.Attributes["content"];
+                    var tagName     = tag.Attributes["name"];
+                    var tagContent  = tag.Attributes["content"];
                     var tagProperty = tag.Attributes["property"];
 
                     if (tagName is not null && tagContent is not null)
@@ -218,6 +212,7 @@ namespace twitter.core.Models
             {
                 source = source.Substring(0, length);
             }
+
             return source;
         }
     }
