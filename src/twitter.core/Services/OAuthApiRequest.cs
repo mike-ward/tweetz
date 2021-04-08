@@ -94,12 +94,6 @@ namespace twitter.core.Services
 
             request.RequestUri = new Uri(url);
             using var response = await MyHttpClient.SendAsync(request);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException(response.ReasonPhrase, null, response.StatusCode);
-            }
-
             var result = await JsonSerializer.DeserializeAsync<T>(await response.Content.ReadAsStreamAsync()).ConfigureAwait(false);
             return result ?? throw new InvalidOperationException("JsonSerializer.DeserializeAsync<T>(stream) return null");
         }
@@ -121,48 +115,19 @@ namespace twitter.core.Services
             };
             request.Headers.Add("Authorization", authorizeHeader);
 
-            var boundary = $"{Guid.NewGuid():N}";
-            var stream   = new MemoryStream();
-            await TextParameterAsync(stream, boundary, "command", "APPEND").ConfigureAwait(false);
-            await TextParameterAsync(stream, boundary, "media_id", mediaId).ConfigureAwait(false);
-            await TextParameterAsync(stream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture)).ConfigureAwait(false);
-            await BinaryParameterAsync(stream, boundary, "media", payload).ConfigureAwait(false);
-            await WriteTextToStreamAsync(stream, $"--{boundary}--\r\n").ConfigureAwait(false);
-            stream.Flush();
-
-            request.Content                     = new StreamContent(stream);
-            request.Content.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data; boundary=" + boundary);
+            var form = new MultipartFormDataContent();
+            form.Add(new StringContent("APPEND"), "command");
+            form.Add(new StringContent(mediaId), "media_id");
+            form.Add(new StringContent(segmentIndex.ToString(CultureInfo.InvariantCulture)), "segment_index");
+            form.Add(new ByteArrayContent(payload), "media");
+            request.Content = form;
+            
             var response = await MyHttpClient.SendAsync(request).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException(response.ReasonPhrase, null, response.StatusCode);
             }
-        }
-
-        private static async ValueTask TextParameterAsync(Stream stream, string boundary, string name, string payload)
-        {
-            var header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n";
-            await WriteTextToStreamAsync(stream, header).ConfigureAwait(false);
-            await WriteTextToStreamAsync(stream, payload).ConfigureAwait(false);
-            await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
-        }
-
-        private static async ValueTask BinaryParameterAsync(Stream stream, string boundary, string name, byte[] payload)
-        {
-            var header =
-                $"--{boundary}\r\nContent-Type: application/octet-stream\r\n" +
-                $"Content-Disposition: form-data; name=\"{name}\"\r\n\r\n";
-
-            await WriteTextToStreamAsync(stream, header).ConfigureAwait(false);
-            await stream.WriteAsync(payload.AsMemory(0, payload.Length)).ConfigureAwait(false);
-            await WriteTextToStreamAsync(stream, "\r\n").ConfigureAwait(false);
-        }
-
-        private static ValueTask WriteTextToStreamAsync(Stream stream, string text)
-        {
-            var buffer = Encoding.UTF8.GetBytes(text);
-            return stream.WriteAsync(buffer.AsMemory(0, buffer.Length));
         }
     }
 }

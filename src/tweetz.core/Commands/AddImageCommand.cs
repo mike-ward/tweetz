@@ -83,6 +83,7 @@ namespace tweetz.core.Commands
         {
             var bytes = await File.ReadAllBytesAsync(filename).ConfigureAwait(false);
             var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
+            if (media.MediaId is null) throw new Exception("error processing image init in UplaodAsync");
             await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
             var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);
 
@@ -99,7 +100,10 @@ namespace tweetz.core.Commands
             while (true)
             {
                 var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(false);
+                if (status.ProcessingInfo is null) throw new Exception("Image status processingInfo missing in UntilProcessingFinishedAsync");
                 if (status.ProcessingInfo.State.IsEqualTo(ProcessingInfo.StateSucceeded)) break;
+                if (status.ProcessingInfo.Error.Code != 0) throw new Exception(status.ProcessingInfo.Error.Message);
+                if (status.ProcessingInfo.CheckAfterSecs == 0) throw new Exception("Image status corrupted in UntilProcessingFinishedAsync");
                 var milliseconds = (int)TimeSpan.FromSeconds(status.ProcessingInfo.CheckAfterSecs).TotalMilliseconds;
                 await Task.Delay(milliseconds).ConfigureAwait(false);
             }
