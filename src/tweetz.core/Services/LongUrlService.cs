@@ -27,17 +27,21 @@ namespace tweetz.core.Services
 
                 var       request  = new HttpRequestMessage { Method = HttpMethod.Head, RequestUri = new Uri(link) };
                 using var response = await App.GetHttpClient().SendAsync(request, tokenSource.Token).ConfigureAwait(false);
-                var       uri      = response.RequestMessage?.RequestUri?.AbsoluteUri;
 
-                if (!string.IsNullOrWhiteSpace(uri))
+                if (response.IsSuccessStatusCode)
                 {
-                    if (UrlCache.Count > maxCacheSize)
-                    {
-                        UrlCache.Clear();
-                    }
+                    var uri = response.RequestMessage?.RequestUri?.AbsoluteUri;
 
-                    UrlCache.TryAdd(link, uri);
-                    return uri;
+                    if (!string.IsNullOrWhiteSpace(uri))
+                    {
+                        if (UrlCache.Count > maxCacheSize)
+                        {
+                            UrlCache.Clear();
+                        }
+
+                        UrlCache.TryAdd(link, uri);
+                        return uri;
+                    }
                 }
             }
             catch (Exception ex)

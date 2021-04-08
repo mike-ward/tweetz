@@ -22,6 +22,11 @@ namespace twitter.core.Services
             request.Headers.Add("Authorization", authorizationHeader);
             using var response = await OAuthApiRequest.MyHttpClient.SendAsync(request).ConfigureAwait(false);
 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(response.ReasonPhrase, null, response.StatusCode);
+            }
+
             var body              = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var tokens            = body.Split('&');
             var oauthToken        = Token(tokens[0]);
@@ -57,8 +62,14 @@ namespace twitter.core.Services
             request.Headers.Add("Authorization", authorizationHeader);
 
             using var response = await OAuthApiRequest.MyHttpClient.SendAsync(request).ConfigureAwait(false);
-            var       content  = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var       tokens   = content.Split('&');
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(response.ReasonPhrase, null, response.StatusCode);
+            }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var tokens  = content.Split('&');
 
             var oauthTokens = new OAuthTokens {
                 OAuthToken  = Token(tokens[0]),

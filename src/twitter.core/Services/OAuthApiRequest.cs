@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -12,8 +13,8 @@ namespace twitter.core.Services
 {
     public sealed class OAuthApiRequest
     {
-        public const string     GET  = "GET";
-        public const string     POST = "POST";
+        public const  string     GET  = "GET";
+        public const  string     POST = "POST";
         public static HttpClient MyHttpClient { get; } = new();
 
         private string? ConsumerKey       { get; }
@@ -81,8 +82,9 @@ namespace twitter.core.Services
 
             if (post)
             {
-                request.Method  = HttpMethod.Post;
-                request.Content = new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(string.Join("&", parameterStrings))));
+                request.Method                      = HttpMethod.Post;
+                request.Content                     = new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(string.Join("&", parameterStrings))));
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
             }
             else
             {
@@ -92,7 +94,13 @@ namespace twitter.core.Services
 
             request.RequestUri = new Uri(url);
             using var response = await MyHttpClient.SendAsync(request);
-            var       result   = await JsonSerializer.DeserializeAsync<T>(await response.Content.ReadAsStreamAsync()).ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(response.ReasonPhrase, null, response.StatusCode);
+            }
+
+            var result = await JsonSerializer.DeserializeAsync<T>(await response.Content.ReadAsStreamAsync()).ConfigureAwait(false);
             return result ?? throw new InvalidOperationException("JsonSerializer.DeserializeAsync<T>(stream) return null");
         }
 
@@ -107,15 +115,14 @@ namespace twitter.core.Services
             var          signature       = OAuth.Signature(POST, uploadUrl, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, parameters: null);
             var          authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
 
-
-            var request = new HttpRequestMessage();
+            var request = new HttpRequestMessage {
+                Method     = HttpMethod.Post,
+                RequestUri = new Uri(uploadUrl)
+            };
             request.Headers.Add("Authorization", authorizeHeader);
-            request.Method = HttpMethod.Post;
 
             var boundary = $"{Guid.NewGuid():N}";
-            request.Headers.Add("ContentType", "multipart/form-data; boundary=" + boundary);
-
-            var stream = new MemoryStream();
+            var stream   = new MemoryStream();
             await TextParameterAsync(stream, boundary, "command", "APPEND").ConfigureAwait(false);
             await TextParameterAsync(stream, boundary, "media_id", mediaId).ConfigureAwait(false);
             await TextParameterAsync(stream, boundary, "segment_index", segmentIndex.ToString(CultureInfo.InvariantCulture)).ConfigureAwait(false);
@@ -123,8 +130,14 @@ namespace twitter.core.Services
             await WriteTextToStreamAsync(stream, $"--{boundary}--\r\n").ConfigureAwait(false);
             stream.Flush();
 
-            request.Content = new StreamContent(stream);
-            await MyHttpClient.SendAsync(request).ConfigureAwait(false);
+            request.Content                     = new StreamContent(stream);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data; boundary=" + boundary);
+            var response = await MyHttpClient.SendAsync(request).ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(response.ReasonPhrase, null, response.StatusCode);
+            }
         }
 
         private static async ValueTask TextParameterAsync(Stream stream, string boundary, string name, string payload)

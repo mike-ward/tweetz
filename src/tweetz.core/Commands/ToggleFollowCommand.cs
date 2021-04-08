@@ -10,8 +10,8 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
 
-        private ISettings Settings { get; }
-        private ITwitterService TwitterService { get; }
+        private ISettings          Settings          { get; }
+        private ITwitterService    TwitterService    { get; }
         private IMessageBoxService MessageBoxService { get; }
 
         private bool inCommand;
@@ -21,8 +21,8 @@ namespace tweetz.core.Commands
             ITwitterService twitterService,
             IMessageBoxService messageBoxService)
         {
-            Settings = settings;
-            TwitterService = twitterService;
+            Settings          = settings;
+            TwitterService    = twitterService;
             MessageBoxService = messageBoxService;
         }
 
@@ -33,7 +33,7 @@ namespace tweetz.core.Commands
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = StatusFromParameter(e.Parameter) is not null;
+            e.CanExecute = StatusFromParameter(e.Parameter) is not null || e.Parameter is User;
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
@@ -43,31 +43,23 @@ namespace tweetz.core.Commands
                 if (inCommand) return;
                 inCommand = true;
 
-                var twitterStatus = StatusFromParameter(args.Parameter);
-                if (twitterStatus is not null)
+                var user = StatusFromParameter(args.Parameter)?.User ?? args.Parameter as User;
+                if (user is not null)
                 {
-                    var screenName = twitterStatus.User.ScreenName;
+                    var screenName = user.ScreenName;
                     if (screenName is null) return;
 
-                    if (twitterStatus.User.IsFollowing)
+                    if (user.IsFollowing)
                     {
                         await TwitterService.Unfollow(screenName).ConfigureAwait(true);
-                        var user = twitterStatus.User;
-                        if (user is not null)
-                        {
-                            user.Followers = Math.Max(0, user.Followers - 1);
-                            user.IsFollowing = false;
-                        }
+                        user.Followers   = Math.Max(0, user.Followers - 1);
+                        user.IsFollowing = false;
                     }
                     else
                     {
                         await TwitterService.Follow(screenName).ConfigureAwait(true);
-                        var user = twitterStatus.User;
-                        if (user is not null)
-                        {
-                            user.Followers++;
-                            user.IsFollowing = true;
-                        }
+                        user.Followers++;
+                        user.IsFollowing = true;
                     }
                 }
             }
