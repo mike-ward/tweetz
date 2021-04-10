@@ -1,13 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2021.2 - 2021-04-10
+
+### Added
+- new user profile view (click on profile image or screen name)
+
+### Fixed
+- Restore Translate feature
+- Restore Image copy from viewer
+
+### Changed
+- Using HttpClient vs. WebRequest
+
 ## 2021.1 - 2021-02-21
 
 ### Added
 - Mouse wheel controls volume when playing videos
 
 ### Changed
-- Version numbers are year the revision based
+- Version numbers are year and revision based
 - Image viewer uses media element for videos only. Other images use image element
 - Update packages and SDK to latest releases
 - Removed cache hinting option from profile images
