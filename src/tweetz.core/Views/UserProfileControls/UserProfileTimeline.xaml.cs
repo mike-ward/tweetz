@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +24,19 @@ namespace tweetz.core.Views.UserProfileControls
                 if (DataContext is User user)
                 {
                     await Task.Delay(100).ConfigureAwait(true);
-                    var statuses = await vm.GetUserTimeline(user.ScreenName!).ConfigureAwait(true);
 
-                    foreach (var status in statuses.OrderByDescending(status => status.OriginatingStatus.CreatedDate))
+                    try
                     {
-                        vm.StatusCollection.Add(status);
+                        var statuses = await vm.GetUserTimeline(user.ScreenName!).ConfigureAwait(true);
+
+                        foreach (var status in statuses.OrderByDescending(status => status.OriginatingStatus.CreatedDate))
+                        {
+                            vm.StatusCollection.Add(status);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
