@@ -27,7 +27,7 @@ namespace tweetz.core.Services
         {
             // placement rectangle needs to be set every time to handle multiple
             // monitors (e.g. program moved to different monitor while running)
-            mediaViewerBlock.Popup.PlacementRectangle = Screen.ScreenRectFromWindow(Application.Current.MainWindow);
+            mediaViewerBlock.Popup.PlacementRectangle = Screen.ScreenRectFromWindow(Application.Current.MainWindow!);
 
             var mediaViewerBlockViewModel = (MediaViewerBlockViewModel)mediaViewerBlock.DataContext;
             mediaViewerBlockViewModel.Uri = uri;
@@ -45,7 +45,7 @@ namespace tweetz.core.Services
 
             if (media.VideoInfo?.Variants?[0] is null)
             {
-                return new Uri(media.MediaUrl ?? string.Empty);
+                return new Uri(media.MediaUrl);
             }
 
             var url = media.VideoInfo.Variants
@@ -68,8 +68,8 @@ namespace tweetz.core.Services
         {
             try
             {
-                var width = element.ActualWidth;
-                var height = element.ActualHeight;
+                var width      = element.ActualWidth;
+                var height     = element.ActualHeight;
                 var dataObject = new DataObject();
 
                 if (uri is null)
@@ -101,9 +101,9 @@ namespace tweetz.core.Services
         public static MediaState GetMediaState(MediaElement media)
         {
             // Yeah, had to resort to refection
-            var hlp = typeof(MediaElement).GetField("_helper", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            var hlp          = typeof(MediaElement).GetField("_helper", BindingFlags.NonPublic | BindingFlags.Instance)!;
             var helperObject = hlp.GetValue(media)!;
-            var stateField = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
+            var stateField   = helperObject.GetType().GetField("_currentState", BindingFlags.NonPublic | BindingFlags.Instance);
             return (MediaState)stateField!.GetValue(helperObject)!;
         }
     }

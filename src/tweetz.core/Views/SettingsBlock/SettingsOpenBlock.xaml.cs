@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using Jab;
+using tweetz.core.Interfaces;
 
 namespace tweetz.core.Views.SettingsBlock
 {
@@ -6,6 +8,7 @@ namespace tweetz.core.Views.SettingsBlock
     {
         public SettingsOpenBlock()
         {
+            DataContext = BootStrapper.ServiceProvider.GetService<ISettings>();
             InitializeComponent();
         }
     }

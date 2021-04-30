@@ -174,7 +174,7 @@ namespace tweetz.core.Models
         // Load / Save
 
         [JsonIgnore]
-        private string SettingsFilePath => Path.Combine(
+        public string SettingsFilePath => Path.Combine(
             AppContext.BaseDirectory,
             $"{Profile}.settings.txt");
 

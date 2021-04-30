@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Jab;
 using tweetz.core.Commands;
 using tweetz.core.ViewModels;
 
@@ -13,6 +14,12 @@ namespace tweetz.core.Views
         public TabBarView()
         {
             InitializeComponent();
+            DataContext = BootStrapper.ServiceProvider.GetService<TabBarControlViewModel>();
+            HomeTab.DataContext = BootStrapper.ServiceProvider.GetService<HomeTimelineControlViewModel>();
+            FavoritesTab.DataContext = BootStrapper.ServiceProvider.GetService<FavoritesTimelineControlViewModel>();
+            SearchTab.DataContext = BootStrapper.ServiceProvider.GetService<SearchControlViewModel>();
+            SettingsTab.DataContext = BootStrapper.ServiceProvider.GetService<SettingsControlViewModel>();
+            Compose.DataContext = BootStrapper.ServiceProvider.GetService<ComposeControlViewModel>();
         }
 
         private TabBarControlViewModel ViewModel => (TabBarControlViewModel)DataContext;

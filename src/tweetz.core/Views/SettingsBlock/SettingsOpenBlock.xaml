@@ -11,6 +11,6 @@
   <Button
     Width="125"
     Command="{x:Static commands:OpenLinkCommand.Command}"
-    CommandParameter="{Binding SettingsFilePath, Mode=OneWay}"
+    CommandParameter="{Binding SettingsFilePath}"
     Content="{StaticResource open-settings-file}" />
 </UserControl>

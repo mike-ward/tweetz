@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Jab;
 using tweetz.core.Commands;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
@@ -8,83 +7,63 @@ using tweetz.core.ViewModels;
 
 namespace tweetz.core
 {
+    [ServiceProvider]
+    //
+    [Singleton(typeof(MainWindow))]
+    [Singleton(typeof(MainWindowViewModel))]
+    [Singleton(typeof(MainViewModel))]
+    [Singleton(typeof(GetPinControlViewModel))]
+    [Singleton(typeof(TabBarControlViewModel))]
+    [Singleton(typeof(HomeTimelineControlViewModel))]
+    [Singleton(typeof(FavoritesTimelineControlViewModel))]
+    [Singleton(typeof(SearchControlViewModel))]
+    [Singleton(typeof(SettingsControlViewModel))]
+    [Singleton(typeof(ComposeControlViewModel))]
+    [Singleton(typeof(UserProfileBlockViewModel))]
+    [Singleton(typeof(MediaViewerBlockViewModel))]
+    [Singleton(typeof(TitleBarControlViewModel))]
+    [Singleton(typeof(UserProfileTimelineViewModel))]
+    // 
+    [Singleton(typeof(ICommandBinding), typeof(AddImageCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(DecreaseFontSizeCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(GetMentionsCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(GoToSearchCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ImageViewerCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(IncreaseFontSizeCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(MinimizeCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(OpenLinkCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(QuoteTweetCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(RemoveImageCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ReplyToCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ScrollToHomeCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(SearchCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ShowTwitterStatusCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ShowUserProfileCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(SignOutCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ToggleFavoriteCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ToggleFollowCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ToggleRetweetCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ToggleShowComposeCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ToggleSpellCheckerCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(TranslateCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(UpdateStatusCommand))]
+    //
+    [Singleton(typeof(ICheckForUpdates), typeof(CheckForUpdates))]
+    [Singleton(typeof(IImageViewerService), typeof(ImageViewerService))]
+    [Singleton(typeof(IMessageBoxService), typeof(MessageBoxService))]
+    [Singleton(typeof(IOpenUrlService), typeof(OpenUrlService))]
+    [Singleton(typeof(ISettings), typeof(Settings))]
+    [Singleton(typeof(ISystemState), typeof(SystemState))]
+    [Singleton(typeof(ISystemTrayIconService), typeof(SystemTrayIconService))]
+    [Singleton(typeof(ITwitterService), typeof(TwitterService))]
+    [Singleton(typeof(IWindowInteropService), typeof(WindowInteropService))]
+    //
+    // partial class required so Jab generate code
+    //
+    public partial class MyServiceProvider { }
+
     internal static class BootStrapper
     {
-        private static ServiceProvider ServiceProvider { get; }
-
-        static BootStrapper()
-        {
-            var serviceCollection = new ServiceCollection();
-            ConfigureServices(serviceCollection);
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-        }
-
-        private static void ConfigureServices(IServiceCollection services)
-        {
-            // Top level controls
-            services.AddSingleton<MainWindow>();
-
-            // View models
-            services.AddSingleton<MainWindowViewModel>();
-            services.AddSingleton<MainViewModel>();
-            services.AddSingleton<GetPinControlViewModel>();
-            services.AddSingleton<TabBarControlViewModel>();
-            services.AddSingleton<HomeTimelineControlViewModel>();
-            services.AddSingleton<FavoritesTimelineControlViewModel>();
-            services.AddSingleton<SearchControlViewModel>();
-            services.AddSingleton<SettingsControlViewModel>();
-            services.AddSingleton<ComposeControlViewModel>();
-            services.AddSingleton<UserProfileBlockViewModel>();
-            services.AddSingleton<MediaViewerBlockViewModel>();
-            services.AddSingleton<TitleBarControlViewModel>();
-            services.AddSingleton<UserProfileTimelineViewModel>();
-
-            // Commands
-            services.AddSingleton<ICommandBinding, AddImageCommand>();
-            services.AddSingleton<ICommandBinding, DecreaseFontSizeCommand>();
-            services.AddSingleton<ICommandBinding, GetMentionsCommand>();
-            services.AddSingleton<ICommandBinding, GoToSearchCommand>();
-            services.AddSingleton<ICommandBinding, ImageViewerCommand>();
-            services.AddSingleton<ICommandBinding, IncreaseFontSizeCommand>();
-            services.AddSingleton<ICommandBinding, MinimizeCommand>();
-            services.AddSingleton<ICommandBinding, OpenLinkCommand>();
-            services.AddSingleton<ICommandBinding, QuoteTweetCommand>();
-            services.AddSingleton<ICommandBinding, RemoveImageCommand>();
-            services.AddSingleton<ICommandBinding, ReplyToCommand>();
-            services.AddSingleton<ICommandBinding, ScrollToHomeCommand>();
-            services.AddSingleton<ICommandBinding, SearchCommand>();
-            services.AddSingleton<ICommandBinding, ShowTwitterStatusCommand>();
-            services.AddSingleton<ICommandBinding, ShowUserProfileCommand>();
-            services.AddSingleton<ICommandBinding, SignOutCommand>();
-            services.AddSingleton<ICommandBinding, ToggleFavoriteCommand>();
-            services.AddSingleton<ICommandBinding, ToggleFollowCommand>();
-            services.AddSingleton<ICommandBinding, ToggleRetweetCommand>();
-            services.AddSingleton<ICommandBinding, ToggleShowComposeCommand>();
-            services.AddSingleton<ICommandBinding, ToggleSpellCheckerCommand>();
-            services.AddSingleton<ICommandBinding, TranslateCommand>();
-            services.AddSingleton<ICommandBinding, UpdateStatusCommand>();
-
-            // Interfaces
-            services.AddSingleton<ICheckForUpdates, CheckForUpdates>();
-            services.AddSingleton<IImageViewerService, ImageViewerService>();
-            services.AddSingleton<IMessageBoxService, MessageBoxService>();
-            services.AddSingleton<IOpenUrlService, OpenUrlService>();
-            services.AddSingleton<ISettings, Settings>();
-            services.AddSingleton<ISystemState, SystemState>();
-            services.AddSingleton<ISystemTrayIconService, SystemTrayIconService>();
-            services.AddSingleton<ITwitterService, TwitterService>();
-            services.AddSingleton<IWindowInteropService, WindowInteropService>();
-        }
-
-        public static object GetService(Type type)
-        {
-            if (type is null) throw new ArgumentNullException(nameof(type));
-            return ServiceProvider.GetService(type) ?? throw new NotSupportedException(type.Name);
-        }
-
-        public static T GetService<T>()
-        {
-            return ServiceProvider.GetService<T>() ?? throw new NotSupportedException(typeof(T).Name);
-        }
+        public static MyServiceProvider ServiceProvider { get; } = new();
     }
 }

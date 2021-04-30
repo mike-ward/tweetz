@@ -25,7 +25,7 @@
           <Image
             ImageFailed="Image_ImageFailed"
             RenderOptions.BitmapScalingMode="LowQuality"
-            Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True}"
+            Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
             Style="{StaticResource TweetImageControlImageStyle}"
             Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
 

@@ -13,7 +13,7 @@
       Height="100"
       VerticalAlignment="Top"
       Stretch="UniformToFill"
-      Source="{Binding ProfileBannerUrlSmall, IsAsync=True}"
+      Source="{Binding ProfileBannerUrlSmall, IsAsync=True, TargetNullValue={x:Null}}"
       Tag="banner" />
 
     <Border
@@ -30,7 +30,7 @@
         Width="72"
         Height="72"
         Tag="profile"
-        Source="{Binding ProfileImageUrlBigger, IsAsync=True}">
+        Source="{Binding ProfileImageUrlBigger, IsAsync=True, TargetNullValue={x:Null}}">
         <Image.Clip>
           <EllipseGeometry
             Center="36,36"

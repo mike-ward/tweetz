@@ -6,11 +6,9 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:tweetz.core.Views"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:vm="clr-namespace:tweetz.core.ViewModels"
   d:DesignHeight="300"
   d:DesignWidth="300"
   AllowDrop="False"
-  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TabBarControlViewModel}, Mode=OneTime}"
   Focusable="False"
   IsVisibleChanged="OnIsVisibleChanged"
   mc:Ignorable="d">
@@ -63,50 +61,50 @@
 
       <!--  Home Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:HomeTimelineControlViewModel}, Mode=OneTime}">
+      <TabItem Name="HomeTab">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
-            ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
+            ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}, FallbackValue=Collapsed}"
             MouseLeftButtonDown="TabItemHeaderWithIndicators_MouseLeftButtonDown"
             NewTweetsIndicatorVisibility="{Binding PendingStatusesAvailable, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             Text="{StaticResource HomeSymbol}"
-            ToolTip="{Binding ToolTipText, Mode=OneWay, TargetNullValue={StaticResource home-tooltip}}" />
+            ToolTip="{Binding ToolTipText, Mode=OneWay, TargetNullValue={StaticResource home-tooltip}, FallbackValue={StaticResource home-tooltip}}" />
         </TabItem.Header>
         <local:TimelineView />
       </TabItem>
 
       <!--  Favorites Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:FavoritesTimelineControlViewModel}, Mode=OneTime}">
+      <TabItem Name="FavoritesTab">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
-            ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
+            ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}, FallbackValue=Collapsed}"
             Text="{StaticResource LikeSymbol}"
-            ToolTip="{Binding ToolTipText, Mode=OneWay, TargetNullValue={StaticResource likes-tooltip}}" />
+            ToolTip="{Binding ToolTipText, Mode=OneWay, TargetNullValue={StaticResource likes-tooltip}, FallbackValue={StaticResource likes-tooltip}}" />
         </TabItem.Header>
         <local:TimelineView />
       </TabItem>
 
       <!--  Search Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SearchControlViewModel}, Mode=OneTime}">
+      <TabItem Name="SearchTab">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
-            ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
+            ErrorIndicatorVisibility="{Binding ExceptionMessage, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}, FallbackValue=Collapsed}"
             Text="{StaticResource SearchSymbol}"
-            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue={StaticResource search-tooltip}}" />
+            ToolTip="{Binding ExceptionMessage, Mode=OneWay, TargetNullValue={StaticResource search-tooltip}, FallbackValue={StaticResource search-tooltip}}" />
         </TabItem.Header>
         <local:SearchView />
       </TabItem>
 
       <!--  Settings Tab  -->
 
-      <TabItem DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:SettingsControlViewModel}, Mode=OneTime}">
+      <TabItem Name="SettingsTab">
         <TabItem.Header>
           <local:TabItemHeaderWithIndicators
-            NewTweetsIndicatorVisibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}"
+            NewTweetsIndicatorVisibility="{Binding UpdateAvailableToolTip, Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}, FallbackValue=Collapsed}"
             Text="{StaticResource SettingsSymbol}"
-            ToolTip="{Binding UpdateAvailableToolTip, Mode=OneWay, TargetNullValue={StaticResource settings-tooltip}}" />
+            ToolTip="{Binding UpdateAvailableToolTip, TargetNullValue={StaticResource settings-tooltip}, FallbackValue={StaticResource settings-tooltip}}" />
         </TabItem.Header>
         <local:SettingsView />
       </TabItem>
@@ -130,9 +128,9 @@
     <!--  ComposeControl  -->
 
     <local:ComposeView
+      x:Name="Compose"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Bottom"
-      DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:ComposeControlViewModel}, Mode=OneTime}"
       Visibility="{Binding DataContext.ShowComposeControl, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
   </Grid>
 

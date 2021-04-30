@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Jab;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views.UserProfileBlock
@@ -8,6 +9,7 @@ namespace tweetz.core.Views.UserProfileBlock
     {
         public UserProfileBlockControl()
         {
+            DataContext = BootStrapper.ServiceProvider.GetService<UserProfileBlockViewModel>();
             InitializeComponent();
             Loaded += OnLoad;
         }

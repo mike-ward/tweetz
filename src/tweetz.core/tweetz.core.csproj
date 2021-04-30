@@ -53,9 +53,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Jab" Version="0.0.2-beta.108" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>

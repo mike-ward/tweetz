@@ -13,7 +13,7 @@
     x:Name="Popup"
     AllowsTransparency="true"
     Closed="Popup_Closed"
-    IsOpen="{Binding Uri, Mode=OneWay, Converter={StaticResource IsNotNullConverter}}"
+    IsOpen="{Binding Uri, Mode=OneWay, Converter={StaticResource IsNotNullConverter}, TargetNullValue=False, FallbackValue=False}"
     KeyDown="Popup_KeyDown"
     MouseDown="Popup_MouseDown"
     MouseWheel="Popup_OnMouseWheel"
@@ -64,7 +64,7 @@
           Grid.Row="0"
           x:Name="ImageElement"
           Visibility="Collapsed"
-          Source="{Binding Uri, IsAsync=True}"
+          Source="{Binding Uri, IsAsync=True, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
           Stretch="UniformToFill">
         </Image>
 

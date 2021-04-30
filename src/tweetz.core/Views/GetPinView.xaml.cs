@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Jab;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
@@ -13,6 +14,7 @@ namespace tweetz.core.Views
 
         public GetPinView()
         {
+            DataContext = BootStrapper.ServiceProvider.GetService<GetPinControlViewModel>();
             InitializeComponent();
         }
 
@@ -62,8 +64,12 @@ namespace tweetz.core.Views
         private void ShowPage(int page)
         {
             if (page < 1 || page > 2) throw new ArgumentOutOfRangeException(nameof(page), "page argument must be 1 or 2");
-            Page1.Visibility = page == 1 ? Visibility.Visible : Visibility.Hidden;
-            Page2.Visibility = page == 2 ? Visibility.Visible : Visibility.Hidden;
+            Page1.Visibility = page == 1
+                ? Visibility.Visible
+                : Visibility.Hidden;
+            Page2.Visibility = page == 2
+                ? Visibility.Visible
+                : Visibility.Hidden;
         }
     }
 }

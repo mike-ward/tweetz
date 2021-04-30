@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Jab;
 using tweetz.core.ViewModels;
 using twitter.core.Models;
 
@@ -13,6 +14,7 @@ namespace tweetz.core.Views.UserProfileControls
         public UserProfileTimeline()
         {
             InitializeComponent();
+            TimelineView.DataContext = BootStrapper.ServiceProvider.GetService<UserProfileTimelineViewModel>();
         }
 
         private async void UserProfileTimeline_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

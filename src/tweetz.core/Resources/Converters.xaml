@@ -21,6 +21,5 @@
   <converters:ProfileLinkConverter x:Key="ProfileLinkConverter" />
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
-  <converters:ViewModelLocatorConverter x:Key="VMLC" />
   <services:GrayscaleShaderEffect x:Key="GrayscaleShaderEffect" />
 </ResourceDictionary>

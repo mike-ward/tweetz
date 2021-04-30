@@ -1,6 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using Jab;
 using tweetz.core.Commands;
+using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
 {
@@ -8,6 +10,7 @@ namespace tweetz.core.Views
     {
         public TitleBarView()
         {
+            DataContext = BootStrapper.ServiceProvider.GetService<TitleBarControlViewModel>();
             InitializeComponent();
         }
 

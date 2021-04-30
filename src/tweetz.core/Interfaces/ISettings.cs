@@ -27,5 +27,7 @@ namespace tweetz.core.Interfaces
         void Load();
 
         void Save();
+
+        string SettingsFilePath { get; }
     }
 }

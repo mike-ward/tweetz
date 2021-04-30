@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using Jab;
+using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
 {
@@ -6,6 +8,7 @@ namespace tweetz.core.Views
     {
         public MainView()
         {
+            DataContext = BootStrapper.ServiceProvider.GetService<MainViewModel>();
             InitializeComponent();
         }
     }

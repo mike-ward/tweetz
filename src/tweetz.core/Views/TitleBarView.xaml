@@ -6,7 +6,6 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:vm="clr-namespace:tweetz.core.ViewModels"
   Background="{DynamicResource TitleBarBackgroundBrush}"
-  DataContext="{Binding Converter={StaticResource VMLC}, ConverterParameter={x:Type vm:TitleBarControlViewModel}, Mode=OneTime}"
   Foreground="{DynamicResource TitleBarForegroundBrush}"
   d:DesignHeight="19"
   d:DesignWidth="300"
