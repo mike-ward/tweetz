@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>  
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <TieredCompilation>true</TieredCompilation>
   </PropertyGroup>
 

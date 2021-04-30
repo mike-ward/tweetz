@@ -15,7 +15,7 @@
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <ServerGarbageCollection>false</ServerGarbageCollection>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <TieredCompilation>true</TieredCompilation>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>

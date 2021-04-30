@@ -6,13 +6,13 @@ pushd src\tweetz.core
 echo(
 echo --- Build framework-dependent ---
 echo(
-dotnet publish -f net5.0-windows -r win10-x86 -c Release --self-contained false --output ../../bin/framework-dependent
+dotnet publish -f net6.0-windows -r win10-x86 -c Release --self-contained false --output ../../bin/framework-dependent
 if ERRORLEVEL 1 goto ERROR
 
 echo(
 @echo --- Build self-contained ---
 echo(
-dotnet publish -f net5.0-windows -r win10-x86 -c Release --self-contained true --output ../../bin/self-contained
+dotnet publish -f net6.0-windows -r win10-x86 -c Release --self-contained true --output ../../bin/self-contained
 if ERRORLEVEL 1 goto ERROR
 
 popd
