@@ -11,7 +11,7 @@ namespace tweetz.core
     {
         public MainWindow()
         {
-            DataContext = BootStrapper.ServiceProvider.GetService<MainWindowViewModel>();
+            DataContext = App.ServiceProvider.GetService<MainWindowViewModel>();
             InitializeComponent();
         }
 

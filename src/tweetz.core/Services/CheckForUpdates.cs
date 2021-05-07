@@ -31,7 +31,7 @@ namespace tweetz.core.Services
             try
             {
                 var uri = new Uri($"https://mike-ward.net/tweetz-version.txt?{DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture)}");
-                Version = await App.GetHttpClient().GetStringAsync(uri).ConfigureAwait(true);
+                Version = await App.MyHttpClient.GetStringAsync(uri).ConfigureAwait(true);
             }
             catch (Exception ex)
             {

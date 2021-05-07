@@ -26,7 +26,7 @@ namespace tweetz.core.Services
                 using var tokenSource = new CancellationTokenSource(FiveSeconds);
 
                 var       request  = new HttpRequestMessage { Method = HttpMethod.Head, RequestUri = new Uri(link) };
-                using var response = await App.GetHttpClient().SendAsync(request, tokenSource.Token).ConfigureAwait(false);
+                using var response = await App.MyHttpClient.SendAsync(request, tokenSource.Token).ConfigureAwait(false);
 
                 if (response.IsSuccessStatusCode)
                 {

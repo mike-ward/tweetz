@@ -14,7 +14,7 @@ namespace tweetz.core.Views
 
         public GetPinView()
         {
-            DataContext = BootStrapper.ServiceProvider.GetService<GetPinControlViewModel>();
+            DataContext = App.ServiceProvider.GetService<GetPinControlViewModel>();
             InitializeComponent();
         }
 

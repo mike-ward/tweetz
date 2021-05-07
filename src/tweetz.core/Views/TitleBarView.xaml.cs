@@ -10,7 +10,7 @@ namespace tweetz.core.Views
     {
         public TitleBarView()
         {
-            DataContext = BootStrapper.ServiceProvider.GetService<TitleBarControlViewModel>();
+            DataContext = App.ServiceProvider.GetService<TitleBarControlViewModel>();
             InitializeComponent();
         }
 

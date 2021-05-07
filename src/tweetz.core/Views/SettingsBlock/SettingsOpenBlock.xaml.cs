@@ -8,7 +8,7 @@ namespace tweetz.core.Views.SettingsBlock
     {
         public SettingsOpenBlock()
         {
-            DataContext = BootStrapper.ServiceProvider.GetService<ISettings>();
+            DataContext = App.ServiceProvider.GetService<ISettings>();
             InitializeComponent();
         }
     }

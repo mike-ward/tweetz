@@ -9,7 +9,7 @@ namespace tweetz.core.Views.UserProfileBlock
     {
         public UserProfileBlockControl()
         {
-            DataContext = BootStrapper.ServiceProvider.GetService<UserProfileBlockViewModel>();
+            DataContext = App.ServiceProvider.GetService<UserProfileBlockViewModel>();
             InitializeComponent();
             Loaded += OnLoad;
         }

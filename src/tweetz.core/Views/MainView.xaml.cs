@@ -8,7 +8,7 @@ namespace tweetz.core.Views
     {
         public MainView()
         {
-            DataContext = BootStrapper.ServiceProvider.GetService<MainViewModel>();
+            DataContext = App.ServiceProvider.GetService<MainViewModel>();
             InitializeComponent();
         }
     }

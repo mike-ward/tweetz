@@ -2,10 +2,9 @@
 using tweetz.core.Commands;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
-using tweetz.core.Services;
 using tweetz.core.ViewModels;
 
-namespace tweetz.core
+namespace tweetz.core.Services
 {
     [ServiceProvider]
     //
@@ -61,9 +60,4 @@ namespace tweetz.core
     // partial class required so Jab generate code
     //
     public partial class MyServiceProvider { }
-
-    internal static class BootStrapper
-    {
-        public static MyServiceProvider ServiceProvider { get; } = new();
-    }
 }

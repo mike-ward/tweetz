@@ -14,7 +14,7 @@ namespace tweetz.core.Views.UserProfileControls
         public UserProfileTimeline()
         {
             InitializeComponent();
-            TimelineView.DataContext = BootStrapper.ServiceProvider.GetService<UserProfileTimelineViewModel>();
+            TimelineView.DataContext = App.ServiceProvider.GetService<UserProfileTimelineViewModel>();
         }
 
         private async void UserProfileTimeline_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

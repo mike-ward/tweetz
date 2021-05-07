@@ -9,6 +9,7 @@ using Microsoft.AppCenter.Crashes;
 using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
+using tweetz.core.Services;
 
 namespace tweetz.core
 {
@@ -23,26 +24,25 @@ namespace tweetz.core
             }
         }
 
+        public static MyServiceProvider ServiceProvider { get; } = new();
+
+        public static HttpClient MyHttpClient => twitter.core.Services.OAuthApiRequest.MyHttpClient;
+
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
             if (!Debugger.IsAttached) AppCenter.Start("14eb5ed2-3dc9-4cb3-8ad5-a630a9d90407", typeof(Analytics), typeof(Crashes));
-            BootStrapper.ServiceProvider.GetService<ISettings>().PropertyChanged += SettingsThemeChanged;
-            BootStrapper.ServiceProvider.GetService<MainWindow>().Show();
+            ServiceProvider.GetService<ISettings>().PropertyChanged += SettingsThemeChanged;
+            ServiceProvider.GetService<MainWindow>().Show();
         }
 
         private void SettingsThemeChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName.IsEqualTo(nameof(Settings.Theme)) && sender is Settings settings)
             {
-                var uri = new Uri($"Resources/{settings.Theme}.xaml", UriKind.Relative);
+                var uri             = new Uri($"Resources/{settings.Theme}.xaml", UriKind.Relative);
                 var colorDictionary = (ResourceDictionary)LoadComponent(uri);
                 Resources.MergedDictionaries.Add(colorDictionary);
             }
-        }
-
-        public static HttpClient GetHttpClient()
-        {
-            return twitter.core.Services.OAuthApiRequest.MyHttpClient;
         }
     }
 }

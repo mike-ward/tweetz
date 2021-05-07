@@ -31,7 +31,7 @@ namespace tweetz.core.Services
                     })
                 };
 
-                using var response = await App.GetHttpClient().SendAsync(request).ConfigureAwait(false);
+                using var response = await App.MyHttpClient.SendAsync(request).ConfigureAwait(false);
                 var       result   = await response.Content.ReadFromJsonAsync<TranslatorResult>().ConfigureAwait(false);
                 return result?.TranslatedText ?? "{error}";
             }
