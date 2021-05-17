@@ -15,7 +15,7 @@ namespace tweetz.core.Services
         {
             // Build a hashset for faster lookups.
             var statusesNoNags = timeline.StatusCollection.Where(status => status.Id.IsNotEqualTo(DonateNagStatus.DonateNagStatusId));
-            var hashSet = new HashSet<TwitterStatus>(statusesNoNags);
+            var hashSet        = new HashSet<TwitterStatus>(statusesNoNags);
 
             foreach (var status in statuses.OrderBy(status => status.OriginatingStatus.CreatedDate))
             {
@@ -47,7 +47,7 @@ namespace tweetz.core.Services
         private static TwitterStatus Clone(TwitterStatus twitterStatus)
         {
             var bytes = JsonSerializer.SerializeToUtf8Bytes(twitterStatus);
-            var span = new ReadOnlySpan<byte>(bytes);
+            var span  = new ReadOnlySpan<byte>(bytes);
             return JsonSerializer.Deserialize<TwitterStatus>(span)!;
         }
     }

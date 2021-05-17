@@ -7,16 +7,16 @@ namespace tweetz.core.Commands
 {
     public class SearchCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private SearchControlViewModel SearchControlViewModel { get; }
-        public IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand          Command = new RoutedUICommand();
+        private                SearchControlViewModel SearchControlViewModel { get; }
+        public                 IMessageBoxService     MessageBoxService      { get; }
 
         private bool inCommand;
 
         public SearchCommand(SearchControlViewModel searchControlViewModel, IMessageBoxService messageBoxService)
         {
             SearchControlViewModel = searchControlViewModel;
-            MessageBoxService = messageBoxService;
+            MessageBoxService      = messageBoxService;
         }
 
         public CommandBinding CommandBinding()

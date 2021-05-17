@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
   <Grid>
     <local:TabBarView Visibility="{Binding DataContext.UserProfile, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}, RelativeSource={RelativeSource AncestorType=UserControl}}" />
-    
+
     <local:UserProfileView
       DataContext="{Binding DataContext.UserProfile, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
       Visibility="{Binding ., Mode=OneWay, Converter={StaticResource NotNullToVisibilityConverter}}" />

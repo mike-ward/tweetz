@@ -16,7 +16,7 @@ namespace tweetz.core.Services
         public static WpfScreen GetScreenFrom(Window window)
         {
             var windowInteropHelper = new WindowInteropHelper(window);
-            var display = Display.FromHandle(windowInteropHelper.Handle);
+            var display             = Display.FromHandle(windowInteropHelper.Handle);
             return new WpfScreen(display);
         }
 

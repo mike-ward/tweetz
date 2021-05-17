@@ -7,21 +7,21 @@ namespace tweetz.core.Commands
 {
     public class GetMentionsCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        public SearchControlViewModel SearchControlViewModel { get; }
-        public IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand          Command = new RoutedUICommand();
+        public                 SearchControlViewModel SearchControlViewModel { get; }
+        public                 IMessageBoxService     MessageBoxService      { get; }
 
         private bool inCommand;
 
         public GetMentionsCommand(SearchControlViewModel searchControlViewModel, IMessageBoxService messageBoxService)
         {
             SearchControlViewModel = searchControlViewModel;
-            MessageBoxService = messageBoxService;
+            MessageBoxService      = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler);
+            return new(Command, CommandHandler);
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)

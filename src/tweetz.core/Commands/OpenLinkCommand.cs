@@ -6,19 +6,19 @@ namespace tweetz.core.Commands
 {
     public class OpenLinkCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private IOpenUrlService OpenUrlService { get; }
-        public IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand      Command = new RoutedUICommand();
+        private                IOpenUrlService    OpenUrlService    { get; }
+        public                 IMessageBoxService MessageBoxService { get; }
 
         public OpenLinkCommand(IOpenUrlService openUrlService, IMessageBoxService messageBoxService)
         {
-            OpenUrlService = openUrlService;
+            OpenUrlService    = openUrlService;
             MessageBoxService = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler);
+            return new(Command, CommandHandler);
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)

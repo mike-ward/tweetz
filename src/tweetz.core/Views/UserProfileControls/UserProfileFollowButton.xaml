@@ -43,7 +43,7 @@
             <DataTrigger Binding="{Binding IsFollowing}" Value="True">
               <Setter Property="Text" Value="{StaticResource profile-following}" />
             </DataTrigger>
-            
+
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding Path=Background, ElementName=BD}" Value="DarkRed" />

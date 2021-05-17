@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:tweetz.core.Views.UserProfileControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-  
+
   <Grid Height="{x:Static local:UserProfileBanner.BannerHeight}">
 
     <Image

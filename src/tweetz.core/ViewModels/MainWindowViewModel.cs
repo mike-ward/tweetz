@@ -31,12 +31,12 @@ namespace tweetz.core.ViewModels
             ISystemTrayIconService systemTrayIconService,
             IEnumerable<ICommandBinding> commandBindings)
         {
-            Settings = settings;
-            SystemState = systemState;
-            ImageViewerService = imageViewerService;
-            WindowInteropService = windowInteropService;
+            Settings              = settings;
+            SystemState           = systemState;
+            ImageViewerService    = imageViewerService;
+            WindowInteropService  = windowInteropService;
             SystemTrayIconService = systemTrayIconService;
-            CommandBindings = commandBindings;
+            CommandBindings       = commandBindings;
         }
 
         public void Initialize(Window window)
@@ -60,9 +60,9 @@ namespace tweetz.core.ViewModels
 
         private void InitializeSaveSettingsOnMove(Window window)
         {
-            const int OneSecond = 1000;
-            var saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
-            window.SizeChanged += delegate { saveSettings(window); };
+            const int OneSecond    = 1000;
+            var       saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
+            window.SizeChanged     += delegate { saveSettings(window); };
             window.LocationChanged += delegate { saveSettings(window); };
         }
 

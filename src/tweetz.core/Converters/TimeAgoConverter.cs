@@ -8,14 +8,20 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var time = value is DateTime val ? val : default;
+            var time = value is DateTime val
+                ? val
+                : default;
+
             var timespan = DateTime.UtcNow - time;
             static string Format(string s, double t) => string.Format(CultureInfo.InvariantCulture, s, (int)t);
-            if (timespan.TotalSeconds < 60) return Format("{0}s", timespan.TotalSeconds);
-            if (timespan.TotalMinutes < 60) return Format("{0}m", timespan.TotalMinutes);
-            if (timespan.TotalHours < 24) return Format("{0}h", timespan.TotalHours);
-            if (timespan.TotalDays < 3) return Format("{0}d", timespan.TotalDays);
-            return time.ToString("MMM d", CultureInfo.CurrentUICulture);
+
+            return timespan switch {
+                { TotalSeconds: < 60 } => Format("{0}s", timespan.TotalSeconds),
+                { TotalMinutes: < 60 } => Format("{0}m", timespan.TotalMinutes),
+                { TotalHours  : < 24 } => Format("{0}h", timespan.TotalHours),
+                { TotalDays   : < 10 } => Format("{0}d", timespan.TotalDays),
+                _                      => time.ToString("MMM d", CultureInfo.CurrentUICulture)
+            };
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]

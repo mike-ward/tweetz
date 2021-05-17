@@ -6,13 +6,10 @@ namespace twitter.core.Models
     {
         public static readonly ProcessingError Empty = new();
 
-        [JsonPropertyName("code")]
-        public double Code { get; set; }
+        [JsonPropertyName("code")] public double Code { get; set; }
 
-        [JsonPropertyName("name")]
-        public string Name { get; set; } = string.Empty;
+        [JsonPropertyName("name")] public string Name { get; set; } = string.Empty;
 
-        [JsonPropertyName("message")]
-        public string Message { get; set; } = string.Empty;
+        [JsonPropertyName("message")] public string Message { get; set; } = string.Empty;
     }
 }

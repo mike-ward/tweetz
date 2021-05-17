@@ -16,7 +16,7 @@ namespace tweetz.core.Extensions
             while (queue.Count > 0)
             {
                 var currentElement = queue.Dequeue();
-                var childrenCount = VisualTreeHelper.GetChildrenCount(currentElement);
+                var childrenCount  = VisualTreeHelper.GetChildrenCount(currentElement);
 
                 for (var i = 0; i < childrenCount; i++)
                 {
@@ -25,6 +25,7 @@ namespace tweetz.core.Extensions
                     {
                         yield return t;
                     }
+
                     queue.Enqueue(child);
                 }
             }
@@ -39,6 +40,7 @@ namespace tweetz.core.Extensions
             {
                 if (parent is T result) return result;
             }
+
             return null;
         }
     }

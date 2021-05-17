@@ -127,8 +127,7 @@ namespace tweetz.core.Services
         {
             const int maxDisplayLength = 150;
 
-            var hyperlink = new Hyperlink(new Run(link))
-            {
+            var hyperlink = new Hyperlink(new Run(link)) {
                 CommandParameter = link,
                 ToolTip          = link
             };
@@ -136,8 +135,7 @@ namespace tweetz.core.Services
             hyperlink.Click          += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
             hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
 
-            var textblock = new TextBlock(hyperlink)
-            {
+            var textblock = new TextBlock(hyperlink) {
                 MaxWidth     = maxDisplayLength,
                 TextTrimming = TextTrimming.CharacterEllipsis
             };
@@ -155,8 +153,7 @@ namespace tweetz.core.Services
             userProfile.Tag = text;
             var link = $"https://twitter.com/{text}";
 
-            var hyperlink = new Hyperlink(new Run("@" + text))
-            {
+            var hyperlink = new Hyperlink(new Run("@" + text)) {
                 CommandParameter = link,
                 ToolTip          = tooltip
             };
@@ -169,14 +166,13 @@ namespace tweetz.core.Services
 
         private static Style GetToolTipStyle()
         {
-            return userProfileToolTipStyle ??= ((Style)Application.Current.FindResource("ToolTipStyle"))!;
+            return userProfileToolTipStyle ??= (Style)Application.Current.FindResource("ToolTipStyle");
         }
 
         private static Hyperlink Hashtag(string text)
         {
             var tag = "#" + text;
-            var hyperlink = new Hyperlink(new Run(tag))
-            {
+            var hyperlink = new Hyperlink(new Run(tag)) {
                 CommandParameter = tag
             };
 

@@ -14,21 +14,21 @@ namespace tweetz.core.Commands
 {
     public class AddImageCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private ComposeControlViewModel ComposeControlViewModel { get; }
-        public ITwitterService TwitterService { get; }
-        public IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand           Command = new RoutedUICommand();
+        private                ComposeControlViewModel ComposeControlViewModel { get; }
+        public                 ITwitterService         TwitterService          { get; }
+        public                 IMessageBoxService      MessageBoxService       { get; }
 
         public AddImageCommand(ComposeControlViewModel composeControlViewModel, ITwitterService twitterService, IMessageBoxService messageBoxService)
         {
             ComposeControlViewModel = composeControlViewModel;
-            TwitterService = twitterService;
-            MessageBoxService = messageBoxService;
+            TwitterService          = twitterService;
+            MessageBoxService       = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler, CanExecute);
+            return new(Command, CommandHandler, CanExecute);
         }
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -40,9 +40,8 @@ namespace tweetz.core.Commands
         {
             const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 
-            using var ofd = new OpenFileDialog
-            {
-                Filter = filter,
+            using var ofd = new OpenFileDialog {
+                Filter = filter
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -57,8 +56,9 @@ namespace tweetz.core.Commands
                 {
                     var stream = ex.Response?.GetResponseStream();
                     if (stream is null) { return; }
-                    using var reader = new StreamReader(stream);
-                    var message = await reader.ReadToEndAsync().ConfigureAwait(false);
+
+                    using var reader  = new StreamReader(stream);
+                    var       message = await reader.ReadToEndAsync().ConfigureAwait(false);
                     await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -75,7 +75,7 @@ namespace tweetz.core.Commands
         private async ValueTask<MediaInfo> UploadMediaAsync(string path)
         {
             var contentType = ComposeControlViewModel.ContentType(path);
-            var mediaId = await UploadAsync(path, contentType).ConfigureAwait(false);
+            var mediaId     = await UploadAsync(path, contentType).ConfigureAwait(false);
             return new MediaInfo { Path = path, MediaId = mediaId };
         }
 

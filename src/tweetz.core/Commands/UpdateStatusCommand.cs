@@ -12,12 +12,12 @@ namespace tweetz.core.Commands
 {
     public class UpdateStatusCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private ITwitterService TwitterService { get; }
-        private ComposeControlViewModel ComposeControlViewModel { get; }
-        private HomeTimelineControlViewModel HomeTimelineControlViewModel { get; }
-        private TabBarControlViewModel TabBarControlViewModel { get; }
-        private IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand                Command = new RoutedUICommand();
+        private                ITwitterService              TwitterService               { get; }
+        private                ComposeControlViewModel      ComposeControlViewModel      { get; }
+        private                HomeTimelineControlViewModel HomeTimelineControlViewModel { get; }
+        private                TabBarControlViewModel       TabBarControlViewModel       { get; }
+        private                IMessageBoxService           MessageBoxService            { get; }
 
         public UpdateStatusCommand(
             ITwitterService twitterService,
@@ -26,16 +26,16 @@ namespace tweetz.core.Commands
             TabBarControlViewModel tabBarControlViewModel,
             IMessageBoxService messageBoxService)
         {
-            TwitterService = twitterService;
-            ComposeControlViewModel = composeControlViewModel;
+            TwitterService               = twitterService;
+            ComposeControlViewModel      = composeControlViewModel;
             HomeTimelineControlViewModel = homeTimelineControlViewModel;
-            TabBarControlViewModel = tabBarControlViewModel;
-            MessageBoxService = messageBoxService;
+            TabBarControlViewModel       = tabBarControlViewModel;
+            MessageBoxService            = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler, CanExecuteHandler);
+            return new(Command, CommandHandler, CanExecuteHandler);
         }
 
         private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs ea)
@@ -62,14 +62,14 @@ namespace tweetz.core.Commands
                     .Select(media => media.MediaId)
                     .ToArray();
 
-                var statusText = ComposeControlViewModel.StatusText;
+                var statusText     = ComposeControlViewModel.StatusText;
                 var attachementUrl = ComposeControlViewModel.AttachmentUrl;
 
                 var status = await TwitterService.UpdateStatus(
-                    statusText,
-                    replyId,
-                    attachementUrl,
-                    mediaIds)
+                        statusText,
+                        replyId,
+                        attachementUrl,
+                        mediaIds)
                     .ConfigureAwait(true);
 
                 await Application.Current.Dispatcher.InvokeAsync(() => UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel));
@@ -81,8 +81,9 @@ namespace tweetz.core.Commands
             {
                 var stream = ex.Response?.GetResponseStream();
                 if (stream is null) { return; }
-                using var reader = new StreamReader(stream);
-                var message = await reader.ReadToEndAsync().ConfigureAwait(true);
+
+                using var reader  = new StreamReader(stream);
+                var       message = await reader.ReadToEndAsync().ConfigureAwait(true);
                 await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
             }
             catch (Exception ex)

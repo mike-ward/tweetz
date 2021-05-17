@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using System.Windows.Controls;
 
 namespace tweetz.core.Views.UserProfileControls
 {

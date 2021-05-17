@@ -15,6 +15,9 @@ namespace tweetz.core
 {
     public partial class App : Application
     {
+        public static MyServiceProvider ServiceProvider { get; } = new();
+        public static HttpClient        MyHttpClient    => twitter.core.Services.OAuthApiRequest.MyHttpClient;
+
         static App()
         {
             if (!DesktopWindowManager.DesktopWindowManager.IsDwmEnabled())
@@ -23,10 +26,6 @@ namespace tweetz.core
                 Environment.Exit(1);
             }
         }
-
-        public static MyServiceProvider ServiceProvider { get; } = new();
-
-        public static HttpClient MyHttpClient => twitter.core.Services.OAuthApiRequest.MyHttpClient;
 
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {

@@ -32,7 +32,7 @@ namespace tweetz.core.Views
 
         private void SetSearchText(string text)
         {
-            Search.Text = text;
+            Search.Text           = text;
             Search.SelectionStart = text.Length;
             GoToSearchCommand.Command.Execute(text, Search);
         }

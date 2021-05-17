@@ -7,7 +7,7 @@ namespace tweetz.core.Commands
 {
     public class ShowUserProfileCommand : ICommandBinding
     {
-        private readonly MainViewModel mainViewModel;
+        private readonly       MainViewModel mainViewModel;
         public static readonly RoutedCommand Command = new RoutedUICommand();
 
         public ShowUserProfileCommand(MainViewModel mainViewModel)

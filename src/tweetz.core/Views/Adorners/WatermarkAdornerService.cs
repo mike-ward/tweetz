@@ -13,10 +13,10 @@ namespace tweetz.core.Views.Adorners
 #nullable disable
 
         public static readonly DependencyProperty WatermarkProperty = DependencyProperty.RegisterAttached(
-           "Watermark",
-           typeof(object),
-           typeof(WatermarkAdornerService),
-           new FrameworkPropertyMetadata(defaultValue: null, new PropertyChangedCallback(OnWatermarkChanged)));
+            "Watermark",
+            typeof(object),
+            typeof(WatermarkAdornerService),
+            new FrameworkPropertyMetadata(defaultValue: null, OnWatermarkChanged));
 
         private static readonly Dictionary<object, ItemsControl> itemsControls = new();
 
@@ -51,8 +51,8 @@ namespace tweetz.core.Views.Adorners
                 control.GotKeyboardFocus -= Control_GotKeyboardFocus;
                 control.GotKeyboardFocus += Control_GotKeyboardFocus;
 
-                control.LostKeyboardFocus -= Control_Loaded;
-                control.LostKeyboardFocus += Control_Loaded;
+                control.LostKeyboardFocus      -= Control_Loaded;
+                control.LostKeyboardFocus      += Control_Loaded;
                 ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
             }
             else if (d is ItemsControl itemControl && d is not ComboBox)
@@ -156,12 +156,11 @@ namespace tweetz.core.Views.Adorners
 
         private static bool ShouldShowWatermark(Control c)
         {
-            return c switch
-            {
-                ComboBox _ => string.IsNullOrEmpty((c as ComboBox)?.Text),
-                TextBoxBase _ => string.IsNullOrEmpty((c as TextBox)?.Text),
+            return c switch {
+                ComboBox _     => string.IsNullOrEmpty((c as ComboBox)?.Text),
+                TextBoxBase _  => string.IsNullOrEmpty((c as TextBox)?.Text),
                 ItemsControl _ => (c as ItemsControl)?.Items.Count == 0,
-                _ => false,
+                _              => false
             };
         }
     }

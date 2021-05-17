@@ -6,20 +6,16 @@ namespace twitter.core.Models
     {
         public static readonly ProcessingInfo Empty = new();
 
-        public const string StateSucceeded = "succeeded";
+        public const string StateSucceeded  = "succeeded";
         public const string StateInProgress = "in_progress";
-        public const string StateFailed = "failed";
+        public const string StateFailed     = "failed";
 
-        [JsonPropertyName("state")]
-        public string State { get; set; } = string.Empty;
+        [JsonPropertyName("state")] public string State { get; set; } = string.Empty;
 
-        [JsonPropertyName("check_after_secs")]
-        public double CheckAfterSecs { get; set; }
+        [JsonPropertyName("check_after_secs")] public double CheckAfterSecs { get; set; }
 
-        [JsonPropertyName("progress_percent")]
-        public double ProgressPercent { get; set; }
+        [JsonPropertyName("progress_percent")] public double ProgressPercent { get; set; }
 
-        [JsonPropertyName("error")]
-        public ProcessingError Error { get; set; } = ProcessingError.Empty;
+        [JsonPropertyName("error")] public ProcessingError Error { get; set; } = ProcessingError.Empty;
     }
 }

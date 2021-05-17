@@ -12,8 +12,8 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
 
-        private ISettings Settings { get; }
-        private TabBarControlViewModel TabBarControlViewModel { get; }
+        private ISettings               Settings                { get; }
+        private TabBarControlViewModel  TabBarControlViewModel  { get; }
         private ComposeControlViewModel ComposeControlViewModel { get; }
 
         public ReplyToCommand(
@@ -21,14 +21,14 @@ namespace tweetz.core.Commands
             TabBarControlViewModel tabBarControlViewModel,
             ComposeControlViewModel composeControlViewModel)
         {
-            Settings = settings;
-            TabBarControlViewModel = tabBarControlViewModel;
+            Settings                = settings;
+            TabBarControlViewModel  = tabBarControlViewModel;
             ComposeControlViewModel = composeControlViewModel;
         }
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler, CanExecute);
+            return new(Command, CommandHandler, CanExecute);
         }
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -43,8 +43,8 @@ namespace tweetz.core.Commands
 
             ComposeControlViewModel.Clear();
             ComposeControlViewModel.InReplyTo = status;
-            var watermarkFormat = (string)Application.Current.FindResource("in-reply-to");
-            ComposeControlViewModel.WatermarkText = string.Format(CultureInfo.InvariantCulture, watermarkFormat, status.User.ScreenName);
+            var watermarkFormat = (string)Application.Current.FindResource("in-reply-to")!;
+            ComposeControlViewModel.WatermarkText     = string.Format(CultureInfo.InvariantCulture, watermarkFormat, status.User.ScreenName);
             TabBarControlViewModel.ShowComposeControl = true;
         }
 

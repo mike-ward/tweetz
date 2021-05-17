@@ -6,6 +6,6 @@
         Url,
         Mention,
         HashTag,
-        Media,
+        Media
     }
 }

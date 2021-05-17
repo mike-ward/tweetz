@@ -13,7 +13,7 @@ namespace tweetz.core.Services
         public void SetWindowPosition(Window window, WindowPosition windowPosition)
         {
             var windowHandle = new WindowInteropHelper(window).Handle;
-            var placement = ToWindowPlacement(windowPosition);
+            var placement    = ToWindowPlacement(windowPosition);
             SetWindowPlacement(windowHandle, ref placement);
         }
 
@@ -28,31 +28,28 @@ namespace tweetz.core.Services
         {
             const int SW_SHOWNORMAL = 1;
 
-            return new WINDOWPLACEMENT
-            {
-                length = Marshal.SizeOf(typeof(WINDOWPLACEMENT)),
-                flags = 0,
-                showCmd = SW_SHOWNORMAL,
+            return new WINDOWPLACEMENT {
+                length      = Marshal.SizeOf(typeof(WINDOWPLACEMENT)),
+                flags       = 0,
+                showCmd     = SW_SHOWNORMAL,
                 minPosition = new POINT { X = -1, Y = -1 },
                 maxPosition = new POINT { X = -1, Y = -1 },
-                normalPosition = new RECT
-                {
-                    Left = position.Left,
-                    Top = position.Top,
-                    Right = position.Left + position.Width,
-                    Bottom = position.Top + position.Height,
-                },
+                normalPosition = new RECT {
+                    Left   = position.Left,
+                    Top    = position.Top,
+                    Right  = position.Left + position.Width,
+                    Bottom = position.Top + position.Height
+                }
             };
         }
 
         private static WindowPosition ToWindowPosition(WINDOWPLACEMENT placement)
         {
-            var pos = new WindowPosition
-            {
-                Left = placement.normalPosition.Left,
-                Top = placement.normalPosition.Top,
-                Width = placement.normalPosition.Right - placement.normalPosition.Left,
-                Height = placement.normalPosition.Bottom - placement.normalPosition.Top,
+            var pos = new WindowPosition {
+                Left   = placement.normalPosition.Left,
+                Top    = placement.normalPosition.Top,
+                Width  = placement.normalPosition.Right - placement.normalPosition.Left,
+                Height = placement.normalPosition.Bottom - placement.normalPosition.Top
             };
 
             return pos;
@@ -80,12 +77,12 @@ namespace tweetz.core.Services
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
         private struct WINDOWPLACEMENT
         {
-            public int length;
-            public int flags;
-            public int showCmd;
+            public int   length;
+            public int   flags;
+            public int   showCmd;
             public POINT minPosition;
             public POINT maxPosition;
-            public RECT normalPosition;
+            public RECT  normalPosition;
         }
 
         [DllImport("user32.dll")]
@@ -118,8 +115,10 @@ namespace tweetz.core.Services
                             SystemState.IsSleeping = monitorStatus == 0;
                         }
                     }
+
                     break;
             }
+
             return IntPtr.Zero;
         }
     }

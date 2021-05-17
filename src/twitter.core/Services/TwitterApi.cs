@@ -8,14 +8,14 @@ namespace twitter.core.Services
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded")]
     public class TwitterApi
     {
-        private string ConsumerKey { get; }
-        private string ConsumerSecret { get; }
+        private          string          ConsumerKey    { get; }
+        private          string          ConsumerSecret { get; }
         private readonly OAuthApiRequest oAuthApiRequest;
 
         public TwitterApi(string consumerKey, string consumerSecret)
         {
-            ConsumerKey = consumerKey;
-            ConsumerSecret = consumerSecret;
+            ConsumerKey     = consumerKey;
+            ConsumerSecret  = consumerSecret;
             oAuthApiRequest = new OAuthApiRequest(ConsumerKey, ConsumerSecret);
         }
 
@@ -91,8 +91,7 @@ namespace twitter.core.Services
         {
             var user = await oAuthApiRequest
                 .GetAsync<User>("https://api.twitter.com/1.1/users/show.json",
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode(),
                         TwitterOptions.ScreenName(screenName)
@@ -100,7 +99,7 @@ namespace twitter.core.Services
                 .ConfigureAwait(false);
 
             var userConnections = UserConnectionsService.LookupUserConnections(user.Id);
-            user.IsFollowing = userConnections?.IsFollowing ?? false;
+            user.IsFollowing  = userConnections?.IsFollowing ?? false;
             user.IsFollowedBy = userConnections?.IsFollowedBy ?? false;
             return user;
         }
@@ -109,8 +108,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .GetAsync<Tweet>("https://api.twitter.com/1.1/search/tweets.json",
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.Count(100),
                         TwitterOptions.Query(query),
                         TwitterOptions.IncludeEntities(),
@@ -162,8 +160,7 @@ namespace twitter.core.Services
 
         public ValueTask<TwitterStatus> UpdateStatus(string text, string? replyToStatusId, string? attachmentUrl, string[]? mediaIds)
         {
-            var parameters = new List<(string, string)>
-            {
+            var parameters = new List<(string, string)> {
                 TwitterOptions.Status(text),
                 TwitterOptions.ExtendedTweetMode()
             };
@@ -192,8 +189,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .GetAsync<TwitterStatus>("https://api.twitter.com/1.1/statuses/show.json",
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.Id(statusId),
                         TwitterOptions.IncludeEntities(),
                         TwitterOptions.ExtendedTweetMode()
@@ -206,8 +202,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .PostAsync<UploadMedia>(UploadMediaUrl,
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.Command("INIT"),
                         TwitterOptions.TotalBytes(totalBytes),
                         TwitterOptions.MediaType(mediaType)
@@ -224,8 +219,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .GetAsync<UploadMedia>(UploadMediaUrl,
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.Command("STATUS"),
                         TwitterOptions.MediaId(mediaId)
                     });
@@ -235,8 +229,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .PostAsync<UploadMedia>(UploadMediaUrl,
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.Command("FINALIZE"),
                         TwitterOptions.MediaId(mediaId)
                     });
@@ -246,8 +239,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .GetAsync<IEnumerable<UserConnection>>("https://api.twitter.com/1.1/friendships/lookup.json",
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.UserIds(ids)
                     });
         }
@@ -256,8 +248,7 @@ namespace twitter.core.Services
         {
             return oAuthApiRequest
                 .GetAsync<IEnumerable<TwitterStatus>>("https://api.twitter.com/1.1/statuses/user_timeline.json",
-                    new[]
-                    {
+                    new[] {
                         TwitterOptions.ScreenName(screenName),
                         TwitterOptions.Count(25),
                         TwitterOptions.IncludeEntities(),

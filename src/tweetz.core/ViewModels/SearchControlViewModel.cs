@@ -11,20 +11,24 @@ namespace tweetz.core.ViewModels
 {
     public class SearchControlViewModel : TwitterTimeline
     {
-        private bool showProgress;
-        private const int InfiniteElapsed = Int32.MaxValue / 60000;
+        private       bool showProgress;
+        private const int  InfiniteElapsed = int.MaxValue / 60000;
 
-        public ITwitterService TwitterService { get; }
-        public Action<string>? SetSearchText { get; set; }
+        private ITwitterService TwitterService { get; }
+        public Action<string>? SetSearchText  { get; set; }
 
         public SearchControlViewModel(ISettings settings, ISystemState systemState, ITwitterService twitterService)
             : base(settings, systemState, InfiniteElapsed)
         {
             TwitterService = twitterService;
-            timelineName = ((string)Application.Current.FindResource("search-timeline"))!;
+            timelineName   = (string)Application.Current.FindResource("search-timeline")!;
         }
 
-        public bool ShowProgress { get => showProgress; set => SetProperty(ref showProgress, value); }
+        public bool ShowProgress
+        {
+            get => showProgress;
+            set => SetProperty(ref showProgress, value);
+        }
 
         public async ValueTask SearchAsync(string query)
         {

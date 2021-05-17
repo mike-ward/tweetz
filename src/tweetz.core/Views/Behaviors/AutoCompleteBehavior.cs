@@ -9,8 +9,8 @@ namespace tweetz.core.Views.Behaviors
 {
     public static class AutoCompleteBehavior
     {
-        private static readonly KeyEventHandler KeyDown = new(OnPreviewKeyDown);
-        private static readonly TextChangedEventHandler TextChanged = new(OnTextChanged);
+        private static readonly KeyEventHandler         KeyDown     = OnPreviewKeyDown;
+        private static readonly TextChangedEventHandler TextChanged = OnTextChanged;
 
         public static readonly DependencyProperty AutoCompleteItemsSource =
             DependencyProperty.RegisterAttached
@@ -29,12 +29,12 @@ namespace tweetz.core.Views.Behaviors
         {
             if (sender is TextBox tb)
             {
-                tb.TextChanged -= TextChanged;
+                tb.TextChanged    -= TextChanged;
                 tb.PreviewKeyDown -= KeyDown;
 
                 if (e.NewValue is not null)
                 {
-                    tb.TextChanged += TextChanged;
+                    tb.TextChanged    += TextChanged;
                     tb.PreviewKeyDown += KeyDown;
                 }
             }
@@ -59,16 +59,17 @@ namespace tweetz.core.Views.Behaviors
                 "AutoCompleteIndicator",
                 typeof(string),
                 typeof(AutoCompleteBehavior),
-                new UIPropertyMetadata(String.Empty)
+                new UIPropertyMetadata(string.Empty)
             );
 
         public static string GetAutoCompleteIndicator(DependencyObject obj) => (string)obj.GetValue(AutoCompleteIndicator);
 
-        public static void SetAutoCompleteIndicator(DependencyObject obj, String value) => obj.SetValue(AutoCompleteIndicator, value);
+        public static void SetAutoCompleteIndicator(DependencyObject obj, string value) => obj.SetValue(AutoCompleteIndicator, value);
 
         private static void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Enter) { return; }
+
             if (e.OriginalSource is not TextBox tb) { return; }
 
             // If enter pressed and the selected text goes all the way to the
@@ -76,9 +77,9 @@ namespace tweetz.core.Views.Behaviors
 
             if (tb.SelectionLength > 0 && (tb.SelectionStart + tb.SelectionLength == tb.Text.Length))
             {
-                tb.SelectionStart = tb.CaretIndex = tb.Text.Length;
+                tb.SelectionStart  = tb.CaretIndex = tb.Text.Length;
                 tb.SelectionLength = 0;
-                e.Handled = true;
+                e.Handled          = true;
             }
         }
 
@@ -100,17 +101,17 @@ namespace tweetz.core.Views.Behaviors
             var values = GetAutoCompleteItemsSource(tb);
             if (values is null) { return; }
 
-            var startIndex = 0;
+            var startIndex     = 0;
             var matchingString = tb.Text;
-            var indicator = GetAutoCompleteIndicator(tb);
+            var indicator      = GetAutoCompleteIndicator(tb);
 
             if (!string.IsNullOrEmpty(indicator))
             {
                 startIndex = tb.Text.LastIndexOf(indicator, StringComparison.Ordinal);
                 if (startIndex == -1) { return; }
 
-                startIndex += indicator.Length;
-                matchingString = tb.Text[startIndex..];
+                startIndex     += indicator.Length;
+                matchingString =  tb.Text[startIndex..];
             }
 
             if (string.IsNullOrEmpty(matchingString)) { return; }
@@ -118,7 +119,7 @@ namespace tweetz.core.Views.Behaviors
             // Do search and changes here.
 
             var textLength = matchingString.Length;
-            var comparer = GetAutoCompleteStringComparison(tb);
+            var comparer   = GetAutoCompleteStringComparison(tb);
 
             var match = values
                 .Where(value =>
@@ -131,12 +132,12 @@ namespace tweetz.core.Views.Behaviors
             if (string.IsNullOrEmpty(match)) { return; }
 
             var matchStart = startIndex + matchingString.Length;
-            tb.TextChanged -= TextChanged;
-            tb.Text += match;
-            tb.CaretIndex = matchStart;
-            tb.SelectionStart = matchStart;
-            tb.SelectionLength = tb.Text.Length - startIndex;
-            tb.TextChanged += TextChanged;
+            tb.TextChanged     -= TextChanged;
+            tb.Text            += match;
+            tb.CaretIndex      =  matchStart;
+            tb.SelectionStart  =  matchStart;
+            tb.SelectionLength =  tb.Text.Length - startIndex;
+            tb.TextChanged     += TextChanged;
         }
     }
 }

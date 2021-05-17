@@ -6,8 +6,8 @@ namespace tweetz.core.Commands
 {
     public class RemoveImageCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private ComposeControlViewModel ComposeControlViewModel { get; }
+        public static readonly RoutedCommand           Command = new RoutedUICommand();
+        private                ComposeControlViewModel ComposeControlViewModel { get; }
 
         public RemoveImageCommand(ComposeControlViewModel composeControlViewModel)
         {

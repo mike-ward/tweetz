@@ -7,8 +7,8 @@ namespace tweetz.core.ViewModels
 {
     public class GetPinControlViewModel : NotifyPropertyChanged
     {
-        private string? pin;
-        private OAuthTokens? requestToken;
+        private          string?         pin;
+        private          OAuthTokens?    requestToken;
         private readonly ITwitterService _twitterService;
 
         public GetPinControlViewModel(ITwitterService twitterService)

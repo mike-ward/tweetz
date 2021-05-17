@@ -6,7 +6,7 @@ namespace tweetz.core.Commands
     public class ToggleSpellCheckerCommand : ICommandBinding
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
-        private ISettings Settings { get; }
+        private                ISettings     Settings { get; }
 
         public ToggleSpellCheckerCommand(ISettings settings)
         {

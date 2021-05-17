@@ -11,27 +11,25 @@ namespace tweetz.core.Views.Adorners
         private readonly ContentPresenter contentPresenter;
 
         public WatermarkAdorner(UIElement adornedElement, object watermark) :
-           base(adornedElement)
+            base(adornedElement)
         {
             IsHitTestVisible = false;
 
-            contentPresenter = new ContentPresenter
-            {
+            contentPresenter = new ContentPresenter {
                 Content = watermark,
                 Opacity = 0.5,
-                Margin = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0),
+                Margin  = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0)
             };
 
             if (Control is ItemsControl && !(Control is ComboBox))
             {
-                contentPresenter.VerticalAlignment = VerticalAlignment.Center;
+                contentPresenter.VerticalAlignment   = VerticalAlignment.Center;
                 contentPresenter.HorizontalAlignment = HorizontalAlignment.Center;
             }
 
-            var binding = new Binding("IsVisible")
-            {
-                Source = adornedElement,
-                Converter = new BooleanToVisibilityConverter(),
+            var binding = new Binding("IsVisible") {
+                Source    = adornedElement,
+                Converter = new BooleanToVisibilityConverter()
             };
             SetBinding(VisibilityProperty, binding);
         }

@@ -21,7 +21,7 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs args)
         {
-            Settings.AccessToken = null;
+            Settings.AccessToken       = null;
             Settings.AccessTokenSecret = null;
         }
     }

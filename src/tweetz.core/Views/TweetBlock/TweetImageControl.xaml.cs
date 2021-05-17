@@ -12,7 +12,7 @@ namespace tweetz.core.Views.TweetBlock
     public partial class TweetImageControl : UserControl
     {
         private const int MaxRetries = 3;
-        private int Retries { get; set; }
+        private       int Retries { get; set; }
 
         public TweetImageControl()
         {
@@ -34,7 +34,7 @@ namespace tweetz.core.Views.TweetBlock
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache | BitmapCreateOptions.IgnoreColorProfile;
-                    bitmap.UriSource = uri;
+                    bitmap.UriSource     = uri;
                     bitmap.EndInit();
 
                     image.Source = bitmap;
@@ -44,7 +44,7 @@ namespace tweetz.core.Views.TweetBlock
                 {
                     var loadingIndicator = (TextBlock)image.Tag;
                     loadingIndicator.ToolTip = ea.ErrorException.Message;
-                    loadingIndicator.Text = ((string)Application.Current.FindResource("WarningSign"))!;
+                    loadingIndicator.Text    = ((string)Application.Current.FindResource("WarningSign"))!;
                     TraceService.Message(ea.ErrorException.Message);
                     Retries = 0;
                 }

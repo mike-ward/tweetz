@@ -48,12 +48,11 @@ namespace twitter.core.Services
 
         public static (string, string) UserIds(IEnumerable<string> userIds) => ("user_id", string.Join(',', userIds));
 
-        public static (string, string)[] Default(int count = 150) => new (string, string)[]
-        {
+        public static (string, string)[] Default(int count = 150) => new[] {
             Count(count),
             IncludeRetweets(),
             IncludeEntities(),
-            ExtendedTweetMode(),
+            ExtendedTweetMode()
         };
     }
 }

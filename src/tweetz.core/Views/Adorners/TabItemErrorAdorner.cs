@@ -17,7 +17,7 @@ namespace tweetz.core.Views.Adorners
         protected override void OnRender(DrawingContext drawingContext)
         {
             const int radius = 3;
-            var size = AdornedElement.DesiredSize;
+            var       size   = AdornedElement.DesiredSize;
 
             var pen = new Pen(Brush, 1);
             pen.Freeze();

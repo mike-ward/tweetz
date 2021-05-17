@@ -38,7 +38,7 @@ namespace twitter.core.Services
         public static string TimeStamp()
         {
             var timespan = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            var result = Convert.ToInt64(timespan.TotalSeconds).ToString(CultureInfo.InvariantCulture);
+            var result   = Convert.ToInt64(timespan.TotalSeconds).ToString(CultureInfo.InvariantCulture);
             return result;
         }
 
@@ -53,13 +53,13 @@ namespace twitter.core.Services
             string accessTokenSecret,
             IEnumerable<(string, string)>? parameters)
         {
-            var parameterList = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature: null, parameters);
-            var parameterStrings = parameterList.Select(p => $"{p.Item1}={p.Item2}");
-            var parameterString = string.Join("&", parameterStrings);
-            var signatureBaseString = $"{httpMethod}&{UrlEncode(url)}&{UrlEncode(parameterString)}";
-            var compositeKey = $"{UrlEncode(consumerSecret)}&{UrlEncode(accessTokenSecret)}";
-            using var hmac = new HMACSHA1(Encoding.UTF8.GetBytes(compositeKey));
-            var result = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(signatureBaseString)));
+            var       parameterList       = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature: null, parameters);
+            var       parameterStrings    = parameterList.Select(p => $"{p.Item1}={p.Item2}");
+            var       parameterString     = string.Join("&", parameterStrings);
+            var       signatureBaseString = $"{httpMethod}&{UrlEncode(url)}&{UrlEncode(parameterString)}";
+            var       compositeKey        = $"{UrlEncode(consumerSecret)}&{UrlEncode(accessTokenSecret)}";
+            using var hmac                = new HMACSHA1(Encoding.UTF8.GetBytes(compositeKey));
+            var       result              = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(signatureBaseString)));
             return result;
         }
 
@@ -71,9 +71,9 @@ namespace twitter.core.Services
             string? signature,
             IEnumerable<(string, string)>? parameters = null)
         {
-            var parameterList = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature, parameters);
+            var parameterList    = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature, parameters);
             var parameterStrings = parameterList.Select(p => $"{p.Item1}=\"{p.Item2}\"");
-            var header = "OAuth " + string.Join(",", parameterStrings);
+            var header           = "OAuth " + string.Join(",", parameterStrings);
             return header;
         }
 
@@ -87,7 +87,7 @@ namespace twitter.core.Services
         {
             return
                 Parameters(nonce, timestamp, consumerKey, accessToken, signature, parameters)
-                .OrderBy(p => p.Item1, StringComparer.Ordinal);
+                    .OrderBy(p => p.Item1, StringComparer.Ordinal);
         }
 
         private static IEnumerable<(string, string)> Parameters(

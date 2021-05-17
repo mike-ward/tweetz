@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:tweetz.core.Views.UserProfileControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-  
+
   <StackPanel>
     <local:UserProfileName />
     <TextBlock Text="{Binding ScreenName, StringFormat='@{0}'}" />

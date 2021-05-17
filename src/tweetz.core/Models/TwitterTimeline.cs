@@ -15,36 +15,52 @@ namespace tweetz.core.Models
 {
     public class TwitterTimeline : NotifyPropertyChanged
     {
-        public ISettings Settings { get; }
-        private ISystemState SystemState { get; }
-        private double IntervalInMinutes { get; }
+        public  ISettings    Settings          { get; }
+        private ISystemState SystemState       { get; }
+        private double       IntervalInMinutes { get; }
 
         public ISet<string> AlreadyAdded { get; } = new HashSet<string>(StringComparer.Ordinal);
-        protected string? ExceptionMessage { get => exceptionMessage; set => SetProperty(ref exceptionMessage, value); }
-        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new ObservableCollection<TwitterStatus>();
-        public ISet<TwitterStatus> PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
-        public bool PendingStatusesAvailable { get => pendingStatusesAvailable; set => SetProperty(ref pendingStatusesAvailable, value); }
-        private string? ToolTipText { get => toolTipText; set => SetProperty(ref toolTipText, value); }
 
-        protected string timelineName = "unknown";
-        private bool inUpdate;
-        private bool isScrolled;
-        private string? exceptionMessage;
-        private bool pendingStatusesAvailable;
-        private string? toolTipText;
-        private readonly DispatcherTimer updateTimer;
+        protected string? ExceptionMessage
+        {
+            get => exceptionMessage;
+            set => SetProperty(ref exceptionMessage, value);
+        }
+
+        public ObservableCollection<TwitterStatus> StatusCollection        { get; } = new ObservableCollection<TwitterStatus>();
+        public ISet<TwitterStatus>                 PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
+
+        public bool PendingStatusesAvailable
+        {
+            get => pendingStatusesAvailable;
+            set => SetProperty(ref pendingStatusesAvailable, value);
+        }
+
+        private string? ToolTipText
+        {
+            get => toolTipText;
+            set => SetProperty(ref toolTipText, value);
+        }
+
+        protected        string                                 timelineName = "unknown";
+        private          bool                                   inUpdate;
+        private          bool                                   isScrolled;
+        private          string?                                exceptionMessage;
+        private          bool                                   pendingStatusesAvailable;
+        private          string?                                toolTipText;
+        private readonly DispatcherTimer                        updateTimer;
         private readonly List<Func<TwitterTimeline, ValueTask>> updateTasks = new();
 
         protected TwitterTimeline(ISettings settings, ISystemState systemState, double intervalInMinutes)
         {
-            Settings = settings;
-            SystemState = systemState;
+            Settings          = settings;
+            SystemState       = systemState;
             IntervalInMinutes = intervalInMinutes;
 
-            updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
+            updateTimer      =  new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
             updateTimer.Tick += async delegate { await UpdateAsync().ConfigureAwait(false); };
 
-            PropertyChanged += UpdateTooltip;
+            PropertyChanged          += UpdateTooltip;
             Settings.PropertyChanged += OnAuthenticationChanged;
         }
 
@@ -94,7 +110,7 @@ namespace tweetz.core.Models
                     return;
                 }
 
-                inUpdate = true;
+                inUpdate         = true;
                 ExceptionMessage = null;
 
                 if (SystemState.IsSleeping)
@@ -142,9 +158,9 @@ namespace tweetz.core.Models
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if (PendingStatusesAvailable) { ToolTipText = (string)Application.Current.FindResource("new-tweets-arrived-tooltip")!; }
+                if (PendingStatusesAvailable) { ToolTipText          = (string)Application.Current.FindResource("new-tweets-arrived-tooltip")!; }
                 else if (ExceptionMessage is not null) { ToolTipText = ExceptionMessage; }
-                else { ToolTipText = null; }
+                else { ToolTipText                                   = null; }
             });
         }
     }

@@ -6,13 +6,13 @@ namespace tweetz.core.Commands
 {
     public class ToggleShowComposeCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private TabBarControlViewModel TabBarControlViewModel { get; }
-        private ComposeControlViewModel ComposeControlViewModel { get; }
+        public static readonly RoutedCommand           Command = new RoutedUICommand();
+        private                TabBarControlViewModel  TabBarControlViewModel  { get; }
+        private                ComposeControlViewModel ComposeControlViewModel { get; }
 
         public ToggleShowComposeCommand(TabBarControlViewModel tabBarControlViewModel, ComposeControlViewModel composeControlViewModel)
         {
-            TabBarControlViewModel = tabBarControlViewModel;
+            TabBarControlViewModel  = tabBarControlViewModel;
             ComposeControlViewModel = composeControlViewModel;
         }
 

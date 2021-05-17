@@ -13,32 +13,66 @@ namespace tweetz.core.ViewModels
 {
     public class ComposeControlViewModel : NotifyPropertyChanged
     {
-        private User user;
-        private bool isUpdating;
-        private bool isUploadingMedia;
+        private User           user;
+        private bool           isUpdating;
+        private bool           isUploadingMedia;
         private TwitterStatus? inReplyTo;
-        private string statusText = string.Empty;
-        private string attachmentUrl = string.Empty;
-        private string? watermarkText;
+        private string         statusText    = string.Empty;
+        private string         attachmentUrl = string.Empty;
+        private string?        watermarkText;
 
         public ComposeControlViewModel(ISettings settings, ITwitterService twitterService)
         {
-            user = User.Empty;
-            Settings = settings;
+            user           = User.Empty;
+            Settings       = settings;
             TwitterService = twitterService;
         }
 
-        public ISettings Settings { get; }
+        public ISettings       Settings       { get; }
         public ITwitterService TwitterService { get; }
 
-        public User User { get => user; set => SetProperty(ref user, value); }
-        public bool IsUpdating { get => isUpdating; set => SetProperty(ref isUpdating, value); }
-        public bool IsUploadingMedia { get => isUploadingMedia; set => SetProperty(ref isUploadingMedia, value); }
+        public User User
+        {
+            get => user;
+            set => SetProperty(ref user, value);
+        }
 
-        public TwitterStatus? InReplyTo { get => inReplyTo; set => SetProperty(ref inReplyTo, value); }
-        public string StatusText { get => statusText; set => SetProperty(ref statusText, value); }
-        public string AttachmentUrl { get => attachmentUrl; set => SetProperty(ref attachmentUrl, value); }
-        public string WatermarkText { get => watermarkText ?? string.Empty; set => SetProperty(ref watermarkText, value); }
+        public bool IsUpdating
+        {
+            get => isUpdating;
+            set => SetProperty(ref isUpdating, value);
+        }
+
+        public bool IsUploadingMedia
+        {
+            get => isUploadingMedia;
+            set => SetProperty(ref isUploadingMedia, value);
+        }
+
+        public TwitterStatus? InReplyTo
+        {
+            get => inReplyTo;
+            set => SetProperty(ref inReplyTo, value);
+        }
+
+        public string StatusText
+        {
+            get => statusText;
+            set => SetProperty(ref statusText, value);
+        }
+
+        public string AttachmentUrl
+        {
+            get => attachmentUrl;
+            set => SetProperty(ref attachmentUrl, value);
+        }
+
+        public string WatermarkText
+        {
+            get => watermarkText ?? string.Empty;
+            set => SetProperty(ref watermarkText, value);
+        }
+
         public ObservableCollection<MediaInfo> Media { get; } = new ObservableCollection<MediaInfo>();
 
         public async ValueTask GetUserInfoAsync()
@@ -57,17 +91,17 @@ namespace tweetz.core.ViewModels
             }
         }
 
-        private readonly string[] GifExtensions = new[] { ".gif" };
-        private readonly string[] VidExtensions = new[] { ".mp4" };
-        private readonly string[] ImgExtensions = new[] { ".jpg", ".png", ".webp" };
+        private readonly string[] GifExtensions = { ".gif" };
+        private readonly string[] VidExtensions = { ".mp4" };
+        private readonly string[] ImgExtensions = { ".jpg", ".png", ".webp" };
 
         public void Clear()
         {
-            InReplyTo = null;
-            StatusText = string.Empty;
+            InReplyTo     = null;
+            StatusText    = string.Empty;
             AttachmentUrl = string.Empty;
             Media.Clear();
-            WatermarkText = ((string)Application.Current.FindResource("whats-happening"))!;
+            WatermarkText = (string)Application.Current.FindResource("whats-happening")!;
         }
 
         public bool AddImage(string filename)
@@ -86,14 +120,14 @@ namespace tweetz.core.ViewModels
         private bool CanAdd(string filename)
         {
             var ext = Path.GetExtension(filename);
-            var gif = Media.Count(m => GifExtensions.Any(ext => m.Path.EndsWith(ext, StringComparison.OrdinalIgnoreCase)));
-            var vid = Media.Count(m => VidExtensions.Any(ext => m.Path.EndsWith(ext, StringComparison.OrdinalIgnoreCase)));
-            var img = Media.Count(m => ImgExtensions.Any(ext => m.Path.EndsWith(ext, StringComparison.OrdinalIgnoreCase)));
+            var gif = Media.Count(m => GifExtensions.Any(e => m.Path.EndsWith(e, StringComparison.OrdinalIgnoreCase)));
+            var vid = Media.Count(m => VidExtensions.Any(e => m.Path.EndsWith(e, StringComparison.OrdinalIgnoreCase)));
+            var img = Media.Count(m => ImgExtensions.Any(e => m.Path.EndsWith(e, StringComparison.OrdinalIgnoreCase)));
 
-            return GifExtensions.Any(gif => gif.Equals(ext, StringComparison.OrdinalIgnoreCase)) ||
-                VidExtensions.Any(vid => vid.Equals(ext, StringComparison.OrdinalIgnoreCase))
-                ? gif == 0 && vid == 0 && img == 0
-                : ImgExtensions.Any(img => img.Equals(ext, StringComparison.OrdinalIgnoreCase)) && gif == 0 && vid == 0 && img < 4;
+            return GifExtensions.Any(g => g.Equals(ext, StringComparison.OrdinalIgnoreCase)) ||
+                VidExtensions.Any(v => v.Equals(ext, StringComparison.OrdinalIgnoreCase))
+                    ? gif == 0 && vid == 0 && img == 0
+                    : ImgExtensions.Any(i => i.Equals(ext, StringComparison.OrdinalIgnoreCase)) && gif == 0 && vid == 0 && img < 4;
         }
 
         public bool CanAddImage()

@@ -5,8 +5,8 @@ namespace tweetz.core.Services
 {
     public static class DonateNagTask
     {
-        private const int donateNagCounterInterval = 120;
-        private static int donateNagCounter = donateNagCounterInterval - 10;
+        private const  int donateNagCounterInterval = 120;
+        private static int donateNagCounter         = donateNagCounterInterval - 10;
 
         public static ValueTask Execute(TwitterTimeline timeline)
         {

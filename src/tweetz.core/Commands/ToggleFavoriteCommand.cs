@@ -11,9 +11,9 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
 
-        private ISettings Settings { get; }
-        private ITwitterService TwitterService { get; }
-        private IMessageBoxService MessageBoxService { get; }
+        private ISettings                         Settings                          { get; }
+        private ITwitterService                   TwitterService                    { get; }
+        private IMessageBoxService                MessageBoxService                 { get; }
         private FavoritesTimelineControlViewModel FavoritesTimelineControlViewModel { get; }
 
         private bool inCommand;
@@ -24,9 +24,9 @@ namespace tweetz.core.Commands
             IMessageBoxService messageBoxService,
             FavoritesTimelineControlViewModel favoritesTimelineControlViewModel)
         {
-            Settings = settings;
-            TwitterService = twitterService;
-            MessageBoxService = messageBoxService;
+            Settings                          = settings;
+            TwitterService                    = twitterService;
+            MessageBoxService                 = messageBoxService;
             FavoritesTimelineControlViewModel = favoritesTimelineControlViewModel;
         }
 
@@ -56,7 +56,7 @@ namespace tweetz.core.Commands
                     {
                         await TwitterService.DestroyFavorite(twitterStatus.Id).ConfigureAwait(true);
                         twitterStatus.FavoriteCount = Math.Max(0, twitterStatus.FavoriteCount - 1);
-                        twitterStatus.Favorited = false;
+                        twitterStatus.Favorited     = false;
                     }
                     else
                     {

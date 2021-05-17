@@ -7,13 +7,13 @@ namespace tweetz.core.Commands
 {
     public class QuoteTweetCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private TabBarControlViewModel TabBarControlViewModel { get; }
-        private ComposeControlViewModel ComposeControlViewModel { get; }
+        public static readonly RoutedCommand           Command = new RoutedUICommand();
+        private                TabBarControlViewModel  TabBarControlViewModel  { get; }
+        private                ComposeControlViewModel ComposeControlViewModel { get; }
 
         public QuoteTweetCommand(TabBarControlViewModel tabBarControlViewModel, ComposeControlViewModel composeControlViewModel)
         {
-            TabBarControlViewModel = tabBarControlViewModel;
+            TabBarControlViewModel  = tabBarControlViewModel;
             ComposeControlViewModel = composeControlViewModel;
         }
 
@@ -33,8 +33,8 @@ namespace tweetz.core.Commands
             if (status is null) return;
 
             ComposeControlViewModel.Clear();
-            ComposeControlViewModel.InReplyTo = status;
-            ComposeControlViewModel.AttachmentUrl = status.StatusLink;
+            ComposeControlViewModel.InReplyTo         = status;
+            ComposeControlViewModel.AttachmentUrl     = status.StatusLink;
             TabBarControlViewModel.ShowComposeControl = true;
         }
 

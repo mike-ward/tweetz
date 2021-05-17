@@ -94,7 +94,7 @@ namespace twitter.core.Services
 
             request.RequestUri = new Uri(url);
             using var response = await MyHttpClient.SendAsync(request);
-            var result = await JsonSerializer.DeserializeAsync<T>(await response.Content.ReadAsStreamAsync()).ConfigureAwait(false);
+            var       result   = await JsonSerializer.DeserializeAsync<T>(await response.Content.ReadAsStreamAsync()).ConfigureAwait(false);
             return result ?? throw new InvalidOperationException("JsonSerializer.DeserializeAsync<T>(stream) return null");
         }
 
@@ -115,13 +115,14 @@ namespace twitter.core.Services
             };
             request.Headers.Add("Authorization", authorizeHeader);
 
-            var form = new MultipartFormDataContent();
-            form.Add(new StringContent("APPEND"), "command");
-            form.Add(new StringContent(mediaId), "media_id");
-            form.Add(new StringContent(segmentIndex.ToString(CultureInfo.InvariantCulture)), "segment_index");
-            form.Add(new ByteArrayContent(payload), "media");
+            var form = new MultipartFormDataContent {
+                { new StringContent("APPEND"), "command" }, 
+                { new StringContent(mediaId), "media_id" }, 
+                { new StringContent(segmentIndex.ToString(CultureInfo.InvariantCulture)), "segment_index" }, 
+                { new ByteArrayContent(payload), "media" }
+            };
             request.Content = form;
-            
+
             var response = await MyHttpClient.SendAsync(request).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)

@@ -43,4 +43,4 @@
     <GradientStop Offset="0.2" Color="{Binding MyTweetColor, Source={x:Static models:Settings.SettingsStatic}, Mode=OneWay, FallbackValue={StaticResource MyTweetFallbackColorDark}, TargetNullValue={StaticResource MyTweetFallbackColorDark}, Converter={StaticResource ColorConverter}}" />
     <GradientStop Offset="1" Color="#313131" />
   </LinearGradientBrush>
-</ResourceDictionary> 
+</ResourceDictionary>

@@ -7,8 +7,8 @@ namespace tweetz.core.Commands
 {
     internal sealed class ShowTwitterStatusCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-        private IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand      Command = new RoutedUICommand();
+        private                IMessageBoxService MessageBoxService { get; }
 
         public ShowTwitterStatusCommand(IMessageBoxService messageBoxService)
         {
@@ -17,7 +17,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler);
+            return new (Command, CommandHandler);
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)
@@ -25,7 +25,7 @@ namespace tweetz.core.Commands
             if (e.Parameter is TwitterStatus status)
             {
                 var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(status, options);
+                var json    = JsonSerializer.Serialize(status, options);
                 await MessageBoxService.ShowMessageBoxAsync(json).ConfigureAwait(false);
             }
         }

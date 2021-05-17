@@ -15,8 +15,8 @@
 
     <Image.InputBindings>
       <MouseBinding
-          Command="{x:Static commands:ShowUserProfileCommand.Command}"
-          CommandParameter="{Binding ., Mode=OneTime}"
+        Command="{x:Static commands:ShowUserProfileCommand.Command}"
+        CommandParameter="{Binding ., Mode=OneTime}"
         Gesture="LeftClick" />
     </Image.InputBindings>
   </Image>

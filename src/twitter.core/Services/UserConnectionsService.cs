@@ -14,21 +14,24 @@ namespace twitter.core.Services
 
     public static class UserConnectionsService
     {
-        private const int maxIds = 100; // Twitter cap
-        private static int lastIndex;
+        private const           int                                          maxIds = 100; // Twitter cap
+        private static          int                                          lastIndex;
         private static readonly ConcurrentDictionary<string, UserConnection> UserConnectionsDirectory = new(StringComparer.Ordinal);
 
-        public static async Task UpdateUserConnectionsAsync(TwitterApi twitterApi)
+        private static async Task UpdateUserConnectionsAsync(TwitterApi twitterApi)
         {
             try
             {
-                var ids = UserConnectionsDirectory.Keys.Skip(lastIndex).Take(maxIds);
+                var ids         = UserConnectionsDirectory.Keys.Skip(lastIndex).Take(maxIds);
                 var connections = await twitterApi.GetFriendships(ids).ConfigureAwait(false);
-                lastIndex = (lastIndex + maxIds) < UserConnectionsDirectory.Count ? lastIndex + maxIds : 0;
+
+                lastIndex = (lastIndex + maxIds) < UserConnectionsDirectory.Count
+                    ? lastIndex + maxIds
+                    : 0;
 
                 foreach (var connection in connections)
                 {
-                    UserConnectionsDirectory.AddOrUpdate(connection.Id, connection, (_, __) => connection);
+                    UserConnectionsDirectory.AddOrUpdate(connection.Id, connection, (_, _) => connection);
                 }
             }
             catch (Exception ex)

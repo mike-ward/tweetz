@@ -21,7 +21,7 @@ namespace tweetz.core.PowerManagement
                 .PtrToStructure(lParam, typeof(PowerManagementNativeMethods.PowerBroadcastSetting));
 #pragma warning restore CS8605 // Unboxing a possibly null value.
 
-            var pData = new IntPtr(lParam.ToInt64() + Marshal.SizeOf(ps));
+            var pData         = new IntPtr(lParam.ToInt64() + Marshal.SizeOf(ps));
             var monitorStatus = -1;
 
             if (ps.PowerSetting == MonitorPowerStatus && ps.DataLength == Marshal.SizeOf(typeof(int)))
@@ -30,6 +30,7 @@ namespace tweetz.core.PowerManagement
                 monitorStatus = (int)Marshal.PtrToStructure(pData, typeof(int));
 #pragma warning restore CS8605 // Unboxing a possibly null value.
             }
+
             return monitorStatus;
         }
     }

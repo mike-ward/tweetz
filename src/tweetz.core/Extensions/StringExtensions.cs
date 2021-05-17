@@ -33,8 +33,9 @@ namespace tweetz.core.Extensions
         {
             if (source is not null && source.Length > length)
             {
-                source = source.Substring(0, length);
+                source = source[..length];
             }
+
             return source;
         }
     }

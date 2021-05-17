@@ -9,26 +9,26 @@ namespace tweetz.core.Services
 {
     public class SystemTrayIconService : ISystemTrayIconService
     {
-        private bool disposed;
-        private ISettings Settings { get; }
+        private bool       disposed;
+        private ISettings  Settings   { get; }
         private NotifyIcon NotifyIcon { get; }
 
         public SystemTrayIconService(ISettings settings)
         {
-            Settings = settings;
+            Settings   = settings;
             NotifyIcon = new NotifyIcon();
         }
 
         public void Initialize(Window window)
         {
-            NotifyIcon.Tag = window;
-            NotifyIcon.Text = ((string)System.Windows.Application.Current.FindResource("title"))!;
+            NotifyIcon.Tag  = window;
+            NotifyIcon.Text = (string)System.Windows.Application.Current.FindResource("title")!;
 
             var path = System.Reflection.Assembly.GetEntryAssembly()!.ManifestModule.FullyQualifiedName;
             NotifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(path);
 
             ShowInSystemTray(window);
-            NotifyIcon.Click += OnClick;
+            NotifyIcon.Click         += OnClick;
             Settings.PropertyChanged += UpdateVisibility;
         }
 
@@ -54,10 +54,10 @@ namespace tweetz.core.Services
         {
             if (!disposed)
             {
-                disposed = true;
-                NotifyIcon.Tag = null;
-                NotifyIcon.Visible = false;
-                NotifyIcon.Click -= OnClick;
+                disposed                 =  true;
+                NotifyIcon.Tag           =  null;
+                NotifyIcon.Visible       =  false;
+                NotifyIcon.Click         -= OnClick;
                 Settings.PropertyChanged -= UpdateVisibility;
                 NotifyIcon.Dispose();
             }
@@ -66,7 +66,7 @@ namespace tweetz.core.Services
         private void ShowInSystemTray(Window window)
         {
             window.ShowInTaskbar = !Settings.ShowInSystemTray;
-            NotifyIcon.Visible = Settings.ShowInSystemTray;
+            NotifyIcon.Visible   = Settings.ShowInSystemTray;
         }
     }
 }

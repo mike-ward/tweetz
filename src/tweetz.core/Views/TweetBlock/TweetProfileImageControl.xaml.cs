@@ -11,7 +11,7 @@ namespace tweetz.core.Views.TweetBlock
     public partial class TweetProfileImageControl : UserControl
     {
         private const int MaxRetries = 3;
-        private int Retries { get; set; }
+        private       int Retries { get; set; }
 
         public TweetProfileImageControl()
         {
@@ -40,12 +40,12 @@ namespace tweetz.core.Views.TweetBlock
                 {
                     Retries++;
                     var user = (User)imageControl.DataContext;
-                    var uri = new Uri(user.ProfileImageUrlBigger!);
+                    var uri  = new Uri(user.ProfileImageUrlBigger!);
 
                     var bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache | BitmapCreateOptions.IgnoreColorProfile;
-                    bitmap.UriSource = uri;
+                    bitmap.UriSource     = uri;
                     bitmap.EndInit();
 
                     imageControl.Source = bitmap;
@@ -56,7 +56,7 @@ namespace tweetz.core.Views.TweetBlock
                     TraceService.Message(e.ErrorException.Message);
                     var uri = new Uri("/Resources/profile.png", UriKind.Relative);
                     imageControl.Source = new BitmapImage(uri);
-                    Retries = 0;
+                    Retries             = 0;
                 }
             }
             catch (Exception ex)

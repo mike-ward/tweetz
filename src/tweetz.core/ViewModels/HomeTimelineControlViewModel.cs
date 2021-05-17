@@ -13,15 +13,15 @@ namespace tweetz.core.ViewModels
     public class HomeTimelineControlViewModel : TwitterTimeline
     {
         private const int mentionsInterval = 60;
-        private int mentionsCounter = mentionsInterval;
+        private       int mentionsCounter  = mentionsInterval;
 
-        private const double justOverMinute = 1.1;
-        private ITwitterService TwitterService { get; }
+        private const double          justOverMinute = 1.1;
+        private       ITwitterService TwitterService { get; }
 
         public HomeTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
             : base(settings, systemState, justOverMinute)
         {
-            timelineName = ((string)Application.Current.FindResource("home-timeline"))!;
+            timelineName   = (string)Application.Current.FindResource("home-timeline")!;
             TwitterService = twitterService;
             AddUpdateTask(tl => GetAndUpdateStatusesAsync(tl));
             AddUpdateTask(tl => DonateNagTask.Execute(tl));
@@ -53,14 +53,16 @@ namespace tweetz.core.ViewModels
             }
             catch (WebException ex)
             {
-                if (ex.Response is HttpWebResponse {StatusCode: HttpStatusCode.TooManyRequests})
+                if (ex.Response is HttpWebResponse { StatusCode: HttpStatusCode.TooManyRequests })
                 {
                     // Probably hit the daily limit
                     // Alerting the user does no good in this instance (IMO)
                     return Enumerable.Empty<TwitterStatus>();
                 }
+
                 throw;
             }
+
             return Enumerable.Empty<TwitterStatus>();
         }
     }

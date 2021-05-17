@@ -49,7 +49,7 @@ namespace tweetz.core.Views
 
         private static void OnVerticalOffsetChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
         {
-            if (target is WheelSpeedScrollViewer {ScrollInfo: VirtualizingStackPanel virtualizingStackPanel, ComputedVerticalScrollBarVisibility: Visibility.Visible})
+            if (target is WheelSpeedScrollViewer { ScrollInfo: VirtualizingStackPanel virtualizingStackPanel, ComputedVerticalScrollBarVisibility: Visibility.Visible })
             {
                 virtualizingStackPanel.SetVerticalOffset((double)e.NewValue);
             }
@@ -63,9 +63,8 @@ namespace tweetz.core.Views
 
         private void AnimateScroll(double offset)
         {
-            var animation = new DoubleAnimation
-            {
-                To = offset,
+            var animation = new DoubleAnimation {
+                To       = offset,
                 Duration = ScrollDuration
             };
 

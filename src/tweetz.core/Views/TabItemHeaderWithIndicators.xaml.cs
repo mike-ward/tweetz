@@ -35,8 +35,7 @@ namespace tweetz.core.Views
                 _errorAdorner = new TabItemErrorAdorner(parent, errorBrush);
                 layer.Add(_errorAdorner);
 
-                var errorBinding = new Binding
-                {
+                var errorBinding = new Binding {
                     Path   = new PropertyPath("ErrorIndicatorVisibility", pathParameters: Array.Empty<object>()),
                     Source = this,
                     Mode   = BindingMode.OneWay
@@ -52,8 +51,7 @@ namespace tweetz.core.Views
                 _newTweetsAdorner = new TabItemNewTweetsAdorner(parent, newTweetsBrush);
                 layer.Add(_newTweetsAdorner);
 
-                var newTweetsBinding = new Binding
-                {
+                var newTweetsBinding = new Binding {
                     Path   = new PropertyPath("NewTweetsIndicatorVisibility", pathParameters: Array.Empty<object>()),
                     Source = this,
                     Mode   = BindingMode.OneWay

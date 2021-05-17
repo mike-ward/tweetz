@@ -10,8 +10,8 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
 
-        private ISettings Settings { get; }
-        private ITwitterService TwitterService { get; }
+        private ISettings          Settings          { get; }
+        private ITwitterService    TwitterService    { get; }
         private IMessageBoxService MessageBoxService { get; }
 
         private bool inCommand;
@@ -20,8 +20,8 @@ namespace tweetz.core.Commands
             ISettings settings,
             ITwitterService twitterService, IMessageBoxService messageBoxService)
         {
-            Settings = settings;
-            TwitterService = twitterService;
+            Settings          = settings;
+            TwitterService    = twitterService;
             MessageBoxService = messageBoxService;
         }
 
@@ -49,7 +49,7 @@ namespace tweetz.core.Commands
                     if (twitterStatus.RetweetedByMe)
                     {
                         await TwitterService.UnretweetStatus(twitterStatus.Id).ConfigureAwait(true);
-                        twitterStatus.RetweetCount = Math.Max(0, twitterStatus.RetweetCount - 1);
+                        twitterStatus.RetweetCount  = Math.Max(0, twitterStatus.RetweetCount - 1);
                         twitterStatus.RetweetedByMe = false;
                     }
                     else

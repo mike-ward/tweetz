@@ -9,8 +9,8 @@ namespace tweetz.core.Converters
         public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value is true
-            ? parameter
-            : null;
+                ? parameter
+                : null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

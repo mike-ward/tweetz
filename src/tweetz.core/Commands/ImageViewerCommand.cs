@@ -17,12 +17,12 @@ namespace tweetz.core.Commands
         public ImageViewerCommand(IImageViewerService imageViewerService, IMessageBoxService messageBoxService)
         {
             ImageViewerService = imageViewerService;
-            MessageBoxService = messageBoxService;
+            MessageBoxService  = messageBoxService;
         }
 
         public CommandBinding CommandBinding()
         {
-            return new CommandBinding(Command, CommandHandler);
+            return new(Command, CommandHandler);
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
@@ -31,11 +31,10 @@ namespace tweetz.core.Commands
 
             try
             {
-                var uri = ea.Parameter switch
-                {
+                var uri = ea.Parameter switch {
                     Media media => Services.ImageViewerService.MediaSource(media),
                     string path => new Uri(path),
-                    _ => null
+                    _           => null
                 };
 
                 if (uri is null || !(sender is Window)) return;

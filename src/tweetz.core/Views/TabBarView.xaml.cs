@@ -14,12 +14,12 @@ namespace tweetz.core.Views
         public TabBarView()
         {
             InitializeComponent();
-            DataContext = App.ServiceProvider.GetService<TabBarControlViewModel>();
-            HomeTab.DataContext = App.ServiceProvider.GetService<HomeTimelineControlViewModel>();
+            DataContext              = App.ServiceProvider.GetService<TabBarControlViewModel>();
+            HomeTab.DataContext      = App.ServiceProvider.GetService<HomeTimelineControlViewModel>();
             FavoritesTab.DataContext = App.ServiceProvider.GetService<FavoritesTimelineControlViewModel>();
-            SearchTab.DataContext = App.ServiceProvider.GetService<SearchControlViewModel>();
-            SettingsTab.DataContext = App.ServiceProvider.GetService<SettingsControlViewModel>();
-            Compose.DataContext = App.ServiceProvider.GetService<ComposeControlViewModel>();
+            SearchTab.DataContext    = App.ServiceProvider.GetService<SearchControlViewModel>();
+            SettingsTab.DataContext  = App.ServiceProvider.GetService<SettingsControlViewModel>();
+            Compose.DataContext      = App.ServiceProvider.GetService<ComposeControlViewModel>();
         }
 
         private TabBarControlViewModel ViewModel => (TabBarControlViewModel)DataContext;

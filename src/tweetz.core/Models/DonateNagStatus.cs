@@ -14,12 +14,9 @@ namespace tweetz.core.Models
             CreatedAt    = "Fri Nov 22 15:12:15 +0000 2019";
             OverrideLink = donateUrl;
 
-            Entities = new Entities
-            {
-                Urls = new[]
-                {
-                    new UrlEntity
-                    {
+            Entities = new Entities {
+                Urls = new[] {
+                    new UrlEntity {
                         DisplayUrl  = donateUrl,
                         ExpandedUrl = donateUrl,
                         Indices     = new[] { 36, 64 }
@@ -27,19 +24,15 @@ namespace tweetz.core.Models
                 }
             };
 
-            ExtendedEntities = new Entities
-            {
-                Media = new[]
-                {
-                    new Media
-                    {
+            ExtendedEntities = new Entities {
+                Media = new[] {
+                    new Media {
                         MediaUrl = "https://mike-ward.net/cdn/images/donate.png"
                     }
                 }
             };
 
-            User = new User
-            {
+            User = new User {
                 ScreenName      = "mikeward_aa",
                 Name            = "Mike Ward",
                 Id              = "14410002",
