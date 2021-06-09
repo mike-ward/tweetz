@@ -5,11 +5,12 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
   d:DesignHeight="450"
   d:DesignWidth="800"
   mc:Ignorable="d">
 
-  <TextBlock
+  <emoji:TextBlock
     Style="{StaticResource TweetBlockRetweetedByStyle}"
     Tag="{Binding User.ScreenName, Mode=OneTime}"
     ToolTip="{StaticResource UserProfileBlockToolTip}"
@@ -27,5 +28,5 @@
       Text="{StaticResource RetweetSymbol}" />
     <Run Text="{Binding User.Name, Mode=OneTime}" />
     <Run Text="{StaticResource retweeted}" />
-  </TextBlock>
+  </emoji:TextBlock>
 </UserControl>
