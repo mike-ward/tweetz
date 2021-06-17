@@ -3,7 +3,6 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:local="clr-namespace:tweetz.core.Views"
@@ -18,7 +17,7 @@
         DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"
         Style="{StaticResource TweetBlockImageControlStyle}" />
 
-      <emoji:TextBlock Style="{StaticResource TweetBlockTitleStyle}">
+      <TextBlock Style="{StaticResource TweetBlockTitleStyle}">
         <Hyperlink
           Click="Hyperlink_Click"
           Foreground="{DynamicResource StandardForegroundBrush}"
@@ -26,13 +25,13 @@
           ToolTipOpening="Hyperlink_ToolTipOpening">
           <Run Text="{Binding Title, Mode=OneTime}" />
         </Hyperlink>
-      </emoji:TextBlock>
+      </TextBlock>
 
-      <emoji:TextBlock
+      <TextBlock
         Style="{StaticResource TweetBlockDescriptionStyle}"
         Text="{Binding Description, Converter={StaticResource TextTrimConverter}, Mode=OneTime}" />
 
-      <emoji:TextBlock
+      <TextBlock
         Style="{StaticResource TweetBlockSiteNameStyle}"
         ToolTip="{Binding Url, Mode=OneTime}">
 
@@ -45,7 +44,7 @@
 
         <Run>↗</Run>
         <Run Text="{Binding SiteName, Mode=OneTime}" />
-      </emoji:TextBlock>
+      </TextBlock>
 
       <tweetBlock:TweetTranslateControl
         DataContext="{Binding ImageTwitterStatus, Mode=OneWay}"

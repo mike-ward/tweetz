@@ -5,12 +5,11 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
   d:DesignHeight="50"
   d:DesignWidth="300"
   mc:Ignorable="d">
 
-  <emoji:TextBlock
+  <TextBlock
     Tag="{Binding User.ScreenName, Mode=OneWay}"
     TextWrapping="Wrap">
 
@@ -72,5 +71,5 @@
           Gesture="LeftClick" />
       </Run.InputBindings>
     </Run>
-  </emoji:TextBlock>
+  </TextBlock>
 </UserControl>
