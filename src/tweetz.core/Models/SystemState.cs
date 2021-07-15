@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Win32;
 using tweetz.core.Interfaces;
 
+#pragma warning disable CA1416
+
 namespace tweetz.core.Models
 {
     public class SystemState : ISystemState, INotifyPropertyChanged
