@@ -8,9 +8,8 @@ namespace tweetz.core.ViewModels
 {
     public class FavoritesTimelineControlViewModel : TwitterTimeline
     {
-        private const int twentyMinutes = 20;
-
-        public ITwitterService TwitterService { get; }
+        private const int             twentyMinutes = 20;
+        public        ITwitterService TwitterService { get; }
 
         public FavoritesTimelineControlViewModel(ITwitterService twitterService, ISettings settings, ISystemState systemState)
             : base(settings, systemState, twentyMinutes)

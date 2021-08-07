@@ -48,6 +48,7 @@ namespace tweetz.core.Models
         private double         fontSize = 12;
         private string         theme    = "dark";
         private string?        myTweetColor;
+        private string?        translateApiKey    = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
         private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
@@ -165,6 +166,11 @@ namespace tweetz.core.Models
             set => SetProperty(ref myTweetColor, value);
         }
 
+        public string? TranslateApiKey
+        {
+            get => translateApiKey;
+            set => SetProperty(ref translateApiKey, value);
+        }
         public WindowPosition MainWindowPosition
         {
             get => mainWindowPosition;

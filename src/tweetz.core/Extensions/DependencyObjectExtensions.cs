@@ -6,7 +6,7 @@ namespace tweetz.core.Extensions
 {
     public static class DependencyObjectExtensions
     {
-        public static IEnumerable<T> GetChildrenOfType<T>(this DependencyObject depObj)
+        public static IEnumerable<T> GetChildrenOfType<T>(this DependencyObject? depObj)
             where T : DependencyObject
         {
             if (depObj is null) yield break;

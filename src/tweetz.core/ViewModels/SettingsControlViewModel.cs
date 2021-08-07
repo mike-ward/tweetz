@@ -22,13 +22,10 @@ namespace tweetz.core.ViewModels
             Settings    = settings;
             SystemState = systemState;
 
-            if (checkForUpdates is not null)
-            {
-                checkForUpdates.PropertyChanged += (s, args) =>
-                    UpdateAvailableToolTip = string.CompareOrdinal(checkForUpdates.Version.Trim(), VersionInfo.Version) != 0
-                        ? (string)Application.Current.FindResource("new-version-available")!
-                        : null;
-            }
+            checkForUpdates.PropertyChanged += (s, args) =>
+                UpdateAvailableToolTip = string.CompareOrdinal(checkForUpdates.Version.Trim(), VersionInfo.Version) != 0
+                    ? (string)Application.Current.FindResource("new-version-available")!
+                    : null;
         }
 
         public void SaveSettings()

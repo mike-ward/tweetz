@@ -9,7 +9,13 @@ namespace tweetz.core.Commands
 {
     public class TranslateCommand : ICommandBinding
     {
+        private readonly       string        translateApiKey;
         public static readonly RoutedCommand Command = new RoutedUICommand();
+
+        public TranslateCommand(ISettings settings)
+        {
+            translateApiKey = settings.TranslateApiKey ?? string.Empty;
+        }
 
         public CommandBinding CommandBinding()
         {
@@ -22,7 +28,7 @@ namespace tweetz.core.Commands
             var fromLang = tweet.Language ?? "und";
             var toLang   = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
             tweet.TranslatedText = (string)Application.Current.FindResource("translate-text-working")!;
-            tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, fromLang, toLang).ConfigureAwait(true);
+            tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, fromLang, toLang, translateApiKey).ConfigureAwait(true);
         }
     }
 }

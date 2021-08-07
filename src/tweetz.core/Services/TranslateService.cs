@@ -12,7 +12,7 @@ namespace tweetz.core.Services
     {
         private const string endpoint = "https://libretranslate.com/translate";
 
-        public static async ValueTask<string> Translate(string? text, string fromLanguage, string toLanguage)
+        public static async ValueTask<string> Translate(string? text, string fromLanguage, string toLanguage, string translateApiKey)
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -27,13 +27,14 @@ namespace tweetz.core.Services
                     Content = new FormUrlEncodedContent(new[] {
                         new KeyValuePair<string?, string?>("q", text),
                         new KeyValuePair<string?, string?>("source", fromLanguage),
-                        new KeyValuePair<string?, string?>("target", toLanguage)
+                        new KeyValuePair<string?, string?>("target", toLanguage),
+                        new KeyValuePair<string?, string?>("api_key", translateApiKey)
                     })
                 };
 
                 using var response = await App.MyHttpClient.SendAsync(request).ConfigureAwait(false);
                 var       result   = await response.Content.ReadFromJsonAsync<TranslatorResult>().ConfigureAwait(false);
-                return result?.TranslatedText ?? "{error}";
+                return result?.TranslatedText ?? result?.ErrorText ?? "no response";
             }
             catch (Exception ex)
             {
@@ -47,5 +48,6 @@ namespace tweetz.core.Services
     {
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         [JsonPropertyName("translatedText")] public string? TranslatedText { get; set; }
+        [JsonPropertyName("error")]          public string? ErrorText      { get; set; }
     }
 }

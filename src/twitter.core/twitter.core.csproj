@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <AnalysisLevel>latest</AnalysisLevel>
-    <Copyright>Copyright 2020, Mike Ward</Copyright>
+    <Copyright>Copyright 2021, Mike Ward</Copyright>
     <Description>A gadget-like desktop twitter client.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Nullable>Enable</Nullable>
@@ -29,6 +29,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Optimize>true</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>

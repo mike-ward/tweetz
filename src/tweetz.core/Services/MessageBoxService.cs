@@ -8,13 +8,13 @@ namespace tweetz.core.Services
     {
         public void ShowMessageBox(string message)
         {
-            var caption = (string)Application.Current.FindResource("title");
+            var caption = Application.Current.FindResource("title") as string ?? string.Empty;
             MessageBox.Show(message, caption);
         }
 
         public MessageBoxResult ShowMessageBoxYesNo(string message)
         {
-            var caption = (string)Application.Current.FindResource("title");
+            var caption = Application.Current.FindResource("title") as string ?? string.Empty;
             return MessageBox.Show(message, caption, MessageBoxButton.YesNo);
         }
 

@@ -4,7 +4,7 @@
     <AnalysisLevel>latest</AnalysisLevel>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Copyright>Copyright 2020, Mike Ward</Copyright>
+    <Copyright>Copyright 2021, Mike Ward</Copyright>
     <Description>A gadget-like desktop twitter client.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Nullable>Enable</Nullable>

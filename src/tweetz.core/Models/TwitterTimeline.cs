@@ -27,7 +27,7 @@ namespace tweetz.core.Models
             set => SetProperty(ref exceptionMessage, value);
         }
 
-        public ObservableCollection<TwitterStatus> StatusCollection        { get; } = new ObservableCollection<TwitterStatus>();
+        public ObservableCollection<TwitterStatus> StatusCollection        { get; } = new();
         public ISet<TwitterStatus>                 PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
 
         public bool PendingStatusesAvailable
@@ -38,6 +38,7 @@ namespace tweetz.core.Models
 
         private string? ToolTipText
         {
+            // ReSharper disable once UnusedMember.Local
             get => toolTipText;
             set => SetProperty(ref toolTipText, value);
         }
@@ -57,7 +58,8 @@ namespace tweetz.core.Models
             SystemState       = systemState;
             IntervalInMinutes = intervalInMinutes;
 
-            updateTimer      =  new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
+            updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
+            // ReSharper disable once AsyncVoidLambda
             updateTimer.Tick += async delegate { await UpdateAsync().ConfigureAwait(false); };
 
             PropertyChanged          += UpdateTooltip;

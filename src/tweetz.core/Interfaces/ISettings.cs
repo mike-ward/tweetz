@@ -21,6 +21,7 @@ namespace tweetz.core.Interfaces
         string?        Theme                 { get; }
         bool           ApplyGrayscaleShader  { get; set; }
         string?        MyTweetColor          { get; set; }
+        string?        TranslateApiKey       { get; set; }
         bool           Donated               { get; }
         WindowPosition MainWindowPosition    { get; set; }
 

@@ -8,11 +8,9 @@ namespace tweetz.core.Commands
 {
     public class ImageViewerCommand : ICommandBinding
     {
-        public static readonly RoutedCommand Command = new RoutedUICommand();
-
-        private IImageViewerService ImageViewerService { get; }
-
-        private IMessageBoxService MessageBoxService { get; }
+        public static readonly RoutedCommand       Command = new RoutedUICommand();
+        private                IImageViewerService ImageViewerService { get; }
+        private                IMessageBoxService  MessageBoxService  { get; }
 
         public ImageViewerCommand(IImageViewerService imageViewerService, IMessageBoxService messageBoxService)
         {
@@ -22,7 +20,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new(Command, CommandHandler);
+            return new CommandBinding(Command, CommandHandler);
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)

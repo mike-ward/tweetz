@@ -15,7 +15,7 @@ namespace tweetz.core.ViewModels
         private const int  InfiniteElapsed = int.MaxValue / 60000;
 
         private ITwitterService TwitterService { get; }
-        public Action<string>? SetSearchText  { get; set; }
+        public  Action<string>? SetSearchText  { get; set; }
 
         public SearchControlViewModel(ISettings settings, ISystemState systemState, ITwitterService twitterService)
             : base(settings, systemState, InfiniteElapsed)

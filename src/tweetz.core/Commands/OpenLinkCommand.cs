@@ -18,7 +18,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new(Command, CommandHandler);
+            return new CommandBinding(Command, CommandHandler);
         }
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)

@@ -6,13 +6,12 @@ namespace tweetz.core.Commands
     public class IncreaseFontSizeCommand : ICommandBinding
     {
         public static readonly RoutedCommand Command = new RoutedUICommand();
+        public                 ISettings     Settings { get; }
 
         public IncreaseFontSizeCommand(ISettings settings)
         {
             Settings = settings;
         }
-
-        public ISettings Settings { get; }
 
         public CommandBinding CommandBinding()
         {

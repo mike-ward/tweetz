@@ -41,7 +41,7 @@ namespace tweetz.core.Views
             if (VisualTreeHelper.GetChildrenCount(ItemsControl) > 0)
             {
                 var scrollViewer = VisualTreeHelper.GetChild(ItemsControl, 0) as ScrollViewer;
-                scrollViewer?.ScrollToHome();
+                scrollViewer?.ScrollToVerticalOffset(0);
             }
         }
 

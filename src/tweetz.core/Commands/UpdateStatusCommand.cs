@@ -35,7 +35,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new(Command, CommandHandler, CanExecuteHandler);
+            return new CommandBinding(Command, CommandHandler, CanExecuteHandler);
         }
 
         private void CanExecuteHandler(object sender, CanExecuteRoutedEventArgs ea)

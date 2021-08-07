@@ -166,7 +166,7 @@ namespace tweetz.core.Services
 
         private static Style GetToolTipStyle()
         {
-            return userProfileToolTipStyle ??= (Style)Application.Current.FindResource("ToolTipStyle");
+            return userProfileToolTipStyle ??= Application.Current.FindResource("ToolTipStyle") as Style ?? new Style();
         }
 
         private static Hyperlink Hashtag(string text)

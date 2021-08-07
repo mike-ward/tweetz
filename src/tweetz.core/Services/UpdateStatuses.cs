@@ -23,7 +23,7 @@ namespace tweetz.core.Services
                 {
                     statusToUpdate.UpdateFromStatus(status);
                 }
-                else if (!timeline.AlreadyAdded.Contains(status.Id))
+                else if (timeline.AlreadyAdded.Contains(status.Id) is false)
                 {
                     var clonedStatus = Clone(status);
                     timeline.AlreadyAdded.Add(clonedStatus.Id);
