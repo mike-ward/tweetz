@@ -14,6 +14,7 @@ namespace tweetz.core.Interfaces
         bool           HideExtendedContent   { get; }
         bool           HideScreenName        { get; }
         bool           HidePossiblySensitive { get; }
+        bool           HideTranslate         { get; }
         bool           SpellCheck            { get; set; }
         bool           ShowInSystemTray      { get; set; }
         bool           AlwaysOnTop           { get; set; }
