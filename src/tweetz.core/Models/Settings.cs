@@ -10,6 +10,8 @@ namespace tweetz.core.Models
 {
     public class Settings : NotifyPropertyChanged, ISettings
     {
+        private const string defaultFontFamily = "Segoe UI";
+
         public static Settings? SettingsStatic { get; private set; }
 
         public Settings()
@@ -45,8 +47,9 @@ namespace tweetz.core.Models
         private bool           showInSystemTray;
         private bool           alwaysOnTop;
         private bool           applyGrayscaleShader;
-        private double         fontSize = 12;
-        private string         theme    = "dark";
+        private double         fontSize   = 12;
+        private string         fontFamily = defaultFontFamily;
+        private string         theme      = "dark";
         private string?        myTweetColor;
         private string?        translateApiKey    = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
         private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
@@ -154,6 +157,12 @@ namespace tweetz.core.Models
             set => SetProperty(ref fontSize, value);
         }
 
+        public string FontFamily
+        {
+            get => fontFamily;
+            set => SetProperty(ref fontFamily, value);
+        }
+
         public string Theme
         {
             get => theme;
@@ -171,6 +180,7 @@ namespace tweetz.core.Models
             get => translateApiKey;
             set => SetProperty(ref translateApiKey, value);
         }
+
         public WindowPosition MainWindowPosition
         {
             get => mainWindowPosition;
@@ -203,6 +213,7 @@ namespace tweetz.core.Models
                 ShowInSystemTray      = settings.showInSystemTray;
                 AlwaysOnTop           = settings.alwaysOnTop;
                 FontSize              = settings.FontSize;
+                FontFamily            = settings.FontFamily;
                 Theme                 = settings.Theme;
                 ApplyGrayscaleShader  = settings.ApplyGrayscaleShader;
                 MyTweetColor          = settings.MyTweetColor;

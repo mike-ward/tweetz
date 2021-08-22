@@ -12,6 +12,7 @@
   Background="{DynamicResource StandardBackgroundBrush}"
   Effect="{Binding Settings.ApplyGrayscaleShader, Mode=OneWay, Converter={StaticResource BooleanToParameterConverter}, ConverterParameter={StaticResource GrayscaleShaderEffect}}"
   FontSize="{Binding Settings.FontSize, Mode=OneWay}"
+  FontFamily="{Binding Settings.FontFamily, Mode=OneWay}"
   Foreground="{DynamicResource StandardForegroundBrush}"
   Topmost="{Binding Settings.AlwaysOnTop, Mode=OneWay}"
   UseLayoutRounding="True"
