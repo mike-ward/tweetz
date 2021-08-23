@@ -44,7 +44,7 @@ namespace tweetz.core.ViewModels
                     return;
                 }
 
-                User = await TwitterService.UserInfo(screenName).ConfigureAwait(false);
+                User = await TwitterService.TwitterApi.UserInfo(screenName).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

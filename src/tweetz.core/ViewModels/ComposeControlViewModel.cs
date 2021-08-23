@@ -82,7 +82,7 @@ namespace tweetz.core.ViewModels
                 if (string.IsNullOrWhiteSpace(User.Id))
                 {
                     if (Settings.ScreenName is null) return;
-                    User = await TwitterService.UserInfo(Settings.ScreenName).ConfigureAwait(false);
+                    User = await TwitterService.TwitterApi.UserInfo(Settings.ScreenName).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)

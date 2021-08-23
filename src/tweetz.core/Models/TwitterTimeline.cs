@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -60,8 +61,7 @@ namespace tweetz.core.Models
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
             // ReSharper disable once AsyncVoidLambda
-            updateTimer.Tick += async delegate { await UpdateAsync().ConfigureAwait(false); };
-
+            updateTimer.Tick         += async delegate { await UpdateAsync().ConfigureAwait(false); };
             PropertyChanged          += UpdateTooltip;
             Settings.PropertyChanged += OnAuthenticationChanged;
         }

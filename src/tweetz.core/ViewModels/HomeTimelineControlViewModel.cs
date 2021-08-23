@@ -34,7 +34,7 @@ namespace tweetz.core.ViewModels
         private async ValueTask GetAndUpdateStatusesAsync(TwitterTimeline timeline)
         {
             var mentions = await GetMentionsAsync().ConfigureAwait(true);
-            var statuses = await TwitterService.GetHomeTimeline().ConfigureAwait(true);
+            var statuses = await TwitterService.TwitterApi.HomeTimeline().ConfigureAwait(true);
             await UpdateStatuses.Execute(statuses.Concat(mentions), timeline).ConfigureAwait(true);
         }
 
@@ -48,7 +48,7 @@ namespace tweetz.core.ViewModels
                 if (mentionsCounter++ >= mentionsInterval)
                 {
                     mentionsCounter = 0;
-                    return await TwitterService.GetMentionsTimeline().ConfigureAwait(true);
+                    return await TwitterService.TwitterApi.MentionsTimeline(20).ConfigureAwait(true);
                 }
             }
             catch (WebException ex)

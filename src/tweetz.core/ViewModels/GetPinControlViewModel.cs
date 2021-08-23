@@ -24,7 +24,7 @@ namespace tweetz.core.ViewModels
 
         internal async ValueTask GetPinAsync()
         {
-            requestToken = await _twitterService.GetPin().ConfigureAwait(false);
+            requestToken = await _twitterService.TwitterApi.GetPinAsync().ConfigureAwait(false);
         }
 
         internal async ValueTask SignInAsync()

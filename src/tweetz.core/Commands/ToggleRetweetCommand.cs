@@ -48,13 +48,13 @@ namespace tweetz.core.Commands
 
                     if (twitterStatus.RetweetedByMe)
                     {
-                        await TwitterService.UnretweetStatus(twitterStatus.Id).ConfigureAwait(true);
+                        await TwitterService.TwitterApi.UnretweetStatus(twitterStatus.Id).ConfigureAwait(true);
                         twitterStatus.RetweetCount  = Math.Max(0, twitterStatus.RetweetCount - 1);
                         twitterStatus.RetweetedByMe = false;
                     }
                     else
                     {
-                        await TwitterService.RetweetStatus(twitterStatus.Id).ConfigureAwait(true);
+                        await TwitterService.TwitterApi.RetweetStatus(twitterStatus.Id).ConfigureAwait(true);
                         twitterStatus.RetweetCount++;
                         twitterStatus.RetweetedByMe = true;
                     }

@@ -21,7 +21,7 @@ namespace tweetz.core.ViewModels
 
         public ValueTask<IEnumerable<TwitterStatus>> GetUserTimeline(string screenName)
         {
-            return twitterService.GetUserTimeline(screenName);
+            return twitterService.TwitterApi.GetUserTimeline(screenName);
         }
     }
 }

@@ -82,10 +82,10 @@ namespace tweetz.core.Commands
         private async ValueTask<string> UploadAsync(string filename, string mediaType)
         {
             var bytes = await File.ReadAllBytesAsync(filename).ConfigureAwait(false);
-            var media = await TwitterService.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
+            var media = await TwitterService.TwitterApi.UploadMediaInit(bytes.Length, mediaType).ConfigureAwait(false);
             if (media.MediaId is null) throw new Exception("error processing image init in UplaodAsync");
-            await TwitterService.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
-            var finalize = await TwitterService.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);
+            await TwitterService.TwitterApi.UploadMediaAppend(media.MediaId, 0, bytes).ConfigureAwait(false);
+            var finalize = await TwitterService.TwitterApi.UploadMediaFinalize(media.MediaId).ConfigureAwait(false);
 
             if (finalize.ProcessingInfo is not null)
             {
@@ -99,7 +99,7 @@ namespace tweetz.core.Commands
         {
             while (true)
             {
-                var status = await TwitterService.UploadMediaStatus(mediaId).ConfigureAwait(false);
+                var status = await TwitterService.TwitterApi.UploadMediaStatus(mediaId).ConfigureAwait(false);
                 if (status.ProcessingInfo is null) throw new Exception("Image status processingInfo missing in UntilProcessingFinishedAsync");
                 if (status.ProcessingInfo.State.IsEqualTo(ProcessingInfo.StateSucceeded)) break;
                 if (status.ProcessingInfo.Error.Code != 0) throw new Exception(status.ProcessingInfo.Error.Message);

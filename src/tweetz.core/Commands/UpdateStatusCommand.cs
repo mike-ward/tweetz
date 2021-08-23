@@ -65,7 +65,7 @@ namespace tweetz.core.Commands
                 var statusText     = ComposeControlViewModel.StatusText;
                 var attachementUrl = ComposeControlViewModel.AttachmentUrl;
 
-                var status = await TwitterService.UpdateStatus(
+                var status = await TwitterService.TwitterApi.UpdateStatus(
                         statusText,
                         replyId,
                         attachementUrl,
