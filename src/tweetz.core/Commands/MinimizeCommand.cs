@@ -15,7 +15,7 @@ namespace tweetz.core.Commands
 
         private static void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            if (Application.Current.MainWindow is not null) Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
     }
 }

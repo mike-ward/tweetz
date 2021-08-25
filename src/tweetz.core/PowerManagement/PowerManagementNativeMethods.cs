@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+
 namespace tweetz.core.PowerManagement
 {
     internal static class PowerManagementNativeMethods
@@ -61,20 +64,17 @@ namespace tweetz.core.PowerManagement
 
             [MarshalAs(UnmanagedType.I1)] public bool FastSystemS4;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-            public byte[] spare2;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)] public byte[] spare2;
 
             [MarshalAs(UnmanagedType.I1)] public bool DiskSpinDown;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            public byte[] spare3;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public byte[] spare3;
 
             [MarshalAs(UnmanagedType.I1)] public bool SystemBatteriesPresent;
 
             [MarshalAs(UnmanagedType.I1)] public bool BatteriesAreShortTerm;
 
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-            public BatteryReportingScale[] BatteryScale;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)] public BatteryReportingScale[] BatteryScale;
 
             public SystemPowerState AcOnlineWake;
             public SystemPowerState SoftLidWake;

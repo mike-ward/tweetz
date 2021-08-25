@@ -16,8 +16,8 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand           Command = new RoutedUICommand();
         private                ComposeControlViewModel ComposeControlViewModel { get; }
-        public                 ITwitterService         TwitterService          { get; }
-        public                 IMessageBoxService      MessageBoxService       { get; }
+        private                ITwitterService         TwitterService          { get; }
+        private                IMessageBoxService      MessageBoxService       { get; }
 
         public AddImageCommand(ComposeControlViewModel composeControlViewModel, ITwitterService twitterService, IMessageBoxService messageBoxService)
         {
@@ -28,7 +28,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new(Command, CommandHandler, CanExecute);
+            return new CommandBinding(Command, CommandHandler, CanExecute);
         }
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)

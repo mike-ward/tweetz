@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
+#pragma warning disable 8605
+
 namespace tweetz.core.PowerManagement
 {
     internal static class PowerManager
@@ -16,19 +18,13 @@ namespace tweetz.core.PowerManagement
 
         public static int MonitorStatus(IntPtr _, IntPtr lParam)
         {
-#pragma warning disable CS8605 // Unboxing a possibly null value.
-            var ps = (PowerManagementNativeMethods.PowerBroadcastSetting)Marshal
-                .PtrToStructure(lParam, typeof(PowerManagementNativeMethods.PowerBroadcastSetting));
-#pragma warning restore CS8605 // Unboxing a possibly null value.
-
+            var ps            = (PowerManagementNativeMethods.PowerBroadcastSetting)Marshal.PtrToStructure(lParam, typeof(PowerManagementNativeMethods.PowerBroadcastSetting));
             var pData         = new IntPtr(lParam.ToInt64() + Marshal.SizeOf(ps));
             var monitorStatus = -1;
 
             if (ps.PowerSetting == MonitorPowerStatus && ps.DataLength == Marshal.SizeOf(typeof(int)))
             {
-#pragma warning disable CS8605 // Unboxing a possibly null value.
                 monitorStatus = (int)Marshal.PtrToStructure(pData, typeof(int));
-#pragma warning restore CS8605 // Unboxing a possibly null value.
             }
 
             return monitorStatus;

@@ -35,7 +35,7 @@ namespace tweetz.core.Commands
                     _           => null
                 };
 
-                if (uri is null || !(sender is Window)) return;
+                if (uri is null || sender is not Window) return;
                 ImageViewerService.Open(uri);
             }
             catch (Exception ex)

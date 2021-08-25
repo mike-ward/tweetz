@@ -41,7 +41,7 @@ namespace tweetz.core.Services
 
         public static Uri MediaSource(Media media)
         {
-            if (media is null) { throw new ArgumentNullException(nameof(media)); }
+            ArgumentNullException.ThrowIfNull(media);
 
             if (media.VideoInfo?.Variants?[0] is null)
             {

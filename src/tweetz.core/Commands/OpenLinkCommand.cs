@@ -8,7 +8,7 @@ namespace tweetz.core.Commands
     {
         public static readonly RoutedCommand      Command = new RoutedUICommand();
         private                IOpenUrlService    OpenUrlService    { get; }
-        public                 IMessageBoxService MessageBoxService { get; }
+        private                IMessageBoxService MessageBoxService { get; }
 
         public OpenLinkCommand(IOpenUrlService openUrlService, IMessageBoxService messageBoxService)
         {

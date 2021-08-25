@@ -22,13 +22,13 @@ namespace tweetz.core.Views.Adorners
 
         public static object GetWatermark(DependencyObject d)
         {
-            if (d is null) throw new ArgumentNullException(nameof(d));
+            ArgumentNullException.ThrowIfNull(d);
             return d.GetValue(WatermarkProperty);
         }
 
         public static void SetWatermark(DependencyObject d, object value)
         {
-            if (d is null) throw new ArgumentNullException(nameof(d));
+            ArgumentNullException.ThrowIfNull(d);
             d.SetValue(WatermarkProperty, value);
         }
 
@@ -38,34 +38,31 @@ namespace tweetz.core.Views.Adorners
             control.Loaded -= Control_Loaded;
             control.Loaded += Control_Loaded;
 
-            if (d is ComboBox)
+            switch (d)
             {
-                control.GotKeyboardFocus -= Control_GotKeyboardFocus;
-                control.GotKeyboardFocus += Control_GotKeyboardFocus;
+                case ComboBox:
+                    control.GotKeyboardFocus  -= Control_GotKeyboardFocus;
+                    control.GotKeyboardFocus  += Control_GotKeyboardFocus;
+                    control.LostKeyboardFocus -= Control_Loaded;
+                    control.LostKeyboardFocus += Control_Loaded;
+                    break;
 
-                control.LostKeyboardFocus -= Control_Loaded;
-                control.LostKeyboardFocus += Control_Loaded;
-            }
-            else if (d is TextBox)
-            {
-                control.GotKeyboardFocus -= Control_GotKeyboardFocus;
-                control.GotKeyboardFocus += Control_GotKeyboardFocus;
+                case TextBox:
+                    control.GotKeyboardFocus       -= Control_GotKeyboardFocus;
+                    control.GotKeyboardFocus       += Control_GotKeyboardFocus;
+                    control.LostKeyboardFocus      -= Control_Loaded;
+                    control.LostKeyboardFocus      += Control_Loaded;
+                    ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
+                    break;
 
-                control.LostKeyboardFocus      -= Control_Loaded;
-                control.LostKeyboardFocus      += Control_Loaded;
-                ((TextBox)control).TextChanged += Control_GotKeyboardFocus;
-            }
-            else if (d is ItemsControl itemControl && d is not ComboBox)
-            {
-                var i = itemControl;
-
-                // for Items property
-                i.ItemContainerGenerator.ItemsChanged += ItemsChanged;
-                itemsControls.Add(i.ItemContainerGenerator, i);
-
-                // for ItemsSource property
-                var prop = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, i.GetType());
-                prop.AddValueChanged(i, ItemsSourceChanged);
+                case ItemsControl itemControl and not ComboBox:
+                    // for Items property
+                    itemControl.ItemContainerGenerator.ItemsChanged += ItemsChanged;
+                    itemsControls.Add(itemControl.ItemContainerGenerator, itemControl);
+                    // for ItemsSource property
+                    var prop = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, itemControl.GetType());
+                    prop.AddValueChanged(itemControl, ItemsSourceChanged);
+                    break;
             }
         }
 
@@ -124,14 +121,9 @@ namespace tweetz.core.Views.Adorners
             var layer = AdornerLayer.GetAdornerLayer(control);
 
             // layer could be null if control is no longer in the visual tree
-            if (layer is not null)
+            var adorners = layer?.GetAdorners(control);
+            if (adorners is not null)
             {
-                var adorners = layer.GetAdorners(control);
-                if (adorners is null)
-                {
-                    return;
-                }
-
                 foreach (var adorner in adorners)
                 {
                     if (adorner is WatermarkAdorner)
@@ -143,24 +135,21 @@ namespace tweetz.core.Views.Adorners
             }
         }
 
-        private static void ShowWatermark(Control control)
+        private static void ShowWatermark(UIElement control)
         {
             var layer = AdornerLayer.GetAdornerLayer(control);
 
             // layer could be null if control is no longer in the visual tree
-            if (layer is not null)
-            {
-                layer.Add(new WatermarkAdorner(control, GetWatermark(control)));
-            }
+            layer?.Add(new WatermarkAdorner(control, GetWatermark(control)));
         }
 
         private static bool ShouldShowWatermark(Control c)
         {
             return c switch {
-                ComboBox _     => string.IsNullOrEmpty((c as ComboBox)?.Text),
-                TextBoxBase _  => string.IsNullOrEmpty((c as TextBox)?.Text),
-                ItemsControl _ => (c as ItemsControl)?.Items.Count == 0,
-                _              => false
+                ComboBox box         => string.IsNullOrEmpty(box.Text),
+                TextBoxBase _        => string.IsNullOrEmpty((c as TextBox)?.Text),
+                ItemsControl control => control.Items.Count == 0,
+                _                    => false
             };
         }
     }

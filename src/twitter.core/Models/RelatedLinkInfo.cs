@@ -210,7 +210,7 @@ namespace twitter.core.Models
         {
             if (source.Length > length)
             {
-                source = source.Substring(0, length);
+                source = source[..length];
             }
 
             return source;

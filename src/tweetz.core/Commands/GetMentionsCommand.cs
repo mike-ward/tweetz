@@ -8,8 +8,8 @@ namespace tweetz.core.Commands
     public class GetMentionsCommand : ICommandBinding
     {
         public static readonly RoutedCommand          Command = new RoutedUICommand();
-        public                 SearchControlViewModel SearchControlViewModel { get; }
-        public                 IMessageBoxService     MessageBoxService      { get; }
+        private                SearchControlViewModel SearchControlViewModel { get; }
+        private                IMessageBoxService     MessageBoxService      { get; }
 
         private bool inCommand;
 
@@ -21,7 +21,7 @@ namespace tweetz.core.Commands
 
         public CommandBinding CommandBinding()
         {
-            return new(Command, CommandHandler);
+            return new CommandBinding(Command, CommandHandler);
         }
 
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)

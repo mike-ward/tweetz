@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using tweetz.core.Models;
 
 namespace tweetz.core.Services
@@ -10,7 +11,7 @@ namespace tweetz.core.Services
 
         public static ValueTask Execute(TwitterTimeline timeline)
         {
-            if (timeline is null) throw new System.ArgumentNullException(nameof(timeline));
+            ArgumentNullException.ThrowIfNull(timeline);
 
             if (timeline.Settings.Donated)
             {

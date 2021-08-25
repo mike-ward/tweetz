@@ -12,7 +12,7 @@ namespace tweetz.core.Commands
             Settings = settings;
         }
 
-        public ISettings Settings { get; }
+        private ISettings Settings { get; }
 
         public CommandBinding CommandBinding()
         {
