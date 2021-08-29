@@ -51,7 +51,7 @@ namespace tweetz.core.Models
         private string         fontFamily = defaultFontFamily;
         private string         theme      = "dark";
         private string?        myTweetColor;
-        private string?        translateApiKey    = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+        private string?        translateApiKey;
         private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
@@ -218,6 +218,7 @@ namespace tweetz.core.Models
                 ApplyGrayscaleShader  = settings.ApplyGrayscaleShader;
                 MyTweetColor          = settings.MyTweetColor;
                 Donated               = settings.Donated;
+                TranslateApiKey       = settings.TranslateApiKey;
                 MainWindowPosition    = settings.MainWindowPosition;
             }
             catch (Exception ex)
