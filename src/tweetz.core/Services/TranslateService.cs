@@ -44,7 +44,7 @@ namespace tweetz.core.Services
             // The translateApiKey is your email.
             // Add it to your settings file.
             // Use your own real email please.
-            // Don't abuse the MyMemoryService.
+            // Don't abuse the MyMemory Service.
             // https://mymemory.translated.net/doc/usagelimits.php
 
             if (!string.IsNullOrWhiteSpace(translateApiKey)) pars.Add(new KeyValuePair<string?, string?>("de", translateApiKey));

@@ -27,6 +27,7 @@ namespace tweetz.core.Services
     [Singleton(typeof(ICommandBinding), typeof(DecreaseFontSizeCommand))]
     [Singleton(typeof(ICommandBinding), typeof(GetMentionsCommand))]
     [Singleton(typeof(ICommandBinding), typeof(GoToSearchCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(HideImageCommand))]
     [Singleton(typeof(ICommandBinding), typeof(ImageViewerCommand))]
     [Singleton(typeof(ICommandBinding), typeof(IncreaseFontSizeCommand))]
     [Singleton(typeof(ICommandBinding), typeof(MinimizeCommand))]

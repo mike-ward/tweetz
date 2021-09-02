@@ -181,6 +181,8 @@ namespace tweetz.core.Models
             set => SetProperty(ref translateApiKey, value);
         }
 
+        public ObservableHashSet<string> HiddenImageSet { get; private set; } = new();
+
         public WindowPosition MainWindowPosition
         {
             get => mainWindowPosition;
@@ -219,6 +221,7 @@ namespace tweetz.core.Models
                 MyTweetColor          = settings.MyTweetColor;
                 Donated               = settings.Donated;
                 TranslateApiKey       = settings.TranslateApiKey;
+                HiddenImageSet        = settings.HiddenImageSet;
                 MainWindowPosition    = settings.MainWindowPosition;
             }
             catch (Exception ex)

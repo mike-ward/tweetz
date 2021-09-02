@@ -52,7 +52,7 @@
 
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <layouts:SimpleImagePanel Height="{StaticResource ImagePanelHeight}" />
+        <layouts:SimpleImagePanel />
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
   </ItemsControl>

@@ -18,9 +18,9 @@
     x:Key="TweetImageControlImageStyle"
     TargetType="Image">
     <Setter Property="Margin" Value="1" />
-    <Setter Property="Stretch" Value="UniformToFill" />
+    <Setter Property="Stretch" Value="Uniform" />
     <Setter Property="HorizontalAlignment" Value="Center" />
-    <Setter Property="Height" Value="{StaticResource ImagePanelHeight}" />
+    <Setter Property="MaxHeight" Value="{StaticResource ImagePanelHeight}" />
   </Style>
 
   <Style

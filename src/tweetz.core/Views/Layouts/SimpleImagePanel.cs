@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace tweetz.core.Views.Layouts
@@ -11,7 +12,16 @@ namespace tweetz.core.Views.Layouts
     {
         protected override Size MeasureOverride(Size availableSize)
         {
-            return new Size(availableSize.Width, Height);
+            if (!double.IsPositiveInfinity(availableSize.Height)) return new Size(availableSize.Width, availableSize.Height);
+
+            var maxChildHeight = 0d;
+            foreach (UIElement child in InternalChildren)
+            {
+                child.Measure(availableSize);
+                maxChildHeight = Math.Max(maxChildHeight, child.DesiredSize.Height);
+            }
+
+            return new Size(availableSize.Width, maxChildHeight);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
