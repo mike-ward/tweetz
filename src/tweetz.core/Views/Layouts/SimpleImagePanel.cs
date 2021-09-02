@@ -21,7 +21,8 @@ namespace tweetz.core.Views.Layouts
                 maxChildHeight = Math.Max(maxChildHeight, child.DesiredSize.Height);
             }
 
-            return new Size(availableSize.Width, maxChildHeight);
+            var maxPanelHeight = (double)Application.Current.Resources["ImagePanelHeight"];
+            return new Size(availableSize.Width, Math.Min(maxChildHeight, maxPanelHeight));
         }
 
         protected override Size ArrangeOverride(Size finalSize)
