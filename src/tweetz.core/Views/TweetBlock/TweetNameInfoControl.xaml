@@ -9,67 +9,70 @@
   d:DesignWidth="300"
   mc:Ignorable="d">
 
-  <TextBlock
-    Tag="{Binding User.ScreenName, Mode=OneWay}"
-    TextWrapping="Wrap">
+  <WrapPanel>
+    <TextBlock Tag="{Binding User.ScreenName, Mode=OneWay}">
 
-    <!--  User Name  -->
+      <!--  User Name  -->
 
-    <Run
-      Style="{StaticResource TweetBlockUserNameStyle}"
-      Text="{Binding User.Name, Mode=OneWay}"
-      ToolTip="{StaticResource UserProfileBlockToolTip}">
-      <Run.InputBindings>
-        <MouseBinding
-          Command="{x:Static commands:ShowUserProfileCommand.Command}"
-          CommandParameter="{Binding User, Mode=OneTime}"
-          Gesture="LeftClick" />
-      </Run.InputBindings>
-    </Run>
+      <Run
+        Style="{StaticResource TweetBlockUserNameStyle}"
+        Text="{Binding User.Name, Mode=OneWay}"
+        ToolTip="{StaticResource UserProfileBlockToolTip}">
+        <Run.InputBindings>
+          <MouseBinding
+            Command="{x:Static commands:ShowUserProfileCommand.Command}"
+            CommandParameter="{Binding User, Mode=OneTime}"
+            Gesture="LeftClick" />
+        </Run.InputBindings>
+      </Run>
 
-    <!--  Verified Badge  -->
+      <!--  Verified Badge  -->
 
-    <InlineUIContainer BaselineAlignment="Center">
-      <Path
-        Margin="0,1,0,0"
-        Data="{StaticResource TwitterVerifiedBadge}"
-        Style="{StaticResource TwitterBadgeStyle}"
-        Visibility="{Binding User.Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
-    </InlineUIContainer>
+      <InlineUIContainer BaselineAlignment="Center">
+        <Path
+          Margin="0,1,6,0"
+          Data="{StaticResource TwitterVerifiedBadge}"
+          Style="{StaticResource TwitterBadgeStyle}"
+          Visibility="{Binding User.Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
+      </InlineUIContainer>
+    </TextBlock>
 
-    <!--  Screen Name  -->
+    <TextBlock>
+      
+      <!--  Screen Name  -->
 
-    <Run
-      Style="{StaticResource TweetBlockScreenNameStyle}"
-      Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}"
-      ToolTip="{StaticResource UserProfileBlockToolTip}">
+      <Run
+        Style="{StaticResource TweetBlockScreenNameStyle}"
+        Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}"
+        ToolTip="{StaticResource UserProfileBlockToolTip}">
 
-      <Run.InputBindings>
-        <MouseBinding
-          Command="{x:Static commands:ShowUserProfileCommand.Command}"
-          CommandParameter="{Binding User, Mode=OneTime}"
-          Gesture="LeftClick" />
-      </Run.InputBindings>
-    </Run>
+        <Run.InputBindings>
+          <MouseBinding
+            Command="{x:Static commands:ShowUserProfileCommand.Command}"
+            CommandParameter="{Binding User, Mode=OneTime}"
+            Gesture="LeftClick" />
+        </Run.InputBindings>
+      </Run>
 
-    <!--  Bullet Separator  -->
+      <!--  Bullet Separator  -->
 
-    <Run
-      Style="{StaticResource TweetBlockScreenNameStyle}"
-      Text="•" />
+      <Run
+        Style="{StaticResource TweetBlockScreenNameStyle}"
+        Text="•" />
 
-    <!--  Time Ago  -->
+      <!--  Time Ago  -->
 
-    <Run
-      Style="{StaticResource TweetBlockTimeAgoStyle}"
-      Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}"
-      ToolTip="{StaticResource open-in-twitter-tooltip}">
-      <Run.InputBindings>
-        <MouseBinding
-          Command="{x:Static commands:OpenLinkCommand.Command}"
-          CommandParameter="{Binding StatusLink, Mode=OneTime}"
-          Gesture="LeftClick" />
-      </Run.InputBindings>
-    </Run>
-  </TextBlock>
+      <Run
+        Style="{StaticResource TweetBlockTimeAgoStyle}"
+        Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}"
+        ToolTip="{StaticResource open-in-twitter-tooltip}">
+        <Run.InputBindings>
+          <MouseBinding
+            Command="{x:Static commands:OpenLinkCommand.Command}"
+            CommandParameter="{Binding StatusLink, Mode=OneTime}"
+            Gesture="LeftClick" />
+        </Run.InputBindings>
+      </Run>
+    </TextBlock>
+  </WrapPanel>
 </UserControl>
