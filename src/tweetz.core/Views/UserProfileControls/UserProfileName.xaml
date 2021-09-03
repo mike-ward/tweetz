@@ -6,13 +6,14 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
-  <StackPanel Orientation="Horizontal">
-    <TextBlock
-      FontWeight="Bold"
-      Text="{Binding Name}" />
-
-    <Path
-      Margin="4 0"
-      Visibility="{Binding Verified, Converter={StaticResource BooleanToVisibilityConverter}}" />
-  </StackPanel>
+  <TextBlock>
+    <Run Text="{Binding Name}" />
+    <InlineUIContainer BaselineAlignment="Center">
+      <Path
+        Margin="0,1,0,0"
+        Data="{StaticResource TwitterVerifiedBadge}"
+        Style="{StaticResource TwitterBadgeStyle}"
+        Visibility="{Binding Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </InlineUIContainer>
+  </TextBlock>
 </UserControl>

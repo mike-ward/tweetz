@@ -37,6 +37,6 @@
   </Style>
 
   <ToolTip x:Key="UserProfileBlockToolTip" Style="{StaticResource ToolTipStyle}">
-    <up:UserProfileBlockControl Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" />
+    <!-- <up:UserProfileBlockControl Tag="{Binding PlacementTarget.Tag, RelativeSource={RelativeSource AncestorType=ToolTip}, Mode=OneWay}" /> -->
   </ToolTip>
 </ResourceDictionary>
