@@ -30,7 +30,7 @@ namespace tweetz.core.ViewModels
             if (e.PropertyName.IsEqualTo(nameof(Settings.ScreenName)) ||
                 e.PropertyName.IsEqualTo(nameof(Settings.HideScreenName)))
             {
-                var appTitle = (string)Application.Current.FindResource("title")!;
+                var appTitle = App.GetString("title");
 
                 Title = Settings.HideScreenName || string.IsNullOrWhiteSpace(Settings.ScreenName)
                     ? appTitle

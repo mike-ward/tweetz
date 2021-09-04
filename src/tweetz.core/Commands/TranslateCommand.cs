@@ -27,7 +27,7 @@ namespace tweetz.core.Commands
             var tweet    = (TwitterStatus)ea.Parameter;
             var fromLang = tweet.Language ?? "und";
             var toLang   = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
-            tweet.TranslatedText = (string)Application.Current.FindResource("translate-text-working")!;
+            tweet.TranslatedText = App.GetString("translate-text-working");
             tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, fromLang, toLang, Settings.TranslateApiKey).ConfigureAwait(true);
         }
     }

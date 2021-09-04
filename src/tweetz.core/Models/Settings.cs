@@ -181,7 +181,7 @@ namespace tweetz.core.Models
             set => SetProperty(ref translateApiKey, value);
         }
 
-        public ObservableHashSet<string> HiddenImageSet { get; private set; } = new();
+        public ObservableHashSet<string> HiddenImageSet { get; set; } = new();
 
         public WindowPosition MainWindowPosition
         {
@@ -221,8 +221,10 @@ namespace tweetz.core.Models
                 MyTweetColor          = settings.MyTweetColor;
                 Donated               = settings.Donated;
                 TranslateApiKey       = settings.TranslateApiKey;
-                HiddenImageSet        = settings.HiddenImageSet;
                 MainWindowPosition    = settings.MainWindowPosition;
+
+                HiddenImageSet                   =  settings.HiddenImageSet;
+                HiddenImageSet.CollectionChanged += delegate { OnPropertyChanged(nameof(HiddenImageSet)); };
             }
             catch (Exception ex)
             {
@@ -240,7 +242,7 @@ namespace tweetz.core.Models
             }
             catch (IOException ex)
             {
-                var retry  = (string)Application.Current.FindResource("try-again")!;
+                var retry  = App.GetString("try-again");
                 var result = MessageBoxService?.ShowMessageBoxYesNo(ex.Message + $"\n\n{retry}");
                 if (result == MessageBoxResult.Yes) Save();
             }

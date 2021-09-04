@@ -24,6 +24,7 @@ namespace tweetz.core.Services
     [Singleton(typeof(UserProfileTimelineViewModel))]
     // 
     [Singleton(typeof(ICommandBinding), typeof(AddImageCommand))]
+    [Singleton(typeof(ICommandBinding), typeof(ClearHiddenImageCacheCommand))]
     [Singleton(typeof(ICommandBinding), typeof(DecreaseFontSizeCommand))]
     [Singleton(typeof(ICommandBinding), typeof(GetMentionsCommand))]
     [Singleton(typeof(ICommandBinding), typeof(GoToSearchCommand))]

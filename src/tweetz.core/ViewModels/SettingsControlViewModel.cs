@@ -24,7 +24,7 @@ namespace tweetz.core.ViewModels
 
             checkForUpdates.PropertyChanged += (s, args) =>
                 UpdateAvailableToolTip = string.CompareOrdinal(checkForUpdates.Version.Trim(), VersionInfo.Version) != 0
-                    ? (string)Application.Current.FindResource("new-version-available")!
+                    ? App.GetString("new-version-available")
                     : null;
         }
 

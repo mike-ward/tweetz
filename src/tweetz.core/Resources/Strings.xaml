@@ -44,6 +44,9 @@
   <sys:String x:Key="get-the-update">Get the Update</sys:String>
   <sys:String x:Key="try-again">Try again?</sys:String>
   <sys:String x:Key="my-tweet-color">My tweets color 🛈</sys:String>
+  <sys:String x:Key="clear-image-cache-button">Restore Hidden Images…</sys:String>
+  <sys:String x:Key="clear-image-cache-question">Restore all hidden images?</sys:String>
+  <sys:String x:Key="always-hide-image">Always hide this image?</sys:String>
 
   <!--  Profile  -->
   <sys:String x:Key="profile-joined">Joined</sys:String>

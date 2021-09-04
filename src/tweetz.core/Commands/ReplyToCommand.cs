@@ -43,7 +43,7 @@ namespace tweetz.core.Commands
 
             ComposeControlViewModel.Clear();
             ComposeControlViewModel.InReplyTo = status;
-            var watermarkFormat = (string)Application.Current.FindResource("in-reply-to")!;
+            var watermarkFormat = App.GetString("in-reply-to");
             ComposeControlViewModel.WatermarkText     = string.Format(CultureInfo.InvariantCulture, watermarkFormat, status.User.ScreenName);
             TabBarControlViewModel.ShowComposeControl = true;
         }

@@ -11,6 +11,7 @@
   <converters:DoubleFormatConverter x:Key="DoubleFormatConverter" />
   <converters:ProfileFollowUnFollowConverter x:Key="ProfileFollowUnFollowConverter" />
   <converters:FileNameConverter x:Key="FileNameConverter" />
+  <converters:IsHiddenImageConverter x:Key="IsHiddenImageConverter" />
   <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
   <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:MediaIsVideoToVisibilityConverter x:Key="MediaIsVideoToVisibilityConverter" />

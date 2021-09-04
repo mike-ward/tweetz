@@ -43,5 +43,10 @@ namespace tweetz.core
                 Resources.MergedDictionaries.Add(colorDictionary);
             }
         }
+
+        public static string GetString(string resourceName)
+        {
+            return Current.FindResource(resourceName) as string ?? throw new InvalidOperationException();
+        }
     }
 }

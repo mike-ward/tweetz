@@ -119,7 +119,7 @@ namespace tweetz.core.Views.MediaViewerBlock
 
         private static void SetPlayPauseButtonSymbol(Button button, string symbol)
         {
-            button.Content = Application.Current.FindResource(symbol);
+            button.Content = App.GetString(symbol);
         }
 
         private void Rewind_Click(object sender, RoutedEventArgs e)

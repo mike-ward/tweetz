@@ -101,7 +101,7 @@ namespace tweetz.core.ViewModels
             StatusText    = string.Empty;
             AttachmentUrl = string.Empty;
             Media.Clear();
-            WatermarkText = (string)Application.Current.FindResource("whats-happening")!;
+            WatermarkText = App.GetString("whats-happening");
         }
 
         public bool AddImage(string filename)

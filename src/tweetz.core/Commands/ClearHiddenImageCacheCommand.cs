@@ -2,18 +2,16 @@
 using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Interfaces;
-using tweetz.core.Services;
-using twitter.core.Models;
 
 namespace tweetz.core.Commands
 {
-    internal class HideImageCommand : ICommandBinding
+    internal class ClearHiddenImageCacheCommand : ICommandBinding
     {
         public static readonly RoutedCommand      Command = new RoutedUICommand();
         private                ISettings          Settings          { get; }
         private                IMessageBoxService MessageBoxService { get; }
 
-        public HideImageCommand(ISettings settings, IMessageBoxService messageBoxService)
+        public ClearHiddenImageCacheCommand(ISettings settings, IMessageBoxService messageBoxService)
         {
             Settings          = settings;
             MessageBoxService = messageBoxService;
@@ -26,20 +24,11 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            ea.Handled = true;
-
             try
             {
-                var uri = ea.Parameter switch {
-                    Media media => ImageViewerService.MediaSource(media),
-                    string path => new Uri(path),
-                    _           => null
-                };
-
-                if (uri is not null &&
-                    MessageBoxService.ShowMessageBoxYesNo(App.GetString("always-hide-image")) == MessageBoxResult.Yes &&
-                    Settings.HiddenImageSet.Add(uri.ToString()))
+                if (MessageBoxService.ShowMessageBoxYesNo(App.GetString("clear-image-cache-question")) == MessageBoxResult.Yes)
                 {
+                    Settings.HiddenImageSet.Clear();
                     Settings.Save();
                 }
             }

@@ -3,7 +3,8 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts">
+  xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts"
+  xmlns:core="clr-namespace:tweetz.core">
 
   <ItemsControl
     Name="ItemsControl"
@@ -11,6 +12,13 @@
     <ItemsControl.ItemTemplate>
       <DataTemplate>
         <Grid>
+          
+          <Grid.Visibility>
+            <MultiBinding Converter="{StaticResource IsHiddenImageConverter}">
+              <Binding Path="MediaUrl" />
+              <Binding Path="DataContext.Settings.HiddenImageSet" RelativeSource="{RelativeSource AncestorType=core:MainWindow}" />
+            </MultiBinding>
+          </Grid.Visibility>
 
           <!--  Hour glass / Warning icon  -->
 
@@ -45,6 +53,10 @@
               Command="{x:Static commands:ImageViewerCommand.Command}"
               CommandParameter="{Binding Mode=OneTime}"
               MouseAction="LeftClick" />
+            <MouseBinding
+              Command="{x:Static commands:HideImageCommand.Command}"
+              CommandParameter="{Binding Mode=OneTime}"
+              Gesture="Control+LeftClick" />
           </Grid.InputBindings>
         </Grid>
       </DataTemplate>

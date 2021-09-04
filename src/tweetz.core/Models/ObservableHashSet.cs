@@ -19,5 +19,15 @@ namespace tweetz.core.Models
 
             return added;
         }
+
+        public new void Clear()
+        {
+            if (Count > 0)
+            {
+                base.Clear();
+                var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+                CollectionChanged?.Invoke(this, eventArgs);
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace tweetz.core.ViewModels
             : base(settings, systemState, InfiniteElapsed)
         {
             TwitterService = twitterService;
-            timelineName   = (string)Application.Current.FindResource("search-timeline")!;
+            timelineName   = App.GetString("search-timeline");
         }
 
         public bool ShowProgress

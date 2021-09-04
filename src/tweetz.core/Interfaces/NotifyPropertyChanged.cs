@@ -8,11 +8,12 @@ namespace tweetz.core.Interfaces
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void SetProperty<T>(ref T item, T value, [CallerMemberName] string? propertyName = null)
+        protected bool SetProperty<T>(ref T item, T value, [CallerMemberName] string? propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(item, value)) return;
+            if (EqualityComparer<T>.Default.Equals(item, value)) return false;
             item = value;
             OnPropertyChanged(propertyName);
+            return true;
         }
 
         protected void OnPropertyChanged(string? propertyName)
