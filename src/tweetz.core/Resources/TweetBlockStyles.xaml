@@ -155,14 +155,14 @@
     <Style.Triggers>
       <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Value="False">
         <Setter Property="Source" Value="{Binding ProfileImageUrl, Mode=OneWay, IsAsync=True, TargetNullValue={x:Null}}" />
-        <Setter Property="Width" Value="45" />
-        <Setter Property="Height" Value="45" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Clip">
           <Setter.Value>
             <EllipseGeometry
-              Center="22,22"
-              RadiusX="22"
-              RadiusY="22" />
+              Center="20,20"
+              RadiusX="20"
+              RadiusY="20" />
           </Setter.Value>
         </Setter>
       </DataTrigger>
