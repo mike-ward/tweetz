@@ -28,7 +28,7 @@
         Maximum="18"
         Minimum="10"
         TickFrequency="0.1"
-        Value="{Binding FontSize}" />
+        Value="{Binding Settings.FontSize}" />
     </DockPanel>
   </StackPanel>
 </UserControl>

@@ -27,19 +27,19 @@
       <RadioButton
         Content="{StaticResource theme-light}"
         GroupName="t"
-        IsChecked="{Binding Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=light}"
+        IsChecked="{Binding Settings.Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=light}"
         Style="{StaticResource SettingsRadioButton}" />
 
       <RadioButton
         Content="{StaticResource theme-nord}"
         GroupName="t"
-        IsChecked="{Binding Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=nord}"
+        IsChecked="{Binding Settings.Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=nord}"
         Style="{StaticResource SettingsRadioButton}" />
 
       <RadioButton
         Content="{StaticResource theme-dark}"
         GroupName="t"
-        IsChecked="{Binding Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=dark}"
+        IsChecked="{Binding Settings.Theme, Converter={StaticResource CompareToConverter}, ConverterParameter=dark}"
         Style="{StaticResource SettingsRadioButton}" />
     </UniformGrid>
   </StackPanel>
