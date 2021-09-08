@@ -132,19 +132,27 @@ namespace tweetz.core.Services
                 ToolTip          = link
             };
 
-            void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => OpenLinkCommand.Command.Execute(link, target: null);
+            void OnHyperlinkOnClick(object sender, RoutedEventArgs e)
+            {
+                OpenLinkCommand.Command.Execute(link, target: null);
+            }
 
-            hyperlink.Loaded += delegate
+            void OnHyperlinkOnLoaded(object sender, RoutedEventArgs e)
             {
                 hyperlink.Click          += OnHyperlinkOnClick;
                 hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
-            };
+            }
 
-            hyperlink.Unloaded += delegate
+            void OnHyperlinkOnUnloaded(object sender, RoutedEventArgs e)
             {
                 hyperlink.Click          -= OnHyperlinkOnClick;
                 hyperlink.ToolTipOpening -= LongUrlService.HyperlinkToolTipOpeningHandler;
-            };
+                hyperlink.Loaded         -= OnHyperlinkOnLoaded;
+                hyperlink.Unloaded       -= OnHyperlinkOnUnloaded;
+            }
+
+            hyperlink.Loaded   += OnHyperlinkOnLoaded;
+            hyperlink.Unloaded += OnHyperlinkOnUnloaded;
 
             var textblock = new TextBlock(hyperlink) {
                 MaxWidth     = maxDisplayLength,
@@ -170,8 +178,17 @@ namespace tweetz.core.Services
             };
 
             void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => OpenLinkCommand.Command.Execute(link, target: null);
-            hyperlink.Loaded   += delegate { hyperlink.Click += OnHyperlinkOnClick; };
-            hyperlink.Unloaded += delegate { hyperlink.Click -= OnHyperlinkOnClick; };
+            void OnHyperlinkOnLoaded(object sender, RoutedEventArgs e) => hyperlink.Click += OnHyperlinkOnClick;
+
+            void OnHyperlinkOnUnloaded(object sender, RoutedEventArgs e)
+            {
+                hyperlink.Click    -= OnHyperlinkOnClick;
+                hyperlink.Loaded   -= OnHyperlinkOnLoaded;
+                hyperlink.Unloaded -= OnHyperlinkOnUnloaded;
+            }
+
+            hyperlink.Loaded   += OnHyperlinkOnLoaded;
+            hyperlink.Unloaded += OnHyperlinkOnUnloaded;
             return hyperlink;
         }
 
@@ -190,8 +207,17 @@ namespace tweetz.core.Services
             };
 
             void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => SearchCommand.Command.Execute(tag, target: null);
-            hyperlink.Loaded   += delegate { hyperlink.Click += OnHyperlinkOnClick; };
-            hyperlink.Unloaded += delegate { hyperlink.Click -= OnHyperlinkOnClick; };
+            void OnHyperlinkOnLoaded(object sender, RoutedEventArgs e) => hyperlink.Click += OnHyperlinkOnClick;
+
+            void OnHyperlinkOnUnloaded(object sender, RoutedEventArgs e)
+            {
+                hyperlink.Click    -= OnHyperlinkOnClick;
+                hyperlink.Loaded   -= OnHyperlinkOnLoaded;
+                hyperlink.Unloaded -= OnHyperlinkOnUnloaded;
+            }
+
+            hyperlink.Loaded   += OnHyperlinkOnLoaded;
+            hyperlink.Unloaded += OnHyperlinkOnUnloaded;
             return hyperlink;
         }
 
