@@ -26,7 +26,6 @@
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
       Tag="{Binding ScreenName, Mode=OneWay}"
-      ToolTip="{StaticResource UserProfileBlockToolTip}"
       Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineView}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
     <StackPanel Grid.Column="1">

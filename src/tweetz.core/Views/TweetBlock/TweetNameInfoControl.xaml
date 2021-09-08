@@ -16,8 +16,7 @@
 
       <Run
         Style="{StaticResource TweetBlockUserNameStyle}"
-        Text="{Binding User.Name, Mode=OneWay}"
-        ToolTip="{StaticResource UserProfileBlockToolTip}">
+        Text="{Binding User.Name, Mode=OneWay}">
         <Run.InputBindings>
           <MouseBinding
             Command="{x:Static commands:ShowUserProfileCommand.Command}"
@@ -38,13 +37,12 @@
     </TextBlock>
 
     <TextBlock>
-      
+
       <!--  Screen Name  -->
 
       <Run
         Style="{StaticResource TweetBlockScreenNameStyle}"
-        Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}"
-        ToolTip="{StaticResource UserProfileBlockToolTip}">
+        Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}">
 
         <Run.InputBindings>
           <MouseBinding
