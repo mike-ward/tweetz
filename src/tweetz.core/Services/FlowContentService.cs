@@ -132,8 +132,19 @@ namespace tweetz.core.Services
                 ToolTip          = link
             };
 
-            hyperlink.Click          += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
-            hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
+            void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => OpenLinkCommand.Command.Execute(link, target: null);
+
+            hyperlink.Loaded += delegate
+            {
+                hyperlink.Click          += OnHyperlinkOnClick;
+                hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
+            };
+
+            hyperlink.Unloaded += delegate
+            {
+                hyperlink.Click          -= OnHyperlinkOnClick;
+                hyperlink.ToolTipOpening -= LongUrlService.HyperlinkToolTipOpeningHandler;
+            };
 
             var textblock = new TextBlock(hyperlink) {
                 MaxWidth     = maxDisplayLength,
@@ -158,7 +169,9 @@ namespace tweetz.core.Services
                 ToolTip          = tooltip
             };
 
-            hyperlink.Click += delegate { OpenLinkCommand.Command.Execute(link, target: null); };
+            void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => OpenLinkCommand.Command.Execute(link, target: null);
+            hyperlink.Loaded   += delegate { hyperlink.Click += OnHyperlinkOnClick; };
+            hyperlink.Unloaded += delegate { hyperlink.Click -= OnHyperlinkOnClick; };
             return hyperlink;
         }
 
@@ -176,7 +189,9 @@ namespace tweetz.core.Services
                 CommandParameter = tag
             };
 
-            hyperlink.Click += delegate { SearchCommand.Command.Execute(tag, target: null); };
+            void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => SearchCommand.Command.Execute(tag, target: null);
+            hyperlink.Loaded   += delegate { hyperlink.Click += OnHyperlinkOnClick; };
+            hyperlink.Unloaded += delegate { hyperlink.Click -= OnHyperlinkOnClick; };
             return hyperlink;
         }
 
