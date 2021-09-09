@@ -5,13 +5,14 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
+  xmlns:cachedImage="clr-namespace:CachedImage.Core;assembly=CachedImage.Core"
   d:DesignHeight="50"
   d:DesignWidth="50"
   ToolTipService.InitialShowDelay="{StaticResource InitialToolTipDelay}"
   ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
   mc:Ignorable="d">
 
-  <Image ImageFailed="Image_ImageFailed" Style="{StaticResource TweetBlockProfileImageStyle}">
+  <cachedImage:Image ImageFailed="Image_ImageFailed" Style="{StaticResource TweetBlockProfileImageStyle}">
 
     <Image.InputBindings>
       <MouseBinding
@@ -19,5 +20,5 @@
         CommandParameter="{Binding ., Mode=OneTime}"
         Gesture="LeftClick" />
     </Image.InputBindings>
-  </Image>
+  </cachedImage:Image>
 </UserControl>

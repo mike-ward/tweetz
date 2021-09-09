@@ -4,7 +4,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts"
-  xmlns:core="clr-namespace:tweetz.core">
+  xmlns:core="clr-namespace:tweetz.core"
+  xmlns:cachedImage="clr-namespace:CachedImage.Core;assembly=CachedImage.Core">
 
   <ItemsControl
     Name="ItemsControl"
@@ -12,7 +13,7 @@
     <ItemsControl.ItemTemplate>
       <DataTemplate>
         <Grid>
-          
+
           <Grid.Visibility>
             <MultiBinding Converter="{StaticResource IsHiddenImageConverter}">
               <Binding Path="MediaUrl" />
@@ -30,10 +31,10 @@
 
           <!--  Image  -->
 
-          <Image
+          <cachedImage:Image
             ImageFailed="Image_ImageFailed"
             RenderOptions.BitmapScalingMode="LowQuality"
-            Source="{Binding MediaUrl, Mode=OneTime, IsAsync=True, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
+            ImageUrl="{Binding MediaUrl, Mode=OneTime, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
             Style="{StaticResource TweetImageControlImageStyle}"
             Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
 
