@@ -14,11 +14,11 @@
 
   <cachedImage:Image ImageFailed="Image_ImageFailed" Style="{StaticResource TweetBlockProfileImageStyle}">
 
-    <Image.InputBindings>
+    <cachedImage:Image.InputBindings>
       <MouseBinding
         Command="{x:Static commands:ShowUserProfileCommand.Command}"
         CommandParameter="{Binding ., Mode=OneTime}"
         Gesture="LeftClick" />
-    </Image.InputBindings>
+    </cachedImage:Image.InputBindings>
   </cachedImage:Image>
 </UserControl>

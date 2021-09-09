@@ -34,7 +34,7 @@
           <cachedImage:Image
             ImageFailed="Image_ImageFailed"
             RenderOptions.BitmapScalingMode="LowQuality"
-            ImageUrl="{Binding MediaUrl, Mode=OneTime, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
+            ImageUrl="{Binding MediaUrl, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
             Style="{StaticResource TweetImageControlImageStyle}"
             Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
 

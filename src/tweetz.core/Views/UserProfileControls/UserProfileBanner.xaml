@@ -3,17 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cachedImage="clr-namespace:CachedImage.Core;assembly=CachedImage.Core"
              xmlns:local="clr-namespace:tweetz.core.Views.UserProfileControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
   <Grid Height="{x:Static local:UserProfileBanner.BannerHeight}">
 
-    <Image
+    <cachedImage:Image
       Height="100"
       VerticalAlignment="Top"
       Stretch="UniformToFill"
-      Source="{Binding ProfileBannerUrlSmall, IsAsync=True, TargetNullValue={x:Null}}"
+      ImageUrl="{Binding ProfileBannerUrlSmall, TargetNullValue={x:Null}}"
       Tag="banner" />
 
     <Border
@@ -26,18 +27,18 @@
       BorderBrush="{DynamicResource StandardBorderBrush}"
       BorderThickness="5">
 
-      <Image
+      <cachedImage:Image
         Width="72"
         Height="72"
         Tag="profile"
-        Source="{Binding ProfileImageUrlBigger, IsAsync=True, TargetNullValue={x:Null}}">
-        <Image.Clip>
+        ImageUrl="{Binding ProfileImageUrlBigger, TargetNullValue={x:Null}}">
+        <cachedImage:Image.Clip>
           <EllipseGeometry
             Center="36,36"
             RadiusX="36"
             RadiusY="36" />
-        </Image.Clip>
-      </Image>
+        </cachedImage:Image.Clip>
+      </cachedImage:Image>
     </Border>
 
     <StackPanel
