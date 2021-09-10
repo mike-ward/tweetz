@@ -33,7 +33,8 @@
 
       <TextBlock
         Style="{StaticResource TweetBlockSiteNameStyle}"
-        ToolTip="{Binding Url, Mode=OneTime}">
+        ToolTip="{Binding Url, Mode=OneTime}"
+        Visibility="{Binding SiteName, Mode=OneTime, Converter={StaticResource NotIsNullWhitespaceVisibilityConverter}}">
 
         <TextBlock.InputBindings>
           <MouseBinding
@@ -42,8 +43,7 @@
             MouseAction="LeftClick" />
         </TextBlock.InputBindings>
 
-        <Run>↗</Run>
-        <Run Text="{Binding SiteName, Mode=OneTime}" />
+        <Run Text="{Binding SiteName, Mode=OneTime, StringFormat=↗ {0}}" />
       </TextBlock>
 
       <tweetBlock:TweetTranslateControl

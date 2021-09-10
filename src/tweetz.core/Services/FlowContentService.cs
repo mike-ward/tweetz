@@ -5,9 +5,9 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using tweetz.core.Commands;
 using tweetz.core.Models;
-using tweetz.core.Views.UserProfileBlock;
 using twitter.core.Models;
 
 namespace tweetz.core.Services
@@ -162,41 +162,25 @@ namespace tweetz.core.Services
             return new InlineUIContainer(textblock);
         }
 
-        private static Hyperlink Mention(string text)
+        private static Run Mention(string text)
         {
-            var tooltip     = new ToolTip();
-            var userProfile = new UserProfileBlockControl();
-
-            tooltip.Content = userProfile;
-            tooltip.Style   = GetToolTipStyle();
-            userProfile.Tag = text;
-            var link = $"https://twitter.com/{text}";
-
-            var hyperlink = new Hyperlink(new Run("@" + text)) {
-                CommandParameter = link,
-                ToolTip          = tooltip
+            var run = new Run(ConvertXmlEntities("@" + text)) {
+                Style = GetMentionStyle()
             };
-
-            void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => OpenLinkCommand.Command.Execute(link, target: null);
-            void OnHyperlinkOnLoaded(object sender, RoutedEventArgs e) => hyperlink.Click += OnHyperlinkOnClick;
-
-            void OnHyperlinkOnUnloaded(object sender, RoutedEventArgs e)
-            {
-                hyperlink.Click    -= OnHyperlinkOnClick;
-                hyperlink.Loaded   -= OnHyperlinkOnLoaded;
-                hyperlink.Unloaded -= OnHyperlinkOnUnloaded;
-            }
-
-            hyperlink.Loaded   += OnHyperlinkOnLoaded;
-            hyperlink.Unloaded += OnHyperlinkOnUnloaded;
-            return hyperlink;
+            
+            var gesture = new MouseBinding(ShowUserProfileCommand.Command, new MouseGesture(MouseAction.LeftClick)) {
+                CommandParameter = text
+            };
+            
+            run.InputBindings.Add(gesture);
+            return run;
         }
 
-        private static Style? userProfileToolTipStyle;
+        private static Style? mentionStyle;
 
-        private static Style GetToolTipStyle()
+        private static Style GetMentionStyle()
         {
-            return userProfileToolTipStyle ??= Application.Current.FindResource("ToolTipStyle") as Style ?? new Style();
+            return mentionStyle ??= Application.Current.FindResource("TweetBlockTranslateStyle") as Style ?? new Style();
         }
 
         private static Hyperlink Hashtag(string text)
