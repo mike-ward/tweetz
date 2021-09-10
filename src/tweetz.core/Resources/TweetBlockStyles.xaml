@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Views"
   xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
-  xmlns:cachedImage="clr-namespace:CachedImage.Core;assembly=CachedImage.Core">
+  xmlns:cachedImage="clr-namespace:tweetz.core.Views.Controls">
 
   <Style x:Key="TweetBlockIsSensitiveCollapsedStyle" TargetType="StackPanel">
     <Style.Triggers>
@@ -156,14 +156,14 @@
     <Style.Triggers>
       <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Value="False">
         <Setter Property="ImageUrl" Value="{Binding ProfileImageUrl, TargetNullValue={x:Null}}" />
-        <Setter Property="Width" Value="40" />
-        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="36" />
         <Setter Property="Clip">
           <Setter.Value>
             <EllipseGeometry
-              Center="20,20"
-              RadiusX="20"
-              RadiusY="20" />
+              Center="18,18"
+              RadiusX="18"
+              RadiusY="18" />
           </Setter.Value>
         </Setter>
       </DataTrigger>

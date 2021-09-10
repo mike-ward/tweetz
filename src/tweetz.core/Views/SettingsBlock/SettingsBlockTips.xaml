@@ -5,6 +5,7 @@
   xmlns:controls="clr-namespace:tweetz.core.Views"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:controls1="clr-namespace:tweetz.core.Views.Controls"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">
@@ -14,12 +15,12 @@
       Margin="0,0,0,6"
       FontWeight="Bold"
       Text="{StaticResource tips}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-scroll}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-open}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-font-size}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-hide-image}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-profiles}" />
-    <controls:BulletedItem BulletText="{StaticResource tips-volume}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-scroll}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-open}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-font-size}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-ctrl-n}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-hide-image}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-profiles}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-volume}" />
   </StackPanel>
 </UserControl>

@@ -53,7 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CachedImage.Core" Version="1.1.0" />
     <PackageReference Include="Jab" Version="0.0.2-beta.108" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
@@ -76,6 +75,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Controls\CachedImage.cs">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
 

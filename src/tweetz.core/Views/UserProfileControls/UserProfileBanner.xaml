@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:cachedImage="clr-namespace:CachedImage.Core;assembly=CachedImage.Core"
+             xmlns:cachedImage="clr-namespace:tweetz.core.Views.Controls"
              xmlns:local="clr-namespace:tweetz.core.Views.UserProfileControls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">

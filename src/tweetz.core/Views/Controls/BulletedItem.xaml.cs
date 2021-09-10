@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace tweetz.core.Views
+namespace tweetz.core.Views.Controls
 {
     public partial class BulletedItem : UserControl
     {

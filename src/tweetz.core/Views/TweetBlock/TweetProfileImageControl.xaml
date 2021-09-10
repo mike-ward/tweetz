@@ -5,7 +5,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
-  xmlns:cachedImage="clr-namespace:CachedImage.Core;assembly=CachedImage.Core"
+  xmlns:cachedImage="clr-namespace:tweetz.core.Views.Controls"
   d:DesignHeight="50"
   d:DesignWidth="50"
   ToolTipService.InitialShowDelay="{StaticResource InitialToolTipDelay}"
