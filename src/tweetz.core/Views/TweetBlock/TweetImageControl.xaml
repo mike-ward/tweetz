@@ -27,7 +27,8 @@
             x:Name="LoadingIndicator"
             Style="{StaticResource TweetImageControlHourGlassStyle}"
             Text="{StaticResource Hourglass}"
-            ToolTipService.ShowDuration="{StaticResource ToolTipDuration}" />
+            ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
+            Visibility="{Binding DataContext.Settings.ImagesAsLinks, RelativeSource={RelativeSource AncestorType=core:MainWindow}, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
 
           <!--  Image  -->
 
@@ -36,11 +37,22 @@
             RenderOptions.BitmapScalingMode="LowQuality"
             ImageUrl="{Binding MediaUrl, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
             Style="{StaticResource TweetImageControlImageStyle}"
-            Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}" />
+            Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}"
+            Visibility="{Binding DataContext.Settings.ImagesAsLinks, RelativeSource={RelativeSource AncestorType=core:MainWindow}, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+
+          <TextBlock
+            Visibility="{Binding DataContext.Settings.ImagesAsLinks, RelativeSource={RelativeSource AncestorType=core:MainWindow}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Hyperlink
+              Command="{x:Static commands:ImageViewerCommand.Command}"
+              CommandParameter="{Binding Mode=OneTime}">
+              <TextBlock Text="{Binding Mode=OneTime, Converter={StaticResource MediaToTextLinkConverter}}" />
+            </Hyperlink>
+          </TextBlock>
 
           <!--  Play icon  -->
 
-          <Border Style="{StaticResource TweetImageControlPlayBorderStyle}">
+          <Border
+            Style="{StaticResource TweetImageControlPlayBorderStyle}">
             <TextBlock
               x:Name="PlayIndicator"
               Style="{StaticResource TweetImageControlPlayIconStyle}"

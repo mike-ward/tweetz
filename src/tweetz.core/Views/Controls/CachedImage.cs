@@ -16,7 +16,7 @@ namespace tweetz.core.Views.Controls
                 typeof(Image),
                 new FrameworkPropertyMetadata(typeof(Image)));
         }
-
+        
         public static readonly DependencyProperty ImageUrlProperty =
             DependencyProperty.Register(
                 "ImageUrl",
@@ -40,8 +40,8 @@ namespace tweetz.core.Views.Controls
 
             bitmapImage.BeginInit();
             bitmapImage.UriSource      = new Uri(url);
+            bitmapImage.UriCachePolicy = UriCachePolicy;
             bitmapImage.CreateOptions  = BitmapCreateOptions.IgnoreColorProfile;
-            bitmapImage.UriCachePolicy = UriCachePolicy; 
             bitmapImage.EndInit();
             cachedImage.Source = bitmapImage;
         }

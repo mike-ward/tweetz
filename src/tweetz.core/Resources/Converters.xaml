@@ -15,6 +15,7 @@
   <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
   <converters:IsNullConverter x:Key="IsNullConverter" />
   <converters:MediaIsVideoToVisibilityConverter x:Key="MediaIsVideoToVisibilityConverter" />
+  <converters:MediaToTextLinkConverter x:Key="MediaToTextLinkConverter" />
   <converters:NotBooleanConverter x:Key="NotBooleanConverter" />
   <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
   <converters:NotIsNullWhitespaceVisibilityConverter x:Key="NotIsNullWhitespaceVisibilityConverter" />

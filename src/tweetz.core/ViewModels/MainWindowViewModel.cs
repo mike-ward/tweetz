@@ -42,7 +42,7 @@ namespace tweetz.core.ViewModels
             WindowInteropService.SetWindowPosition(window, Settings.MainWindowPosition);
             InitializeSaveSettingsOnMove(window);
 
-            window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToList());
+            window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToArray());
             window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, delegate { window.Close(); }));
         }
 

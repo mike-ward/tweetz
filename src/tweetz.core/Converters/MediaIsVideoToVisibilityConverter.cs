@@ -7,11 +7,13 @@ using twitter.core.Models;
 
 namespace tweetz.core.Converters
 {
-    public class MediaIsVideoToVisibilityConverter : IValueConverter
+    public class MediaIsVideoToVisibilityConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is Media media && IsVideo(media)
+            return values[0] is Media media 
+                && IsVideo(media)
+                && values[1] is false
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
@@ -22,10 +24,9 @@ namespace tweetz.core.Converters
             return ImageViewerService.IsMp4(url.ToString());
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return Array.Empty<object>();
         }
     }
 }

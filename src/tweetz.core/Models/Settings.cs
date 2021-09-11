@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -38,6 +39,7 @@ namespace tweetz.core.Models
         private string?        screenName;
         private bool           hideProfileImages;
         private bool           hideImages;
+        private bool           imagesAsLinks;
         private bool           hideExtendedContent;
         private bool           hideScreenName;
         private bool           hidePossiblySensitive;
@@ -95,6 +97,12 @@ namespace tweetz.core.Models
         {
             get => hideImages;
             set => SetProperty(ref hideImages, value);
+        }
+
+        public bool ImagesAsLinks
+        {
+            get => imagesAsLinks;
+            set => SetProperty(ref imagesAsLinks, value);
         }
 
         public bool HideExtendedContent
@@ -201,35 +209,14 @@ namespace tweetz.core.Models
             try
             {
                 var json     = File.ReadAllText(SettingsFilePath);
-                var settings = JsonSerializer.Deserialize<Settings>(json)!;
-                AccessToken           = settings.AccessToken;
-                AccessTokenSecret     = settings.AccessTokenSecret;
-                ScreenName            = settings.ScreenName;
-                HideProfileImages     = settings.HideProfileImages;
-                HideImages            = settings.HideImages;
-                HideExtendedContent   = settings.HideExtendedContent;
-                HideScreenName        = settings.HideScreenName;
-                HidePossiblySensitive = settings.HidePossiblySensitive;
-                HideTranslate         = settings.HideTranslate;
-                SpellCheck            = settings.SpellCheck;
-                ShowInSystemTray      = settings.showInSystemTray;
-                AlwaysOnTop           = settings.alwaysOnTop;
-                FontSize              = settings.FontSize;
-                FontFamily            = settings.FontFamily;
-                Theme                 = settings.Theme;
-                ApplyGrayscaleShader  = settings.ApplyGrayscaleShader;
-                MyTweetColor          = settings.MyTweetColor;
-                Donated               = settings.Donated;
-                TranslateApiKey       = settings.TranslateApiKey;
-                MainWindowPosition    = settings.MainWindowPosition;
-
-                HiddenImageSet                   =  settings.HiddenImageSet;
-                HiddenImageSet.CollectionChanged += delegate { OnPropertyChanged(nameof(HiddenImageSet)); };
+                var settings = JsonSerializer.Deserialize<Settings>(json);
+                if (settings is null) throw new InvalidOperationException(App.GetString("settings-read-error"));
+                CopySettings(settings);
             }
             catch (Exception ex)
             {
                 // falls back to defaults
-                TraceService.Message(ex.Message);
+                TraceService.Message(ex.Message + App.GetString("settings-continue-defaults"));
             }
         }
 
@@ -246,6 +233,36 @@ namespace tweetz.core.Models
                 var result = MessageBoxService?.ShowMessageBoxYesNo(ex.Message + $"\n\n{retry}");
                 if (result == MessageBoxResult.Yes) Save();
             }
+        }
+
+        private void CopySettings(Settings settings)
+        {
+            AccessToken           = settings.AccessToken;
+            AccessTokenSecret     = settings.AccessTokenSecret;
+            ScreenName            = settings.ScreenName;
+            HideProfileImages     = settings.HideProfileImages;
+            HideImages            = settings.HideImages;
+            ImagesAsLinks         = settings.ImagesAsLinks;
+            HideExtendedContent   = settings.HideExtendedContent;
+            HideScreenName        = settings.HideScreenName;
+            HidePossiblySensitive = settings.HidePossiblySensitive;
+            HideTranslate         = settings.HideTranslate;
+            SpellCheck            = settings.SpellCheck;
+            ShowInSystemTray      = settings.showInSystemTray;
+            AlwaysOnTop           = settings.alwaysOnTop;
+            FontSize              = settings.FontSize;
+            FontFamily            = settings.FontFamily;
+            Theme                 = settings.Theme;
+            ApplyGrayscaleShader  = settings.ApplyGrayscaleShader;
+            MyTweetColor          = settings.MyTweetColor;
+            Donated               = settings.Donated;
+            TranslateApiKey       = settings.TranslateApiKey;
+            MainWindowPosition    = settings.MainWindowPosition;
+            HiddenImageSet        = settings.HiddenImageSet;
+
+            void OnHiddenImageSetOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => OnPropertyChanged(nameof(HiddenImageSet));
+            HiddenImageSet.CollectionChanged -= OnHiddenImageSetOnCollectionChanged;
+            HiddenImageSet.CollectionChanged += OnHiddenImageSetOnCollectionChanged;
         }
     }
 }

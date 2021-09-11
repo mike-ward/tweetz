@@ -12,6 +12,7 @@ namespace tweetz.core.Interfaces
         string?                   ScreenName            { get; set; }
         bool                      HideProfileImages     { get; }
         bool                      HideImages            { get; }
+        bool                      ImagesAsLinks         { get; }
         bool                      HideExtendedContent   { get; }
         bool                      HideScreenName        { get; }
         bool                      HidePossiblySensitive { get; }
