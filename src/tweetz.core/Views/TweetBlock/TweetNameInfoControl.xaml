@@ -5,72 +5,104 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
+  xmlns:views="clr-namespace:tweetz.core.Views"
   d:DesignHeight="50"
   d:DesignWidth="300"
   mc:Ignorable="d">
 
-  <WrapPanel>
-    <TextBlock Tag="{Binding User.ScreenName, Mode=OneWay}">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
 
-      <!--  User Name  -->
+    <tweetBlock:TweetProfileImageControl
+      Grid.Column="0"
+      Margin="0 5 5 0"
+      Cursor="Hand"
+      DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
+      Tag="{Binding ScreenName, Mode=OneWay}">
 
-      <Run
-        Style="{StaticResource TweetBlockUserNameStyle}"
-        Text="{Binding User.Name, Mode=OneWay}">
-        <Run.InputBindings>
-          <MouseBinding
-            Command="{x:Static commands:ShowUserProfileCommand.Command}"
-            CommandParameter="{Binding User, Mode=OneTime}"
-            Gesture="LeftClick" />
-        </Run.InputBindings>
-      </Run>
+      <tweetBlock:TweetProfileImageControl.Visibility>
+        <MultiBinding Converter="{StaticResource ProfileImageLayoutConverter}">
+          <Binding Path="DataContext.Settings.HideProfileImages" RelativeSource="{RelativeSource AncestorType=views:TimelineView}" />
+          <Binding Path="DataContext.Settings.AlternateLayout" RelativeSource="{RelativeSource AncestorType=views:TimelineView}" Converter="{StaticResource NotBooleanConverter}" />
+        </MultiBinding>
+      </tweetBlock:TweetProfileImageControl.Visibility>
+    </tweetBlock:TweetProfileImageControl>
 
-      <!--  Verified Badge  -->
+    <WrapPanel
+      Grid.Column="1"
+      VerticalAlignment="Center">
 
-      <InlineUIContainer BaselineAlignment="Center">
-        <Path
-          Margin="0,1,6,0"
-          Data="{StaticResource TwitterVerifiedBadge}"
-          Style="{StaticResource TwitterBadgeStyle}"
-          Visibility="{Binding User.Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
-      </InlineUIContainer>
-    </TextBlock>
+      <TextBlock Tag="{Binding User.ScreenName, Mode=OneWay}">
 
-    <TextBlock>
+        <!--  User Name  -->
 
-      <!--  Screen Name  -->
+        <Run
+          Style="{StaticResource TweetBlockUserNameStyle}"
+          Text="{Binding User.Name, Mode=OneWay}">
+          <Run.InputBindings>
+            <MouseBinding
+              Command="{x:Static commands:ShowUserProfileCommand.Command}"
+              CommandParameter="{Binding User, Mode=OneTime}"
+              Gesture="LeftClick" />
+          </Run.InputBindings>
+        </Run>
 
-      <Run
-        Style="{StaticResource TweetBlockScreenNameStyle}"
-        Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}">
+        <!--  Verified Badge  -->
 
-        <Run.InputBindings>
-          <MouseBinding
-            Command="{x:Static commands:ShowUserProfileCommand.Command}"
-            CommandParameter="{Binding User, Mode=OneTime}"
-            Gesture="LeftClick" />
-        </Run.InputBindings>
-      </Run>
+        <InlineUIContainer BaselineAlignment="Center">
+          <Path
+            Margin="0,1,6,0"
+            Data="{StaticResource TwitterVerifiedBadge}"
+            Style="{StaticResource TwitterBadgeStyle}"
+            Visibility="{Binding User.Verified, Mode=OneTime, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </InlineUIContainer>
+      </TextBlock>
 
-      <!--  Bullet Separator  -->
+      <TextBlock 
+        Width="1000" 
+        Height="0" 
+        Visibility="{Binding DataContext.Settings.AlternateLayout, RelativeSource={RelativeSource AncestorType=views:TimelineView}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+      
+      <TextBlock>
 
-      <Run
-        Style="{StaticResource TweetBlockScreenNameStyle}"
-        Text="•" />
+        <!--  Screen Name  -->
 
-      <!--  Time Ago  -->
+        <Run
+          Style="{StaticResource TweetBlockScreenNameStyle}"
+          Text="{Binding User.ScreenName, Mode=OneWay, StringFormat='@{0}'}">
 
-      <Run
-        Style="{StaticResource TweetBlockTimeAgoStyle}"
-        Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}"
-        ToolTip="{StaticResource open-in-twitter-tooltip}">
-        <Run.InputBindings>
-          <MouseBinding
-            Command="{x:Static commands:OpenLinkCommand.Command}"
-            CommandParameter="{Binding StatusLink, Mode=OneTime}"
-            Gesture="LeftClick" />
-        </Run.InputBindings>
-      </Run>
-    </TextBlock>
-  </WrapPanel>
+          <Run.InputBindings>
+            <MouseBinding
+              Command="{x:Static commands:ShowUserProfileCommand.Command}"
+              CommandParameter="{Binding User, Mode=OneTime}"
+              Gesture="LeftClick" />
+          </Run.InputBindings>
+        </Run>
+
+        <!--  Bullet Separator  -->
+
+        <Run
+          Style="{StaticResource TweetBlockScreenNameStyle}"
+          Text="•" />
+
+        <!--  Time Ago  -->
+
+        <Run
+          Style="{StaticResource TweetBlockTimeAgoStyle}"
+          Text="{Binding CreatedDate, Mode=OneWay, Converter={StaticResource TimeAgoConverter}}"
+          ToolTip="{StaticResource open-in-twitter-tooltip}">
+          <Run.InputBindings>
+            <MouseBinding
+              Command="{x:Static commands:OpenLinkCommand.Command}"
+              CommandParameter="{Binding StatusLink, Mode=OneTime}"
+              Gesture="LeftClick" />
+          </Run.InputBindings>
+        </Run>
+      </TextBlock>
+    </WrapPanel>
+  </Grid>
 </UserControl>

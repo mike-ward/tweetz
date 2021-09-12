@@ -9,6 +9,7 @@ namespace tweetz.core.Interfaces
         bool                      IsAuthenticated       { get; }
         string?                   AccessToken           { get; set; }
         string?                   AccessTokenSecret     { get; set; }
+        bool                      AlternateLayout       { get; set; }
         string?                   ScreenName            { get; set; }
         bool                      HideProfileImages     { get; }
         bool                      HideImages            { get; }

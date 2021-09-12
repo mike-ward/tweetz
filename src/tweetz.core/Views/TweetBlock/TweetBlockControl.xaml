@@ -25,8 +25,15 @@
       Margin="1 5 5 0"
       Cursor="Hand"
       DataContext="{Binding OriginatingStatus.User, Mode=OneWay}"
-      Tag="{Binding ScreenName, Mode=OneWay}"
-      Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineView}, Mode=OneWay, Converter={StaticResource NotBooleanToVisibilityConverter}}" />
+      Tag="{Binding ScreenName, Mode=OneWay}">
+
+      <tweetBlock:TweetProfileImageControl.Visibility>
+        <MultiBinding Converter="{StaticResource ProfileImageLayoutConverter}">
+          <Binding Path="DataContext.Settings.HideProfileImages" RelativeSource="{RelativeSource AncestorType=local:TimelineView}" />
+          <Binding Path="DataContext.Settings.AlternateLayout" RelativeSource="{RelativeSource AncestorType=local:TimelineView}" />
+        </MultiBinding>
+      </tweetBlock:TweetProfileImageControl.Visibility>
+    </tweetBlock:TweetProfileImageControl>
 
     <StackPanel Grid.Column="1">
       <tweetBlock:TweetRetweetedBy DataContext="{Binding Mode=OneWay}" />

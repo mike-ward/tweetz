@@ -22,6 +22,7 @@
   <converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
   <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
   <converters:ProfileLinkConverter x:Key="ProfileLinkConverter" />
+  <converters:ProfileImageLayoutConverter x:Key="ProfileImageLayoutConverter" />
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <services:GrayscaleShaderEffect x:Key="GrayscaleShaderEffect" />

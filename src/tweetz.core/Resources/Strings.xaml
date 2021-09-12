@@ -50,6 +50,7 @@
   <sys:String x:Key="settings-read-error">Error reading settings file</sys:String>
   <sys:String x:Key="settings-continue-defaults">&#xA0;(continuing with default settings)</sys:String>
   <sys:String x:Key="settings-images-as-links">Show images as links</sys:String>
+  <sys:String x:Key="show-alternate-layout">Show alternate layout</sys:String>
 
   <!--  Profile  -->
   <sys:String x:Key="profile-joined">Joined</sys:String>

@@ -36,6 +36,7 @@ namespace tweetz.core.Models
 
         private string?        accessToken;
         private string?        accessTokenSecret;
+        private bool           alternateLayout;
         private string?        screenName;
         private bool           hideProfileImages;
         private bool           hideImages;
@@ -79,6 +80,12 @@ namespace tweetz.core.Models
                 SetProperty(ref accessTokenSecret, value);
                 OnPropertyChanged(nameof(IsAuthenticated));
             }
+        }
+
+        public bool AlternateLayout
+        {
+            get => alternateLayout;
+            set => SetProperty(ref alternateLayout, value);
         }
 
         public string? ScreenName
@@ -239,6 +246,7 @@ namespace tweetz.core.Models
         {
             AccessToken           = settings.AccessToken;
             AccessTokenSecret     = settings.AccessTokenSecret;
+            AlternateLayout       = settings.AlternateLayout;
             ScreenName            = settings.ScreenName;
             HideProfileImages     = settings.HideProfileImages;
             HideImages            = settings.HideImages;

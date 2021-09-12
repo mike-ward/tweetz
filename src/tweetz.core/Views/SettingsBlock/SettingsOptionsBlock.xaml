@@ -42,15 +42,9 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
-    <CheckBox IsChecked="{Binding Settings.AlwaysOnTop}">
+    <CheckBox IsChecked="{Binding Settings.AlternateLayout}">
       <TextBlock
-        Text="{StaticResource always-on-top}"
-        TextWrapping="Wrap" />
-    </CheckBox>
-
-    <CheckBox IsChecked="{Binding SystemState.IsRegisteredInStartup}">
-      <TextBlock
-        Text="{StaticResource run-on-startup}"
+        Text="{StaticResource show-alternate-layout}"
         TextWrapping="Wrap" />
     </CheckBox>
 
@@ -66,12 +60,24 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.AlwaysOnTop}">
+      <TextBlock
+        Text="{StaticResource always-on-top}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding SystemState.IsRegisteredInStartup}">
+      <TextBlock
+        Text="{StaticResource run-on-startup}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.ApplyGrayscaleShader}">
       <TextBlock
         Text="{StaticResource apply-grayscale-shader}"
         TextWrapping="Wrap" />
     </CheckBox>
-    
+
     <CheckBox IsChecked="{Binding Settings.Donated}">
       <TextBlock
         Text="{StaticResource donated}"
