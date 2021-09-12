@@ -55,6 +55,7 @@ namespace tweetz.core.Models
         private string         theme      = "dark";
         private string?        myTweetColor;
         private string?        translateApiKey;
+        private bool           shortLinks;
         private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
@@ -198,6 +199,12 @@ namespace tweetz.core.Models
 
         public ObservableHashSet<string> HiddenImageSet { get; set; } = new();
 
+        public bool ShortLinks
+        {
+            get => shortLinks;
+            set => SetProperty(ref shortLinks, value);
+        }
+
         public WindowPosition MainWindowPosition
         {
             get => mainWindowPosition;
@@ -267,6 +274,7 @@ namespace tweetz.core.Models
             TranslateApiKey       = settings.TranslateApiKey;
             MainWindowPosition    = settings.MainWindowPosition;
             HiddenImageSet        = settings.HiddenImageSet;
+            ShortLinks            = settings.ShortLinks;
 
             void OnHiddenImageSetOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => OnPropertyChanged(nameof(HiddenImageSet));
             HiddenImageSet.CollectionChanged -= OnHiddenImageSetOnCollectionChanged;

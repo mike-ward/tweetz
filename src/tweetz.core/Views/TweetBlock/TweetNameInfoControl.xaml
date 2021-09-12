@@ -62,11 +62,13 @@
         </InlineUIContainer>
       </TextBlock>
 
-      <TextBlock 
-        Width="1000" 
-        Height="0" 
-        Visibility="{Binding DataContext.Settings.AlternateLayout, RelativeSource={RelativeSource AncestorType=views:TimelineView}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+      <!-- Always break screen name and time ago info to new line in alternate layout -->
       
+      <TextBlock
+        Width="1000"
+        Height="0"
+        Visibility="{Binding DataContext.Settings.AlternateLayout, RelativeSource={RelativeSource AncestorType=views:TimelineView}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
       <TextBlock>
 
         <!--  Screen Name  -->

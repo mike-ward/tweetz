@@ -28,6 +28,7 @@ namespace tweetz.core.Interfaces
         string?                   MyTweetColor          { get; set; }
         string?                   TranslateApiKey       { get; set; }
         bool                      Donated               { get; }
+        bool                      ShortLinks            { get; }
         ObservableHashSet<string> HiddenImageSet        { get; }
         WindowPosition            MainWindowPosition    { get; set; }
 

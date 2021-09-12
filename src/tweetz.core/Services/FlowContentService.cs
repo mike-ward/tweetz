@@ -4,9 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using tweetz.core.Commands;
+using tweetz.core.Converters;
+using tweetz.core.Interfaces;
 using tweetz.core.Models;
 using twitter.core.Models;
 
@@ -14,7 +17,7 @@ namespace tweetz.core.Services
 {
     public static class FlowContentService
     {
-        public static IEnumerable<Inline> FlowContentInlines(TwitterStatus twitterStatus)
+        public static IEnumerable<Inline> FlowContentInlines(TwitterStatus twitterStatus, ISettings settings)
         {
             var nodes = FlowContentNodes(twitterStatus);
 
@@ -27,7 +30,7 @@ namespace tweetz.core.Services
                         break;
 
                     case FlowContentNodeType.Url:
-                        yield return Link(text);
+                        yield return Link(text, settings);
                         break;
 
                     case FlowContentNodeType.Mention:
@@ -123,11 +126,23 @@ namespace tweetz.core.Services
             return new Run(ConvertXmlEntities(text));
         }
 
-        private static InlineUIContainer Link(string link)
+        private static readonly ShortLinkOptionConverter LinkOptionConverter = new();
+
+        private static InlineUIContainer Link(string link, ISettings settings)
         {
             const int maxDisplayLength = 150;
 
-            var hyperlink = new Hyperlink(new Run(link)) {
+            var binding = new Binding(nameof(System.Windows.Documents.Run.Text)) {
+                Path               = new PropertyPath(nameof(settings.ShortLinks)),
+                Source             = settings,
+                Converter          = LinkOptionConverter,
+                ConverterParameter = link
+            };
+
+            var run = new Run();
+            run.SetBinding(System.Windows.Documents.Run.TextProperty, binding);
+
+            var hyperlink = new Hyperlink(run) {
                 CommandParameter = link,
                 ToolTip          = link
             };
@@ -167,11 +182,11 @@ namespace tweetz.core.Services
             var run = new Run(ConvertXmlEntities("@" + text)) {
                 Style = GetMentionStyle()
             };
-            
+
             var gesture = new MouseBinding(ShowUserProfileCommand.Command, new MouseGesture(MouseAction.LeftClick)) {
                 CommandParameter = text
             };
-            
+
             run.InputBindings.Add(gesture);
             return run;
         }

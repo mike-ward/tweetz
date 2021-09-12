@@ -48,6 +48,12 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.ShortLinks}">
+      <TextBlock
+        Text="{StaticResource settings-show-short-links}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
       <TextBlock
         Text="{StaticResource show-in-system-tray}"
