@@ -9,7 +9,7 @@ namespace tweetz.core.Services
         public void ShowMessageBox(string message)
         {
             var caption = App.GetString("title");
-            MessageBox.Show(Application.Current.MainWindow!, message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+            Application.Current.Dispatcher.Invoke(() => MessageBox.Show(Application.Current.MainWindow!, message, caption, MessageBoxButton.OK, MessageBoxImage.Information));
         }
 
         public MessageBoxResult ShowMessageBoxYesNo(string message)
