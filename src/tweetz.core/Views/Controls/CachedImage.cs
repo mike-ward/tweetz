@@ -47,20 +47,17 @@ namespace tweetz.core.Views.Controls
             cachedImage.Source = bitmapImage;
         }
 
-        // WPF will obey the image DPI if it has one which usually results
-        // in images being to small. MeasureOverride and ArrangeOverride
-        // seek to correct this by scaling against the display DPI.
+        // WPF will obey the image DPI if it has one but does not adjust the
+        // image size resulting in images being too small. MeasureOverride
+        // and ArrangeOverride account for the embedded DPI when present.
 
         protected override Size MeasureOverride(Size constraint)
         {
-            if (Source is not BitmapImage bitmapImage)
-            {
-                return new Size(0, 0);
-            }
+            if (Source is not BitmapImage bitmapImage) return new Size(0, 0);
 
             var dpiScale    = GetDpiScale(this);
             var scaledSize  = new Size(bitmapImage.PixelWidth / dpiScale.Width, bitmapImage.PixelHeight / dpiScale.Height);
-            var desiredSize = ConstrainWithoutDistorting(scaledSize, constraint);
+            var desiredSize = CalculateDesiredSize(scaledSize, constraint);
 
             if (UseLayoutRounding)
             {
@@ -68,7 +65,7 @@ namespace tweetz.core.Views.Controls
                 desiredSize.Height = Math.Round(desiredSize.Height);
             }
 
-            return double.IsInfinity(desiredSize.Width)
+            return double.IsInfinity(desiredSize.Width) || double.IsInfinity(desiredSize.Height)
                 ? scaledSize
                 : desiredSize;
         }
@@ -90,7 +87,7 @@ namespace tweetz.core.Views.Controls
             return dpiScale;
         }
 
-        private static Size ConstrainWithoutDistorting(Size desiredSize, Size constraint)
+        private static Size CalculateDesiredSize(Size desiredSize, Size constraint)
         {
             var xRatio = constraint.Width / desiredSize.Width;
             var yRatio = constraint.Height / desiredSize.Height;
