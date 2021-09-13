@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using tweetz.core.Interfaces;
+using tweetz.core.Models;
 using twitter.core.Models;
 
 namespace tweetz.core.ViewModels
@@ -10,8 +10,8 @@ namespace tweetz.core.ViewModels
     {
         private readonly ITwitterService twitterService;
 
-        public ISettings                           Settings         { get; }
-        public ObservableCollection<TwitterStatus> StatusCollection { get; } = new();
+        public ISettings                             Settings         { get; }
+        public ObservableCollectionEx<TwitterStatus> StatusCollection { get; } = new();
 
         public UserProfileTimelineViewModel(ITwitterService twitterService, ISettings settings)
         {

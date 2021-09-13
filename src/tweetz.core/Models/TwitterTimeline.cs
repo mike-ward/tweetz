@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -28,8 +26,8 @@ namespace tweetz.core.Models
             set => SetProperty(ref exceptionMessage, value);
         }
 
-        public ObservableCollection<TwitterStatus> StatusCollection        { get; } = new();
-        public ISet<TwitterStatus>                 PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
+        public ObservableCollectionEx<TwitterStatus> StatusCollection        { get; } = new();
+        public ISet<TwitterStatus>                   PendingStatusCollection { get; } = new HashSet<TwitterStatus>();
 
         public bool PendingStatusesAvailable
         {
