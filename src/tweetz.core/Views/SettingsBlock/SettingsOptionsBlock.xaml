@@ -54,15 +54,15 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
-    <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
-      <TextBlock
-        Text="{StaticResource show-in-system-tray}"
-        TextWrapping="Wrap" />
-    </CheckBox>
-
     <CheckBox IsChecked="{Binding Settings.ImagesAsLinks}">
       <TextBlock
         Text="{StaticResource settings-images-as-links}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
+      <TextBlock
+        Text="{StaticResource show-in-system-tray}"
         TextWrapping="Wrap" />
     </CheckBox>
 

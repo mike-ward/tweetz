@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Cache;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace tweetz.core.Views.Controls
@@ -16,7 +17,7 @@ namespace tweetz.core.Views.Controls
                 typeof(Image),
                 new FrameworkPropertyMetadata(typeof(Image)));
         }
-        
+
         public static readonly DependencyProperty ImageUrlProperty =
             DependencyProperty.Register(
                 "ImageUrl",
@@ -44,6 +45,56 @@ namespace tweetz.core.Views.Controls
             bitmapImage.CreateOptions  = BitmapCreateOptions.IgnoreColorProfile;
             bitmapImage.EndInit();
             cachedImage.Source = bitmapImage;
+        }
+
+        // WPF will obey the image DPI if it has one which usually results
+        // in images being to small. MeasureOverride and ArrangeOverride
+        // seek to correct this by scaling against the display DPI.
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            if (Source is not BitmapImage bitmapImage)
+            {
+                return new Size(0, 0);
+            }
+
+            var dpiScale    = GetDpiScale(this);
+            var scaledSize  = new Size(bitmapImage.PixelWidth / dpiScale.Width, bitmapImage.PixelHeight / dpiScale.Height);
+            var desiredSize = ConstrainWithoutDistorting(scaledSize, constraint);
+
+            if (UseLayoutRounding)
+            {
+                desiredSize.Width  = Math.Round(desiredSize.Width);
+                desiredSize.Height = Math.Round(desiredSize.Height);
+            }
+
+            return double.IsInfinity(desiredSize.Width)
+                ? scaledSize
+                : desiredSize;
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            return new Size(Math.Round(DesiredSize.Width), Math.Round(DesiredSize.Height));
+        }
+
+        private static Size GetDpiScale(Visual visual)
+        {
+            var source = PresentationSource.FromVisual(visual);
+
+            var dpiScale = new Size(
+                source.CompositionTarget.TransformToDevice.M11,
+                source.CompositionTarget.TransformToDevice.M22);
+
+            return dpiScale;
+        }
+
+        private static Size ConstrainWithoutDistorting(Size desiredSize, Size constraint)
+        {
+            var xRatio = constraint.Width / desiredSize.Width;
+            var yRatio = constraint.Height / desiredSize.Height;
+            var ratio  = Math.Min(xRatio, yRatio);
+            return new Size(desiredSize.Width * ratio, desiredSize.Height * ratio);
         }
     }
 }

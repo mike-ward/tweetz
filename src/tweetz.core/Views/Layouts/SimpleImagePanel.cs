@@ -11,6 +11,7 @@ namespace tweetz.core.Views.Layouts
     /// </summary>
     internal class SimpleImagePanel : Panel
     {
+        // http://pbs.twimg.com/media/E_HukwdXoAQJACf.jpg
         protected override Size MeasureOverride(Size availableSize)
         {
             switch (Children.Count)
