@@ -81,6 +81,7 @@ namespace tweetz.core.Views.Controls
         private static Size GetDpiScale(Visual visual)
         {
             var source = PresentationSource.FromVisual(visual);
+            if (source?.CompositionTarget is null) return new Size(1, 1);
 
             var dpiScale = new Size(
                 source.CompositionTarget.TransformToDevice.M11,
