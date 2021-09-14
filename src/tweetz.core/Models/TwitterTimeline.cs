@@ -145,11 +145,7 @@ namespace tweetz.core.Models
 
         public void AddPendingToStatusCollection()
         {
-            foreach (var pendingStatus in PendingStatusCollection.OrderBy(o => o.OriginatingStatus.CreatedDate))
-            {
-                StatusCollection.Insert(0, pendingStatus);
-            }
-
+            StatusCollection.InsertRange(PendingStatusCollection.OrderBy(o => o.CreatedDate));
             PendingStatusCollection.Clear();
             PendingStatusesAvailable = false;
         }

@@ -8,10 +8,16 @@ namespace tweetz.core.Services
         public static ValueTask Execute(TwitterTimeline timeline)
         {
             const int maxNumberOfStatuses = 500;
+            var truncated = timeline.StatusCollection.Count > maxNumberOfStatuses;
 
             while (timeline.StatusCollection.Count > maxNumberOfStatuses)
             {
-                timeline.StatusCollection.RemoveAt(timeline.StatusCollection.Count - 1);
+                timeline.StatusCollection.RemoveAtNoNotify(timeline.StatusCollection.Count - 1);
+            }
+
+            if (truncated)
+            {
+                timeline.StatusCollection.NotifyCollectionChanged();
             }
 
             return default;

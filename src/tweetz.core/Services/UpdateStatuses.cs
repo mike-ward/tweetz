@@ -13,7 +13,7 @@ namespace tweetz.core.Services
     {
         public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline)
         {
-            var update = false;
+            var notify = false;
 
             // Build a hashset for faster lookups.
             var statusesNoNags = timeline.StatusCollection.Where(status => status.Id.IsNotEqualTo(DonateNagStatus.DonateNagStatusId));
@@ -39,12 +39,12 @@ namespace tweetz.core.Services
                     else
                     {
                         timeline.StatusCollection.InsertNoNotify(clonedStatus);
-                        update = true;
+                        notify = true;
                     }
                 }
             }
 
-            if (update)
+            if (notify)
             {
                 timeline.StatusCollection.NotifyCollectionChanged();
             }
