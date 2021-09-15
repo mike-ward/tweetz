@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-# 2021.3 - 2021-09-15
+## 2021.3 - 2021-09-15
 
 ### Added
 - Alternate tweet layout<br>
