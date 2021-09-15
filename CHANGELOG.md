@@ -1,7 +1,29 @@
-__zmeta_tags: 
-__zmeta_project: 
 # Changelog
 All notable changes to this project will be documented in this file.
+
+#2021.3 - 2021-09-15
+
+### Added
+- Alternate tweet layout
+  ![Imgur](https://i.imgur.com/QjuJJMr.png)
+- Option to hide specific images (shift-click image)
+- Images as links option
+- Links as \[link\] option
+- Translate API key (ping me on how use)
+- Private setting to change font (no UI, in settings file only)
+
+### Fixed
+- Better image layout
+- Handle images with embedded DPI correctly
+- Observable Collection fires fewer events
+
+### Changed
+- New user profile view
+- New public translation API
+- Shrink profile images by 5 dips
+- Cache images using browser cache settings
+- Dotnet 6, RC1
+- Jab Dependency injection library
 
 ## 2021.2 - 2021-04-10
 
