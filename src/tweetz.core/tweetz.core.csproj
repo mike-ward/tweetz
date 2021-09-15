@@ -39,6 +39,14 @@
     <WarningsAsErrors />
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;WFAC010</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="app.ico" />
     <None Remove="Resources\grayscaleshader.bat" />

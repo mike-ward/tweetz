@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
-using tweetz.core.Models;
+using Jab;
+using tweetz.core.Interfaces;
 using tweetz.core.Services;
 using twitter.core.Models;
 
@@ -17,7 +18,8 @@ namespace tweetz.core.Views.TweetBlock
             if (sender is TextBlock textBlock && DataContext is TwitterStatus twitterStatus)
             {
                 textBlock.Inlines.Clear();
-                textBlock.Inlines.AddRange(FlowContentService.FlowContentInlines(twitterStatus, Settings.SettingsStatic!));
+                var settings = App.ServiceProvider.GetService<ISettings>();
+                textBlock.Inlines.AddRange(FlowContentService.FlowContentInlines(twitterStatus, settings));
             }
         }
     }
