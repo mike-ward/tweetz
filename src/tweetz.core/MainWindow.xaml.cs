@@ -29,6 +29,16 @@ namespace tweetz.core
             base.OnClosing(e);
         }
 
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized && ViewModel.Settings.ShowInSystemTray)
+            {
+                Hide();
+            }
+
+            base.OnStateChanged(e);
+        }
+
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             try
