@@ -4,6 +4,7 @@
   xmlns:sys="clr-namespace:System;assembly=System.Runtime"
   xmlns:core="clr-namespace:tweetz.core">
 
+  <sys:Double x:Key="ImagePanelWidth">300</sys:Double>
   <sys:Double x:Key="ImagePanelHeight">190</sys:Double>
 
   <Style
@@ -22,6 +23,7 @@
     <Setter Property="Stretch" Value="Uniform" />
     <Setter Property="StretchDirection" Value="DownOnly" />
     <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="MaxWidth" Value="{StaticResource ImagePanelWidth}" />
     <Setter Property="MaxHeight" Value="{StaticResource ImagePanelHeight}" />
   </Style>
 
