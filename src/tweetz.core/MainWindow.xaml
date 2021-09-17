@@ -17,6 +17,7 @@
   Topmost="{Binding Settings.AlwaysOnTop, Mode=OneWay}"
   UseLayoutRounding="True"
   WindowStyle="None"
+  TextOptions.TextFormattingMode="{Binding Settings.GdiFontMetrics, Converter={StaticResource TextFormattingModeConverter}}"
   mc:Ignorable="d">
 
   <WindowChrome.WindowChrome>

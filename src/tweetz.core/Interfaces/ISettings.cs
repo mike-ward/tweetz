@@ -29,6 +29,7 @@ namespace tweetz.core.Interfaces
         string?                   TranslateApiKey       { get; set; }
         bool                      Donated               { get; }
         bool                      ShortLinks            { get; }
+        bool                      GdiFontMetrics        { get; }
         ObservableHashSet<string> HiddenImageSet        { get; }
         WindowPosition            MainWindowPosition    { get; set; }
 

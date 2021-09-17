@@ -84,6 +84,12 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.GdiFontMetrics}">
+      <TextBlock
+        Text="{StaticResource settings-gdi-font-metrics}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.Donated}">
       <TextBlock
         Text="{StaticResource donated}"

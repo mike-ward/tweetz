@@ -56,6 +56,7 @@ namespace tweetz.core.Models
         private string?        myTweetColor;
         private string?        translateApiKey;
         private bool           shortLinks;
+        private bool           gdiFontMetrics;
         private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
@@ -205,6 +206,12 @@ namespace tweetz.core.Models
             set => SetProperty(ref shortLinks, value);
         }
 
+        public bool GdiFontMetrics
+        {
+            get => gdiFontMetrics;
+            set => SetProperty(ref gdiFontMetrics, value);
+        }
+
         public WindowPosition MainWindowPosition
         {
             get => mainWindowPosition;
@@ -275,6 +282,7 @@ namespace tweetz.core.Models
             MainWindowPosition    = settings.MainWindowPosition;
             HiddenImageSet        = settings.HiddenImageSet;
             ShortLinks            = settings.ShortLinks;
+            GdiFontMetrics        = settings.GdiFontMetrics;
 
             void OnHiddenImageSetOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => OnPropertyChanged(nameof(HiddenImageSet));
             HiddenImageSet.CollectionChanged -= OnHiddenImageSetOnCollectionChanged;

@@ -24,6 +24,7 @@
   <converters:ProfileLinkConverter x:Key="ProfileLinkConverter" />
   <converters:ProfileImageLayoutConverter x:Key="ProfileImageLayoutConverter" />
   <converters:TextTrimConverter x:Key="TextTrimConverter" />
+  <converters:TextFormattingModeConverter x:Key="TextFormattingModeConverter" />
   <converters:TimeAgoConverter x:Key="TimeAgoConverter" />
   <services:GrayscaleShaderEffect x:Key="GrayscaleShaderEffect" />
 </ResourceDictionary>
