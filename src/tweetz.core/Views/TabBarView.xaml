@@ -118,7 +118,7 @@
             Command="commands:ToggleShowComposeCommand.Command"
             Content="{StaticResource WriteSymbol}"
             FontFamily="{StaticResource SymbolFont}"
-            FontSize="16"
+            FontSize="14"
             Style="{StaticResource TwitterButtonStyle}"
             ToolTip="{StaticResource compose-tweet-tooltip}" />
         </TabItem.Header>
