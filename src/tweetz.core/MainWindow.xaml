@@ -17,7 +17,6 @@
   Topmost="{Binding Settings.AlwaysOnTop, Mode=OneWay}"
   UseLayoutRounding="True"
   WindowStyle="None"
-  TextOptions.TextFormattingMode="Display"
   mc:Ignorable="d">
 
   <WindowChrome.WindowChrome>
