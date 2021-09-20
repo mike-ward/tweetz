@@ -23,11 +23,13 @@ namespace tweetz.core.Commands
 
         private void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            if (ea?.Parameter is string url)
             {
                 try
                 {
-                    OpenUrlService.OpenUrl(url);
+                    if (ea?.Parameter is string url)
+                        OpenUrlService.OpenUrl(url);
+                    else
+                        MessageBoxService.ShowMessageBox(ea?.Parameter as string);
                 }
                 catch (Exception ex)
                 {
