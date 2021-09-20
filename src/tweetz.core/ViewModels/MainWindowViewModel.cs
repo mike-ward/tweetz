@@ -44,21 +44,8 @@ namespace tweetz.core.ViewModels
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToArray());
             window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, delegate { window.Close(); }));
-            
-            FixStartupThemeBug();
         }
 
-        private void FixStartupThemeBug()
-        {
-            // As of Dotnet 6, RC1 there's a startup issue where the
-            // theme always is reset to "dark" by a binding in the
-            // options dialog. Very strange.
-
-            var theme = Settings.Theme;
-            Settings.Theme = "";
-            Settings.Theme = theme;
-        }
-        
         public void OnClosing(Window window)
         {
             SaveSettings(window);

@@ -52,7 +52,7 @@ namespace tweetz.core.Models
         private bool           applyGrayscaleShader;
         private double         fontSize   = 12;
         private string         fontFamily = defaultFontFamily;
-        private string         theme      = "light";
+        private string         theme      = string.Empty;
         private string?        myTweetColor;
         private string?        translateApiKey;
         private bool           shortLinks;
@@ -274,15 +274,17 @@ namespace tweetz.core.Models
             AlwaysOnTop           = settings.alwaysOnTop;
             FontSize              = settings.FontSize;
             FontFamily            = settings.FontFamily;
-            Theme                 = settings.Theme;
-            ApplyGrayscaleShader  = settings.ApplyGrayscaleShader;
-            MyTweetColor          = settings.MyTweetColor;
-            Donated               = settings.Donated;
-            TranslateApiKey       = settings.TranslateApiKey;
-            MainWindowPosition    = settings.MainWindowPosition;
-            HiddenImageSet        = settings.HiddenImageSet;
-            ShortLinks            = settings.ShortLinks;
-            GdiFontMetrics        = settings.GdiFontMetrics;
+            Theme = string.IsNullOrWhiteSpace(settings.Theme)
+                ? "dark"
+                : settings.Theme;
+            ApplyGrayscaleShader = settings.ApplyGrayscaleShader;
+            MyTweetColor         = settings.MyTweetColor;
+            Donated              = settings.Donated;
+            TranslateApiKey      = settings.TranslateApiKey;
+            MainWindowPosition   = settings.MainWindowPosition;
+            HiddenImageSet       = settings.HiddenImageSet;
+            ShortLinks           = settings.ShortLinks;
+            GdiFontMetrics       = settings.GdiFontMetrics;
 
             void OnHiddenImageSetOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => OnPropertyChanged(nameof(HiddenImageSet));
             HiddenImageSet.CollectionChanged -= OnHiddenImageSetOnCollectionChanged;

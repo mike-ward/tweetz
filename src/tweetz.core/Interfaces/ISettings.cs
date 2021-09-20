@@ -23,7 +23,7 @@ namespace tweetz.core.Interfaces
         bool                      AlwaysOnTop           { get; set; }
         double                    FontSize              { get; set; }
         string                    FontFamily            { get; set; }
-        string?                   Theme                 { get; set; }
+        string                    Theme                 { get; set; }
         bool                      ApplyGrayscaleShader  { get; set; }
         string?                   MyTweetColor          { get; set; }
         string?                   TranslateApiKey       { get; set; }
