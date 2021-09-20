@@ -32,10 +32,10 @@
 
           <!--  Image  -->
 
-          <cachedImage:Image
+          <Image
             ImageFailed="Image_ImageFailed"
             RenderOptions.BitmapScalingMode="LowQuality"
-            ImageUrl="{Binding MediaUrl, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
+            Source="{Binding MediaUrl, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
             Style="{StaticResource TweetImageControlImageStyle}"
             Tag="{Binding ElementName=LoadingIndicator, Mode=OneWay}"
             Visibility="{Binding DataContext.Settings.ImagesAsLinks, RelativeSource={RelativeSource AncestorType=core:MainWindow}, Converter={StaticResource NotBooleanToVisibilityConverter}}" />

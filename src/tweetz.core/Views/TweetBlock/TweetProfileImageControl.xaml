@@ -12,13 +12,13 @@
   ToolTipService.ShowDuration="{StaticResource ToolTipDuration}"
   mc:Ignorable="d">
 
-  <cachedImage:Image ImageFailed="Image_ImageFailed" Style="{StaticResource TweetBlockProfileImageStyle}">
+  <Image ImageFailed="Image_ImageFailed" Style="{StaticResource TweetBlockProfileImageStyle}">
 
-    <cachedImage:Image.InputBindings>
+    <Image.InputBindings>
       <MouseBinding
         Command="{x:Static commands:ShowUserProfileCommand.Command}"
         CommandParameter="{Binding ., Mode=OneTime}"
         Gesture="LeftClick" />
-    </cachedImage:Image.InputBindings>
-  </cachedImage:Image>
+    </Image.InputBindings>
+  </Image>
 </UserControl>

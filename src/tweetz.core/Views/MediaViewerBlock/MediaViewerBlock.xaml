@@ -60,11 +60,11 @@
           MediaFailed="MediaElement_MediaFailed"
           MediaOpened="MediaElement_MediaOpened" />
 
-        <cachedImage:Image
+        <Image
           Grid.Row="0"
           x:Name="ImageElement"
           Visibility="Collapsed"
-          ImageUrl="{Binding Uri, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
+          Source="{Binding Uri, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
           Stretch="UniformToFill" />
 
         <local:MediaViewerBlockControls

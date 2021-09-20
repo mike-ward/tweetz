@@ -10,11 +10,11 @@
 
   <Grid Height="{x:Static local:UserProfileBanner.BannerHeight}">
 
-    <cachedImage:Image
+    <Image
       Height="100"
       VerticalAlignment="Top"
       Stretch="UniformToFill"
-      ImageUrl="{Binding ProfileBannerUrlSmall, TargetNullValue={x:Null}}"
+      Source="{Binding ProfileBannerUrlSmall, TargetNullValue={x:Null}}"
       Tag="banner" />
 
     <Border
@@ -27,18 +27,18 @@
       BorderBrush="{DynamicResource StandardBorderBrush}"
       BorderThickness="5">
 
-      <cachedImage:Image
+      <Image
         Width="72"
         Height="72"
         Tag="profile"
-        ImageUrl="{Binding ProfileImageUrlBigger, TargetNullValue={x:Null}}">
-        <cachedImage:Image.Clip>
+        Source="{Binding ProfileImageUrlBigger, TargetNullValue={x:Null}}">
+        <Image.Clip>
           <EllipseGeometry
             Center="36,36"
             RadiusX="36"
             RadiusY="36" />
-        </cachedImage:Image.Clip>
-      </cachedImage:Image>
+        </Image.Clip>
+      </Image>
     </Border>
 
     <StackPanel
