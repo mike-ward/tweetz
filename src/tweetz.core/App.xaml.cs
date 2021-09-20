@@ -30,6 +30,7 @@ namespace tweetz.core
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
             if (!Debugger.IsAttached) AppCenter.Start("14eb5ed2-3dc9-4cb3-8ad5-a630a9d90407", typeof(Analytics), typeof(Crashes));
+            MyHttpClient.Timeout = TimeSpan.FromSeconds(20);
             ServiceProvider.GetService<ISettings>().PropertyChanged += SettingsThemeChanged;
             ServiceProvider.GetService<MainWindow>().Show();
         }
