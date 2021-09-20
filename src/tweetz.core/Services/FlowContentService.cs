@@ -131,8 +131,7 @@ namespace tweetz.core.Services
 
         private static InlineUIContainer Link(string link, ISettings settings)
         {
-            const int maxDisplayLength = 150;
-
+            // Binding determines how links are shown ([link] or http://something...)
             var binding = new Binding(nameof(System.Windows.Documents.Run.Text)) {
                 Path               = new PropertyPath(nameof(settings.ShortLinks)),
                 Source             = settings,
@@ -144,34 +143,15 @@ namespace tweetz.core.Services
             run.SetBinding(System.Windows.Documents.Run.TextProperty, binding);
 
             var hyperlink = new Hyperlink(run) {
-                CommandParameter = link,
-                ToolTip          = link
+                ToolTip          = link,
+                CommandParameter = link
             };
 
-            void OnHyperlinkOnClick(object sender, RoutedEventArgs e)
-            {
-                OpenLinkCommand.Command.Execute(link, target: null);
-            }
-
-            void OnHyperlinkOnLoaded(object sender, RoutedEventArgs e)
-            {
-                hyperlink.Click          += OnHyperlinkOnClick;
-                hyperlink.ToolTipOpening += LongUrlService.HyperlinkToolTipOpeningHandler;
-            }
-
-            void OnHyperlinkOnUnloaded(object sender, RoutedEventArgs e)
-            {
-                hyperlink.Click          -= OnHyperlinkOnClick;
-                hyperlink.ToolTipOpening -= LongUrlService.HyperlinkToolTipOpeningHandler;
-                hyperlink.Loaded         -= OnHyperlinkOnLoaded;
-                hyperlink.Unloaded       -= OnHyperlinkOnUnloaded;
-            }
-
-            hyperlink.Loaded   += OnHyperlinkOnLoaded;
-            hyperlink.Unloaded += OnHyperlinkOnUnloaded;
+            hyperlink.ToolTipOpening += (s, e) => LongUrlService.HyperlinkToolTipOpeningHandler(s, e);
+            hyperlink.InputBindings.Add(new MouseBinding(OpenLinkCommand.Command, new MouseGesture(MouseAction.LeftClick)) { CommandParameter = link });
 
             var textblock = new TextBlock(hyperlink) {
-                MaxWidth     = maxDisplayLength,
+                MaxWidth     = 150,
                 TextTrimming = TextTrimming.CharacterEllipsis
             };
 
@@ -180,14 +160,8 @@ namespace tweetz.core.Services
 
         private static Run Mention(string text)
         {
-            var run = new Run(ConvertXmlEntities("@" + text)) {
-                Style = GetMentionStyle()
-            };
-
-            var gesture = new MouseBinding(ShowUserProfileCommand.Command, new MouseGesture(MouseAction.LeftClick)) {
-                CommandParameter = text
-            };
-
+            var run     = new Run(ConvertXmlEntities("@" + text)) { Style                                                              = GetMentionStyle() };
+            var gesture = new MouseBinding(ShowUserProfileCommand.Command, new MouseGesture(MouseAction.LeftClick)) { CommandParameter = text };
             run.InputBindings.Add(gesture);
             return run;
         }
@@ -203,21 +177,10 @@ namespace tweetz.core.Services
         {
             var tag = "#" + text;
             var hyperlink = new Hyperlink(new Run(tag)) {
+                Command          = SearchCommand.Command,
                 CommandParameter = tag
             };
 
-            void OnHyperlinkOnClick(object sender, RoutedEventArgs e) => SearchCommand.Command.Execute(tag, target: null);
-            void OnHyperlinkOnLoaded(object sender, RoutedEventArgs e) => hyperlink.Click += OnHyperlinkOnClick;
-
-            void OnHyperlinkOnUnloaded(object sender, RoutedEventArgs e)
-            {
-                hyperlink.Click    -= OnHyperlinkOnClick;
-                hyperlink.Loaded   -= OnHyperlinkOnLoaded;
-                hyperlink.Unloaded -= OnHyperlinkOnUnloaded;
-            }
-
-            hyperlink.Loaded   += OnHyperlinkOnLoaded;
-            hyperlink.Unloaded += OnHyperlinkOnUnloaded;
             return hyperlink;
         }
 
