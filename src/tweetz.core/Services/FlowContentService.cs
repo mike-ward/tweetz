@@ -19,7 +19,8 @@ namespace tweetz.core.Services
     {
         public static IEnumerable<Inline> FlowContentInlines(TwitterStatus twitterStatus, ISettings settings)
         {
-            var nodes = FlowContentNodes(twitterStatus);
+            twitterStatus.FlowContent ??= FlowContentNodes(twitterStatus).ToArray();
+            var nodes = ((FlowContentNodeType, string)[])twitterStatus.FlowContent;
 
             foreach (var (flowContentNodeType, text) in nodes)
             {

@@ -122,6 +122,9 @@ namespace twitter.core.Models
         }
 
         [JsonIgnore]
+        public object? FlowContent { get; set; }
+        
+        [JsonIgnore]
         public string? TranslatedText
         {
             get => translatedText;

@@ -8,7 +8,6 @@ namespace tweetz.core.Views.Controls
 {
     public class Image : System.Windows.Controls.Image
     {
-        // Enable IE-like cache policy.
         private static RequestCachePolicy UriCachePolicy { get; } = new(RequestCacheLevel.Default);
 
         static Image()
@@ -36,7 +35,7 @@ namespace tweetz.core.Views.Controls
             var url = e.NewValue as string;
             if (string.IsNullOrWhiteSpace(url)) return;
 
-            var cachedImage = (Image)obj;
+            var image       = (Image)obj;
             var bitmapImage = new BitmapImage();
 
             bitmapImage.BeginInit();
@@ -44,7 +43,7 @@ namespace tweetz.core.Views.Controls
             bitmapImage.UriCachePolicy = UriCachePolicy;
             bitmapImage.CreateOptions  = BitmapCreateOptions.IgnoreColorProfile;
             bitmapImage.EndInit();
-            cachedImage.Source = bitmapImage;
+            image.Source = bitmapImage;
         }
 
         // WPF will obey the image DPI if it has one but does not adjust the
