@@ -23,7 +23,6 @@
     <Separator />
 
     <UniformGrid Columns="3">
-
       <RadioButton
         Content="{StaticResource theme-light}"
         GroupName="t"

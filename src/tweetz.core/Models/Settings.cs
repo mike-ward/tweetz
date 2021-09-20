@@ -52,7 +52,7 @@ namespace tweetz.core.Models
         private bool           applyGrayscaleShader;
         private double         fontSize   = 12;
         private string         fontFamily = defaultFontFamily;
-        private string         theme      = "dark";
+        private string         theme      = "light";
         private string?        myTweetColor;
         private string?        translateApiKey;
         private bool           shortLinks;

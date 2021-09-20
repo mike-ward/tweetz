@@ -38,6 +38,7 @@ namespace tweetz.core
         {
             if (e.PropertyName.IsEqualTo(nameof(Settings.Theme)) && sender is Settings settings)
             {
+                if (string.IsNullOrWhiteSpace(settings.Theme)) return;
                 var uri             = new Uri($"Resources/{settings.Theme}.xaml", UriKind.Relative);
                 var colorDictionary = (ResourceDictionary)LoadComponent(uri);
                 Resources.MergedDictionaries.Add(colorDictionary);
