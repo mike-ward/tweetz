@@ -4,8 +4,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:layouts="clr-namespace:tweetz.core.Views.Layouts"
-  xmlns:core="clr-namespace:tweetz.core"
-  xmlns:cachedImage="clr-namespace:tweetz.core.Views.Controls">
+  xmlns:core="clr-namespace:tweetz.core">
 
   <ItemsControl
     Name="ItemsControl"

@@ -127,15 +127,13 @@ namespace tweetz.core.Services
             return new Run(ConvertXmlEntities(text));
         }
 
-        private static readonly ShortLinkOptionConverter LinkOptionConverter = new();
-
         private static InlineUIContainer Link(string link, ISettings settings)
         {
             // Binding determines how links are shown ([link] or http://something...)
             var binding = new Binding(nameof(System.Windows.Documents.Run.Text)) {
                 Path               = new PropertyPath(nameof(settings.ShortLinks)),
                 Source             = settings,
-                Converter          = LinkOptionConverter,
+                Converter          = new ShortLinkOptionConverter(),
                 ConverterParameter = link
             };
 
