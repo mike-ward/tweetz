@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2021.4 - 2021-09-21
+
+### Added
+- GDI font metric mode option
+
+### Fixed
+- hide minimized window when system tray setting is true #41
+- Fix images not showing at times
+
+### Changed
+- Change http timeout from 100 seconds (default) to 20 seconds
+- Cache flow nodes in twitter status
+- Change how link hit-testing works
+
 ## 2021.3 - 2021-09-15
 
 ### Added
