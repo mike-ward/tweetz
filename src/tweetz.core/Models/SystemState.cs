@@ -29,7 +29,7 @@ namespace tweetz.core.Models
                 using var registryKey = OpenStartupSubKey();
                 if (value)
                 {
-                    var path = $"\"{AppContext.BaseDirectory}\\tweetz.core.exe\"";
+                    var path = $"\"{AppContext.BaseDirectory}tweetz.core.exe\"";
                     registryKey.SetValue(ApplicationName, path);
                 }
                 else
