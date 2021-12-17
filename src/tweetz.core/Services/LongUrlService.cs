@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,13 +53,21 @@ namespace tweetz.core.Services
             return link;
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         public static async void HyperlinkToolTipOpeningHandler(object sender, ToolTipEventArgs args)
         {
-            if (sender is Hyperlink hyperlink)
+            try
             {
-                // Refresh tooltip now to prevent showing old link due to VirtualizingPanel.VirtualizationMode="Recycling"
-                hyperlink.ToolTip = hyperlink.CommandParameter as string ?? string.Empty;
-                hyperlink.ToolTip = await TryGetLongUrlAsync((string)hyperlink.ToolTip).ConfigureAwait(true);
+                if (sender is Hyperlink hyperlink)
+                {
+                    // Refresh tooltip now to prevent showing old link due to VirtualizingPanel.VirtualizationMode="Recycling"
+                    hyperlink.ToolTip = hyperlink.CommandParameter as string ?? string.Empty;
+                    hyperlink.ToolTip = await TryGetLongUrlAsync((string)hyperlink.ToolTip).ConfigureAwait(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                TraceService.Message(ex.Message);
             }
         }
     }

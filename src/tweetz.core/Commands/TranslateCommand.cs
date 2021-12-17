@@ -1,5 +1,7 @@
-﻿using System.Globalization;
-using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Windows.Input;
 using tweetz.core.Interfaces;
 using tweetz.core.Services;
@@ -22,13 +24,21 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            var tweet    = (TwitterStatus)ea.Parameter;
-            var fromLang = tweet.Language ?? "und";
-            var toLang   = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
-            tweet.TranslatedText = App.GetString("translate-text-working");
-            tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, fromLang, toLang, Settings.TranslateApiKey).ConfigureAwait(true);
+            try
+            {
+                var tweet    = (TwitterStatus)ea.Parameter;
+                var fromLang = tweet.Language ?? "und";
+                var toLang   = CultureInfo.InstalledUICulture.TwoLetterISOLanguageName;
+                tweet.TranslatedText = App.GetString("translate-text-working");
+                tweet.TranslatedText = await TranslateService.Translate(tweet.FullText, fromLang, toLang, Settings.TranslateApiKey).ConfigureAwait(true);
+            }
+            catch (Exception ex)
+            {
+                TraceService.Message(ex.Message);
+            }
         }
     }
 }

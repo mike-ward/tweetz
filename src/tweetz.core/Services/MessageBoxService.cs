@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using System.Windows;
 using tweetz.core.Interfaces;
 
@@ -6,6 +7,7 @@ namespace tweetz.core.Services
 {
     public class MessageBoxService : IMessageBoxService
     {
+        [SuppressMessage("Usage", "VSTHRD001", MessageId = "Avoid legacy thread switching APIs")]
         public void ShowMessageBox(string message)
         {
             var caption = App.GetString("title");

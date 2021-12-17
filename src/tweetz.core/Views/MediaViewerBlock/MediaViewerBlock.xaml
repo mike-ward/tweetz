@@ -64,8 +64,8 @@
           Grid.Row="0"
           x:Name="ImageElement"
           Visibility="Collapsed"
-          Source="{Binding Uri, TargetNullValue={x:Null}, FallbackValue={x:Null}}"
-          Stretch="UniformToFill" />
+          Stretch="UniformToFill"
+          Source="{Binding Uri, TargetNullValue={x:Null}, FallbackValue={x:Null}}" />
 
         <local:MediaViewerBlockControls
           x:Name="MediaControls"

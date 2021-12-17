@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using tweetz.core.Interfaces;
 using tweetz.core.ViewModels;
@@ -24,6 +25,7 @@ namespace tweetz.core.Commands
             return new CommandBinding(Command, CommandHandler);
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             try

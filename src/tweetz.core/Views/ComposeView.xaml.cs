@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows.Controls;
+using tweetz.core.Services;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
@@ -11,11 +14,19 @@ namespace tweetz.core.Views
             IsVisibleChanged += OnIsVisibleChangedAsync;
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void OnIsVisibleChangedAsync(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            if (DataContext is ComposeControlViewModel vm)
+            try
             {
-                await vm.GetUserInfoAsync().ConfigureAwait(false);
+                if (DataContext is ComposeControlViewModel vm)
+                {
+                    await vm.GetUserInfoAsync().ConfigureAwait(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                TraceService.Message(ex.Message);
             }
         }
     }

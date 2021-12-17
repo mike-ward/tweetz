@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -7,6 +9,7 @@ using System.Windows.Input;
 using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
+using tweetz.core.Services;
 using tweetz.core.ViewModels;
 using twitter.core.Models;
 
@@ -36,39 +39,47 @@ namespace tweetz.core.Commands
             e.CanExecute = ComposeControlViewModel.CanAddImage();
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
-            const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
-
-            using var ofd = new OpenFileDialog {
-                Filter = filter
-            };
-
-            if (ofd.ShowDialog() == DialogResult.OK)
+            try
             {
-                try
-                {
-                    ComposeControlViewModel.IsUploadingMedia = true;
-                    var mediaInfo = await UploadMediaAsync(ofd.FileName).ConfigureAwait(true);
-                    ComposeControlViewModel.Media.Add(mediaInfo);
-                }
-                catch (WebException ex)
-                {
-                    var stream = ex.Response?.GetResponseStream();
-                    if (stream is null) { return; }
+                const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 
-                    using var reader  = new StreamReader(stream);
-                    var       message = await reader.ReadToEndAsync().ConfigureAwait(false);
-                    await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
-                }
-                catch (Exception ex)
+                using var ofd = new OpenFileDialog {
+                    Filter = filter
+                };
+
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(false);
+                    try
+                    {
+                        ComposeControlViewModel.IsUploadingMedia = true;
+                        var mediaInfo = await UploadMediaAsync(ofd.FileName).ConfigureAwait(true);
+                        ComposeControlViewModel.Media.Add(mediaInfo);
+                    }
+                    catch (WebException ex)
+                    {
+                        var stream = ex.Response?.GetResponseStream();
+                        if (stream is null) { return; }
+
+                        using var reader  = new StreamReader(stream);
+                        var       message = await reader.ReadToEndAsync().ConfigureAwait(false);
+                        await MessageBoxService.ShowMessageBoxAsync(message).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        await MessageBoxService.ShowMessageBoxAsync(ex.Message).ConfigureAwait(false);
+                    }
+                    finally
+                    {
+                        ComposeControlViewModel.IsUploadingMedia = false;
+                    }
                 }
-                finally
-                {
-                    ComposeControlViewModel.IsUploadingMedia = false;
-                }
+            }
+            catch (Exception ex)
+            {
+                TraceService.Message(ex.Message);
             }
         }
 

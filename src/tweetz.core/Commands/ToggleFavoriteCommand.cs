@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
@@ -40,6 +41,7 @@ namespace tweetz.core.Commands
             e.CanExecute = StatusFromParameter(e.Parameter) is not null;
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs args)
         {
             if (inCommand) return;

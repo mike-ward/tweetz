@@ -40,11 +40,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <NoWarn>1701;1702;WFAC010</NoWarn>
+    <NoWarn>1701;1702;WFAC010,VSTHRD200</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <NoWarn>1701;1702;WFAC010</NoWarn>
+    <NoWarn>1701;1702;WFAC010,VSTHRD200</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -61,9 +61,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jab" Version="0.0.2-beta.108" />
+    <PackageReference Include="Jab" Version="0.6.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.64">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

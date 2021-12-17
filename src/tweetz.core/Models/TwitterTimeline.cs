@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -58,12 +59,15 @@ namespace tweetz.core.Models
             IntervalInMinutes = intervalInMinutes;
 
             updateTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(IntervalInMinutes) };
-            // ReSharper disable once AsyncVoidLambda
-            updateTimer.Tick         += async delegate { await UpdateAsync().ConfigureAwait(false); };
+            updateTimer.Tick += delegate
+            {
+                var unused = UpdateAsync();
+            };
             PropertyChanged          += UpdateTooltip;
             Settings.PropertyChanged += OnAuthenticationChanged;
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void OnAuthenticationChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.IsEqualTo(nameof(Settings.IsAuthenticated)))
@@ -150,6 +154,7 @@ namespace tweetz.core.Models
             PendingStatusesAvailable = false;
         }
 
+        [SuppressMessage("Usage", "VSTHRD001", MessageId = "Avoid legacy thread switching APIs")]
         private void UpdateTooltip(object? sender, PropertyChangedEventArgs? e)
         {
             Application.Current.Dispatcher.Invoke(() =>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -44,6 +45,7 @@ namespace tweetz.core.Views
         /// Hocus pocus, try to set the focus when switching tabs so page up/dn, home/end
         /// keyboard shortcuts for scrolling work.
         /// </summary>
+        [SuppressMessage("Usage", "VSTHRD001", MessageId = "Avoid legacy thread switching APIs")]
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var headered = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
@@ -53,7 +55,7 @@ namespace tweetz.core.Views
                 && VisualTreeHelper.GetChildrenCount(itemsControl) > 0
                 && VisualTreeHelper.GetChild(itemsControl, 0) is ScrollViewer scrollViewer)
             {
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => scrollViewer.Focus()));
+                var unused = Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => scrollViewer.Focus()));
             }
         }
 

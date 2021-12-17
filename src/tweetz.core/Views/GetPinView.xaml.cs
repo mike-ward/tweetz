@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,7 @@ namespace tweetz.core.Views
             InitializeComponent();
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void GetPinClickAsync(object sender, RoutedEventArgs e)
         {
             try
@@ -37,6 +39,7 @@ namespace tweetz.core.Views
             }
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void SignInClickAsync(object sender, RoutedEventArgs e)
         {
             try

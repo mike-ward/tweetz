@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -45,6 +46,8 @@ namespace tweetz.core.Commands
                 !ComposeControlViewModel.IsUpdating;
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
+        [SuppressMessage("Usage", "VSTHRD001", MessageId = "Avoid legacy thread switching APIs")]
         private async void CommandHandler(object sender, ExecutedRoutedEventArgs ea)
         {
             try

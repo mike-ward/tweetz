@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows.Threading;
 using tweetz.core.Interfaces;
@@ -26,6 +27,7 @@ namespace tweetz.core.Services
             private set => SetProperty(ref version, value);
         }
 
+        [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
         private async void Check(object? sender, EventArgs e)
         {
             try

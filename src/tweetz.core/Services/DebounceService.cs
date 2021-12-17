@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -7,6 +8,7 @@ namespace tweetz.core.Services
 {
     internal static class DebounceService
     {
+        [SuppressMessage("Usage", "VSTHRD001", MessageId = "Avoid legacy thread switching APIs")]
         public static Action<T> Debounce<T>(this Action<T> func, int milliseconds = 300)
         {
             CancellationTokenSource? cancelTokenSource = null;
@@ -16,7 +18,7 @@ namespace tweetz.core.Services
                 cancelTokenSource?.Cancel();
                 cancelTokenSource = new CancellationTokenSource();
 
-                Task.Delay(milliseconds, cancelTokenSource.Token)
+                var unused = Task.Delay(milliseconds, cancelTokenSource.Token)
                     .ContinueWith(t =>
                     {
                         if (t.IsCompletedSuccessfully)
