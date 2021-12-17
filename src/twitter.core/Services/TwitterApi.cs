@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using twitter.core.Models;
@@ -6,6 +7,7 @@ using twitter.core.Models;
 namespace twitter.core.Services
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded")]
+    [SuppressMessage("Style", "VSTHRD200", MessageId = "Use \"Async\" suffix for async methods")]
     public class TwitterApi
     {
         private          string          ConsumerKey    { get; }

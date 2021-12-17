@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -123,7 +124,7 @@ namespace twitter.core.Models
 
         [JsonIgnore]
         public object? FlowContent { get; set; }
-        
+
         [JsonIgnore]
         public string? TranslatedText
         {
@@ -137,13 +138,14 @@ namespace twitter.core.Models
         private int checkedRelatedInfo; // Interlocked.CompareExchange() does not support bool
 
         [JsonIgnore]
+        [SuppressMessage("Usage", "VSTHRD105", MessageId = "Avoid method overloads that assume TaskScheduler.Current")]
         public RelatedLinkInfo? RelatedLinkInfo
         {
             get
             {
                 if (Interlocked.CompareExchange(ref checkedRelatedInfo, value: 1, comparand: 0) == 0)
                 {
-                    Task.Factory.StartNew(async () => RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false));
+                    var unused = Task.Factory.StartNew(async () => RelatedLinkInfo = await RelatedLinkInfo.GetRelatedLinkInfoAsync(this).ConfigureAwait(false));
                 }
 
                 return relatedLinkInfo;
