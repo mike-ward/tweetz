@@ -36,6 +36,12 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.HideRetweets}">
+      <TextBlock
+        Text="{StaticResource hide-retweets}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.HidePossiblySensitive}">
       <TextBlock
         Text="{StaticResource hide-possibly-sensitive}"

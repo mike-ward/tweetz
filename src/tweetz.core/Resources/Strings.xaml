@@ -28,6 +28,7 @@
   <sys:String x:Key="hide-screen-name">Hide screen name in title bar</sys:String>
   <sys:String x:Key="hide-possibly-sensitive">Hide tweets marked sensitive</sys:String>
   <sys:String x:Key="hide-translate-link">Hide translate link</sys:String>
+  <sys:String x:Key="hide-retweets">Hide retweets</sys:String>
   <sys:String x:Key="run-on-startup">Run on startup</sys:String>
   <sys:String x:Key="font-size-title">Font size</sys:String>
   <sys:String x:Key="theme-title">Theme</sys:String>

@@ -7,6 +7,7 @@
   xmlns:commands="clr-namespace:tweetz.core.Commands"
   xmlns:local="clr-namespace:tweetz.core.Views"
   xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
+  Style="{StaticResource TweetBlockVisiblityStyle}"
   d:DesignHeight="200"
   d:DesignWidth="300"
   mc:Ignorable="d">

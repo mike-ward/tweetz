@@ -2,8 +2,19 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="clr-namespace:tweetz.core.Views"
-  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock"
-  xmlns:cachedImage="clr-namespace:tweetz.core.Views.Controls">
+  xmlns:tweetBlock="clr-namespace:tweetz.core.Views.TweetBlock">
+
+  <Style x:Key="TweetBlockVisiblityStyle" TargetType="UserControl">
+    <Style.Triggers>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding IsRetweet, Mode=OneWay}" Value="True" />
+          <Condition Binding="{Binding DataContext.Settings.HideRetweets, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Visibility" Value="Collapsed" />
+      </MultiDataTrigger>
+    </Style.Triggers>
+  </Style>
 
   <Style x:Key="TweetBlockIsSensitiveCollapsedStyle" TargetType="StackPanel">
     <Style.Triggers>
