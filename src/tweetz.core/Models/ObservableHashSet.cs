@@ -1,16 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Runtime.Serialization;
 
 namespace tweetz.core.Models
 {
+    [Serializable]
     public class ObservableHashSet<T> : HashSet<T>, INotifyCollectionChanged
     {
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
+        public ObservableHashSet() { }
+
+        protected ObservableHashSet(SerializationInfo info, StreamingContext context)
+            : base(info, context) { }
+
         public new bool Add(T item)
         {
             var added = base.Add(item);
-            
+
             if (added)
             {
                 var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new List<T> { item });

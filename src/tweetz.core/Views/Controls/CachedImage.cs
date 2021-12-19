@@ -69,7 +69,7 @@ namespace tweetz.core.Views.Controls
                 : desiredSize;
         }
 
-        protected override Size ArrangeOverride(Size finalSize)
+        protected override Size ArrangeOverride(Size arrangeSize)
         {
             return new Size(Math.Round(DesiredSize.Width), Math.Round(DesiredSize.Height));
         }

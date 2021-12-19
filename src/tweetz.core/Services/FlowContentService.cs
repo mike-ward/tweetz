@@ -131,7 +131,7 @@ namespace tweetz.core.Services
         {
             // Binding determines how links are shown ([link] or http://something...)
             var binding = new Binding(nameof(System.Windows.Documents.Run.Text)) {
-                Path               = new PropertyPath(nameof(settings.ShortLinks)),
+                Path               = new PropertyPath(nameof(settings.ShortLinks), Array.Empty<object>()),
                 Source             = settings,
                 Converter          = new ShortLinkOptionConverter(),
                 ConverterParameter = link
