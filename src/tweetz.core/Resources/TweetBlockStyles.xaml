@@ -13,6 +13,13 @@
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Collapsed" />
       </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding HasMedia, Mode=OneWay}" Value="False" />
+          <Condition Binding="{Binding DataContext.Settings.HideNoMediaTweets, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Visibility" Value="Collapsed" />
+      </MultiDataTrigger>
     </Style.Triggers>
   </Style>
 

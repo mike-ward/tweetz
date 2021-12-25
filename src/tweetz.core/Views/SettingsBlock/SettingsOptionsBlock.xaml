@@ -42,6 +42,12 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.HideNoMediaTweets}">
+      <TextBlock
+        Text="{StaticResource hide-no-media-tweets}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.HidePossiblySensitive}">
       <TextBlock
         Text="{StaticResource hide-possibly-sensitive}"

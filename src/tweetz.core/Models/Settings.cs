@@ -46,6 +46,7 @@ namespace tweetz.core.Models
         private bool           hidePossiblySensitive;
         private bool           hideTranslate;
         private bool           hideRetweets;
+        private bool           hideNoMediaTweets;
         private bool           donated;
         private bool           spellCheck;
         private bool           showInSystemTray;
@@ -143,6 +144,12 @@ namespace tweetz.core.Models
         {
             get => hideRetweets;
             set => SetProperty(ref hideRetweets, value);
+        }
+
+        public bool HideNoMediaTweets
+        {
+            get => hideNoMediaTweets;
+            set => SetProperty(ref hideNoMediaTweets, value);
         }
 
         public bool SpellCheck
@@ -277,6 +284,7 @@ namespace tweetz.core.Models
             HidePossiblySensitive = settings.HidePossiblySensitive;
             HideTranslate         = settings.HideTranslate;
             HideRetweets          = settings.HideRetweets;
+            HideNoMediaTweets     = settings.hideNoMediaTweets;
             SpellCheck            = settings.SpellCheck;
             ShowInSystemTray      = settings.showInSystemTray;
             AlwaysOnTop           = settings.alwaysOnTop;

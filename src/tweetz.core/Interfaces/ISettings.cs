@@ -19,6 +19,7 @@ namespace tweetz.core.Interfaces
         bool                      HidePossiblySensitive { get; }
         bool                      HideTranslate         { get; }
         bool                      HideRetweets          { get; set; }
+        bool                      HideNoMediaTweets     { get; set; }
         bool                      SpellCheck            { get; set; }
         bool                      ShowInSystemTray      { get; set; }
         bool                      AlwaysOnTop           { get; set; }

@@ -60,6 +60,8 @@ namespace twitter.core.Models
         }
 
         public bool IsRetweet => RetweetedStatus is not null;
+        
+        public bool HasMedia => OriginatingStatus.ExtendedEntities is not null && OriginatingStatus.ExtendedEntities.HasMedia;
 
         [JsonPropertyName("retweeted_status")]
         public TwitterStatus? RetweetedStatus { get; set; }
