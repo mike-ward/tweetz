@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022.1 - 2022-01-01
+
+### Added
+- Add options to hide retweets and tweets with no media #100
+
+### Changed
+- Update runtime to .NET 6.0
+
 ## 2021.4 - 2021-09-21
 
 ### Added

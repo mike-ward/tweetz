@@ -2,7 +2,7 @@
 {
     public static class VersionInfo
     {
-        public static string Version   => "v2021.4";
-        public static string Copyright => "Copyright 2021, Mike Ward";
+        public static string Version   => "v2022.1";
+        public static string Copyright => "Copyright 2022, Mike Ward";
     }
 }
