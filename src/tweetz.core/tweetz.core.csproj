@@ -4,7 +4,7 @@
     <AnalysisLevel>latest</AnalysisLevel>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Copyright>Copyright 2021, Mike Ward</Copyright>
+    <Copyright>Copyright 2022, Mike Ward</Copyright>
     <Description>A gadget-like desktop twitter client.</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Nullable>Enable</Nullable>
@@ -22,9 +22,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyVersion>2022.1</AssemblyVersion>
-    <FileVersion>2022.1</FileVersion>
-    <Version>2022.1</Version>    
+    <AssemblyVersion>2022.2</AssemblyVersion>
+    <FileVersion>2022.2</FileVersion>
+    <Version>2022.2</Version>    
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">

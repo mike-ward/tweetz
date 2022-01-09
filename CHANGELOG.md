@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022.2 - 2022-01-09
+
+### Added
+- Add option to hide close button in title bar #104
+
 ## 2022.1 - 2022-01-01
 
 ### Added
