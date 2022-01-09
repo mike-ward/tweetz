@@ -65,7 +65,8 @@
         MouseDown="Close"
         Text="&#x2573;"
         TextAlignment="Center"
-        ToolTip="{StaticResource close-tooltip}">
+        ToolTip="{StaticResource close-tooltip}"
+        Visibility="{Binding Settings.HideCloseButton, Converter={StaticResource NotBooleanToVisibilityConverter}}">
         <TextBlock.Style>
           <Style>
             <Style.Triggers>

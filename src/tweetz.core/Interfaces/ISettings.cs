@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using tweetz.core.Models;
 
 namespace tweetz.core.Interfaces
@@ -20,6 +19,7 @@ namespace tweetz.core.Interfaces
         bool                      HideTranslate         { get; }
         bool                      HideRetweets          { get; set; }
         bool                      HideNoMediaTweets     { get; set; }
+        bool                      HideCloseButton       { get; set; }
         bool                      SpellCheck            { get; set; }
         bool                      ShowInSystemTray      { get; set; }
         bool                      AlwaysOnTop           { get; set; }

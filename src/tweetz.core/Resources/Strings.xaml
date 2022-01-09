@@ -30,6 +30,7 @@
   <sys:String x:Key="hide-translate-link">Hide translate link</sys:String>
   <sys:String x:Key="hide-retweets">Hide retweets</sys:String>
   <sys:String x:Key="hide-no-media-tweets">Hide tweets with no media</sys:String>
+  <sys:String x:Key="hide-close-button">Hide close button</sys:String>
   <sys:String x:Key="run-on-startup">Run on startup</sys:String>
   <sys:String x:Key="font-size-title">Font size</sys:String>
   <sys:String x:Key="theme-title">Theme</sys:String>

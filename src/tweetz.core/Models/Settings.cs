@@ -47,6 +47,7 @@ namespace tweetz.core.Models
         private bool           hideTranslate;
         private bool           hideRetweets;
         private bool           hideNoMediaTweets;
+        private bool           hideCloseButton;
         private bool           donated;
         private bool           spellCheck;
         private bool           showInSystemTray;
@@ -150,6 +151,12 @@ namespace tweetz.core.Models
         {
             get => hideNoMediaTweets;
             set => SetProperty(ref hideNoMediaTweets, value);
+        }
+
+        public bool HideCloseButton
+        {
+            get => hideCloseButton;
+            set => SetProperty(ref hideCloseButton, value);
         }
 
         public bool SpellCheck
@@ -285,6 +292,7 @@ namespace tweetz.core.Models
             HideTranslate         = settings.HideTranslate;
             HideRetweets          = settings.HideRetweets;
             HideNoMediaTweets     = settings.hideNoMediaTweets;
+            HideCloseButton       = settings.hideCloseButton;
             SpellCheck            = settings.SpellCheck;
             ShowInSystemTray      = settings.showInSystemTray;
             AlwaysOnTop           = settings.alwaysOnTop;
