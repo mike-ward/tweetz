@@ -35,18 +35,21 @@ namespace tweetz.core.Services
         private void OnClick(object? _, EventArgs __)
         {
             // Bring window to front
-            var window = (Window)NotifyIcon.Tag;
-            window.WindowState = WindowState.Minimized;
-            window.Show();
-            window.WindowState = WindowState.Normal;
+            var window = NotifyIcon.Tag as Window;
+            if (window is not null)
+            {
+                window.WindowState = WindowState.Minimized;
+                window.Show();
+                window.WindowState = WindowState.Normal;
+            }
         }
 
         private void UpdateVisibility(object? _, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.IsEqualTo(nameof(Settings.ShowInSystemTray)))
             {
-                var window = (Window)NotifyIcon.Tag;
-                ShowInSystemTray(window);
+                var window = NotifyIcon.Tag as Window;
+                if (window is not null) ShowInSystemTray(window);
             }
         }
 

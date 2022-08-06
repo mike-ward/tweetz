@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Jab;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views

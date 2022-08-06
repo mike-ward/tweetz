@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using Jab;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core

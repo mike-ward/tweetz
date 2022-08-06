@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Jab;
 using tweetz.core.Interfaces;
 using tweetz.core.Services;
 using twitter.core.Models;
