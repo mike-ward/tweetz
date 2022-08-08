@@ -30,11 +30,19 @@
 
       <tweetBlock:TweetProfileImageControl.Visibility>
         <MultiBinding Converter="{StaticResource ProfileImageLayoutConverter}">
-          <Binding Path="DataContext.Settings.HideProfileImages" RelativeSource="{RelativeSource AncestorType=local:TimelineView}" />
-          <Binding Path="DataContext.Settings.AlternateLayout" RelativeSource="{RelativeSource AncestorType=local:TimelineView}" />
+          <Binding Path="DataContext.Settings.HideProfileImages"
+                   RelativeSource="{RelativeSource AncestorType=local:TimelineView}" />
+          <Binding Path="DataContext.Settings.AlternateLayout"
+                   RelativeSource="{RelativeSource AncestorType=local:TimelineView}" />
         </MultiBinding>
       </tweetBlock:TweetProfileImageControl.Visibility>
     </tweetBlock:TweetProfileImageControl>
+
+    <TextBlock
+      Grid.Column="0"
+      Text="⯈"
+      Foreground="CornflowerBlue"
+      Visibility="{Binding DataContext.Settings.HideProfileImages, RelativeSource={RelativeSource AncestorType=local:TimelineView}, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
     <StackPanel Grid.Column="1">
       <tweetBlock:TweetRetweetedBy DataContext="{Binding Mode=OneWay}" />
@@ -77,10 +85,6 @@
           Click="UnblockButtonClick"
           Content="{StaticResource show-possibly-sensitive}" />
       </StackPanel>
-
-      <Separator
-        Style="{StaticResource TweetBlockSeparator}"
-        Visibility="{Binding DataContext.Settings.HideProfileImages, Mode=OneWay, RelativeSource={RelativeSource AncestorType=local:TimelineView}, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </StackPanel>
   </Grid>
 

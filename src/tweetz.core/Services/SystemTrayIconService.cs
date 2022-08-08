@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using tweetz.core.Extensions;
@@ -24,8 +26,8 @@ namespace tweetz.core.Services
             NotifyIcon.Tag  = window;
             NotifyIcon.Text = App.GetString("title");
 
-            var path = System.Reflection.Assembly.GetEntryAssembly()!.ManifestModule.FullyQualifiedName;
-            NotifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(path);
+            var path = Assembly.GetEntryAssembly()!.ManifestModule.FullyQualifiedName;
+            NotifyIcon.Icon = Icon.ExtractAssociatedIcon(path);
 
             ShowInSystemTray(window);
             NotifyIcon.Click         += OnClick;
@@ -35,8 +37,7 @@ namespace tweetz.core.Services
         private void OnClick(object? _, EventArgs __)
         {
             // Bring window to front
-            var window = NotifyIcon.Tag as Window;
-            if (window is not null)
+            if (NotifyIcon.Tag is Window window)
             {
                 window.WindowState = WindowState.Minimized;
                 window.Show();
@@ -46,16 +47,16 @@ namespace tweetz.core.Services
 
         private void UpdateVisibility(object? _, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.IsEqualTo(nameof(Settings.ShowInSystemTray)))
+            if (e.PropertyName.IsEqualTo(nameof(Settings.ShowInSystemTray))
+             && NotifyIcon.Tag is Window window)
             {
-                var window = NotifyIcon.Tag as Window;
-                if (window is not null) ShowInSystemTray(window);
+                ShowInSystemTray(window);
             }
         }
 
         public void Close()
         {
-            if (!disposed)
+            if (disposed is true)
             {
                 disposed                 =  true;
                 NotifyIcon.Tag           =  null;
