@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
+using Application = System.Windows.Application;
 
 namespace tweetz.core.Services
 {
@@ -26,8 +26,8 @@ namespace tweetz.core.Services
             NotifyIcon.Tag  = window;
             NotifyIcon.Text = App.GetString("title");
 
-            var path = Assembly.GetEntryAssembly()!.ManifestModule.FullyQualifiedName;
-            NotifyIcon.Icon = Icon.ExtractAssociatedIcon(path);
+            using var stream = Application.GetResourceStream(new Uri("pack://application:,,,/app.ico"))!.Stream;
+            NotifyIcon.Icon = new Icon(stream);
 
             ShowInSystemTray(window);
             NotifyIcon.Click         += OnClick;

@@ -53,7 +53,7 @@ namespace tweetz.core.Models
         private bool           showInSystemTray;
         private bool           alwaysOnTop;
         private bool           applyGrayscaleShader;
-        private double         fontSize   = 12;
+        private double         fontSize   = 14;
         private string         fontFamily = defaultFontFamily;
         private string         theme      = string.Empty;
         private string?        myTweetColor;
