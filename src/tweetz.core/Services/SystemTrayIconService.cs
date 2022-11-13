@@ -12,8 +12,10 @@ namespace tweetz.core.Services
     public class SystemTrayIconService : ISystemTrayIconService
     {
         private bool       disposed;
-        private ISettings  Settings   { get; }
-        private NotifyIcon NotifyIcon { get; }
+        private ISettings  Settings      { get; }
+        private NotifyIcon NotifyIcon    { get; }
+        private Icon?      NormalIcon    { get; set; }
+        private Icon?      NewTweetsIcon { get; set; }
 
         public SystemTrayIconService(ISettings settings)
         {
@@ -26,12 +28,24 @@ namespace tweetz.core.Services
             NotifyIcon.Tag  = window;
             NotifyIcon.Text = App.GetString("title");
 
-            using var stream = Application.GetResourceStream(new Uri("pack://application:,,,/app.ico"))!.Stream;
-            NotifyIcon.Icon = new Icon(stream);
+            using var stream1 = Application.GetResourceStream(new Uri("pack://application:,,,/app.ico"))!.Stream;
+            NormalIcon      = new Icon(stream1);
+            NotifyIcon.Icon = NormalIcon;
+
+            using var stream2 = Application.GetResourceStream(new Uri("pack://application:,,,/app-pending.ico"))!.Stream;
+            NewTweetsIcon = new Icon(stream2);
 
             ShowInSystemTray(window);
             NotifyIcon.Click         += OnClick;
             Settings.PropertyChanged += UpdateVisibility;
+
+            window.StateChanged += delegate
+            {
+                if (window.WindowState != WindowState.Minimized)
+                {
+                    UpdateIcon();
+                }
+            };
         }
 
         private void OnClick(object? _, EventArgs __)
@@ -71,6 +85,13 @@ namespace tweetz.core.Services
         {
             window.ShowInTaskbar = !Settings.ShowInSystemTray;
             NotifyIcon.Visible   = Settings.ShowInSystemTray;
+        }
+
+        public void UpdateIcon(bool newTweetsAvailable = false)
+        {
+            NotifyIcon.Icon = newTweetsAvailable
+                ? NewTweetsIcon
+                : NormalIcon;
         }
     }
 }

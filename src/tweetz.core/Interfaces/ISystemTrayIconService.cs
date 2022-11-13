@@ -5,7 +5,7 @@ namespace tweetz.core.Interfaces
     public interface ISystemTrayIconService
     {
         void Close();
-
         void Initialize(Window window);
+        void UpdateIcon(bool   newTweetsAvailable);
     }
 }

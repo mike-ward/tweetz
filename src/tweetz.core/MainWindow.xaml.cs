@@ -1,13 +1,19 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using tweetz.core.ViewModels;
+using tweetz.core.Extensions;
 
 namespace tweetz.core
 {
     public partial class MainWindow : Window
     {
+        private ImageSource? NewTweetsIcon { get; set; }
+        private ImageSource? NormalIcon    { get; set; }
+
         public MainWindow()
         {
             DataContext = App.ServiceProvider.GetService<MainWindowViewModel>();
@@ -18,6 +24,12 @@ namespace tweetz.core
 
         protected override void OnSourceInitialized(EventArgs e)
         {
+            using var stream1 = Application.GetResourceStream(new Uri("pack://application:,,,/app.ico"))!.Stream;
+            NormalIcon = new Icon(stream1).ToImageSource();
+
+            using var stream2 = Application.GetResourceStream(new Uri("pack://application:,,,/app-pending.ico"))!.Stream;
+            NewTweetsIcon = new Icon(stream2).ToImageSource();
+
             ViewModel.Initialize(this);
             base.OnSourceInitialized(e);
         }
@@ -33,6 +45,11 @@ namespace tweetz.core
             if (WindowState == WindowState.Minimized && ViewModel.Settings.ShowInSystemTray)
             {
                 Hide();
+            }
+
+            if (WindowState != WindowState.Minimized)
+            {
+                UpdateAppIcon();
             }
 
             base.OnStateChanged(e);
@@ -56,6 +73,13 @@ namespace tweetz.core
             }
 
             base.OnMouseLeftButtonDown(e);
+        }
+
+        public void UpdateAppIcon(bool newTweetsAvailable = false)
+        {
+            Icon = newTweetsAvailable
+                ? NewTweetsIcon
+                : NormalIcon;
         }
     }
 }
