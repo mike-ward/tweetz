@@ -60,6 +60,8 @@
     <Resource Include="Resources\profile.png" />
     <None Remove="app-pending.ico" />
     <Resource Include="app-pending.ico" />
+    <None Remove="green-dot.ico" />
+    <Resource Include="green-dot.ico" />
   </ItemGroup>
 
   <ItemGroup>

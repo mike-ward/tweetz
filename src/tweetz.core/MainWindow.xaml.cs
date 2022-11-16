@@ -4,15 +4,16 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using tweetz.core.ViewModels;
+using System.Windows.Shell;
 using tweetz.core.Extensions;
+using tweetz.core.Services;
+using tweetz.core.ViewModels;
 
 namespace tweetz.core
 {
     public partial class MainWindow : Window
     {
         private ImageSource? NewTweetsIcon { get; set; }
-        private ImageSource? NormalIcon    { get; set; }
 
         public MainWindow()
         {
@@ -24,10 +25,7 @@ namespace tweetz.core
 
         protected override void OnSourceInitialized(EventArgs e)
         {
-            using var stream1 = Application.GetResourceStream(new Uri("pack://application:,,,/app.ico"))!.Stream;
-            NormalIcon = new Icon(stream1).ToImageSource();
-
-            using var stream2 = Application.GetResourceStream(new Uri("pack://application:,,,/app-pending.ico"))!.Stream;
+            using var stream2 = Application.GetResourceStream(new Uri("pack://application:,,,/green-dot.ico"))!.Stream;
             NewTweetsIcon = new Icon(stream2).ToImageSource();
 
             ViewModel.Initialize(this);
@@ -77,9 +75,13 @@ namespace tweetz.core
 
         public void UpdateAppIcon(bool newTweetsAvailable = false)
         {
-            Icon = newTweetsAvailable
+            TraceService.Message($"UpdateAppIcon({newTweetsAvailable})");
+
+            TaskbarItemInfo ??= new TaskbarItemInfo();
+            
+            TaskbarItemInfo.Overlay = newTweetsAvailable
                 ? NewTweetsIcon
-                : NormalIcon;
+                : null;
         }
     }
 }
