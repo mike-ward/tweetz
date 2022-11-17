@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
-using tweetz.core.Services;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
 {
     public partial class TimelineView : UserControl
     {
+        private ISettings              Settings              { get; }
         private ISystemTrayIconService SystemTrayIconService { get; }
 
         private static readonly ThicknessAnimation SlideDownAnimation =
@@ -22,6 +23,7 @@ namespace tweetz.core.Views
         public TimelineView()
         {
             InitializeComponent();
+            Settings              =  App.ServiceProvider.GetService<ISettings>();
             SystemTrayIconService =  App.ServiceProvider.GetService<ISystemTrayIconService>();
             Loaded                += TimelineControl_Loaded;
         }
@@ -40,6 +42,11 @@ namespace tweetz.core.Views
                     var isMinimized = Application.Current.MainWindow?.WindowState == WindowState.Minimized;
                     SystemTrayIconService.UpdateIcon(isMinimized);
                     ((MainWindow)Application.Current.MainWindow!)?.UpdateAppIcon(isMinimized);
+
+                    if (Settings.PlayNotifySound)
+                    {
+                        SystemSounds.Asterisk.Play();
+                    }
                 };
             }
         }

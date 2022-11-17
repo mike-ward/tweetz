@@ -108,6 +108,13 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
+    <CheckBox IsChecked="{Binding Settings.PlayNotifySound}">
+      <TextBlock
+        ToolTip="{StaticResource settings-tooltip-play-notify-sound}"
+        Text="{StaticResource settings-play-notify-sound}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
     <CheckBox IsChecked="{Binding Settings.Donated}">
       <TextBlock
         Text="{StaticResource donated}"

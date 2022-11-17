@@ -60,6 +60,7 @@ namespace tweetz.core.Models
         private string?        translateApiKey;
         private bool           shortLinks;
         private bool           gdiFontMetrics;
+        private bool           playNotifySound;
         private WindowPosition mainWindowPosition = new() { Left = 10, Top = 10, Width = 350, Height = 900 };
 
         [JsonIgnore]
@@ -233,6 +234,12 @@ namespace tweetz.core.Models
             set => SetProperty(ref gdiFontMetrics, value);
         }
 
+        public bool PlayNotifySound
+        {
+            get => playNotifySound;
+            set => SetProperty(ref playNotifySound, value);
+        }
+
         public WindowPosition MainWindowPosition
         {
             get => mainWindowPosition;
@@ -309,6 +316,7 @@ namespace tweetz.core.Models
             HiddenImageSet       = settings.HiddenImageSet;
             ShortLinks           = settings.ShortLinks;
             GdiFontMetrics       = settings.GdiFontMetrics;
+            PlayNotifySound      = settings.playNotifySound;
 
             void OnHiddenImageSetOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => OnPropertyChanged(nameof(HiddenImageSet));
             HiddenImageSet.CollectionChanged -= OnHiddenImageSetOnCollectionChanged;

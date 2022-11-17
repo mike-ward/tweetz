@@ -32,6 +32,7 @@ namespace tweetz.core.Interfaces
         bool                      Donated               { get; }
         bool                      ShortLinks            { get; }
         bool                      GdiFontMetrics        { get; }
+        bool                      PlayNotifySound       { get; set; }
         ObservableHashSet<string> HiddenImageSet        { get; }
         WindowPosition            MainWindowPosition    { get; set; }
 
