@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using tweetz.core.Extensions;
+using tweetz.core.Services;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views.MediaViewerBlock
@@ -39,7 +39,7 @@ namespace tweetz.core.Views.MediaViewerBlock
             LoadingIndicator.Visibility = Visibility.Collapsed;
 
             var uri = ((MediaViewerBlockViewModel)DataContext).Uri;
-            if (Services.ImageViewerService.IsMp4(uri?.ToString()))
+            if (ImageViewerService.IsMp4(uri?.ToString()))
             {
                 MediaElement.Source         = uri;
                 LoadingIndicator.Visibility = Visibility.Visible;
@@ -98,13 +98,27 @@ namespace tweetz.core.Views.MediaViewerBlock
             }
 
             ImageElement.Visibility = Visibility.Collapsed;
+            ImageElement.Width      = double.NaN;
+            ImageElement.Height     = double.NaN;
         }
 
         private void Popup_OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            MediaElement.Volume = e.Delta > 0
-                ? Math.Min(MediaElement.Volume + 0.1, 1.0)
-                : Math.Max(MediaElement.Volume - 0.1, 0.0);
+            if (MediaElement.Source is not null)
+            {
+                MediaElement.Volume = e.Delta > 0
+                    ? Math.Min(MediaElement.Volume + 0.1, 1.0)
+                    : Math.Max(MediaElement.Volume - 0.1, 0.0);
+            }
+            else
+            {
+                var delta = e.Delta > 0
+                    ? 50
+                    : -50;
+
+                ImageElement.Width = ImageElement.ActualWidth;
+                ImageElement.Width = Math.Max(0, ImageElement.Width + delta);
+            }
         }
     }
 }
