@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
+using tweetz.core.Services;
 using tweetz.core.ViewModels;
 
 namespace tweetz.core.Views
@@ -34,20 +35,48 @@ namespace tweetz.core.Views
             {
                 vm.StatusCollection.CollectionChanged += delegate
                 {
-                    if (!vm.IsScrolled)
+                    AnimateScroll(vm);
+                    UpdateAppIcon();
+                    PlayNotifySound();
+                };
+            }
+        }
+
+        private void AnimateScroll(TwitterTimeline vm)
+        {
+            if (!vm.IsScrolled)
+            {
+                ItemsControl.BeginAnimation(MarginProperty, SlideDownAnimation);
+            }
+        }
+
+        private void UpdateAppIcon()
+        {
+            var isMinimized = Application.Current.MainWindow?.WindowState == WindowState.Minimized;
+            SystemTrayIconService.UpdateIcon(isMinimized);
+            ((MainWindow)Application.Current.MainWindow!)?.UpdateAppIcon(isMinimized);
+        }
+
+        private void PlayNotifySound()
+        {
+            try
+            {
+                if (Settings.PlayNotifySound)
+                {
+                    if (!string.IsNullOrWhiteSpace(Settings.NotifySoundSource))
                     {
-                        ItemsControl.BeginAnimation(MarginProperty, SlideDownAnimation);
+                        var player = new SoundPlayer(Settings.NotifySoundSource);
+                        player.Play();
                     }
-
-                    var isMinimized = Application.Current.MainWindow?.WindowState == WindowState.Minimized;
-                    SystemTrayIconService.UpdateIcon(isMinimized);
-                    ((MainWindow)Application.Current.MainWindow!)?.UpdateAppIcon(isMinimized);
-
-                    if (Settings.PlayNotifySound)
+                    else
                     {
                         SystemSounds.Asterisk.Play();
                     }
-                };
+                }
+            }
+            catch (Exception ex)
+            {
+                TraceService.Message(ex.Message);
             }
         }
 
