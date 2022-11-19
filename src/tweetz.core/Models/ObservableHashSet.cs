@@ -10,10 +10,14 @@ namespace tweetz.core.Models
     {
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
-        public ObservableHashSet() { }
+        public ObservableHashSet()
+        {
+        }
 
         protected ObservableHashSet(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
 
         public new bool Add(T item)
         {

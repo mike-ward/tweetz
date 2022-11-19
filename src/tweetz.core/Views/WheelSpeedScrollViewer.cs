@@ -57,13 +57,14 @@ namespace tweetz.core.Views
 
         protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
         {
-            AnimateScroll(VerticalOffset - (e.Delta * SpeedFactor));
+            AnimateScroll(VerticalOffset - e.Delta * SpeedFactor);
             e.Handled = true;
         }
 
         private void AnimateScroll(double offset)
         {
-            var animation = new DoubleAnimation {
+            var animation = new DoubleAnimation
+            {
                 To       = offset,
                 Duration = ScrollDuration
             };

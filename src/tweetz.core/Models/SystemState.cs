@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.Versioning;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Win32;
 using tweetz.core.Interfaces;
@@ -48,7 +49,7 @@ namespace tweetz.core.Models
 
         private static string ComputeMD5(string input)
         {
-            using var md5 = System.Security.Cryptography.MD5.Create();
+            using var md5 = MD5.Create();
 
             var inputBytes = Encoding.UTF8.GetBytes(input);
             var hashBytes  = md5.ComputeHash(inputBytes);

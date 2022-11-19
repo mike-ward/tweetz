@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Controls;
 using tweetz.core.Services;
 using tweetz.core.ViewModels;
@@ -15,7 +16,7 @@ namespace tweetz.core.Views
         }
 
         [SuppressMessage("Usage", "VSTHRD100", MessageId = "Avoid async void methods")]
-        private async void OnIsVisibleChangedAsync(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        private async void OnIsVisibleChangedAsync(object sender, DependencyPropertyChangedEventArgs e)
         {
             try
             {

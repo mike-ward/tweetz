@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using tweetz.core.Interfaces;
 using tweetz.core.Services;
 using twitter.core.Models;
@@ -12,7 +13,7 @@ namespace tweetz.core.Views.TweetBlock
             InitializeComponent();
         }
 
-        private void TextBlock_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs _)
+        private void TextBlock_DataContextChanged(object sender, DependencyPropertyChangedEventArgs _)
         {
             if (sender is TextBlock textBlock && DataContext is TwitterStatus twitterStatus)
             {

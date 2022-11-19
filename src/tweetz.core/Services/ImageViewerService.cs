@@ -49,9 +49,9 @@ namespace tweetz.core.Services
             }
 
             var url = media.VideoInfo.Variants
-                .Where(variant => IsMp4(variant.Url))
-                .Select(variant => variant.Url)
-                .FirstOrDefault();
+               .Where(variant => IsMp4(variant.Url))
+               .Select(variant => variant.Url)
+               .FirstOrDefault();
 
             return url is not null
                 ? new Uri(url)

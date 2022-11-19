@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Windows;
@@ -9,13 +10,14 @@ using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
 using tweetz.core.Models;
 using tweetz.core.Services;
+using twitter.core.Services;
 
 namespace tweetz.core
 {
     public partial class App : Application
     {
         public static MyServiceProvider ServiceProvider { get; } = new();
-        public static HttpClient        MyHttpClient    => twitter.core.Services.OAuthApiRequest.MyHttpClient;
+        public static HttpClient        MyHttpClient    => OAuthApiRequest.MyHttpClient;
 
         static App()
         {
@@ -29,12 +31,12 @@ namespace tweetz.core
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
             if (!Debugger.IsAttached) AppCenter.Start("14eb5ed2-3dc9-4cb3-8ad5-a630a9d90407", typeof(Analytics), typeof(Crashes));
-            MyHttpClient.Timeout = TimeSpan.FromSeconds(20);
+            MyHttpClient.Timeout                                    =  TimeSpan.FromSeconds(20);
             ServiceProvider.GetService<ISettings>().PropertyChanged += SettingsThemeChanged;
             ServiceProvider.GetService<MainWindow>().Show();
         }
 
-        private void SettingsThemeChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void SettingsThemeChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.IsEqualTo(nameof(Settings.Theme)) && sender is Settings settings)
             {

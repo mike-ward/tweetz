@@ -40,7 +40,8 @@
       <Setter.Value>
         <MultiBinding Converter="{StaticResource MediaIsVideoToVisibilityConverter}">
           <Binding Path="." />
-          <Binding Path="DataContext.Settings.ImagesAsLinks" RelativeSource="{RelativeSource AncestorType=core:MainWindow}" />
+          <Binding Path="DataContext.Settings.ImagesAsLinks"
+                   RelativeSource="{RelativeSource AncestorType=core:MainWindow}" />
         </MultiBinding>
       </Setter.Value>
     </Setter>

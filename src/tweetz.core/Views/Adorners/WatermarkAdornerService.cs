@@ -145,7 +145,8 @@ namespace tweetz.core.Views.Adorners
 
         private static bool ShouldShowWatermark(Control c)
         {
-            return c switch {
+            return c switch
+            {
                 ComboBox box         => string.IsNullOrEmpty(box.Text),
                 TextBoxBase _        => string.IsNullOrEmpty((c as TextBox)?.Text),
                 ItemsControl control => control.Items.Count == 0,

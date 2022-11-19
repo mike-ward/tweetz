@@ -54,7 +54,7 @@ namespace tweetz.core.Views
         {
             var isMinimized = Application.Current.MainWindow?.WindowState == WindowState.Minimized;
             SystemTrayIconService.UpdateIcon(isMinimized);
-            ((MainWindow)Application.Current.MainWindow!)?.UpdateAppIcon(isMinimized);
+            ((MainWindow)Application.Current.MainWindow!).UpdateAppIcon(isMinimized);
         }
 
         private void PlayNotifySound()

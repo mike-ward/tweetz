@@ -18,7 +18,7 @@ namespace tweetz.core.Commands
         private bool inCommand;
 
         public ToggleRetweetCommand(
-            ISettings settings,
+            ISettings       settings,
             ITwitterService twitterService, IMessageBoxService messageBoxService)
         {
             Settings          = settings;
@@ -76,8 +76,8 @@ namespace tweetz.core.Commands
         {
             return
                 parameter is TwitterStatus twitterStatus
-                && twitterStatus.OriginatingStatus.User.ScreenName.IsNotEqualTo(Settings.ScreenName)
-                && !twitterStatus.IsMyTweet
+             && twitterStatus.OriginatingStatus.User.ScreenName.IsNotEqualTo(Settings.ScreenName)
+             && !twitterStatus.IsMyTweet
                     ? twitterStatus
                     : null;
         }

@@ -102,7 +102,8 @@
               <Setter TargetName="headerPanel" Property="Margin" Value="0 2 2 2" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
-              <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+              <Setter TargetName="templateRoot" Property="TextElement.Foreground"
+                      Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

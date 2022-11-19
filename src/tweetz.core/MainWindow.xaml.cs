@@ -78,7 +78,7 @@ namespace tweetz.core
             TraceService.Message($"UpdateAppIcon({newTweetsAvailable})");
 
             TaskbarItemInfo ??= new TaskbarItemInfo();
-            
+
             TaskbarItemInfo.Overlay = newTweetsAvailable
                 ? NewTweetsIcon
                 : null;

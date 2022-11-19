@@ -12,7 +12,7 @@ namespace tweetz.core.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             return values.Length == 2
-                && values[0] is Media media 
+                && values[0] is Media media
                 && IsVideo(media)
                 && values[1] is false
                 ? Visibility.Visible

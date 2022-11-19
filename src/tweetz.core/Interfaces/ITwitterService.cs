@@ -6,6 +6,6 @@ namespace tweetz.core.Interfaces
     public interface ITwitterService
     {
         TwitterApi TwitterApi { get; }
-        ValueTask AuthenticateWithPinAsync(OAuthTokens requestTokens, string pin);
+        ValueTask  AuthenticateWithPinAsync(OAuthTokens requestTokens, string pin);
     }
 }

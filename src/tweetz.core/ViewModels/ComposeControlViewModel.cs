@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -124,9 +125,9 @@ namespace tweetz.core.ViewModels
             var img = Media.Count(m => ImgExtensions.Any(e => m.Path.EndsWith(e, StringComparison.OrdinalIgnoreCase)));
 
             return GifExtensions.Any(g => g.Equals(ext, StringComparison.OrdinalIgnoreCase)) ||
-                VidExtensions.Any(v => v.Equals(ext, StringComparison.OrdinalIgnoreCase))
-                    ? gif == 0 && vid == 0 && img == 0
-                    : ImgExtensions.Any(i => i.Equals(ext, StringComparison.OrdinalIgnoreCase)) && gif == 0 && vid == 0 && img < 4;
+                   VidExtensions.Any(v => v.Equals(ext, StringComparison.OrdinalIgnoreCase))
+                ? gif == 0 && vid == 0 && img == 0
+                : ImgExtensions.Any(i => i.Equals(ext, StringComparison.OrdinalIgnoreCase)) && gif == 0 && vid == 0 && img < 4;
         }
 
         public bool CanAddImage()
@@ -138,7 +139,7 @@ namespace tweetz.core.ViewModels
             return gif == 0 && vid == 0 && img < 4;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "none")]
+        [SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "none")]
         public string ContentType(string filename)
         {
             var ext = Path.GetExtension(filename) ?? string.Empty;

@@ -76,50 +76,50 @@ namespace tweetz.core.Services
         private static IEnumerable<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)> FlowControlItems(Entities entities)
         {
             var urls = entities.Urls
-                    ?.Select(url =>
-                    (
-                        FlowContentNodeType: FlowContentNodeType.Url,
-                        Text: url.ExpandedUrl,
-                        Start: url.Indices[0],
-                        End: url.Indices[1]
-                    ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+                         ?.Select(url =>
+                           (
+                               FlowContentNodeType: FlowContentNodeType.Url,
+                               Text: url.ExpandedUrl,
+                               Start: url.Indices[0],
+                               End: url.Indices[1]
+                           ))
+                    ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var mentions = entities.Mentions
-                    ?.Select(mention =>
-                    (
-                        FlowContentNodeType: FlowContentNodeType.Mention,
-                        Text: mention.ScreenName,
-                        Start: mention.Indices[0],
-                        End: mention.Indices[1]
-                    ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+                             ?.Select(mention =>
+                               (
+                                   FlowContentNodeType: FlowContentNodeType.Mention,
+                                   Text: mention.ScreenName,
+                                   Start: mention.Indices[0],
+                                   End: mention.Indices[1]
+                               ))
+                        ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var hashTags = entities.HashTags
-                    ?.Select(hashtag =>
-                    (
-                        FlowContentNodeType: FlowContentNodeType.HashTag,
-                        hashtag.Text,
-                        Start: hashtag.Indices[0],
-                        End: hashtag.Indices[1]
-                    ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+                             ?.Select(hashtag =>
+                               (
+                                   FlowContentNodeType: FlowContentNodeType.HashTag,
+                                   hashtag.Text,
+                                   Start: hashtag.Indices[0],
+                                   End: hashtag.Indices[1]
+                               ))
+                        ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             var media = entities.Media
-                    ?.Select(entity =>
-                    (
-                        FlowContentNodeType: FlowContentNodeType.Media,
-                        Text: entity.Url,
-                        Start: entity.Indices[0],
-                        End: entity.Indices[1]
-                    ))
-                ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
+                          ?.Select(entity =>
+                            (
+                                FlowContentNodeType: FlowContentNodeType.Media,
+                                Text: entity.Url,
+                                Start: entity.Indices[0],
+                                End: entity.Indices[1]
+                            ))
+                     ?? Enumerable.Empty<(FlowContentNodeType FlowContentNodeType, string Text, int Start, int End)>();
 
             return urls
-                .Concat(mentions)
-                .Concat(hashTags)
-                .Concat(media)
-                .OrderBy(o => o.Start);
+               .Concat(mentions)
+               .Concat(hashTags)
+               .Concat(media)
+               .OrderBy(o => o.Start);
         }
 
         private static Run Run(string text)
@@ -130,7 +130,8 @@ namespace tweetz.core.Services
         private static InlineUIContainer Link(string link, ISettings settings)
         {
             // Binding determines how links are shown ([link] or http://something...)
-            var binding = new Binding(nameof(System.Windows.Documents.Run.Text)) {
+            var binding = new Binding(nameof(System.Windows.Documents.Run.Text))
+            {
                 Path               = new PropertyPath(nameof(settings.ShortLinks), Array.Empty<object>()),
                 Source             = settings,
                 Converter          = new ShortLinkOptionConverter(),
@@ -140,7 +141,8 @@ namespace tweetz.core.Services
             var run = new Run();
             run.SetBinding(System.Windows.Documents.Run.TextProperty, binding);
 
-            var hyperlink = new Hyperlink(run) {
+            var hyperlink = new Hyperlink(run)
+            {
                 ToolTip          = link,
                 CommandParameter = link
             };
@@ -148,7 +150,8 @@ namespace tweetz.core.Services
             hyperlink.ToolTipOpening += (s, e) => LongUrlService.HyperlinkToolTipOpeningHandler(s, e);
             hyperlink.InputBindings.Add(new MouseBinding(OpenLinkCommand.Command, new MouseGesture(MouseAction.LeftClick)) { CommandParameter = link });
 
-            var textblock = new TextBlock(hyperlink) {
+            var textblock = new TextBlock(hyperlink)
+            {
                 MaxWidth     = 150,
                 TextTrimming = TextTrimming.CharacterEllipsis
             };
@@ -174,7 +177,8 @@ namespace tweetz.core.Services
         private static Hyperlink Hashtag(string text)
         {
             var tag = "#" + text;
-            var hyperlink = new Hyperlink(new Run(tag)) {
+            var hyperlink = new Hyperlink(new Run(tag))
+            {
                 Command          = SearchCommand.Command,
                 CommandParameter = tag
             };

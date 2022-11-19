@@ -21,11 +21,11 @@ namespace tweetz.core.Commands
         private                IMessageBoxService           MessageBoxService            { get; }
 
         public UpdateStatusCommand(
-            ITwitterService twitterService,
-            ComposeControlViewModel composeControlViewModel,
+            ITwitterService              twitterService,
+            ComposeControlViewModel      composeControlViewModel,
             HomeTimelineControlViewModel homeTimelineControlViewModel,
-            TabBarControlViewModel tabBarControlViewModel,
-            IMessageBoxService messageBoxService)
+            TabBarControlViewModel       tabBarControlViewModel,
+            IMessageBoxService           messageBoxService)
         {
             TwitterService               = twitterService;
             ComposeControlViewModel      = composeControlViewModel;
@@ -62,8 +62,8 @@ namespace tweetz.core.Commands
                     : null;
 
                 var mediaIds = ComposeControlViewModel.Media
-                    .Select(media => media.MediaId)
-                    .ToArray();
+                   .Select(media => media.MediaId)
+                   .ToArray();
 
                 var statusText     = ComposeControlViewModel.StatusText;
                 var attachementUrl = ComposeControlViewModel.AttachmentUrl;
@@ -73,7 +73,7 @@ namespace tweetz.core.Commands
                         replyId,
                         attachementUrl,
                         mediaIds)
-                    .ConfigureAwait(true);
+                   .ConfigureAwait(true);
 
                 await Application.Current.Dispatcher.InvokeAsync(() => UpdateStatuses.Execute(new[] { status }, HomeTimelineControlViewModel));
 
@@ -83,7 +83,10 @@ namespace tweetz.core.Commands
             catch (WebException ex)
             {
                 var stream = ex.Response?.GetResponseStream();
-                if (stream is null) { return; }
+                if (stream is null)
+                {
+                    return;
+                }
 
                 using var reader  = new StreamReader(stream);
                 var       message = await reader.ReadToEndAsync().ConfigureAwait(true);

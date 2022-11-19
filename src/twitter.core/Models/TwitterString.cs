@@ -4,8 +4,8 @@ using System.Text;
 namespace twitter.core.Models
 {
     /// <summary>
-    /// Twitter indices are by Unicode code points, not characters.
-    /// See: https://developer.twitter.com/en/docs/basics/counting-characters
+    ///     Twitter indices are by Unicode code points, not characters.
+    ///     See: https://developer.twitter.com/en/docs/basics/counting-characters
     /// </summary>
     public readonly struct TwitterString
     {

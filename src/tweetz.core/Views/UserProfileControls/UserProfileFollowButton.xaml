@@ -48,7 +48,8 @@
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding Path=Background, ElementName=BD}" Value="DarkRed" />
               </MultiDataTrigger.Conditions>
-              <Setter Property="Text" Value="{Binding IsFollowing, Converter={StaticResource ProfileFollowUnFollowConverter}}" />
+              <Setter Property="Text"
+                      Value="{Binding IsFollowing, Converter={StaticResource ProfileFollowUnFollowConverter}}" />
             </MultiDataTrigger>
           </Style.Triggers>
         </Style>

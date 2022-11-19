@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using tweetz.core.Commands;
@@ -36,13 +37,13 @@ namespace tweetz.core.Views
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             // there's no uniform size option in tabcontrol.
-            var width = (e.NewSize.Width / TabControl.Items.Count) - 1.25;
+            var width = e.NewSize.Width / TabControl.Items.Count - 1.25;
             ViewModel.TabWidth = width;
         }
 
         /// <summary>
-        /// Hocus pocus, try to set the focus when switching tabs so page up/dn, home/end
-        /// keyboard shortcuts for scrolling work.
+        ///     Hocus pocus, try to set the focus when switching tabs so page up/dn, home/end
+        ///     keyboard shortcuts for scrolling work.
         /// </summary>
         [SuppressMessage("Usage", "VSTHRD001", MessageId = "Avoid legacy thread switching APIs")]
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,14 +52,14 @@ namespace tweetz.core.Views
             var timeline = headered?.Content as TimelineView;
 
             if (timeline?.FindName("ItemsControl") is ItemsControl itemsControl
-                && VisualTreeHelper.GetChildrenCount(itemsControl) > 0
-                && VisualTreeHelper.GetChild(itemsControl, 0) is ScrollViewer scrollViewer)
+             && VisualTreeHelper.GetChildrenCount(itemsControl) > 0
+             && VisualTreeHelper.GetChild(itemsControl, 0) is ScrollViewer scrollViewer)
             {
                 var unused = Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => scrollViewer.Focus()));
             }
         }
 
-        private void TabItemHeaderWithIndicators_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void TabItemHeaderWithIndicators_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var headered = TabControl.Items[TabControl.SelectedIndex] as HeaderedContentControl;
             var timeline = headered?.Content as TimelineView;

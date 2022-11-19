@@ -68,14 +68,20 @@ namespace tweetz.core.Views.Behaviors
 
         private static void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.Enter) { return; }
+            if (e.Key != Key.Enter)
+            {
+                return;
+            }
 
-            if (e.OriginalSource is not TextBox tb) { return; }
+            if (e.OriginalSource is not TextBox tb)
+            {
+                return;
+            }
 
             // If enter pressed and the selected text goes all the way to the
             // end, move caret position to the end
 
-            if (tb.SelectionLength > 0 && (tb.SelectionStart + tb.SelectionLength == tb.Text.Length))
+            if (tb.SelectionLength > 0 && tb.SelectionStart + tb.SelectionLength == tb.Text.Length)
             {
                 tb.SelectionStart  = tb.CaretIndex = tb.Text.Length;
                 tb.SelectionLength = 0;
@@ -99,7 +105,10 @@ namespace tweetz.core.Views.Behaviors
             }
 
             var values = GetAutoCompleteItemsSource(tb);
-            if (values is null) { return; }
+            if (values is null)
+            {
+                return;
+            }
 
             var startIndex     = 0;
             var matchingString = tb.Text;
@@ -108,13 +117,19 @@ namespace tweetz.core.Views.Behaviors
             if (!string.IsNullOrEmpty(indicator))
             {
                 startIndex = tb.Text.LastIndexOf(indicator, StringComparison.Ordinal);
-                if (startIndex == -1) { return; }
+                if (startIndex == -1)
+                {
+                    return;
+                }
 
                 startIndex     += indicator.Length;
                 matchingString =  tb.Text[startIndex..];
             }
 
-            if (string.IsNullOrEmpty(matchingString)) { return; }
+            if (string.IsNullOrEmpty(matchingString))
+            {
+                return;
+            }
 
             // Do search and changes here.
 
@@ -122,14 +137,17 @@ namespace tweetz.core.Views.Behaviors
             var comparer   = GetAutoCompleteStringComparison(tb);
 
             var match = values
-                .Where(value =>
+               .Where(value =>
                     !string.IsNullOrEmpty(value) &&
                     value.Length >= textLength &&
                     value[..textLength].Equals(matchingString, comparer))
-                .Select(value => value[textLength..]) // Only select the last part of the suggestion
-                .FirstOrDefault();
+               .Select(value => value[textLength..]) // Only select the last part of the suggestion
+               .FirstOrDefault();
 
-            if (string.IsNullOrEmpty(match)) { return; }
+            if (string.IsNullOrEmpty(match))
+            {
+                return;
+            }
 
             var matchStart = startIndex + matchingString.Length;
             tb.TextChanged     -= TextChanged;

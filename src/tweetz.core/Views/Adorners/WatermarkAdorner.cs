@@ -15,7 +15,8 @@ namespace tweetz.core.Views.Adorners
         {
             IsHitTestVisible = false;
 
-            contentPresenter = new ContentPresenter {
+            contentPresenter = new ContentPresenter
+            {
                 Content = watermark,
                 Opacity = 0.5,
                 Margin  = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0)
@@ -27,7 +28,8 @@ namespace tweetz.core.Views.Adorners
                 contentPresenter.HorizontalAlignment = HorizontalAlignment.Center;
             }
 
-            var binding = new Binding("IsVisible") {
+            var binding = new Binding("IsVisible")
+            {
                 Source    = adornedElement,
                 Converter = new BooleanToVisibilityConverter()
             };

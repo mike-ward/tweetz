@@ -9,14 +9,18 @@
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding IsRetweet, Mode=OneWay}" Value="True" />
-          <Condition Binding="{Binding DataContext.Settings.HideRetweets, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
+          <Condition
+            Binding="{Binding DataContext.Settings.HideRetweets, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
+            Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Collapsed" />
       </MultiDataTrigger>
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding HasMedia, Mode=OneWay}" Value="False" />
-          <Condition Binding="{Binding DataContext.Settings.HideNoMediaTweets, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
+          <Condition
+            Binding="{Binding DataContext.Settings.HideNoMediaTweets, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
+            Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Collapsed" />
       </MultiDataTrigger>
@@ -28,7 +32,9 @@
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding IsSensitive, Mode=OneWay}" Value="True" />
-          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
+          <Condition
+            Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
+            Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Collapsed" />
       </MultiDataTrigger>
@@ -43,7 +49,9 @@
       <MultiDataTrigger>
         <MultiDataTrigger.Conditions>
           <Condition Binding="{Binding IsSensitive, Mode=OneWay}" Value="True" />
-          <Condition Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True" />
+          <Condition
+            Binding="{Binding DataContext.Settings.HidePossiblySensitive, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
+            Value="True" />
         </MultiDataTrigger.Conditions>
         <Setter Property="Visibility" Value="Visible" />
       </MultiDataTrigger>
@@ -54,7 +62,9 @@
     <Setter Property="Margin" Value="0,5,0,2" />
     <Setter Property="Cursor" Value="Hand" />
     <Style.Triggers>
-      <DataTrigger Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, TargetNullValue=False, FallbackValue=False}" Value="True">
+      <DataTrigger
+        Binding="{Binding DataContext.Settings.HideImages, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay, TargetNullValue=False, FallbackValue=False}"
+        Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
       <DataTrigger Binding="{Binding ExtendedEntities.Media, Mode=OneWay, TargetNullValue={x:Null}}" Value="{x:Null}">
@@ -65,10 +75,14 @@
 
   <Style x:Key="TweetBlockRelatedLinkControlStyle" TargetType="{x:Type tweetBlock:TweetRelatedLinkControl}">
     <Style.Triggers>
-      <DataTrigger Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, TargetNullValue={x:Null}}" Value="{x:Null}">
+      <DataTrigger
+        Binding="{Binding DataContext.RelatedLinkInfo, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, TargetNullValue={x:Null}}"
+        Value="{x:Null}">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
-      <DataTrigger Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}" Value="True">
+      <DataTrigger
+        Binding="{Binding DataContext.Settings.HideExtendedContent, RelativeSource={RelativeSource AncestorType=controls:TimelineView}, Mode=OneWay}"
+        Value="True">
         <Setter Property="Visibility" Value="Collapsed" />
       </DataTrigger>
     </Style.Triggers>
@@ -172,7 +186,8 @@
     TargetType="Image">
 
     <Style.Triggers>
-      <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Value="False">
+      <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                   Value="False">
         <Setter Property="Source" Value="{Binding ProfileImageUrl, TargetNullValue={x:Null}}" />
         <Setter Property="Width" Value="34" />
         <Setter Property="Height" Value="34" />
@@ -186,7 +201,8 @@
         </Setter>
       </DataTrigger>
 
-      <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" Value="True">
+      <DataTrigger Binding="{Binding Original, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                   Value="True">
         <Setter Property="Source" Value="{Binding ProfileImageUrlOriginal, TargetNullValue={x:Null}}" />
         <Setter Property="Width" Value="101" />
         <Setter Property="Height" Value="101" />

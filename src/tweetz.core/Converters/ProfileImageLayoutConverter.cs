@@ -11,9 +11,9 @@ namespace tweetz.core.Converters
         {
             return values.Length == 2
                 && values[0] is false // hide profile images
-                && values[1] is false// show alternate layut
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+                && values[1] is false // show alternate layut
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

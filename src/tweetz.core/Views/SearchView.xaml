@@ -16,7 +16,8 @@
       TargetType="TextBox">
       <Setter Property="Width" Value="175" />
       <Setter Property="Margin" Value="0,5" />
-      <Setter Property="FontSize" Value="{Binding FontSize, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
+      <Setter Property="FontSize"
+              Value="{Binding FontSize, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
 
       <Setter Property="Template">
         <Setter.Value>

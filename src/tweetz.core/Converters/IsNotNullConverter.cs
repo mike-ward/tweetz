@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -11,7 +12,7 @@ namespace tweetz.core.Converters
             return value is not null;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
+        [SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

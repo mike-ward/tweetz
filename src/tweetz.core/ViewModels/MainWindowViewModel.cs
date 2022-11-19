@@ -19,11 +19,11 @@ namespace tweetz.core.ViewModels
         private IImageViewerService          ImageViewerService    { get; }
 
         public MainWindowViewModel(
-            ISettings settings,
-            ISystemState systemState,
-            IImageViewerService imageViewerService,
-            IWindowInteropService windowInteropService,
-            ISystemTrayIconService systemTrayIconService,
+            ISettings                    settings,
+            ISystemState                 systemState,
+            IImageViewerService          imageViewerService,
+            IWindowInteropService        windowInteropService,
+            ISystemTrayIconService       systemTrayIconService,
             IEnumerable<ICommandBinding> commandBindings)
         {
             Settings              = settings;
@@ -43,7 +43,10 @@ namespace tweetz.core.ViewModels
             InitializeSaveSettingsOnMove(window);
 
             window.CommandBindings.AddRange(CommandBindings.Select(cb => cb.CommandBinding()).ToArray());
-            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, delegate { window.Close(); }));
+            window.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, delegate
+            {
+                window.Close();
+            }));
         }
 
         public void OnClosing(Window window)
@@ -57,8 +60,14 @@ namespace tweetz.core.ViewModels
         {
             const int OneSecond    = 1000;
             var       saveSettings = DebounceService.Debounce<Window>(w => SaveSettings(w), OneSecond);
-            window.SizeChanged     += delegate { saveSettings(window); };
-            window.LocationChanged += delegate { saveSettings(window); };
+            window.SizeChanged += delegate
+            {
+                saveSettings(window);
+            };
+            window.LocationChanged += delegate
+            {
+                saveSettings(window);
+            };
         }
 
         private void SaveSettings(Window window)

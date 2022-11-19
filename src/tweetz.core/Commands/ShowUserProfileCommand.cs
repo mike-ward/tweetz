@@ -31,7 +31,8 @@ namespace tweetz.core.Commands
         {
             try
             {
-                mainViewModel.UserProfile = e.Parameter switch {
+                mainViewModel.UserProfile = e.Parameter switch
+                {
                     User user         => mainViewModel.UserProfile = user,
                     string screenName => await UserInfo(screenName).ConfigureAwait(false),
                     _                 => null

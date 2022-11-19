@@ -36,7 +36,8 @@ namespace tweetz.core.Services
 
         private static async Task<string> BuildParameters(string? text, string fromLanguage, string toLanguage, string? translateApiKey)
         {
-            var pars = new List<KeyValuePair<string?, string?>> {
+            var pars = new List<KeyValuePair<string?, string?>>
+            {
                 new("q", text),
                 new("langpair", $"{fromLanguage}|{toLanguage}")
             };

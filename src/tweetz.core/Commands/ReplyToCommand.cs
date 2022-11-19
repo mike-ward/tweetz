@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Windows;
 using System.Windows.Input;
 using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
@@ -17,8 +16,8 @@ namespace tweetz.core.Commands
         private ComposeControlViewModel ComposeControlViewModel { get; }
 
         public ReplyToCommand(
-            ISettings settings,
-            TabBarControlViewModel tabBarControlViewModel,
+            ISettings               settings,
+            TabBarControlViewModel  tabBarControlViewModel,
             ComposeControlViewModel composeControlViewModel)
         {
             Settings                = settings;
@@ -52,8 +51,8 @@ namespace tweetz.core.Commands
         {
             return
                 parameter is TwitterStatus twitterStatus
-                && twitterStatus.OriginatingStatus.User.ScreenName.IsNotEqualTo(Settings.ScreenName)
-                && !twitterStatus.IsMyTweet
+             && twitterStatus.OriginatingStatus.User.ScreenName.IsNotEqualTo(Settings.ScreenName)
+             && !twitterStatus.IsMyTweet
                     ? twitterStatus
                     : null;
         }

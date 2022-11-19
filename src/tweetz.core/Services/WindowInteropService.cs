@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
@@ -28,13 +29,15 @@ namespace tweetz.core.Services
         {
             const int SW_SHOWNORMAL = 1;
 
-            return new WINDOWPLACEMENT {
+            return new WINDOWPLACEMENT
+            {
                 length      = Marshal.SizeOf(typeof(WINDOWPLACEMENT)),
                 flags       = 0,
                 showCmd     = SW_SHOWNORMAL,
                 minPosition = new POINT { X = -1, Y = -1 },
                 maxPosition = new POINT { X = -1, Y = -1 },
-                normalPosition = new RECT {
+                normalPosition = new RECT
+                {
                     Left   = position.Left,
                     Top    = position.Top,
                     Right  = position.Left + position.Width,
@@ -45,7 +48,8 @@ namespace tweetz.core.Services
 
         private static WindowPosition ToWindowPosition(WINDOWPLACEMENT placement)
         {
-            var pos = new WindowPosition {
+            var pos = new WindowPosition
+            {
                 Left   = placement.normalPosition.Left,
                 Top    = placement.normalPosition.Top,
                 Width  = placement.normalPosition.Right - placement.normalPosition.Left,
@@ -56,7 +60,7 @@ namespace tweetz.core.Services
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
+        [SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
         private struct RECT
         {
             public int Left;
@@ -66,7 +70,7 @@ namespace tweetz.core.Services
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
+        [SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
         private struct POINT
         {
             public int X;
@@ -74,7 +78,7 @@ namespace tweetz.core.Services
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
+        [SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase")]
         private struct WINDOWPLACEMENT
         {
             public int   length;

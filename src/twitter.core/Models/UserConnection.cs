@@ -6,9 +6,11 @@ namespace twitter.core.Models
 {
     public struct UserConnection
     {
-        [JsonPropertyName("id_str")] public string Id { get; set; }
+        [JsonPropertyName("id_str")]
+        public string Id { get; set; }
 
-        [JsonPropertyName("connections")] public string[] Connections { get; set; }
+        [JsonPropertyName("connections")]
+        public string[] Connections { get; set; }
 
         public bool IsFollowing
         {

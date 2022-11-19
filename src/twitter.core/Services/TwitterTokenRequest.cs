@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace twitter.core.Services
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "None")]
+    [SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "None")]
     internal static class TwitterTokenRequest
     {
         public static async ValueTask<OAuthTokens> GetRequestTokenAsync(
@@ -38,7 +39,8 @@ namespace twitter.core.Services
                 throw new InvalidOperationException("callback token not confirmed");
             }
 
-            return new OAuthTokens {
+            return new OAuthTokens
+            {
                 OAuthToken  = oauthToken,
                 OAuthSecret = oauthSecret
             };
@@ -71,7 +73,8 @@ namespace twitter.core.Services
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var tokens  = content.Split('&');
 
-            var oauthTokens = new OAuthTokens {
+            var oauthTokens = new OAuthTokens
+            {
                 OAuthToken  = Token(tokens[0]),
                 OAuthSecret = Token(tokens[1]),
                 UserId      = Token(tokens[2]),

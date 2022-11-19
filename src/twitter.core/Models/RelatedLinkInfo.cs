@@ -10,9 +10,9 @@ using twitter.core.Services;
 namespace twitter.core.Models
 {
     /// <summary>
-    /// When links are included in a tweet and it's not a quote or retweet,
-    /// look for og/twitter meta tags in the links. This info, if present,
-    /// is displayed similar to quotes.
+    ///     When links are included in a tweet and it's not a quote or retweet,
+    ///     look for og/twitter meta tags in the links. This info, if present,
+    ///     is displayed similar to quotes.
     /// </summary>
     public class RelatedLinkInfo
     {
@@ -25,15 +25,19 @@ namespace twitter.core.Models
 
         public TwitterStatus ImageTwitterStatus
         {
-            get => new() {
+            get => new()
+            {
                 Id       = Guid.NewGuid().ToString(),
                 Language = Language,
                 FullText = Description,
-                ExtendedEntities = new Entities {
+                ExtendedEntities = new Entities
+                {
                     Media = string.IsNullOrWhiteSpace(ImageUrl)
                         ? null
-                        : new[] {
-                            new Media {
+                        : new[]
+                        {
+                            new Media
+                            {
                                 Url         = ImageUrl,
                                 MediaUrl    = ImageUrl,
                                 DisplayUrl  = ImageUrl,
@@ -116,7 +120,7 @@ namespace twitter.core.Models
             document.LoadHtml(html);
 
             var language = document.DocumentNode.SelectSingleNode("//html")?.Attributes["lang"]?.Value
-                ?? CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+                        ?? CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
             var metaTags = document.DocumentNode.SelectNodes("//meta");
             var linkInfo = new RelatedLinkInfo { Url = url, Language = Truncate(language, 2) };

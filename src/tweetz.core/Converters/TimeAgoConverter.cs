@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -15,7 +16,8 @@ namespace tweetz.core.Converters
             var timespan = DateTime.UtcNow - time;
             static string Format(string s, double t) => string.Format(CultureInfo.InvariantCulture, s, (int)t);
 
-            return timespan switch {
+            return timespan switch
+            {
                 { TotalSeconds: < 60 } => Format("{0}s", timespan.TotalSeconds),
                 { TotalMinutes: < 60 } => Format("{0}m", timespan.TotalMinutes),
                 { TotalHours  : < 24 } => Format("{0}h", timespan.TotalHours),
@@ -24,7 +26,7 @@ namespace tweetz.core.Converters
             };
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
+        [SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.")]
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

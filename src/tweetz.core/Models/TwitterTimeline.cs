@@ -159,9 +159,18 @@ namespace tweetz.core.Models
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if (PendingStatusesAvailable) { ToolTipText          = App.GetString("new-tweets-arrived-tooltip"); }
-                else if (ExceptionMessage is not null) { ToolTipText = ExceptionMessage; }
-                else { ToolTipText                                   = null; }
+                if (PendingStatusesAvailable)
+                {
+                    ToolTipText = App.GetString("new-tweets-arrived-tooltip");
+                }
+                else if (ExceptionMessage is not null)
+                {
+                    ToolTipText = ExceptionMessage;
+                }
+                else
+                {
+                    ToolTipText = null;
+                }
             });
         }
     }

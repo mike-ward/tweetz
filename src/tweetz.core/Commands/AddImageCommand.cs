@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
@@ -46,7 +45,8 @@ namespace tweetz.core.Commands
             {
                 const string filter = "Image files (*.gif;*.jpg;*.png;*.webp;*.mp4)|*.gif;*.jpg;*.png;*.webp;*.mp4";
 
-                using var ofd = new OpenFileDialog {
+                using var ofd = new OpenFileDialog
+                {
                     Filter = filter
                 };
 
@@ -61,7 +61,10 @@ namespace tweetz.core.Commands
                     catch (WebException ex)
                     {
                         var stream = ex.Response?.GetResponseStream();
-                        if (stream is null) { return; }
+                        if (stream is null)
+                        {
+                            return;
+                        }
 
                         using var reader  = new StreamReader(stream);
                         var       message = await reader.ReadToEndAsync().ConfigureAwait(false);

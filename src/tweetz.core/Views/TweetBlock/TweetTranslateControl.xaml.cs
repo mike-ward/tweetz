@@ -31,11 +31,11 @@ namespace tweetz.core.Views.TweetBlock
         private void SetVisibility()
         {
             Visibility = Tag is false
-                && DataContext is TwitterStatus status
-                && status.Language.IsNotEqualTo("und")
-                && status.Language.IsNotEqualToIgnoreCase(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+                      && DataContext is TwitterStatus status
+                      && status.Language.IsNotEqualTo("und")
+                      && status.Language.IsNotEqualToIgnoreCase(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
     }
 }

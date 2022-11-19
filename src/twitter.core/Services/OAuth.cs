@@ -20,14 +20,14 @@ namespace twitter.core.Services
         {
             var encoded = Uri.EscapeDataString(value);
             return Regex
-                .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpperInvariant(), RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1))
-                .Replace("(", "%28", StringComparison.Ordinal)
-                .Replace(")", "%29", StringComparison.Ordinal)
-                .Replace("$", "%24", StringComparison.Ordinal)
-                .Replace("!", "%21", StringComparison.Ordinal)
-                .Replace("*", "%2A", StringComparison.Ordinal)
-                .Replace("'", "%27", StringComparison.Ordinal)
-                .Replace("%7E", "~", StringComparison.Ordinal);
+               .Replace(encoded, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpperInvariant(), RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1))
+               .Replace("(", "%28", StringComparison.Ordinal)
+               .Replace(")", "%29", StringComparison.Ordinal)
+               .Replace("$", "%24", StringComparison.Ordinal)
+               .Replace("!", "%21", StringComparison.Ordinal)
+               .Replace("*", "%2A", StringComparison.Ordinal)
+               .Replace("'", "%27", StringComparison.Ordinal)
+               .Replace("%7E", "~", StringComparison.Ordinal);
         }
 
         public static string Nonce()
@@ -43,14 +43,14 @@ namespace twitter.core.Services
         }
 
         public static string Signature(
-            string httpMethod,
-            string url,
-            string nonce,
-            string timestamp,
-            string consumerKey,
-            string consumerSecret,
-            string accessToken,
-            string accessTokenSecret,
+            string                         httpMethod,
+            string                         url,
+            string                         nonce,
+            string                         timestamp,
+            string                         consumerKey,
+            string                         consumerSecret,
+            string                         accessToken,
+            string                         accessTokenSecret,
             IEnumerable<(string, string)>? parameters)
         {
             var       parameterList       = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature: null, parameters);
@@ -64,11 +64,11 @@ namespace twitter.core.Services
         }
 
         public static string AuthorizationHeader(
-            string nonce,
-            string timestamp,
-            string consumerKey,
-            string? accessToken,
-            string? signature,
+            string                         nonce,
+            string                         timestamp,
+            string                         consumerKey,
+            string?                        accessToken,
+            string?                        signature,
             IEnumerable<(string, string)>? parameters = null)
         {
             var parameterList    = OrderedParameters(nonce, timestamp, consumerKey, accessToken, signature, parameters);
@@ -78,24 +78,24 @@ namespace twitter.core.Services
         }
 
         private static IEnumerable<(string, string)> OrderedParameters(
-            string nonce,
-            string timestamp,
-            string consumerKey,
-            string? accessToken,
-            string? signature,
+            string                         nonce,
+            string                         timestamp,
+            string                         consumerKey,
+            string?                        accessToken,
+            string?                        signature,
             IEnumerable<(string, string)>? parameters)
         {
             return
                 Parameters(nonce, timestamp, consumerKey, accessToken, signature, parameters)
-                    .OrderBy(p => p.Item1, StringComparer.Ordinal);
+                   .OrderBy(p => p.Item1, StringComparer.Ordinal);
         }
 
         private static IEnumerable<(string, string)> Parameters(
-            string nonce,
-            string timestamp,
-            string consumerKey,
-            string? accessToken,
-            string? signature,
+            string                         nonce,
+            string                         timestamp,
+            string                         consumerKey,
+            string?                        accessToken,
+            string?                        signature,
             IEnumerable<(string, string)>? parameters)
         {
             yield return ("oauth_version", "1.0");

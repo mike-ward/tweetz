@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using tweetz.core.Commands;
 using tweetz.core.ViewModels;
+using tweetz.core.Views.Adorners;
 
 namespace tweetz.core.Views.ComposeBlock
 {
@@ -20,7 +21,7 @@ namespace tweetz.core.Views.ComposeBlock
             // DataContext=ComposeControlViewModel is needed to determine text of watermark
 
             var vm        = (ComposeControlViewModel)DataContext;
-            var textBlock = (TextBlock)TextBox.GetValue(Adorners.WatermarkAdornerService.WatermarkProperty);
+            var textBlock = (TextBlock)TextBox.GetValue(WatermarkAdornerService.WatermarkProperty);
             textBlock.DataContext = vm;
 
             Loaded -= OnLoaded;

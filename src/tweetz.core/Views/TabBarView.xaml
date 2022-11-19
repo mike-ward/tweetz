@@ -50,12 +50,14 @@
           </Setter>
 
           <Setter Property="Foreground" Value="{DynamicResource NormalBrush}" />
-          <Setter Property="Width" Value="{Binding DataContext.TabWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
+          <Setter Property="Width"
+                  Value="{Binding DataContext.TabWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
         </Style>
 
         <Style TargetType="local:TabItemHeaderWithIndicators">
           <Setter Property="Margin" Value="0,3,0,0" />
-          <Setter Property="Width" Value="{Binding DataContext.TabWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
+          <Setter Property="Width"
+                  Value="{Binding DataContext.TabWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
         </Style>
       </TabControl.Resources>
 

@@ -9,7 +9,8 @@ namespace tweetz.core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value switch {
+            return value switch
+            {
                 string val when !string.IsNullOrWhiteSpace(val) => Visibility.Visible,
                 _                                               => Visibility.Collapsed
             };

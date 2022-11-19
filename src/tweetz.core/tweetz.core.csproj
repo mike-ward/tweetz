@@ -1,106 +1,106 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AnalysisLevel>latest</AnalysisLevel>
-    <ApplicationIcon>app.ico</ApplicationIcon>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Copyright>Copyright 2022, Mike Ward</Copyright>
-    <Description>A gadget-like desktop twitter client.</Description>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <Nullable>Enable</Nullable>
-    <OutputType>WinExe</OutputType>
-    <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
-    <PublishReadyToRun>false</PublishReadyToRun>
-    <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
-    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
-    <ServerGarbageCollection>false</ServerGarbageCollection>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <TieredCompilation>true</TieredCompilation>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+    <PropertyGroup>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <ApplicationIcon>app.ico</ApplicationIcon>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <Copyright>Copyright 2022, Mike Ward</Copyright>
+        <Description>A gadget-like desktop twitter client.</Description>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Nullable>Enable</Nullable>
+        <OutputType>WinExe</OutputType>
+        <PackageProjectUrl>https://github.com/mike-ward/tweetz</PackageProjectUrl>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <RepositoryUrl>https://github.com/mike-ward/tweetz</RepositoryUrl>
+        <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+        <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+        <ServerGarbageCollection>false</ServerGarbageCollection>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <TieredCompilation>true</TieredCompilation>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <AssemblyVersion>2022.2</AssemblyVersion>
-    <FileVersion>2022.2</FileVersion>
-    <Version>2022.2</Version>    
-  </PropertyGroup>
+    <PropertyGroup>
+        <AssemblyVersion>2022.2</AssemblyVersion>
+        <FileVersion>2022.2</FileVersion>
+        <Version>2022.2</Version>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <Optimize>true</Optimize>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+        <Optimize>true</Optimize>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors/>
+        <Prefer32Bit>true</Prefer32Bit>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors/>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <NoWarn>1701;1702;WFAC010,VSTHRD200</NoWarn>
-  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;WFAC010,VSTHRD200</NoWarn>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <NoWarn>1701;1702;WFAC010,VSTHRD200</NoWarn>
-  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;WFAC010,VSTHRD200</NoWarn>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="app.ico" />
-    <None Remove="Resources\grayscaleshader.bat" />
-    <None Remove="Resources\GrayscaleShader.ps" />
-    <None Remove="Resources\profile.png" />
-    <None Remove="Resources\splash.png" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="app.ico"/>
+        <None Remove="Resources\grayscaleshader.bat"/>
+        <None Remove="Resources\GrayscaleShader.ps"/>
+        <None Remove="Resources\profile.png"/>
+        <None Remove="Resources\splash.png"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\GrayscaleShader.ps" />
-    <Resource Include="Resources\profile.png" />
-    <None Remove="app-pending.ico" />
-    <Resource Include="app-pending.ico" />
-    <None Remove="green-dot.ico" />
-    <Resource Include="green-dot.ico" />
-  </ItemGroup>
+    <ItemGroup>
+        <Resource Include="Resources\GrayscaleShader.ps"/>
+        <Resource Include="Resources\profile.png"/>
+        <None Remove="app-pending.ico"/>
+        <Resource Include="app-pending.ico"/>
+        <None Remove="green-dot.ico"/>
+        <Resource Include="green-dot.ico"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.3" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.48">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.3"/>
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.27">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\twitter.core\twitter.core.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\twitter.core\twitter.core.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="app.ico" />
-  </ItemGroup>
+    <ItemGroup>
+        <Resource Include="app.ico"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <SplashScreen Include="Resources\splash.png" />
-  </ItemGroup>
+    <ItemGroup>
+        <SplashScreen Include="Resources\splash.png"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Controls\CachedImage.cs">
-      <SubType>Component</SubType>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Properties\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Controls\CachedImage.cs">
+            <SubType>Component</SubType>
+        </Compile>
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
 </Project>

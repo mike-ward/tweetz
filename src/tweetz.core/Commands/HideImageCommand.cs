@@ -30,7 +30,8 @@ namespace tweetz.core.Commands
 
             try
             {
-                var uri = ea.Parameter switch {
+                var uri = ea.Parameter switch
+                {
                     Media media => ImageViewerService.MediaSource(media),
                     string path => new Uri(path),
                     _           => null

@@ -11,7 +11,8 @@ namespace tweetz.core.Converters
             if (value is not int count) return value;
             const double k = 1000;
 
-            return count switch {
+            return count switch
+            {
                 0        => " ",
                 < 999    => count.ToString(CultureInfo.InvariantCulture),
                 < 999999 => string.Format(CultureInfo.InvariantCulture, "{0:N1}K", count / k),

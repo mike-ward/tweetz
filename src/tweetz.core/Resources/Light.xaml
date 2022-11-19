@@ -38,9 +38,11 @@
 
   <converters:ColorConverter x:Key="ColorConverter" />
 
-  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation" StartPoint="0.5,0" EndPoint="0.5, 1">
+  <LinearGradientBrush x:Key="MyTweetBackgroundBrush" ColorInterpolationMode="ScRgbLinearInterpolation"
+                       StartPoint="0.5,0" EndPoint="0.5, 1">
     <GradientStop Offset="0" Color="#f8f8f8" />
-    <GradientStop Offset="0.13" Color="{Binding MyTweetColor, Source={x:Static models:Settings.SettingsStatic}, Mode=OneWay, FallbackValue={StaticResource MyTweetFallbackColorLight}, TargetNullValue={StaticResource MyTweetFallbackColorLight}, Converter={StaticResource ColorConverter}}" />
+    <GradientStop Offset="0.13"
+                  Color="{Binding MyTweetColor, Source={x:Static models:Settings.SettingsStatic}, Mode=OneWay, FallbackValue={StaticResource MyTweetFallbackColorLight}, TargetNullValue={StaticResource MyTweetFallbackColorLight}, Converter={StaticResource ColorConverter}}" />
     <GradientStop Offset="1" Color="#f8f8f8" />
   </LinearGradientBrush>
 </ResourceDictionary>

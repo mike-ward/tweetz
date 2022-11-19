@@ -65,7 +65,7 @@ namespace twitter.core.Services
         }
 
         /// <summary>
-        /// Builds, signs and delivers an OAuth Request
+        ///     Builds, signs and delivers an OAuth Request
         /// </summary>
         private async ValueTask<T> OAuthRequestAsync<T>(string url, IEnumerable<(string, string)> parameters, string method)
         {
@@ -99,7 +99,7 @@ namespace twitter.core.Services
         }
 
         /// <summary>
-        /// Twitter requires media upload to be multipart form with specific parameters
+        ///     Twitter requires media upload to be multipart form with specific parameters
         /// </summary>
         public async ValueTask AppendMediaAsync(string mediaId, int segmentIndex, byte[] payload)
         {
@@ -109,16 +109,18 @@ namespace twitter.core.Services
             var          signature       = OAuth.Signature(POST, uploadUrl, nonce, timestamp, ConsumerKey!, ConsumerSecret!, AccessToken!, AccessTokenSecret!, parameters: null);
             var          authorizeHeader = OAuth.AuthorizationHeader(nonce, timestamp, ConsumerKey!, AccessToken, signature);
 
-            var request = new HttpRequestMessage {
+            var request = new HttpRequestMessage
+            {
                 Method     = HttpMethod.Post,
                 RequestUri = new Uri(uploadUrl)
             };
             request.Headers.Add("Authorization", authorizeHeader);
 
-            var form = new MultipartFormDataContent {
-                { new StringContent("APPEND"), "command" }, 
-                { new StringContent(mediaId), "media_id" }, 
-                { new StringContent(segmentIndex.ToString(CultureInfo.InvariantCulture)), "segment_index" }, 
+            var form = new MultipartFormDataContent
+            {
+                { new StringContent("APPEND"), "command" },
+                { new StringContent(mediaId), "media_id" },
+                { new StringContent(segmentIndex.ToString(CultureInfo.InvariantCulture)), "segment_index" },
                 { new ByteArrayContent(payload), "media" }
             };
             request.Content = form;

@@ -16,7 +16,8 @@
           <Grid.Visibility>
             <MultiBinding Converter="{StaticResource IsHiddenImageConverter}">
               <Binding Path="MediaUrl" />
-              <Binding Path="DataContext.Settings.HiddenImageSet" RelativeSource="{RelativeSource AncestorType=core:MainWindow}" />
+              <Binding Path="DataContext.Settings.HiddenImageSet"
+                       RelativeSource="{RelativeSource AncestorType=core:MainWindow}" />
             </MultiBinding>
           </Grid.Visibility>
 

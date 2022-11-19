@@ -1,4 +1,5 @@
-﻿using tweetz.core.Extensions;
+﻿using System.ComponentModel;
+using tweetz.core.Extensions;
 using tweetz.core.Interfaces;
 
 namespace tweetz.core.ViewModels
@@ -22,9 +23,12 @@ namespace tweetz.core.ViewModels
             set => SetProperty(ref title, value);
         }
 
-        private void Settings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs? e)
+        private void Settings_PropertyChanged(object? sender, PropertyChangedEventArgs? e)
         {
-            if (e is null) { return; }
+            if (e is null)
+            {
+                return;
+            }
 
             if (e.PropertyName.IsEqualTo(nameof(Settings.ScreenName)) ||
                 e.PropertyName.IsEqualTo(nameof(Settings.HideScreenName)))

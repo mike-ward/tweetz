@@ -6,7 +6,7 @@ using System.Windows.Media.Effects;
 namespace tweetz.core.Services
 {
     /// <summary>
-    /// Grayscale pixel shader effect using the HSP method.
+    ///     Grayscale pixel shader effect using the HSP method.
     /// </summary>
     public class GrayscaleShaderEffect : ShaderEffect
     {
@@ -17,7 +17,8 @@ namespace tweetz.core.Services
 
         public GrayscaleShaderEffect()
         {
-            PixelShader = new PixelShader {
+            PixelShader = new PixelShader
+            {
                 UriSource = new Uri("Resources/GrayscaleShader.ps", UriKind.Relative)
             };
             UpdateShaderValue(InputProperty);
