@@ -21,5 +21,6 @@
     <controls1:BulletedItem BulletText="{StaticResource tips-hide-image}" />
     <controls1:BulletedItem BulletText="{StaticResource tips-profiles}" />
     <controls1:BulletedItem BulletText="{StaticResource tips-volume}" />
+    <controls1:BulletedItem BulletText="{StaticResource tips-images}" />
   </StackPanel>
 </UserControl>

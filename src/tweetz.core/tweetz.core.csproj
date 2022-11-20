@@ -22,9 +22,9 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <AssemblyVersion>2022.2</AssemblyVersion>
-        <FileVersion>2022.2</FileVersion>
-        <Version>2022.2</Version>
+        <AssemblyVersion>2022.3</AssemblyVersion>
+        <FileVersion>2022.3</FileVersion>
+        <Version>2022.3</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">

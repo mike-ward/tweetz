@@ -1,15 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022.3 - 2022-11-20
+
+### Added
+- Visual indicator of new messages when minimized [#125](https://github.com/mike-ward/tweetz/issues/125)
+- Sound notification for new tweets [#113](https://github.com/mike-ward/tweetz/issues/113)
+- Zoom in/out on images with mouse wheel [#91](https://github.com/mike-ward/tweetz/issues/91)
+
+### Changed
+- Upgraded dotnet runtime to v7.0
+
+### Fixed
+- Pictures are often truncated, showing only the top. [#118](https://github.com/mike-ward/tweetz/issues/118)
+
 ## 2022.2 - 2022-01-09
 
 ### Added
-- Add option to hide close button in title bar #104
+- Add option to hide close button in title bar [#104](https://github.com/mike-ward/tweetz/issues/104)
 
 ## 2022.1 - 2022-01-01
 
 ### Added
-- Add options to hide retweets and tweets with no media #100
+- Add options to hide retweets and tweets with no media [#100](https://github.com/mike-ward/tweetz/issues/100)
 
 ### Changed
 - Update runtime to .NET 6.0
@@ -20,7 +33,7 @@ All notable changes to this project will be documented in this file.
 - GDI font metric mode option
 
 ### Fixed
-- hide minimized window when system tray setting is true #41
+- hide minimized window when system tray setting is true [#41](https://github.com/mike-ward/tweetz/issues/41)
 - Fix images not showing at times
 
 ### Changed
