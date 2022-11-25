@@ -30,13 +30,13 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
         <Optimize>true</Optimize>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors/>
+        <WarningsAsErrors />
         <Prefer32Bit>true</Prefer32Bit>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors/>
+        <WarningsAsErrors />
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -48,26 +48,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="app.ico"/>
-        <None Remove="Resources\grayscaleshader.bat"/>
-        <None Remove="Resources\GrayscaleShader.ps"/>
-        <None Remove="Resources\profile.png"/>
-        <None Remove="Resources\splash.png"/>
+        <None Remove="app.ico" />
+        <None Remove="Resources\grayscaleshader.bat" />
+        <None Remove="Resources\GrayscaleShader.ps" />
+        <None Remove="Resources\profile.png" />
+        <None Remove="Resources\splash.png" />
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\GrayscaleShader.ps"/>
-        <Resource Include="Resources\profile.png"/>
-        <None Remove="app-pending.ico"/>
-        <Resource Include="app-pending.ico"/>
-        <None Remove="green-dot.ico"/>
-        <Resource Include="green-dot.ico"/>
+        <Resource Include="Resources\GrayscaleShader.ps" />
+        <Resource Include="Resources\profile.png" />
+        <None Remove="app-pending.ico" />
+        <Resource Include="app-pending.ico" />
+        <None Remove="green-dot.ico" />
+        <Resource Include="green-dot.ico" />
+        <None Remove="notify.wav" />
+        <None Remove="Properties\notify.wav" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.3"/>
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.27">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -75,15 +77,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\twitter.core\twitter.core.csproj"/>
+        <ProjectReference Include="..\twitter.core\twitter.core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="app.ico"/>
+        <Resource Include="app.ico" />
     </ItemGroup>
 
     <ItemGroup>
-        <SplashScreen Include="Resources\splash.png"/>
+        <SplashScreen Include="Resources\splash.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -102,5 +104,6 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+        <Resource Include="notify.wav" />
     </ItemGroup>
 </Project>

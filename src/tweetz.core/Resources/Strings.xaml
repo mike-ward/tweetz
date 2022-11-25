@@ -57,7 +57,6 @@
   <sys:String x:Key="settings-show-short-links">Show short [links]</sys:String>
   <sys:String x:Key="settings-gdi-font-metrics">Use GDI font metrics</sys:String>
   <sys:String x:Key="settings-play-notify-sound">Play sound on new tweets</sys:String>
-  <sys:String x:Key="settings-tooltip-play-notify-sound">Plays Windows Asterisk sound</sys:String>
 
   <!--  Profile  -->
   <sys:String x:Key="profile-joined">Joined</sys:String>
