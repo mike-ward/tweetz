@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -58,8 +56,6 @@ namespace tweetz.core.Views
             ((MainWindow)Application.Current.MainWindow!).UpdateAppIcon(isMinimized);
         }
 
-        private static readonly Stream notifySound = Application.GetResourceStream(new Uri("pack://application:,,,/notify.wav"))!.Stream;
-
         private void PlayNotifySound()
         {
             try
@@ -68,12 +64,12 @@ namespace tweetz.core.Views
                 {
                     if (string.IsNullOrWhiteSpace(Settings.NotifySoundSource))
                     {
-                        new SoundPlayer(notifySound).Play();
-                        return;
+                        SoundService.PlayDefaultNotifySound();
                     }
-
-                    var player = new SoundPlayer(Settings.NotifySoundSource);
-                    player.Play();
+                    else
+                    {
+                        SoundService.PlayFromSoundSource(Settings.NotifySoundSource);
+                    }
                 }
             }
             catch (Exception ex)
