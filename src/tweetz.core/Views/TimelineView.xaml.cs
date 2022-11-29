@@ -64,7 +64,7 @@ namespace tweetz.core.Views
                 {
                     if (string.IsNullOrWhiteSpace(Settings.NotifySoundSource))
                     {
-                        SoundService.PlayDefaultNotifySound();
+                        SoundService.PlayNotifySound();
                     }
                     else
                     {

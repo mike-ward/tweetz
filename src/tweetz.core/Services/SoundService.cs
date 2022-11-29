@@ -6,7 +6,7 @@ namespace tweetz.core.Services
 {
     public static class SoundService
     {
-        public static void PlayDefaultNotifySound()
+        public static void PlayNotifySound()
         {
             using var notifySound = Application.GetResourceStream(new Uri("pack://application:,,,/notify.wav"))!.Stream;
             using var player      = new SoundPlayer(notifySound);

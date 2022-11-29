@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using tweetz.core.Services;
 
 namespace tweetz.core.Models
 {
@@ -54,11 +56,29 @@ namespace tweetz.core.Models
             Items.RemoveAt(index);
         }
 
+        private Action<int>? debounceNotifyActionChanged;
+
         public void NotifyCollectionChanged()
         {
-            OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-            OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            debounceNotifyActionChanged ??= DebounceService.Debounce<int>(_ => NotifyCollectionChangedImplementation());
+            debounceNotifyActionChanged(0);
+        }
+
+        private void NotifyCollectionChangedImplementation()
+        {
+            NotifyCollectionCountChanged();
+            NotifyCollectionItemsChanged();
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        private void NotifyCollectionCountChanged()
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+        }
+
+        private void NotifyCollectionItemsChanged()
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
         }
     }
 }

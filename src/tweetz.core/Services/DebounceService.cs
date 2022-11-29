@@ -16,9 +16,20 @@ namespace tweetz.core.Services
             return arg =>
             {
                 cancelTokenSource?.Cancel();
+                
+                try
+                {
+                    cancelTokenSource?.Dispose();
+                }
+                catch
+                {
+                    // ignored
+                }
+
                 cancelTokenSource = new CancellationTokenSource();
 
-                var unused = Task.Delay(milliseconds, cancelTokenSource.Token)
+                var unused = Task
+                   .Delay(milliseconds, cancelTokenSource.Token)
                    .ContinueWith(t =>
                     {
                         if (t.IsCompletedSuccessfully)

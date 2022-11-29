@@ -10,7 +10,7 @@ namespace tweetz.core.Services
             const int maxNumberOfStatuses = 500;
             var       truncated           = timeline.StatusCollection.Count > maxNumberOfStatuses;
 
-            while (timeline.StatusCollection.Count > maxNumberOfStatuses)
+            while (timeline.StatusCollection.Count > maxNumberOfStatuses - 50)
             {
                 timeline.StatusCollection.RemoveAtNoNotify(timeline.StatusCollection.Count - 1);
             }
