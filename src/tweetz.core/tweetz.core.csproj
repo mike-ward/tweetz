@@ -22,9 +22,9 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <AssemblyVersion>2022.3</AssemblyVersion>
-        <FileVersion>2022.3</FileVersion>
-        <Version>2022.3</Version>
+        <AssemblyVersion>2022.4</AssemblyVersion>
+        <FileVersion>2022.4</FileVersion>
+        <Version>2022.4</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -67,8 +67,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.27">
             <PrivateAssets>all</PrivateAssets>

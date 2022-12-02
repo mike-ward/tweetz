@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022.4 - 2022-12-02
+
+### Changed
+- Changed default notification sound to classic cricket chirp
+- Debounced internal collection change notifications
+
 ## 2022.3 - 2022-11-20
 
 ### Added
