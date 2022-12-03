@@ -34,7 +34,7 @@ namespace tweetz.core.ViewModels
         {
             var mentions = await GetMentionsAsync().ConfigureAwait(true);
             var statuses = await TwitterService.TwitterApi.HomeTimeline().ConfigureAwait(true);
-            await UpdateStatuses.Execute(statuses.Concat(mentions), timeline).ConfigureAwait(true);
+            await UpdateStatuses.Execute(statuses.Concat(mentions), timeline, Settings).ConfigureAwait(true);
         }
 
         private async ValueTask<IEnumerable<TwitterStatus>> GetMentionsAsync()

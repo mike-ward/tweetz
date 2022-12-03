@@ -60,14 +60,19 @@ namespace tweetz.core.Models
 
         public void NotifyCollectionChanged()
         {
-            debounceNotifyActionChanged ??= DebounceService.Debounce<int>(_ => NotifyCollectionChangedImplementation());
+            debounceNotifyActionChanged ??= DebounceService.Debounce<int>(_ => SendNotifyCollectionChangedEvents());
             debounceNotifyActionChanged(0);
         }
 
-        private void NotifyCollectionChangedImplementation()
+        private void SendNotifyCollectionChangedEvents()
         {
             NotifyCollectionCountChanged();
             NotifyCollectionItemsChanged();
+            NotifyCollectionReset();
+        }
+
+        private void NotifyCollectionReset()
+        {
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
