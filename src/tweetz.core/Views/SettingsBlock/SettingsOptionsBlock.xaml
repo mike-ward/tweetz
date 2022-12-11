@@ -36,12 +36,6 @@
         TextWrapping="Wrap" />
     </CheckBox>
 
-    <CheckBox IsChecked="{Binding Settings.HideRetweets}">
-      <TextBlock
-        Text="{StaticResource hide-retweets}"
-        TextWrapping="Wrap" />
-    </CheckBox>
-
     <CheckBox IsChecked="{Binding Settings.HideNoMediaTweets}">
       <TextBlock
         Text="{StaticResource hide-no-media-tweets}"
@@ -81,6 +75,12 @@
     <CheckBox IsChecked="{Binding Settings.ShowInSystemTray}">
       <TextBlock
         Text="{StaticResource show-in-system-tray}"
+        TextWrapping="Wrap" />
+    </CheckBox>
+
+    <CheckBox IsChecked="{Binding Settings.HideRetweets}">
+      <TextBlock
+        Text="{StaticResource hide-retweets}"
         TextWrapping="Wrap" />
     </CheckBox>
 

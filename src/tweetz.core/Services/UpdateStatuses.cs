@@ -14,12 +14,12 @@ namespace tweetz.core.Services
     {
         public static ValueTask Execute(IEnumerable<TwitterStatus> statuses, TwitterTimeline timeline, ISettings? settings = null)
         {
-            var notify = false;
+            var notify         = false;
+            var ignoreRetweets = settings?.HideRetweets ?? false;
 
             // Build a hashset for faster lookups.
             var statusesNoNags = timeline.StatusCollection.Where(status => status.Id.IsNotEqualTo(DonateNagStatus.DonateNagStatusId));
             var hashSet        = new HashSet<TwitterStatus>(statusesNoNags);
-            var ignoreRetweets = settings?.HideRetweets ?? false;
 
             foreach (var status in statuses.OrderBy(status => status.CreatedDate))
             {
