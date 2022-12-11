@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022.5 - 2022-12-11
+
+### Fixed
+
+- Fix errant new tweet notifications when hiding retweets. [#125](https://github.com/mike-ward/tweetz/issues/125)
+
 ## 2022.4 - 2022-12-02
 
 ### Changed
